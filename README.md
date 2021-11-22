@@ -21,5 +21,8 @@ Hér eru upplýsingar um hönnun kerfisins og ýmis rit tengd því.
 ## ./docs/
 Documentation um hvernig er hægt að nota forritið.
 
+## ./dagbok/
+Dagbókarfærslur um hvað gerðist þann dag
+
 # Keyrsla
 `$ python3 main.py`
