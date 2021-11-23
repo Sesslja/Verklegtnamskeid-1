@@ -9,3 +9,11 @@ Við skiptum kröfum upp í þá kröfur sem hver notandi mun gera til kerfisins
 
 Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við tilgreinum hvað attributes hver klasi tekur við og hvaða functions hann á að skila.
 
+# Dagur 2
+
+## Morgunfundur
+- Halda áfram með klasaritin
+- Halda áfram með kröfulistann 
+    - Skipta honum upp í functional og non-functional
+- Byrja á User stories og Use cases
+
