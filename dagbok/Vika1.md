@@ -18,7 +18,9 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - Byrja á User stories og Use cases
 
 ## Lok dags
-- okkur gengur vel og höfum klárað að setja class diagram
--  við erum einnig komin langt áfram í að setja upp activity diagram
-- Einnig erum við komin með helvíti sexy kröfulista
+- Okkur gengur vel og höfum klárað að búa til class diagram
+- Við erum einnig komin langt áfram í að setja upp state diagram
+- Skiptum kröfulista upp í functional og non-functional
+- Kröfulisti
+- Gerðum nokkur user stories líka.
 
