@@ -22,3 +22,5 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 -  við erum einnig komin langt áfram í að setja upp activity diagram
 - Einnig erum við komin með helvíti sexy kröfulista
 
+# Dagur 3
+
