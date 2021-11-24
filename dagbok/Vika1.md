@@ -18,10 +18,10 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - Byrja á User stories og Use cases
 
 ## Lok dags
-- Okkur gengur vel og höfum klárað að búa til class diagram
+- Okkur gengur vel og höfum klárað að búa til class diagram fyrir logic layer
 - Við erum einnig komin langt áfram í að setja upp state diagram
+- Kröfulisti er að mestu leyti kominn
 - Skiptum kröfulista upp í functional og non-functional
-- Kröfulisti
 - Gerðum nokkur user stories líka.
 
 # Dagur 3
