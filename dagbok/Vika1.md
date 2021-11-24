@@ -25,4 +25,6 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - Gerðum nokkur user stories líka.
 
 # Dagur 3
-
+- Við ætlum að klára Notkunatilvik og Notkunarhópa greiningu
+- einnig ætlum við að ráðast á user stories
+- Við ætlum að fara yfir og lagfæra stöðuritið 
