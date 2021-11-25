@@ -41,3 +41,12 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - Use Cases búin til úr kröfulista og user stories.
 - Kiddi State fór í pfhizer sprautu.
 - Skipulögðum lokaprófs partý(dm fyrir boð)
+
+# Fimmtudagur // 25.11.21
+
+## Morgunfundur
+-  Kiddi sales er kominn á fleygi ferð með útlitshönnun á kerfinu okkar.
+- Við munum nota daginn í að fullkoma útlitshönnunina
+- Við þurfum einnig að skipta klasaritinu okkar upp í 3 laga kerfi og aðlaga hjúpunina
+- Klára notkunartilvik og user stories
+- ákveða c kröfur sem við ætlum að bæta inn
