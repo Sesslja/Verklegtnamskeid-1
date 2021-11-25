@@ -30,11 +30,11 @@
                 <mxCell id="6" value="Maintenance request approved" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
                     <mxGeometry x="359" y="390" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" style="edgeStyle=none;html=1;endArrow=openThin;endFill=0;entryX=0.607;entryY=-0.071;entryDx=0;entryDy=0;entryPerimeter=0;rounded=0;" edge="1" parent="1" source="7" target="6">
+                <mxCell id="12" style="edgeStyle=none;html=1;endArrow=openThin;endFill=0;rounded=0;" edge="1" parent="1" source="7">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="460" y="370" as="targetPoint"/>
+                        <mxPoint x="459" y="388" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="480" y="350"/>
+                            <mxPoint x="459" y="370"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
