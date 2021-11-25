@@ -31,6 +31,7 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - einnig ætlum við að ráðast á user stories
 - Við ætlum að fara yfir og lagfæra stöðuritið 
 
+<<<<<<< HEAD
 ## Lok dags
 - Greindum notenahópa
 - Uppfærðum klasarit logic layer
@@ -50,3 +51,6 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - Við þurfum einnig að skipta klasaritinu okkar upp í 3 laga kerfi og aðlaga hjúpunina
 - Klára notkunartilvik og user stories
 - ákveða c kröfur sem við ætlum að bæta inn
+=======
+## Lok dags
+>>>>>>> 31e6185ee817c380c1c63f8688480810d01eeb67
