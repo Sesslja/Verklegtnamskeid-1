@@ -1,4 +1,4 @@
-# Dagur 1
+# Dagur 1 // 22.11.21
 
 Hópur hittist saman og fengum að kynnast hvor öðru.
 
@@ -9,7 +9,7 @@ Við skiptum kröfum upp í þá kröfur sem hver notandi mun gera til kerfisins
 
 Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við tilgreinum hvað attributes hver klasi tekur við og hvaða functions hann á að skila.
 
-# Dagur 2
+# Dagur 2 // 23.11.21
 
 ## Morgunfundur
 - Halda áfram með klasaritin
@@ -24,14 +24,13 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - Skiptum kröfulista upp í functional og non-functional
 - Gerðum nokkur user stories líka.
 
-# Dagur 3
+# Dagur 3 // 24.11.21
 
 ## Morgunfundur
 - Við ætlum að klára Notkunatilvik og Notkunarhópa greiningu
 - einnig ætlum við að ráðast á user stories
 - Við ætlum að fara yfir og lagfæra stöðuritið 
 
-<<<<<<< HEAD
 ## Lok dags
 - Greindum notenahópa
 - Uppfærðum klasarit logic layer
@@ -40,14 +39,22 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - User stories komin.
 - Bættum við kröfulistan.
 - Use Cases búin til úr kröfulista og user stories.
-- Kiddi State fór í pfhizer sprautu.
+- Kiddi Sales fór í Pfizer sprautu.
 - Skipulögðum lokaprófs partý(dm fyrir boð)
 
-# Fimmtudagur // 25.11.21
+# Dagur 4 // 25.11.21
 
 ## Morgunfundur
--  Kiddi sales er kominn á fleygi ferð með útlitshönnun á kerfinu okkar.
+- Kiddi sales er kominn á fleygi ferð með útlitshönnun á kerfinu okkar.
 - Við munum nota daginn í að fullkoma útlitshönnunina
 - Við þurfum einnig að skipta klasaritinu okkar upp í 3 laga kerfi og aðlaga hjúpunina
 - Klára notkunartilvik og user stories
 - ákveða c kröfur sem við ætlum að bæta inn
+
+## Lok dags
+- Allar A & B Kröfur komnar í Use Case
+- Wireframe tilbúið
+- Hönnunarskýrsla komin langt
+- 3-tier component diagram tilbúið
+- Flow diagram tilbúið
+- Kiddi Sales ennþá slæmur eftir Pfizer sprautuna
