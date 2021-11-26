@@ -58,3 +58,10 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - 3-tier component diagram tilbúið
 - Flow diagram tilbúið
 - Kiddi Sales ennþá slæmur eftir Pfizer sprautuna
+
+# Dagur 5 // 26.11.21
+
+## Morgunfundur
+- Örlagadagur þar sem við munum skila inn fyrstu skilum
+- Við erum vel á áætlun og munum nýta daginn í það að setja upp skýrsluna
+- fara yfir verkefni sem við erum komin með áður en við setjum í skýrsluna 
