@@ -65,3 +65,7 @@ Við settum upp kröfulista og bjóum til beinagrind af klasariti þar sem við 
 - Örlagadagur þar sem við munum skila inn fyrstu skilum
 - Við erum vel á áætlun og munum nýta daginn í það að setja upp skýrsluna
 - fara yfir verkefni sem við erum komin með áður en við setjum í skýrsluna 
+
+## Lok dags
+- Skil!!!!!!
+- Kláruðum skýrslu og skiluðum inn. 
