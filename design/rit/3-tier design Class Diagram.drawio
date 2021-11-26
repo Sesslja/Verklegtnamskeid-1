@@ -333,7 +333,7 @@
                 <mxCell id="190" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="187" vertex="1">
                     <mxGeometry y="30" width="130" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="191" style="edgeStyle=none;rounded=0;sketch=0;html=1;shadow=0;fontSize=18;startArrow=none;startFill=0;endArrow=open;endFill=0;strokeColor=#FFFFFF;strokeWidth=2;" parent="14" source="188" edge="1">
+                <mxCell id="191" style="edgeStyle=none;rounded=0;sketch=0;html=1;shadow=0;fontSize=18;startArrow=none;startFill=0;endArrow=open;endFill=0;strokeWidth=2;" parent="14" source="188" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="310" y="328" as="targetPoint"/>
                         <Array as="points">
