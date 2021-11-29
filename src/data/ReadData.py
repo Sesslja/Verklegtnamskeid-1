@@ -12,15 +12,18 @@ class ReadData:
                 listObj = json.load(file)
                 print(listObj)
 
-                getvars = self.modelObj()
-                print(vars(getvars).keys())
-
-                user = User()
+                model_keys = self.getKeys()
+                new_dict = {}
 
                 for row in listObj:
+                    new_dict = {}
                     for key in row:
-                        #print(key)
-                        pass
+                        if key in model_keys:
+                            new_dict.update({key: row[key]})
+                
+                    print(new_dict)
+
+                            
 
         except FileNotFoundError:
             print('file not found, might need to run a migration')
@@ -29,5 +32,6 @@ class ReadData:
         print(filename)
     
     def getKeys(self):
+        '''Get the key names of the model'''
         getvars = self.modelObj()
-        print(vars(getvars).keys())
+        return [*vars(getvars)]
