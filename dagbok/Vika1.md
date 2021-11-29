@@ -1,5 +1,6 @@
 # Dagur 1 // 22.11.21
 
+## Morgunfundur
 Hópur hittist saman og fengum að kynnast hvor öðru.
 
 Í dag höfum við verið að fara yfir heildarmyndina og ná almennilega yfir það hvaða eiginleika kerfið okkar mun þurfa hafa.
