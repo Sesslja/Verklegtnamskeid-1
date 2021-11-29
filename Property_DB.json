@@ -1,0 +1,15 @@
+[
+    {
+        "id": "generated Id",
+        "created_at": "CREATED_AT_TIME",
+        "isActive": true,
+        "isArchived": false,
+        "address": "D\u00fafnah\u00f3lar 10",
+        "propertyId": "85858328jfjfu83",
+        "amenities": [
+            "Kl\u00f3sett",
+            "Sturta",
+            "Eldh\u00fas"
+        ]
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "id": "generated Id",
+        "created_at": "CREATED_AT_TIME",
+        "isActive": true,
+        "isArchived": false,
+        "name": "bob",
+        "email": "bob@nan.is",
+        "isManager": false,
+        "ssn": 391903838
+    },
+    {
+        "id": "generated Id",
+        "created_at": "CREATED_AT_TIME",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Kiddi Sales",
+        "email": "sales@nan.is",
+        "isManager": false,
+        "ssn": 6969690420
+    }
+]
