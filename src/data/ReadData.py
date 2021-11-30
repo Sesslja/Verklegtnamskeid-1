@@ -5,6 +5,8 @@ class ReadData:
         self.modelObj = modelObj
 
     def find(self, filename: str,  options: dict= {}):
+        where = options.where
+        relations = options.relations
         try:
             with open(filename) as file:
                 listObj = json.load(file)
@@ -16,12 +18,13 @@ class ReadData:
                     model = self.modelObj()
                     for key in row:
                         if key in modelKeys:
-                            model.__setattr__(key, row[key])
+                            if where:
+                                model.__setattr(key, row[key])
+                            else:
+                                model.__setattr__(key, row[key])
                     find_list.append(model)
 
                 return find_list
-
-                            
 
         except FileNotFoundError:
             print('file not found, might need to run a migration')
@@ -32,3 +35,5 @@ class ReadData:
     def getKeys(self, obj):
         '''Get the key names of the model'''
         return [*vars(obj)]
+
+    def modelToDict(self)
