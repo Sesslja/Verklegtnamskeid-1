@@ -1,7 +1,7 @@
 from Constants import MENU_OPTIONS_DICT
 
 class MenuAPI:
-    def __init__(self):
+    def __init__(self, propList):
         self.menu_options = MENU_OPTIONS_DICT
 
     def print_menu(self):
