@@ -1,8 +1,9 @@
-from ui.MenuConstants import *
+from ui.MenuConstants import MenuConstants
 
 class BaseMenu :
     def __init__(self):
-        self.menu_options = MENU_OPTIONS_DICT
+        self.menu_constants = MenuConstants()
+        self.menu_options = self.menu_constants.MENU_OPTIONS_DICT
 
     def print_options(self):
         for key in  self.menu_options :
