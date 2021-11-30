@@ -2,6 +2,7 @@ import json
 import uuid
 from datetime import datetime
 from data.DBError import DBError
+import inspect
 
 class StoreData:
     def __init__(self, modelObj: object) -> None:
@@ -12,6 +13,11 @@ class StoreData:
         obj._id = str(uuid.uuid4())
         obj.created_at = str(datetime.now())
         data = vars(obj)
+        #for key in data:
+        #    print(inspect.isclass(data[key]))
+        #    if inspect.isclass(data[key]):
+        #        print('is object')
+        #        data.update({ key: vars(data[key]) })
 
         try:
             with open(filename) as file:

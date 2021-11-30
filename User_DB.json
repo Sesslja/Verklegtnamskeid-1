@@ -19,4 +19,6 @@
         "email": "jr@nan.is",
         "isManager": false,
         "ssn": 1234567890,
-        "Address": 
+        "Address": null
+    }
+]
