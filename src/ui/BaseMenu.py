@@ -1,35 +1,38 @@
-from ui.MenuConstants import MenuConstants
-
 class BaseMenu :
     def __init__(self):
-        self.menu_constants = MenuConstants()
-        self.menu_options = self.menu_constants.MENU_OPTIONS_DICT
+        self.menu_options = {}
 
     def print_options(self):
-        for key in  self.menu_options :
-            print(f"{key} {self.menu_options[key]['title']}")
-        return self.get_user_input()
+        menuState = 'run'
+        while menuState is 'run':
+            for key in  self.menu_options :
+                print(f"{key} {self.menu_options[key]['title']}")
+            menuState = self.get_user_input()
 
-    def get_user_input(self):
+    def get_user_input(self)-> str:
 
         user_input = input("").upper() #User input P/M/C/E
         opt = self.menu_options
 
         if user_input in opt:
-            if opt[user_input]['special']:
+            if 'special' in opt[user_input]:
                 if opt[user_input]['special'] == 'back':
-                    return True
+                    return 'back'
                 elif opt[user_input]['special'] == 'main':
                     return 'main'
-            elif opt[user_input]['class']:
+            elif 'class' in opt[user_input]:
                 opt_class = opt[user_input]['class']
-                new_menu = opt_class(self)
+                new_menu = opt_class()
                 if new_menu.print_options() == 'main':
                     return 'main'
-            elif opt[user_input]['function']:
+                return 'run'
+            elif 'function' in opt[user_input]:
                 opt_func = opt[user_input]['function']
-                return False
+                run_func = getattr(self, opt_func, None)
+                run_func()
+                return 'run'
             else:
-                return False
+                return 'run'
         else:
             print(f'Invalid input: {user_input}')
+            return 'run'
