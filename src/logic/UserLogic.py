@@ -6,8 +6,11 @@ class UserAPI:
         self.userRepo = DB(User)
 
     def createEmployee(self, name: str, email: str, ssn: int):
-        new_user = User(name, email, ssn, False)
+        new_user = User(name=name, email=email, ssn=ssn)
         return self.userRepo.save(new_user)
 
-    def findEmployees(self):
+    def findEmployees(self) -> list:
         return self.userRepo.find()
+
+    def deleteEmployee(self, id) -> list:
+        return self.userRepo.delete(id)

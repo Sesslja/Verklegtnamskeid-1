@@ -1,4 +1,7 @@
 import json
+import uuid
+from datetime import datetime
+from data.DBError import DBError
 
 class StoreData:
     def __init__(self, modelObj: object) -> None:
@@ -6,16 +9,14 @@ class StoreData:
     
 
     def store(self, filename, obj):
+        obj._id = str(uuid.uuid4())
+        obj.created_at = str(datetime.now())
         data = vars(obj)
 
         try:
             with open(filename) as file:
                 listObj = json.load(file)
-                print(listObj)
-
                 listObj.append(data)
-
-                print(listObj)
 
                 with open(filename, 'w') as json_file:
                     json.dump(listObj, json_file, indent=4, separators=(',',': '))
@@ -23,7 +24,25 @@ class StoreData:
                 return data
 
         except FileNotFoundError:
-            print('file not found, might need to run a migration')
+            return DBError('TABLE_NOT_EXIST')
 
 
-        print(filename)
+    def delete(self, filename, id) -> bool:
+        try:
+            with open(filename) as file:
+                listObj: list = json.load(file)
+
+                for index, row in enumerate(listObj):
+                    if row['_id'] == id:
+                        try:
+                            listObj.pop(index)
+                        except IndexError:
+                            return DBError('DELETION_ERROR')
+                        break
+                with open(filename, 'w') as json_file:
+                    json.dump(listObj, json_file, indent=4, separators=(',',': '))
+                return True
+        except FileNotFoundError:
+            return DBError('TABLE_NOT_EXIST')
+                    
+

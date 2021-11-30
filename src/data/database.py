@@ -20,9 +20,13 @@ class DB:
         '''Use StoreData functions'''
         return self.storeObj.store(self.filename, saveObj)
 
-    def find(self, options: dict={}) -> object:
+    def find(self, options: dict={}) -> list:
         '''Use StoreData functions'''
         return self.readObj.find(self.filename, options)
+
+    def delete(self, id) -> list:
+        '''Deletes a record from database using given id'''
+        return self.storeObj.delete(self.filename, id)
     
     def runMigration(self):
         data = []

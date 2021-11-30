@@ -1,7 +1,5 @@
 import json
 
-from model.userModel import User
-
 class ReadData:
     def __init__(self, modelObj: object) -> None:
         self.modelObj = modelObj
@@ -10,18 +8,18 @@ class ReadData:
         try:
             with open(filename) as file:
                 listObj = json.load(file)
-                print(listObj)
-
-                model_keys = self.getKeys()
-                new_dict = {}
+                find_list = []
+                
+                modelKeys = self.getKeys(self.modelObj())
 
                 for row in listObj:
-                    new_dict = {}
+                    model = self.modelObj()
                     for key in row:
-                        if key in model_keys:
-                            new_dict.update({key: row[key]})
-                
-                    print(new_dict)
+                        if key in modelKeys:
+                            model.__setattr__(key, row[key])
+                    find_list.append(model)
+
+                return find_list
 
                             
 
@@ -31,7 +29,6 @@ class ReadData:
 
         print(filename)
     
-    def getKeys(self):
+    def getKeys(self, obj):
         '''Get the key names of the model'''
-        getvars = self.modelObj()
-        return [*vars(getvars)]
+        return [*vars(obj)]

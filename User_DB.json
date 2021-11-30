@@ -1,22 +1,13 @@
 [
     {
-        "id": "generated Id",
-        "created_at": "CREATED_AT_TIME",
-        "isActive": true,
-        "isArchived": false,
-        "name": "bob",
-        "email": "bob@nan.is",
-        "isManager": false,
-        "ssn": 391903838
-    },
-    {
-        "id": "generated Id",
-        "created_at": "CREATED_AT_TIME",
+        "_id": "45eb6d0f-fb7a-4c03-b995-fc312cc1ae37",
+        "created_at": "2021-11-29 23:34:55.168732",
         "isActive": true,
         "isArchived": false,
         "name": "Kiddi Sales",
         "email": "sales@nan.is",
         "isManager": false,
-        "ssn": 6969690420
+        "ssn": 1234567890,
+        "Address": null
     }
 ]
