@@ -15,3 +15,12 @@ class PropertyAPI:
     def deleteProperty(self, propertyId) -> list:
         return self.propertyRepo.delete(propertyId)
 
+    def findPropertyByCountry(self, country: str):
+        return self.propertyRepo.find({
+            'where': {
+                'address': {
+                    'country': country
+
+                }
+            }
+        })
