@@ -1,9 +1,7 @@
-from ContractorsMenu import ContractorsMenu
-from EmployeesMenu import EmployeesMenu
-from MaintenanceMenu import MaintenanceMenu
-from MaintenanceMenu import MaintenanceMenu
-from PropertiesMenu import PropertiesMenu
-
+from ui.ContractorsMenu import ContractorsMenu
+from ui.EmployeesMenu import EmployeesMenu
+from ui.MaintenanceMenu import MaintenanceMenu
+from ui.PropertiesMenu import PropertiesMenu
 
 MENU_OPTIONS_DICT = { 
     "P": {
@@ -41,71 +39,97 @@ PROPERTIES_OPTIONS_DICT = {
     "A": {
         "Title": "Record property",
         "Access": "Manager",
-        "function": PropertiesMenu.createProperty()
+        "Function": PropertiesMenu.createProperty()
     },                   
     "B":  {
         "Title": "Properties overview",
-        "Access": ""
+        "Access": "",
+        "Function": PropertiesMenu.propertiesOverview()
     },                
     "X": {
         "Title": "Return to previous page",
         "Access": ""
         #Fara á fyrri síðu
+    },
+    "M": {
+        "title": "Return to main menu",
+        "special": "main"
     }
 }
 
 MAINTENANCE_REQUESTS_OPTIONS_DICT = {
     "A": {
         "Title": "Opened maintenance request",
-        "Access": "Manager"
+        "Access": "Manager",
+        "Function": MaintenanceMenu.openedMRequest()
     },
     "B": {
         "Title": "Closed maintenance requests",
-        "Acess": ""
+        "Acess": "",
+        "Function": MaintenanceMenu.closedMRequest()
     },        
     "C": {
         "Title": "Upcoming maintenance",
-        "Access": ""
+        "Access": "",
+        "Function": MaintenanceMenu.upcomingMaintenance()
     },                
     "D": {
         "Title": "Create maintenance requests",  
-        "Access": ""
+        "Access": "",
+        "Function": MaintenanceMenu.createMRequest
     },       
     "E": {
         "Title": "Outstanding maintenance requests",
-        "Access": "Manager"
+        "Access": "Manager",
+        "Function": MaintenanceMenu.outstandingMRequest
     },    
     "X": {
         "Title": "Return to previous page",
         "Access": ""
-        #Fara á fyrri síðu
+    },
+    "M": {
+        "title": "Return to main menu",
+        "special": "main"
+    }
 }
 
 CONTRACTORS_OPTIONS_DICT = {
     "A": {
         "Title": "Search contractors",
-        "Access": "Manager"
+        "Access": "Manager",
+        "Function": ContractorsMenu.searchContractors()
     },                    
     "B": {
         "Title": "Contractors overview",
-        "Access": ""
+        "Access": "",
+        "Function": ContractorsMenu.contractorsOverview()
     },                
     "X": {
         "Title": "Return to previous page",
         "Access": ""
         #Fara á fyrri síðu
+    },
+    "M": {
+        "title": "Return to main menu",
+        "special": "main"
     }
 }
 
 EMPLOYEE_OPTIONS_DICT = {
     "A": {
-        "Title": "Create employee"
+        "Title": "Create employee",
+        "Functino": EmployeesMenu.createEmployee()
     },                     
     "B": {
-        "Title": "Employees overview"
+        "Title": "Employees overview",
+        "Function": EmployeesMenu.employeesOverview()
     },                  
     "X": {
         "Title": "Return to previous page"
         #Fara á fyrri síðu
+    },
+    "M": {
+        "title": "Return to main menu",
+        "special": "main"
     }
 }
