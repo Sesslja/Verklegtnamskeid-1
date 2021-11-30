@@ -8,7 +8,14 @@
         "email": "sales@nan.is",
         "isManager": false,
         "ssn": 1234567890,
-        "Address": null
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        }
     },
     {
         "_id": "37a229db-6157-4bbe-b898-9d2abafb464d",
@@ -19,6 +26,49 @@
         "email": "jr@nan.is",
         "isManager": false,
         "ssn": 1234567890,
-        "Address": null
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
+        "_id": "f701504e-01da-4b90-b452-89b03c8f40f6",
+        "created_at": "2021-11-30 15:04:24.156604",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Kiddi Jr",
+        "email": "jr@nan.is",
+        "isManager": false,
+        "ssn": 1234567890,
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjav\u00edk",
+            "zip": 108,
+            "address1": "Menntavegur 1",
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
+        "_id": "3cf07822-6854-4515-a6b1-8dddc27d4bcf",
+        "created_at": "2021-11-30 15:21:46.876406",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Laura",
+        "email": "laura@nan.is",
+        "isManager": false,
+        "ssn": 1234567890,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        }
     }
 ]

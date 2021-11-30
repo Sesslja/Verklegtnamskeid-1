@@ -1,3 +1,4 @@
+from data.DBError import DBError
 from data.ReadData import ReadData
 from data.StoreData import StoreData
 from data.DBConstants import *
@@ -22,7 +23,10 @@ class DB:
 
     def find(self, options: dict={}) -> list:
         '''Use StoreData functions'''
-        return self.readObj.find(self.filename, options)
+        found_data = self.readObj.find(self.filename, options)
+        if found_data is not False:
+            return found_data
+        return False
 
     def delete(self, id) -> list:
         '''Deletes a record from database using given id'''

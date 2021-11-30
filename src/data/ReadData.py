@@ -1,4 +1,7 @@
 import json
+from typing import Type
+from data.ModelListConstants import SUBMODELS
+from data.DBError import DBError
 
 class ReadData:
     def __init__(self, modelObj: object) -> None:
@@ -48,11 +51,23 @@ class ReadData:
         return True
 
 
-    def dictToModel(self, dict: dict) -> object:
-        model = self.modelObj()
-        for key in dict:
-            if key in self.modelKeys:
-                model.__setattr__(key, dict[key])
+    def dictToModel(self, foundDict: dict, customModel=None) -> object:
+        if customModel is None:
+            model = self.modelObj()
+        else:
+            model = customModel()
+        model_attr = vars(model)
+        model_keys = self.getKeys(model)
+        attr_types = {k: type(v) for k, v in iter(model_attr.items())}
+
+        for key in model_keys:
+            try:
+                if key in foundDict and not None:
+                    if attr_types[key] is type and key in SUBMODELS:
+                        foundDict[key] = self.dictToModel(dict(foundDict[key]), SUBMODELS[key])
+                    model.__setattr__(key, foundDict[key])
+            except TypeError:
+                return DBError('TYPE_NOT_AVAILABLE')
         return model
 
 

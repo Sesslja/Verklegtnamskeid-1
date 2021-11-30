@@ -24,3 +24,6 @@ class UserAPI:
                 }
             }
         })
+    
+    def findByAttributy(self, *attr):
+        ({"name":"jón"},)
