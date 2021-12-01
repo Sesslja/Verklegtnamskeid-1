@@ -4,7 +4,7 @@ class BaseMenu :
 
     def print_options(self):
         menuState = 'run'
-        while menuState is 'run':
+        while menuState == 'run':
             for key in  self.menu_options :
                 print(f"{key} {self.menu_options[key]['title']}")
             menuState = self.get_user_input()

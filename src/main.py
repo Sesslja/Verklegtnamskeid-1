@@ -6,5 +6,5 @@ def main():
     ret = False
     menu.print_options()
 
-if __name__ == "__main__":
+if __name__ == "__main__" :
     main()

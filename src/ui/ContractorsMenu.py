@@ -7,18 +7,17 @@ class ContractorsMenu(BaseMenu):
             "A": {
                 "title": "Search contractors",
                 "access": "Manager",
-                "Function": self.searchContractors
+                "function": self.searchContractors()
             },                    
             "B": {
                 "title": "Contractors overview",
                 "access": "",
-                "aunction": self.contractorsOverview
+                "function": self.contractorsOverview()
             },                
             "X": {
                 "title": "Return to previous page",
                 "access": "",
                 "special": "back"
-                #Fara á fyrri síðu
             },
             "M": {
                 "title": "Return to main menu",
