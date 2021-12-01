@@ -1,4 +1,5 @@
 from ui.BaseMenu import BaseMenu
+from logic.PropertyLogic import PropertyAPI
 
 class PropertiesMenu(BaseMenu):
     def __init__(self):
@@ -8,7 +9,7 @@ class PropertiesMenu(BaseMenu):
 
         self.menu_options = {
             "A": {
-                "title": "Record property",
+                "title": "Create new properties",
                 "access": "manager",
                 "function": "createProperty"
             },                   
@@ -29,7 +30,8 @@ class PropertiesMenu(BaseMenu):
         }
 
     def createProperty(self):
-        print('no love no create')
+        pass
+        
     
     def propertiesOverview(self):
         print('no love no overview')
