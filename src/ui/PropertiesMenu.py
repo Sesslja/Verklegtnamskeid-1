@@ -4,7 +4,7 @@ from logic.PropertyLogic import PropertyAPI
 class PropertiesMenu(BaseMenu):
     def __init__(self):
         super().__init__()
-
+        self.propertyapi = PropertyAPI()
         self.menu_title = "Properties Menu"
 
         self.menu_options = {
@@ -30,8 +30,16 @@ class PropertiesMenu(BaseMenu):
         }
 
     def createProperty(self):
-        pass
+        adress = input("Property adress: ")
+        property_id = input("Enter Property ID: ")
+        amenities_list = []
+        user_input = None
+        while user_input != "":
+            user_input = input("Enter amenities: ")
+            amenities_list.append(user_input)
+        
+        self.propertyapi.createProperty(adress, property_id, amenities_list)
         
     
     def propertiesOverview(self):
-        print('no love no overview')
+        pass

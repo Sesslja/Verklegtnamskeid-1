@@ -37,6 +37,7 @@ class BaseMenu :
             elif 'function' in opt[user_input]:
                 opt_func = opt[user_input]['function']
                 run_func = getattr(self, opt_func, None)
+                self.clear()
                 run_func()
                 return 'run'
             else:
