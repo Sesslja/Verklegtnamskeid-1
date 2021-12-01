@@ -2,6 +2,8 @@
     "python.analysis.extraPaths": [
         "./src/model",
         "./src/test",
-        "./src/ui"
+        "./src/ui",
+        "./src/logic",
+        "./src/data",
     ]
 }
