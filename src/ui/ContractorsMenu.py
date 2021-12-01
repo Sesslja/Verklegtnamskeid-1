@@ -4,18 +4,23 @@ class ContractorsMenu(BaseMenu):
     def __init__(self):
         super().__init__()
 
-        self.menu_title = "Contractors Menu"
+        self.menu_title = "Menu\nContractors Menu"
 
         self.menu_options = {
-            "A": {
-                "title": "Search contractors",
+            "1": {
+                "title": "Search our contractors",
                 "access": "Manager",
-                "function": self.searchContractors()
-            },                    
-            "B": {
+                "function": "search_contractors"
+            },
+            "2": {
+                "title": "Find new contractors",
+                "access": "Manager",
+                "function": "find_new_contractors"
+            },                             
+            "3": {
                 "title": "Contractors overview",
                 "access": "",
-                "function": self.contractorsOverview()
+                "function": "contractorsOverview"
             },                
             "X": {
                 "title": "Return to previous page",
@@ -28,8 +33,13 @@ class ContractorsMenu(BaseMenu):
             }
         }
 
-    def searchContractors(self):
+    def search_contractors():
         print('serach me contractors')
 
-    def contractorsOverview(self):
+
+    def find_new_contractors():
+        print('serach me contractors')
+
+
+    def contractorsOverview():
         print('overview me contractors')

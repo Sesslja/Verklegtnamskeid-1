@@ -1,17 +1,19 @@
 from ui.BaseMenu import BaseMenu
-
+from logic.UserLogic import UserAPI
 class EmployeesMenu(BaseMenu):
     def __init__(self):
         super().__init__()
+        self.userapi = UserAPI()
 
         self.menu_title = "Employees Menu"
 
         self.menu_options = {
-            "A": {
+            "1": {
                 "title": "Create employee",
+                "access": "Manager",
                 "function": "createEmployee"
             },                     
-            "B": {
+            "2": {
                 "title": "Employees overview",
                 "function": "employeesOverview"
             },                  
@@ -26,7 +28,14 @@ class EmployeesMenu(BaseMenu):
         }
 
     def createEmployee(self):
-        print('create me employee')
+        name = input("Enter employee name: ")
+        email = input("Enter email: ")
+        ssn = input("Enter Social-Security number: ")
+        address = input("Enter address: ")
+
+        self.userapi.createEmployee(name, email, ssn, address)
+
+        
 
     def employeesOverview(self):
         print('show me employ over')

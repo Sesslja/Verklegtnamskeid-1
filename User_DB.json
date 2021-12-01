@@ -20,5 +20,16 @@
         "isManager": false,
         "ssn": 1234567890,
         "Address": null
+    },
+    {
+        "_id": "7f1c4689-6255-4df2-8be2-e9af29463e21",
+        "created_at": "2021-12-01 16:27:25.895612",
+        "isActive": true,
+        "isArchived": false,
+        "name": "kristinn",
+        "email": "mail@mail",
+        "isManager": false,
+        "ssn": "323253253255",
+        "Address": "logafold"
     }
 ]

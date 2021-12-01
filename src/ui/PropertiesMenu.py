@@ -8,15 +8,15 @@ class PropertiesMenu(BaseMenu):
         self.menu_title = "Properties Menu"
 
         self.menu_options = {
-            "A": {
+            "1": {
                 "title": "Create new properties",
                 "access": "manager",
                 "function": "createProperty"
             },                   
-            "B":  {
+            "2":  {
                 "title": "Properties overview",
                 "access": "",
-                "function": "propertiesOverview"
+                "class": "PropertiesOverviewSubMenu"
             },                
             "X": {
                 "title": "Return to previous page",
@@ -40,6 +40,6 @@ class PropertiesMenu(BaseMenu):
         
         self.propertyapi.createProperty(adress, property_id, amenities_list)
         
-    
-    def propertiesOverview(self):
-        pass
+        
+
+        
