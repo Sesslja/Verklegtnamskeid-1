@@ -3,6 +3,9 @@ from ui.BaseMenu import BaseMenu
 class PropertiesMenu(BaseMenu):
     def __init__(self):
         super().__init__()
+
+        self.menu_title = "Properties Menu"
+
         self.menu_options = {
             "A": {
                 "title": "Record property",

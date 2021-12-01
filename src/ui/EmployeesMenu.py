@@ -3,6 +3,9 @@ from ui.BaseMenu import BaseMenu
 class EmployeesMenu(BaseMenu):
     def __init__(self):
         super().__init__()
+
+        self.menu_title = "Employees Menu"
+
         self.menu_options = {
             "A": {
                 "title": "Create employee",

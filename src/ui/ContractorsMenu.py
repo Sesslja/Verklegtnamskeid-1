@@ -3,6 +3,9 @@ from ui.BaseMenu import BaseMenu
 class ContractorsMenu(BaseMenu):
     def __init__(self):
         super().__init__()
+
+        self.menu_title = "Contractors Menu"
+
         self.menu_options = {
             "A": {
                 "title": "Search contractors",

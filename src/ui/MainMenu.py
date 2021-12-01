@@ -9,6 +9,9 @@ from ui.PropertiesMenu import PropertiesMenu
 class MainMenu(BaseMenu):
     def __init__(self):
         super().__init__()
+
+        self.menu_title = "Main Menu"
+
         self.menu_options = { 
             "P": {
                 "title": "Properties",
