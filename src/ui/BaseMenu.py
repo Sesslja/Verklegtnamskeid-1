@@ -1,12 +1,20 @@
+import os
+
 class BaseMenu :
     def __init__(self):
         self.menu_options = {}
+        self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear')
+        self.menu_title = str()
 
     def print_options(self):
         menuState = 'run'
         while menuState == 'run':
+            self.clear()
+            print(self.menu_title)
+            print("-"*30)
             for key in  self.menu_options :
-                print(f"{key} {self.menu_options[key]['title']}")
+                print(f"[{key}] {self.menu_options[key]['title']}")
+            print("-"*30)
             menuState = self.get_user_input()
 
     def get_user_input(self)-> str:

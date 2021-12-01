@@ -7,7 +7,7 @@ class PropertiesMenu(BaseMenu):
             "A": {
                 "title": "Record property",
                 "access": "manager",
-                "Function": "createProperty"
+                "function": "createProperty"
             },                   
             "B":  {
                 "title": "Properties overview",
@@ -18,7 +18,6 @@ class PropertiesMenu(BaseMenu):
                 "title": "Return to previous page",
                 "access": "",
                 "special": "back"
-                #Fara á fyrri síðu
             },
             "M": {
                 "title": "Return to main menu",

@@ -15,7 +15,6 @@ class EmployeesMenu(BaseMenu):
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
-                #Fara á fyrri síðu
             },
             "M": {
                 "title": "Return to main menu",
