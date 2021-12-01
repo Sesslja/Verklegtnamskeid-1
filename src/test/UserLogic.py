@@ -10,8 +10,13 @@ class UserAPI:
         new_user = User(name=name, email=email, ssn=ssn, address=address)
         return self.userRepo.save(new_user)
 
-    def findEmployees(self) -> list:
-        return self.userRepo.find()
+    def findEmployees(self, limit=0, page=0) -> list:
+        return self.userRepo.find({
+            'limit': {
+                'limit': limit,
+                'page': page
+            }
+        })
 
     def deleteEmployee(self, id) -> list:
         return self.userRepo.delete(id)
@@ -19,8 +24,18 @@ class UserAPI:
     def findEmployeesByCountry(self, country: str):
         return self.userRepo.find({ 
             'where': {
-                'address': {
-                    'country': 'Iceland'
+                'Address': {
+                    'country': country
                 }
             }
         })
+
+    def findManagers(self):
+        return self.userRepo.find({
+            'where': {
+                'isManager': True
+            }
+        })
+    
+    def findByAttributy(self, *attr):
+        ({"name":"jón"},)

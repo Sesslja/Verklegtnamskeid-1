@@ -8,3 +8,10 @@ class PropertyAPI:
     def createProperty(self, address: str, propertyId: str, amenities: list):
         new_property = Property(address, propertyId, amenities)
         return self.propertyRepo.save(new_property)
+
+    def findPropertyByAmenity(self, amenity):
+        return self.propertyRepo.find({
+            'where': {
+                'amenities': amenity
+            }
+        })

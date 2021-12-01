@@ -2,7 +2,11 @@
     "python.analysis.extraPaths": [
         "./src/model",
         "./src/test",
+        "./src/ui",
         "./src/logic",
         "./src/data",
-    ]
+    ],
+    "python.linting.banditEnabled": false,
+    "python.linting.enabled": false,
+    "python.linting.pylintEnabled": true
 }
