@@ -10,9 +10,16 @@ propertyLogic = PropertyAPI()
 
 #address = Address(country='Greenland', city='Nuuk', zip=420, address1='Nuukway 1')
 #userlogic.createEmployee('Laura', 'laura@nan.is', 1234567890, address)
+
+#for i in range(20):
+#    country = 'Greenland' if i%2 else 'Iceland'
+#    address = Address(country=country, city='Eih', zip=420, address1='Nuukway 1')
+#    userlogic.createEmployee(i, f'{i}@nan.is', i*10^7, address)
+
 #amenities = ['Klósett', 'Sturta', 'Eldhús']
 #propertyLogic.createProperty('Dúfnahólar 10', '85858328jfjfu83', amenities)
-all_users = userlogic.findEmployees()
+all_users = userlogic.findEmployees(limit=3, page=1)
+#all_properties = propertyLogic.findPropertyByAmenity('bleh')
 
 # for user in all_users:
 #     print(user.name, user._id)
@@ -34,4 +41,7 @@ def formatTing(many:list):
             user_vals.append(user.__getattribute__(key))
         print(format_row.format(*user_vals))
 
-formatTing(all_users)
+for user in all_users:
+    print(user.Address.country, user.name, user.ssn)
+    #for amenity in prop.amenities:
+    #    print(amenity)
