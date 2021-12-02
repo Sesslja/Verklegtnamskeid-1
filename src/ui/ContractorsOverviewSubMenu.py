@@ -37,10 +37,28 @@ class ContractorsOverviewSubMenu(BaseMenu):
         }
 
 
-    def findcontractor(self):
+    def search_contractor_by_name(self):
+        contractors = self.contractorapi.findContractor()
+        list_contractor_name = []
+        list_contractor_ids = []
+        for contractor in contractors:
+            list_contractor_name.append(contractor.name)
+            list_contractor_ids.append(contractor._id)
+
+        contractor_name = self.autocomplete_input(list_contractor_name)
+        contractor_id = list_contractor_ids[list_contractor_name.index(contractor_name)]
+
+        found_contractor = self.contractorapi.findOneContractor(contractor_id)
+        print(found_contractor)
+
+    def find_contractor(self):
         pass
 
-    
+    def delete_contractor(self):
+        pass
+
+    def find_contractor_by_profession(self):
+        pass
 
     def find_new_contractors(self): # Numer 2 á eftir að græja fallið
         print('serach me contractors')
