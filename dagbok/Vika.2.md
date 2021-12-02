@@ -31,3 +31,13 @@
 - vinna gékk vel
 - meiri virkni bætt við í logic og data
 - unnum í því að fjölnýta user klasa
+
+# Fimmtudagur // 2.12.21
+## Morgunfundur
+- stefnan er að bæta virkni inn í ui hlutann
+- okkur langar að græja fleirri virknir inn í data
+
+## Seinni partur 
+- Við erum búin að setja inn heilmikla virkni í UI
+- Við höfum skrifað 670 línur af kóða
+- Einnig er erum við að plana á hvað við þurfum að gera á morgun til að breyta starsmönnum og verkbeiðnum og verktökum
