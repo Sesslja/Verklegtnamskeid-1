@@ -24,7 +24,11 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 "title": "Contractors overview",
                 "access": "",
                 "function": "all_contractors_overview"
-            },                
+            },  
+            "4": {
+                "title": "Search contractor by name",
+                "function": "search_contractor_by_name"
+            },              
             "X": {
                 "title": "Return to previous page",
                 "access": "",

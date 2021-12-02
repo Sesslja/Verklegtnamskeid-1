@@ -2,7 +2,7 @@ import os
 try:
     import readline
 except ImportError:
-    import pyreadline as readline
+    pass
 from ui.textCompleter import TextCompleter
 
 class BaseMenu :
@@ -16,11 +16,12 @@ class BaseMenu :
         menuState = 'run'
         while menuState == 'run':
             self.clear()
-            print(self.menu_title)
-            print("-"*30)
+            to_print = self.menu_title + '\n'
+            to_print += ("-"*30) + '\n'
             for key in  self.menu_options :
-                print(f"[{key}] {self.menu_options[key]['title']}")
-            print("-"*30)
+                to_print += f"[{key}] {self.menu_options[key]['title']} \n"
+            to_print += ("-"*30)
+            print(to_print)
             menuState = self.get_user_input()
             if menuState == 'main': # Check if the user wanted to go to the main menu
                 if self.isMainMenu == False:
