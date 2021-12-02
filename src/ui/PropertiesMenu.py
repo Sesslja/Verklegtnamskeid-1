@@ -1,5 +1,6 @@
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
+from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
 
 class PropertiesMenu(BaseMenu):
     def __init__(self):
@@ -16,7 +17,7 @@ class PropertiesMenu(BaseMenu):
             "2":  {
                 "title": "Properties overview",
                 "access": "",
-                "class": "PropertiesOverviewSubMenu"
+                "class": PropertiesOverviewSubMenu
             },                
             "X": {
                 "title": "Return to previous page",

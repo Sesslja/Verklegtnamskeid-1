@@ -5,7 +5,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
     def __init__(self):
         super().__init__()
         self.propertyapi = PropertyAPI()
-        self.menu_title = "Properties Menu"
+        self.menu_title = "Properties Menu\nProperties overview"
 
         self.menu_options = {
             "1": {
@@ -40,13 +40,15 @@ class PropertiesOverviewSubMenu(BaseMenu):
         }
 
 def search_by_employee():
-    pass
+    employee = input("Find property by employee:\nEnter employee ID: ")
 
 def search_by_id():
-    pass
+    property_id = input("Find property by property ID:\nEnter property ID: ")
 
 def search_by_region():
-    pass
+    property_region = input("Find property by region:\nEnter region: ")
 
 def print_all_properties():
-    pass
+    property_list = []
+    for Property in property_list:
+        print(Property)

@@ -26,8 +26,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
 def all_employees_overview():
-    pass
+    employee_list = []
+    for employee in employee_list:
+        print(employee)
 
 def search_employee_by_name():
-    pass
+    employee_name = (input("Enter employee name: ")).upper()
+    # employee_list = []
+    # for item in employee_list:
+    #     if employee_name == employee_name:
+    #         print (item)
 
