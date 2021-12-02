@@ -36,13 +36,22 @@ class ContractorsOverviewSubMenu(BaseMenu):
             }
         }
 
-    def find_new_contractors(self):
+
+    def findcontractor(self):
+        pass
+
+    
+
+    def find_new_contractors(self): # Numer 2 á eftir að græja fallið
         print('serach me contractors')
 
     def all_contractors_overview(self):
         contractor_list = self.contractorapi.findContractor()
-        for contractor in contractor_list:
-            print (contractor)
+        if len(contractor_list) == 0:
+            print("No contractors to show")
+        else:
+            for contractor in contractor_list:
+                print (contractor)
 
     def search_contractor_by_id(self):
         contractor_id = None
