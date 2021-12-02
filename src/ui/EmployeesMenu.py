@@ -37,7 +37,6 @@ class EmployeesMenu(BaseMenu):
 
         self.userapi.createEmployee(name, email, ssn, address)
 
-        
 
-    def employeesOverview(self):
-        print('show me employ over')
+
+    

@@ -39,16 +39,16 @@ class PropertiesOverviewSubMenu(BaseMenu):
             }
         }
 
-def search_by_employee():
-    employee = input("Find property by employee:\nEnter employee ID: ")
+    def search_by_employee(self):
+        employee = input("Find property by employee:\nEnter employee ID: ")
 
-def search_by_id():
-    property_id = input("Find property by property ID:\nEnter property ID: ")
+    def search_by_id(self):
+        property_id = input("Find property by property ID:\nEnter property ID: ")
 
-def search_by_region():
-    property_region = input("Find property by region:\nEnter region: ")
+    def search_by_region(self):
+        property_region = input("Find property by region:\nEnter region: ")
 
-def print_all_properties():
-    property_list = []
-    for Property in property_list:
-        print(Property)
+    def print_all_properties(self):
+        property_list = []
+        for Property in property_list:
+            print(Property)

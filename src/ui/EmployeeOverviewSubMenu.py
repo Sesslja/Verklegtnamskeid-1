@@ -9,8 +9,8 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
         self.menu_options = {
             "1": {
-                "title": "Search by name",
-                "function": "search_employee_by_name"
+                "title": "Search employee by id",
+                "function": "search_employee_by_id"
             },                     
             "2": {
                 "title": "See all employees",
@@ -26,20 +26,19 @@ class EmployeeOverviewSubMenu(BaseMenu):
             }
         }
 
-def all_employees_overview():
-    employee_list = []
-    for employee in employee_list:
-        print(employee)
-
-def search_employee_by_name():
-    employee_name = (input("Enter employee name: ")).upper()
-    # employee_list = []
-    # for item in employee_list:
-    #     if employee_name == employee_name:
-    #         print (item)
     def all_employees_overview(self):
-        pass
+        employee_list = UserAPI.findEmployees()
+        for employee in employee_list:
+            print (employee)
 
-    def search_employee_by_name(self):
-        input('ha: ')
+    def search_employee_by_id(self):
+        employee_id = None
+        while employee_id == None:
+            try:
+                employee_id = int(input("Enter employee ID: "))
+            except ValueError:
+                print("Please enter a valid ID")
+
+        UserAPI.findEmployeesByEmployeeId(employee_id)
+
 
