@@ -7,11 +7,11 @@ class EmployeesMenu(BaseMenu):
         self.menu_title = "Employees Menu"
 
         self.menu_options = {
-            "A": {
+            "1": {
                 "title": "Create employee",
                 "function": "createEmployee"
             },                     
-            "B": {
+            "2": {
                 "title": "Employees overview",
                 "function": "employeesOverview"
             },                  

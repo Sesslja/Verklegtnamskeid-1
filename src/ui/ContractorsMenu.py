@@ -7,12 +7,12 @@ class ContractorsMenu(BaseMenu):
         self.menu_title = "Contractors Menu"
 
         self.menu_options = {
-            "A": {
+            "1": {
                 "title": "Search contractors",
                 "access": "Manager",
                 "function": self.searchContractors()
             },                    
-            "B": {
+            "2": {
                 "title": "Contractors overview",
                 "access": "",
                 "function": self.contractorsOverview()
