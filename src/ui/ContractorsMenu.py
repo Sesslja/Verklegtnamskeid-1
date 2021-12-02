@@ -33,15 +33,15 @@ class ContractorsMenu(BaseMenu):
             }
         }
 
-    def search_contractors():
+    def search_contractors(self):
         contractor_list = []
         for contractor in contractor_list:
             print (contractor)
 
 
-    def find_new_contractors():
+    def find_new_contractors(self):
         print('serach me contractors')
 
 
-    def contractorsOverview():
+    def contractorsOverview(self):
         print('overview me contractors')
