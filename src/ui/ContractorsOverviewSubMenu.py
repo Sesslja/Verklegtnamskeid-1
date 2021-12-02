@@ -59,10 +59,24 @@ class ContractorsOverviewSubMenu(BaseMenu):
         pass
 
     def delete_contractor(self):
-        pass
+        contractor_id = None
+        self.contractorapi.deleteContractor(contractor_id)
 
     def find_contractor_by_profession(self):
-        pass
+        contractors_profession = None
+        while contractors_profession == None:
+            try:
+                contractors_profession = input("Enter profession: ")
+            except ValueError:
+                print("Please enter a valid profession")
+        
+        contractors_prof_list = self.contractorapi.findContractorByProfession()
+        if len(contractors_prof_list) == 0:
+            print("Profession not found!")
+            contractors_profession = None
+        else:
+            for contractor in contractors_prof_list:
+                print(contractor)
 
     def find_new_contractors(self): # Numer 2 á eftir að græja fallið
         print('serach me contractors')
