@@ -30,7 +30,6 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
-<<<<<<< HEAD
         employee_list = []
         for employee in employee_list:
             print(employee)
@@ -56,7 +55,6 @@ class EmployeeOverviewSubMenu(BaseMenu):
         #     if employee_name == employee_name:
         #         print (item)
     
-=======
         employee_list = self.userApi.findEmployees()
         if len(employee_list) == 0:
             print("No employees to show ")
@@ -80,5 +78,3 @@ class EmployeeOverviewSubMenu(BaseMenu):
             for employee in employee_list:
                 print (employee)
 
-
->>>>>>> b267473b27d7ba5331fff02912da5eaaf7cf55bf
