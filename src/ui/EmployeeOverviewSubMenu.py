@@ -28,8 +28,11 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
     def all_employees_overview(self):
         employee_list = UserAPI.findEmployees()
-        for employee in employee_list:
-            print (employee)
+        if len(employee_list) == 0:
+            print("No employees to show ")
+        else:
+            for employee in employee_list:
+                print (employee)
 
     def search_employee_by_id(self):
         employee_id = None
@@ -39,6 +42,12 @@ class EmployeeOverviewSubMenu(BaseMenu):
             except ValueError:
                 print("Please enter a valid ID")
 
-        UserAPI.findEmployeesByEmployeeId(employee_id)
+        employee_list = UserAPI.findEmployeesByEmployeeId(employee_id)
+        if len(employee_list) == 0:
+            print("employee not found!")
+            employee_id = None
+        else:
+            for employee in employee_list:
+                print (employee)
 
 
