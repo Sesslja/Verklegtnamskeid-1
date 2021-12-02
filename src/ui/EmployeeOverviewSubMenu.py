@@ -4,6 +4,7 @@ from logic.UserLogic import UserAPI
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self):
         super().__init__()
+        self.userApi = UserAPI()
 
         self.menu_title = "Employees Menu\nEmployee Overview"
 
@@ -27,7 +28,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
-        employee_list = UserAPI.findEmployees()
+        employee_list = self.userApi.findEmployees()
         if len(employee_list) == 0:
             print("No employees to show ")
         else:
@@ -42,7 +43,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             except ValueError:
                 print("Please enter a valid ID")
 
-        employee_list = UserAPI.findEmployeesByEmployeeId(employee_id)
+        employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
         if len(employee_list) == 0:
             print("employee not found!")
             employee_id = None
