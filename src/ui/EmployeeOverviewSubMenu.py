@@ -33,7 +33,8 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No employees to show ")
         else:
             for employee in employee_list:
-                print (employee)
+                print (employee.name, employee.email, employee.ssn)
+        input('Select user\n"x"to leave')
 
     def search_employee_by_id(self):
         employee_id = None

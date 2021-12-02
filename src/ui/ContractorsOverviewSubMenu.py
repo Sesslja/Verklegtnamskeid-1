@@ -41,6 +41,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
     def all_contractors_overview(self):
         contractor_list = self.contractorapi.findContractor()
+        
         for contractor in contractor_list:
             print (contractor)
 
