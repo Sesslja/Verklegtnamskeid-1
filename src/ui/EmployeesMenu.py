@@ -1,5 +1,7 @@
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
+from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
+
 class EmployeesMenu(BaseMenu):
     def __init__(self):
         super().__init__()
@@ -15,7 +17,7 @@ class EmployeesMenu(BaseMenu):
             },                     
             "2": {
                 "title": "Employees overview",
-                "function": "employeesOverview"
+                "class": EmployeeOverviewSubMenu
             },                  
             "X": {
                 "title": "Return to previous page",

@@ -5,6 +5,7 @@ class BaseMenu :
         self.menu_options = {}
         self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear')
         self.menu_title = str()
+        self.isMainMenu = False
 
     def print_options(self):
         menuState = 'run'
@@ -16,6 +17,11 @@ class BaseMenu :
                 print(f"[{key}] {self.menu_options[key]['title']}")
             print("-"*30)
             menuState = self.get_user_input()
+            if menuState == 'main':
+                if self.isMainMenu == False:
+                    return menuState
+                else:
+                    menuState = 'run'
 
     def get_user_input(self)-> str:
 
