@@ -1,4 +1,5 @@
 from ui.BaseMenu import BaseMenu
+from logic.UserLogic import UserAPI
 
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self):
@@ -36,4 +37,9 @@ def search_employee_by_name():
     # for item in employee_list:
     #     if employee_name == employee_name:
     #         print (item)
+    def all_employees_overview(self):
+        pass
+
+    def search_employee_by_name(self):
+        input('ha: ')
 
