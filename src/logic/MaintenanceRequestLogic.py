@@ -5,15 +5,14 @@ from data.database import DB
 class MaintenanceRequestAPI :
 
     def __init__(self) -> None :
-        self.maintenanceRequestRepo = DB(MaintenanceRequest)
-        self.userRepo = DB(User)
+        self.requestRepo = DB(MaintenanceRequest)
 
-    def createMaintenanceRequest(self, address: str, to_do: list, occurrence: str, expert: str, priority: str, date: str, employee: str, verification_number: str, request_status: str) :
-        new_maintenance_request = MaintenanceRequest(address,to_do,occurrence,expert,priority,date,employee,verification_number,request_status)
-        return self.maintenanceRequestRepo.save(new_maintenance_request)
-
+    def createMaintenanceRequest(self, address: str, to_do: list, occurrence: str, priority: str, start_date: str, employeeid: int, verification_number: str) :
+        new_maintenance_request = MaintenanceRequest(address,to_do,occurrence,priority,start_date,employeeid,verification_number)
+        return self.requestRepo.save(new_maintenance_request)
+    
     def findMaintenanceRequest(self) -> list:
-        return self.maintenanceRequestRepo.find()
+        return self.requestRepo.find()
 
     def findMRequestByStatus(self, request_status: str): #Closed, Opened, Upcoming, Outstanding
         return self.maintenanceRequestRepo.find({
