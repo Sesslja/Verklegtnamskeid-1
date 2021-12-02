@@ -74,3 +74,4 @@ class PropertiesOverviewSubMenu(BaseMenu):
         else:
             for prop in property_list:
                 print(prop)
+

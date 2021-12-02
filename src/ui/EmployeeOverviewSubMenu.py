@@ -18,7 +18,11 @@ class EmployeeOverviewSubMenu(BaseMenu):
             "2": {
                 "title": "See all employees",
                 "function": "all_employees_overview"
-            },                  
+            },                     
+            "3": {
+                "title": "Search employees by name",
+                "function": "search_employee_by_name"
+            }, 
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -35,18 +39,18 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print(employee)
 
     def search_employee_by_name(self):
-        employees = self.userApi.findEmployees()
-        list_employee_names = []
-        list_employee_ids = []
-        for employee in employees:
-            list_employee_names.append(employee.name)
-            list_employee_ids.append(employee._id)
-    
-        employee_name = self.autocomplete_input(list_employee_names)
-        employee_id = list_employee_ids[list_employee_names.index(employee_name)]
-    
-        found_employee = self.userApi.findOneEmployee(employee_id)
-        print(found_employee)
+        # employees = self.userApi.findEmployees()
+        # list_employee_names = []
+        # list_employee_ids = []
+        # for employee in employees:
+        #     list_employee_names.append(employee.name)
+        #     list_employee_ids.append(employee._id)
+    # 
+        # employee_name = self.autocomplete_input(list_employee_names)
+        # employee_id = list_employee_ids[list_employee_names.index(employee_name)]
+    # 
+        # found_employee = self.userApi.findOneEmployee(employee_id)
+        # print(found_employee)
         input('la')
     
         #employee_name = (input("Enter employee name: ")).upper()
