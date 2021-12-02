@@ -39,16 +39,38 @@ class PropertiesOverviewSubMenu(BaseMenu):
             }
         }
 
-def search_by_employee():
-    employee = input("Find property by employee:\nEnter employee ID: ")
+    def search_by_employee(self):
+        employee_id = input("Find property by employee:\nEnter employee ID: ")
+        property_list = self.propertyapi.findPropertyByEmployee(employee_id)
+        if len(property_list) == 0:
+            print("No properties found with that ID")
+        else:
+            for prop in property_list:
+                print(prop)
 
-def search_by_id():
-    property_id = input("Find property by property ID:\nEnter property ID: ")
+    def search_by_id(self):
+        property_id = input("Find property by property ID:\nEnter property ID: ")
+        property_list = self.propertyapi.findPropertyByPropertyId(property_id)
+        if len(property_list) == 0:
+            print("Property not found!")
+        else:
+            for prop in property_list:
+                print(prop)
 
-def search_by_region():
-    property_region = input("Find property by region:\nEnter region: ")
+    def search_by_region(self):
+        property_region = input("Find property by region:\nEnter region: ")
+        property_list = self.propertyapi.findPropertyByCountry(property_region)
+        if len(property_list) == 0:
+            print("There do not seem to be any properties in that region")
+        else:
+            for prop in property_list:
+                print(prop)
 
-def print_all_properties():
-    property_list = []
-    for Property in property_list:
-        print(Property)
+
+    def print_all_properties(self):
+        property_list = self.propertyapi.findProperty()
+        if len(property_list) == 0:
+            print("There are no properties to show")
+        else:
+            for prop in property_list:
+                print(prop)

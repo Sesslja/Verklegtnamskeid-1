@@ -4,6 +4,7 @@ from logic.UserLogic import UserAPI
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self):
         super().__init__()
+        self.userApi = UserAPI()
 
         self.userApi = UserAPI()
 
@@ -11,8 +12,8 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
         self.menu_options = {
             "1": {
-                "title": "Search by name",
-                "function": "search_employee_by_name"
+                "title": "Search employee by id",
+                "function": "search_employee_by_id"
             },                     
             "2": {
                 "title": "See all employees",
@@ -29,6 +30,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
+<<<<<<< HEAD
         employee_list = []
         for employee in employee_list:
             print(employee)
@@ -54,3 +56,29 @@ class EmployeeOverviewSubMenu(BaseMenu):
         #     if employee_name == employee_name:
         #         print (item)
     
+=======
+        employee_list = self.userApi.findEmployees()
+        if len(employee_list) == 0:
+            print("No employees to show ")
+        else:
+            for employee in employee_list:
+                print (employee)
+
+    def search_employee_by_id(self):
+        employee_id = None
+        while employee_id == None:
+            try:
+                employee_id = int(input("Enter employee ID: "))
+            except ValueError:
+                print("Please enter a valid ID")
+
+        employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
+        if len(employee_list) == 0:
+            print("employee not found!")
+            employee_id = None
+        else:
+            for employee in employee_list:
+                print (employee)
+
+
+>>>>>>> b267473b27d7ba5331fff02912da5eaaf7cf55bf
