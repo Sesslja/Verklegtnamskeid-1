@@ -26,9 +26,19 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 "function": "all_contractors_overview"
             },  
             "4": {
+                "title": "Find contractor by profession",
+                "access": "",
+                "function": "find_contractor_by_profession"
+            },  
+            "5": {
                 "title": "Search contractor by name",
                 "function": "search_contractor_by_name"
-            },              
+            },     
+            "4": {
+                "title": "Delete contractor from our system",
+                "access": "manager",
+                "function": "delete_contractor"
+            },           
             "X": {
                 "title": "Return to previous page",
                 "access": "",
