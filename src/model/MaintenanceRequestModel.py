@@ -4,7 +4,7 @@ from datetime import datetime
 
 class MaintenanceRequest(BaseModel) :
     '''Model for Maintenance Request information'''
-    def __init__(self,isOpen: bool=True, isFinished: bool = False, isClosed: bool=False, address: Address=None, to_do: list=None, occurrence: str=None, priority: str=None, start_date: datetime=None, employeeId: int=None, verification_number: str=None) -> None :
+    def __init__(self,isOpen: bool=True, isFinished: bool = False, isClosed: bool=False, address: Address=Address, to_do: list=None, occurrence: str=None, priority: str=None, start_date: datetime=None, employeeId: int=None, verification_number: str=None) -> None :
         super().__init__()
         self.isOpen = isOpen
         self.isFinished = isFinished
