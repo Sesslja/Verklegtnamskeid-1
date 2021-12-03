@@ -12,4 +12,3 @@ class Contractor(BaseModel):
         self.phone = phone
         self.openinghours = openinghours
         self.Address: Address = address
-
