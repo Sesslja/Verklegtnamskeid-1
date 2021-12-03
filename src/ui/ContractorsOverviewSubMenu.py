@@ -69,8 +69,11 @@ class ContractorsOverviewSubMenu(BaseMenu):
         pass
 
     def delete_contractor(self):
-        contractor_id = None
-        self.contractorapi.deleteContractor(contractor_id)
+        contractor_id = input("Enter contractors ID: ")
+        if self.contractorapi.deleteContractor(contractor_id) == True:
+            print("Contractor deleted")
+        else: 
+            print("Contractor not found")
 
     def find_contractor_by_profession(self):
         contractors_profession = None
