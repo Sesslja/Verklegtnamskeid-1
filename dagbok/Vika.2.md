@@ -41,3 +41,9 @@
 - Við erum búin að setja inn heilmikla virkni í UI
 - Við höfum skrifað 670 línur af kóða
 - Einnig er erum við að plana á hvað við þurfum að gera á morgun til að breyta starsmönnum og verkbeiðnum og verktökum
+
+# Föstudagur // 3.12.21
+## Morgunfundur
+- þufum að finna leið til að edita employee, contracor og property
+- finn hvernig við getum search eftir tímabilum
+- okkur langar til að forritið sé farið að geta framkvæmt einfalda hluti í enda dags
