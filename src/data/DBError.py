@@ -4,3 +4,5 @@ class DBError:
 
     def __str__(self) -> bool:
         return False
+
+class RecordNotFoundError(LookupError): ...
