@@ -41,3 +41,4 @@ class ContractorsMenu(BaseMenu):
         address = input("Enter address: ")
 
         self.contractorapi.createContractor(company, name, ssn, profession, phone, openinghours, address)
+        print("Contractor added!")

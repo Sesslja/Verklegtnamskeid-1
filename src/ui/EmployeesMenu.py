@@ -36,6 +36,7 @@ class EmployeesMenu(BaseMenu):
         address = input("Enter address: ")
 
         self.userapi.createEmployee(name, email, ssn, address)
+        print("Employee created!")
 
 
 
