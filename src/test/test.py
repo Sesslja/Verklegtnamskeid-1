@@ -1,9 +1,8 @@
+
 # Initar alla layerana
 
 from model.AddressType import Address
 from model.userModel import User
-from test.UserLogic import UserAPI
-from test.PropertyLogic import PropertyAPI
 
 userlogic = UserAPI()
 propertyLogic = PropertyAPI()
@@ -18,7 +17,12 @@ propertyLogic = PropertyAPI()
 
 #amenities = ['Klósett', 'Sturta', 'Eldhús']
 #propertyLogic.createProperty('Dúfnahólar 10', '85858328jfjfu83', amenities)
-all_users = userlogic.findEmployees(limit=3, page=1)
+all_users = userlogic.findEmployees()
+data = {
+    'name': 'Gummi',
+    'email': 'gamli@gomus.is'
+}
+update_user = userlogic.updateEmployeeInfo('f701504e-01da-4b90-b452-89b03c8f40f6', data)
 #all_properties = propertyLogic.findPropertyByAmenity('bleh')
 
 # for user in all_users:
@@ -45,3 +49,4 @@ for user in all_users:
     print(user.Address.country, user.name, user.ssn)
     #for amenity in prop.amenities:
     #    print(amenity)
+print(update_user.name, update_user.ssn, update_user.email)
