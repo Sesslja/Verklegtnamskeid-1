@@ -1,3 +1,6 @@
+from datetime import datetime
+from datetime import timezone
+from typing import List
 
 class BaseModel:
     '''Base Model that all other models inherit from'''
@@ -10,3 +13,14 @@ class BaseModel:
 
     def modelLocals():
         return locals()
+
+    def datetimeToUtc(start_date: list):
+        start_date = start_date
+        if start_date == []:
+            dt = datetime.now()
+            date = dt.replace(tzinfo=timezone.utc).timestamp()
+        else:
+            dt = datetime(start_date[0], start_date[1], start_date[2])
+            date = dt.replace(tzinfo=timezone.utc).timestamp()
+        return date 
+
