@@ -16,9 +16,6 @@ class MaintReportAPI:
 
     def findReport(self) -> list:
         return self.reportRepo.find()
-    
-    def deleteReport(self, maintenanceId) -> list:
-        return self.reportRepo.delete(maintenanceId)
 
     def findReportByMaintenanceId(self, maintenanceId: int):
         return self.reportRepo.find({
