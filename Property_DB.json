@@ -10,6 +10,25 @@
             "Kl\u00f3sett",
             "Sturta",
             "Eldh\u00fas"
+        ],
+        "employees": [
+            "37a229db-6157-4bbe-b898-9d2abafb464d"
+        ]
+    },
+    {
+        "id": "generateds",
+        "created_at": "CREATED_AT_TIME",
+        "isActive": true,
+        "isArchived": false,
+        "address": "Kom´sit",
+        "propertyId": "85858328jfjfu83",
+        "amenities": [
+            "bleh",
+            "Sturta",
+            "Eldh\u00fas"
+        ],
+        "employees": [
+            "37a229db-6157-4bbe-b898-9d2abafb464d"
         ]
     },
     {
