@@ -1,44 +1,38 @@
 from ui.BaseMenu import BaseMenu
+from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
+from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
+from logic.MaintReportLogic import MaintReportAPI
 
 class MaintenanceMenu(BaseMenu):
     def __init__(self):
         super().__init__()
 
-        self.menu_title = "Maintenance Menu"
+        self.menu_title = "Maintenance Request Menu"
         self.maintenanceRequestAPI = MaintenanceRequestAPI
+        self.maintreportAPI = MaintReportAPI
 
-        self.menu_options = {
+        self.menu_options = {               
             "1": {
-                "title": "Opened maintenance request",
-                "access": "Manager",
-                "function": "openedMRequest"
-            },
-            "2": {
-                "title": "Closed maintenance requests",
-                "access": "",
-                "function": "closedMRequest"
-            },        
-            "3": {
-                "title": "Upcoming maintenance",
-                "access": "",
-                "function": "upcomingMaintenance"
-            },                
-            "4": {
                 "title": "Create maintenance requests",  
                 "access": "",
                 "function": "createMRequest"
-            },       
-            "5": {
-                "title": "Outstanding maintenance requests",
-                "access": "Manager",
-                "function": "outstandingMRequest"
             },
-            "6": {
-                "title": "All requests!",
-                "access": "Manager",
-                "function": "All_M_Request"
-            },  
+            "2": {
+                "title": "Create report",
+                "access": "",
+                "function": "create_report"
+            },
+            "3": {
+                "title": "More request options",  
+                "access": "",
+                "class": MaintenanceRequestMenu
+            },
+            "4": {
+                "title": "More report options",  
+                "access": "",
+                "class": MaintenanceReportMenu
+            },
             "X": {
                 "title": "Return to previous page",
                 "Access": "",
@@ -49,21 +43,9 @@ class MaintenanceMenu(BaseMenu):
                 "special": "main"
             }
         }
-
-    def openedMRequest(self):
-        open_request_list = self.maintenanceRequestAPI.getOpenedMRequest()
-        for request in open_request_list:
-            print(request)
-
-    def closedMRequest(self):
-        closed_request_list = self.maintenanceRequestAPI.getClosedMRequest()
-        for request in closed_request_list:
-            print(request)
-
-    def upcomingMaintenance(self):
-        upcoming_request_list = self.maintenanceRequestAPI.upcomingMRequest()
-        for request in upcoming_request_list:
-            print(request)
+    
+    def create_report(self):
+        pass
 
     def createMRequest(self):
         adress = input("Enter Adress: ")
@@ -101,9 +83,3 @@ class MaintenanceMenu(BaseMenu):
 
         self.maintenanceRequestAPI.createMaintenanceRequest(adress, input_list, occurrence, priority, start_date, employee_id)
         print("Maintenance Request succesfully created! ")
-
-
-    def outstandingMRequest(self):
-        outstanding_request_list = self.maintenanceRequestAPI.outstandingMRequest()
-        for request in outstanding_request_list:
-            print(request)

@@ -2,7 +2,7 @@ from ui.BaseMenu import BaseMenu
 
 from ui.ContractorsMenu import ContractorsMenu
 from ui.EmployeesMenu import EmployeesMenu
-from ui.MaintenanceMenu import MaintenanceMenu
+from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from ui.PropertiesMenu import PropertiesMenu
 
 
@@ -21,7 +21,7 @@ class MainMenu(BaseMenu):
             "R": {
                 "title": "Maintenance Requests",
                 "access": "",
-                "class": MaintenanceMenu
+                "class": MaintenanceRequestMenu
             },     
             "C": {
                 "title": "Contractors",
