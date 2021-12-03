@@ -25,6 +25,10 @@ class DB:
         '''Use StoreData functions'''
         return self.storeObj.store(self.filename, saveObj)
 
+    def update(self, updateDict: dict) -> object:
+        '''Use update() in StoreData'''
+        return self.storeObj.update(self.filename, updateDict)
+
     def find(self, options: dict={}) -> list:
         '''Use StoreData functions'''
         found_data = self.readObj.find(self.filename, options)

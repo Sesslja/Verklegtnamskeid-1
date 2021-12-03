@@ -30,12 +30,27 @@ class UserAPI:
             }
         })
 
+    def findEmployee(self, id):
+        found = self.userRepo.findOne({
+            'where': {
+                '_id': id
+            }
+        })
+        try:
+            return found['ERROR']
+        except TypeError:
+            return found
+
     def findManagers(self):
         return self.userRepo.find({
             'where': {
                 'isManager': True
             }
         })
+
+    def updateEmployeeInfo(self, id, data):
+        data['_id'] = id
+        return self.userRepo.update(data)
     
     def findByAttributy(self, *attr):
         ({"name":"jón"},)
