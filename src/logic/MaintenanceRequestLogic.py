@@ -37,3 +37,10 @@ class MaintenanceRequestAPI :
         last_number = int(last_number[2:])
         new_num = str(last_number+1).zfill(5)
         return 'VB'+new_num
+    
+    def changeMRequestStatus(self, id, status):
+        data = {
+            'id': id,
+            'status': status
+        }
+        return self.requestRepo.update(data)
