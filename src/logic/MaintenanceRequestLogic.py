@@ -9,7 +9,7 @@ class MaintenanceRequestAPI :
         self.requestRepo = DB(MaintenanceRequest)
 
     def createMaintenanceRequest(self, address: Address, to_do: list, occurrence: str, priority: str, start_date: str, employeeid: str, verification_number: str) :
-        new_maintenance_request = MaintenanceRequest(address,to_do,occurrence,priority,start_date,employeeid,verification_number)
+        new_maintenance_request = MaintenanceRequest(address=address,to_do=to_do,occurrence=occurrence,priority=priority,start_date=start_date,employeeid=employeeid,verification_number=verification_number)
         return self.requestRepo.save(new_maintenance_request)
     
     def findMaintenanceRequest(self) -> list:
