@@ -1,18 +1,21 @@
-
-from datetime import datetime
 from model.AddressType import Address
 from model.BaseModel import BaseModel
+from datetime import datetime
+from model.StatusModel import Status
 
 class MaintenanceRequest(BaseModel) :
     '''Model for Maintenance Request information'''
-    def __init__(self, address: Address=None, to_do: list=None, occurrence: str=None, expert: str=None, priority: str=None, date: str=None, contractor: str=None, verification_number: str=None, created_at: datetime=None ) -> None :
+    def __init__(self,status: str='Open' , address: Address=None, to_do: list=None, isRegular: bool=True, occurrence: int=None, priority: str=None, start_date: str=None, employeeId: int=None, verification_number: str=None) -> None :
         super().__init__()
-        self.address = address
+        self.status = Status(status)
+        self.Address: Address = address
         self.to_do = to_do
+        self.isRegular = isRegular
         self.occurance = occurrence
-        self.expert = expert
         self.priority = priority
-        self.date = date
-        self.contractor = contractor
+        self.start_date = BaseModel.datetimeToUtc()
+        self.employeeId = employeeId
         self.verification_number = verification_number
-        self.created_at = datetime.now()
+
+
+
