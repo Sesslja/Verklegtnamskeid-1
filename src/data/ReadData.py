@@ -46,7 +46,10 @@ class ReadData:
         except KeyError:
             pass
         options.update({'limit': {'limit':1, 'page':0}})
-        return self.find(filename, options)[0]
+        try:
+            return self.find(filename, options)[0]
+        except IndexError:
+            return {'ERROR': 'NOT_FOUND'}
 
     
     def _getKeys(self, obj):
