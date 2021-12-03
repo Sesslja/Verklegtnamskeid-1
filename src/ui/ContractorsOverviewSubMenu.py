@@ -34,7 +34,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 "title": "Search contractor by name",
                 "function": "search_contractor_by_name"
             },     
-            "4": {
+            "6": {
                 "title": "Delete contractor from our system",
                 "access": "manager",
                 "function": "delete_contractor"
