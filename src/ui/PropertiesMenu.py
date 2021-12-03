@@ -1,22 +1,23 @@
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
+from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
 
 class PropertiesMenu(BaseMenu):
     def __init__(self):
         super().__init__()
-
+        self.propertyapi = PropertyAPI()
         self.menu_title = "Properties Menu"
 
         self.menu_options = {
-            "A": {
+            "1": {
                 "title": "Create new properties",
                 "access": "manager",
                 "function": "createProperty"
             },                   
-            "B":  {
+            "2":  {
                 "title": "Properties overview",
                 "access": "",
-                "function": "propertiesOverview"
+                "class": PropertiesOverviewSubMenu
             },                
             "X": {
                 "title": "Return to previous page",
@@ -30,8 +31,16 @@ class PropertiesMenu(BaseMenu):
         }
 
     def createProperty(self):
-        pass
+        adress = input("Property adress: ")
+        property_id = input("Enter Property ID: ")
+        amenities_list = []
+        user_input = None
+        while user_input != "":
+            user_input = input("Enter amenities: ")
+            amenities_list.append(user_input)
         
-    
-    def propertiesOverview(self):
-        print('no love no overview')
+        self.propertyapi.createProperty(adress, property_id, amenities_list)
+        
+        
+
+        

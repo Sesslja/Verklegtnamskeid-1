@@ -11,7 +11,7 @@ class MainMenu(BaseMenu):
         super().__init__()
 
         self.menu_title = "Main Menu"
-
+        self.isMainMenu = True
         self.menu_options = { 
             "P": {
                 "title": "Properties",
