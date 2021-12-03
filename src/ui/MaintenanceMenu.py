@@ -7,31 +7,36 @@ class MaintenanceMenu(BaseMenu):
         self.menu_title = "Maintenance Menu"
 
         self.menu_options = {
-            "A": {
+            "1": {
                 "title": "Opened maintenance request",
                 "access": "Manager",
                 "function": "openedMRequest"
             },
-            "B": {
+            "2": {
                 "title": "Closed maintenance requests",
                 "access": "",
                 "function": "closedMRequest"
             },        
-            "C": {
+            "3": {
                 "title": "Upcoming maintenance",
                 "access": "",
                 "function": "upcomingMaintenance"
             },                
-            "D": {
+            "4": {
                 "title": "Create maintenance requests",  
                 "access": "",
                 "function": "createMRequest"
             },       
-            "E": {
+            "5": {
                 "title": "Outstanding maintenance requests",
                 "access": "Manager",
                 "function": "outstandingMRequest"
-            },    
+            },
+            "6": {
+                "title": "All requests!",
+                "access": "Manager",
+                "function": "All_M_Request"
+            },  
             "X": {
                 "title": "Return to previous page",
                 "Access": "",
