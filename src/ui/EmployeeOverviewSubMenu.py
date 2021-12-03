@@ -99,8 +99,9 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 print(employee)
                 dictionary = employee[0].__dict__
                 for i, key in enumerate(dictionary):
-                    print(f"[{i+1}]{(dictionary[key])}")
+                    print(f"| {key:<15}:  {(dictionary[key])}")
                 factor = input("\nSelect factor you want to change: ")
+                
                 update_employee = True
 
 
