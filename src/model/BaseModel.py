@@ -10,3 +10,5 @@ class BaseModel:
 
     def modelLocals():
         return locals()
+    
+    

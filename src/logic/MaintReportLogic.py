@@ -1,3 +1,5 @@
+from datetime import datetime
+from MaintenanceRequestModel import MaintenanceRequest
 from model.MaintReportModel import Report
 from model.userModel import User
 from model.PropertyModel import Property
@@ -10,24 +12,26 @@ class MaintReportAPI:
         self.userRepo = DB(User)
         self.propertyRepo = DB(Property)
 
-    def createReport(self, maintenanceId: int, propertyId: str=None,address: Address=None, maintenance: list=None, isRegular: bool=True, employeeId: str=None, contractorId: str=None, materialcost: int=None, salary: int=None, contractorsfee: float=None, finish_at: str=None):
-        new_report = Report(maintenanceId, propertyId,address, maintenance, isRegular, employeeId, contractorId, materialcost, salary, contractorsfee, finish_at)
+    def createReport(self, request_info: str, propertyId: str, maintenance: list, isRegular: bool, contractorId: str, materialcost: int, salary: int, contractorsfee: float, finish_at: datetime):
+        new_report = Report(request_info, propertyId, maintenance, isRegular, contractorId, materialcost, salary, contractorsfee, finish_at)
         return self.reportRepo.save(new_report)
 
     def findReport(self) -> list:
         return self.reportRepo.find()
     
-    def deleteReport(self, maintenanceId) -> list:
-        return self.reportRepo.delete(maintenanceId)
+    def deleteReport(self, verification_number) -> list:
+        return self.reportRepo.delete(verification_number)
 
-    def findReportByMaintenanceId(self, maintenanceId: int):
+    def findReportByVerification_number(self, verification_number):
         return self.reportRepo.find({
             'where': {
-                'maintenanceId': maintenanceId
+                'MaintenanceRequest': {
+                    'verification_number': verification_number
+                } 
             }
         })
 
-    def findReportByEmployee(self, employeeId: int):
+    def findReportByEmployee(self, employeeId: str):
         user = self.userRepo.find({
             'where': {
                 'ssn': employeeId
@@ -36,11 +40,12 @@ class MaintReportAPI:
 
         return self.reportRepo.find({
             'where': {
-                'employeeId': employeeId
+                'MaintenanceRequest '
+                    'employeeId': employeeId
             }
         })
     
-    def findReportByProperty(self, propertyId: int):
+    def findReportByProperty(self, propertyId: str):
         user = self.propertyRepo.find({
             'where': {
                 'propertyId': propertyId
@@ -56,6 +61,7 @@ class MaintReportAPI:
     def findReportByDate(self, startDate: str, endDate: str):
         return self.reportRepo(find({
             'where': {
+                ''
                 
             }
         }))
