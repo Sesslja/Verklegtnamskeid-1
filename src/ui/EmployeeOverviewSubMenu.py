@@ -6,19 +6,17 @@ class EmployeeOverviewSubMenu(BaseMenu):
         super().__init__()
         self.userApi = UserAPI()
 
-        self.userApi = UserAPI()
-
         self.menu_title = "Employees Menu\nEmployee Overview"
 
         self.menu_options = {
             "1": {
-                "title": "Search employee by id",
-                "function": "search_employee_by_id"
-            },                     
-            "2": {
                 "title": "See all employees",
                 "function": "all_employees_overview"
-            },                     
+            },
+            "2": {
+                "title": "Search employee by id",
+                "function": "search_employee_by_id"
+            },
             "3": {
                 "title": "Search employees by name",
                 "function": "search_employee_by_name"
@@ -38,9 +36,13 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
-        employee_list = []
-        for employee in employee_list:
-            print(employee)
+        employee_list = self.userApi.findEmployees(10)
+
+        # What keys from record list to use
+        show_keys = ['name', 'email', 'ssn']
+        print(self.createTable(show_keys, employee_list))
+
+        self.waitForKeyPress()
 
     def search_employee_by_name(self):
         # employees = self.userApi.findEmployees()

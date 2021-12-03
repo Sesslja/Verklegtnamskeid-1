@@ -1,4 +1,4 @@
-import os
+import sys, os
 try:
     import readline
 except ImportError:
@@ -33,23 +33,6 @@ class BaseMenu :
                 print('Goodbye!')
                 exit()
 
-
-    def autocomplete_input(self, possible: list=None): # Creates an input that takes possible inputs as a list and provides a autocomplete function
-        if 'libedit' in readline.__doc__: # If running python provided with mac then readline is non standard
-            readline.parse_and_bind("bind ^I rl_complete") # Different keybind rules if running a mac
-        else:
-            readline.parse_and_bind("tab: complete") # Normal keybind rules
-        readline.set_completer(TextCompleter(possible).complete)
-        line = ''
-        while line != 'exit':
-            line = input('Enter name of user(exit to leave): ')
-            if line in possible:
-                return line
-    
-    def funcNotFound(self):
-        print('Function not found')
-        input('Press any key to continue')
-
     def getUserInput(self):
         try:
             user_input = None
@@ -64,8 +47,6 @@ class BaseMenu :
                 self.getUserInput()
 
     def computeUserOptions(self, user_input)-> str:
-
-
         opt = self.menu_options
 
         if user_input in opt:
@@ -93,4 +74,103 @@ class BaseMenu :
         else:
             print(f'Invalid input: {user_input}')
             return 'run'
+
+    def createTable(self, header=list, objList=list):
+        '''Creates and returns a formatted table. \n
+        header input is a list of those keys you want to include in the table\n
+        \t Ex. header = ['name', 'email', 'ssn', 'isManager'] \n
+        objList is a list of model objects'''
+        
+        show_keys = header
+        keys_val_dict = {}
+        # Add length of each key to dictionary
+        for key in show_keys:
+            keys_val_dict.update({key: len(key)})
+        
+        # Finds max length for each key
+        for record in objList:
+            record = record.__dict__
+            for key in keys_val_dict:
+                record_keyVal = len(str(record[key]))
+                if record_keyVal > keys_val_dict[key]:
+                    keys_val_dict[key] = record_keyVal
+
+        # Find total character length of longest line
+        total_length = sum([(
+            keys_val_dict[key] + (2 if (len(keys_val_dict) - 1) is i else 3)
+            ) for i, key in enumerate(keys_val_dict)])
+
+        # Add top line to table printout
+        printout = ' '+('-'*total_length)+'\n'
+
+        # Add key header to table printout
+        printout += (
+            ''.join([
+                (''.join(
+                    ['| {:<',str(keys_val_dict[key]),'}', (" |" if (len(keys_val_dict) - 1) is i else " " )]
+                )) for i, key in enumerate(keys_val_dict)
+            ])
+            .format(*show_keys)
+        )+'\n'
+        
+        # Add lines under header keys
+        printout += '|'+('-'*total_length)+'|\n'
+
+        # Adds values for each record to table printout
+        for record in objList:
+            record = record.__dict__
+            printout += (
+                ''.join([
+                    (''.join(
+                        ['| {:<',str(keys_val_dict[key]),'}', (" |" if (len(keys_val_dict) - 1) is i else " " )]
+                    )) for i, key in enumerate(keys_val_dict)
+                ])
+                .format(*[record[key] for key in keys_val_dict]))+'\n'
+
+        # Adds bottom line
+        printout += '|'+('_'*total_length)+'|'
+            
+        return printout
+
+    def waitForKeyPress(self):
+        ''' Wait for a key press on the console and return it. '''
+        # Script gotten from https://stackoverflow.com/questions/983354/how-to-make-a-python-script-wait-for-a-pressed-key
+        # Which was rewritten code from the Python Docs
+        print('Press any key to continue ', end='')
+        if os.name == 'nt': # If user is on windows then use msvcrt
+            import msvcrt
+            msvcrt.getch()
+        else: # If user is on a unix based system then use termios
+            import termios
+            fd = sys.stdin.fileno()
+
+            oldterm = termios.tcgetattr(fd)
+            newattr = termios.tcgetattr(fd)
+            newattr[3] = newattr[3] & ~termios.ICANON & ~termios.ECHO
+            termios.tcsetattr(fd, termios.TCSANOW, newattr)
+
+            try:
+                sys.stdin.read(1)
+            except IOError:
+                pass
+            finally:
+                termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
+
+
+    def autocomplete_input(self, possible: list=None): # Creates an input that takes possible inputs as a list and provides a autocomplete function
+        if 'libedit' in readline.__doc__: # If running python provided with mac then readline is non standard
+            readline.parse_and_bind("bind ^I rl_complete") # Different keybind rules if running a mac
+        else:
+            readline.parse_and_bind("tab: complete") # Normal keybind rules
+        readline.set_completer(TextCompleter(possible).complete)
+        line = ''
+        while line != 'exit':
+            line = input('Enter name of user(exit to leave): ')
+            if line in possible:
+                return line
+    
+    def funcNotFound(self):
+        print('Function not found')
+        input('Press any key to continue')
+
 
