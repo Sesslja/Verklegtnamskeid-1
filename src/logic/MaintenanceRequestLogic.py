@@ -16,7 +16,6 @@ class MaintenanceRequestAPI :
         return self.requestRepo.find()
 
     def findOpenedMRequest(self, isOpen: bool=True) -> list : 
-        p
         return self.reportRepo.find({
             'where': {
                 'maintenanceId': maintenanceId
