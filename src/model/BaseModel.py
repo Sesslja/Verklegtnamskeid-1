@@ -22,5 +22,5 @@ class BaseModel:
         else:
             dt = datetime(start_date[0], start_date[1], start_date[2])
             date = dt.replace(tzinfo=timezone.utc).timestamp()
-        return date 
+        return int(date) 
 
