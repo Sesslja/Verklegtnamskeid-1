@@ -32,5 +32,10 @@ class MainMenu(BaseMenu):
                 "title": "Employees",
                 "access": "Manager",
                 "class": EmployeesMenu
+            },
+            "Q": {
+                "title": "Exit program",
+                "access": "",
+                "special": "quit"
             }
         }

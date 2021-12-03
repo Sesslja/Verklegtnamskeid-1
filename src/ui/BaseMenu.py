@@ -22,12 +22,16 @@ class BaseMenu :
                 to_print += f"[{key}] {self.menu_options[key]['title']} \n"
             to_print += ("-"*30)
             print(to_print)
-            menuState = self.get_user_input()
+            menuState = self.getUserInput()
             if menuState == 'main': # Check if the user wanted to go to the main menu
                 if self.isMainMenu == False:
                     return menuState # If this menu is not the main menu then return 'main'
                 else:
                     menuState = 'run' # If this is the main menu then turn menuState into 'run'
+            elif menuState == 'quit':
+                self.clear()
+                print('Goodbye!')
+                exit()
 
 
     def autocomplete_input(self, possible: list=None): # Creates an input that takes possible inputs as a list and provides a autocomplete function
@@ -46,9 +50,22 @@ class BaseMenu :
         print('Function not found')
         input('Press any key to continue')
 
-    def get_user_input(self)-> str:
+    def getUserInput(self):
+        try:
+            user_input = None
+            while user_input is None:
+                user_input = input("").upper() #User input P/M/C/E
+            return self.computeUserOptions(user_input)
+        except KeyboardInterrupt:
+            print('')
+            if input('Are you sure you want to quit? (y/N): ').lower() == 'y':
+                return 'quit'
+            else:
+                self.getUserInput()
 
-        user_input = input("").upper() #User input P/M/C/E
+    def computeUserOptions(self, user_input)-> str:
+
+
         opt = self.menu_options
 
         if user_input in opt:
@@ -57,6 +74,8 @@ class BaseMenu :
                     return 'back'
                 elif opt[user_input]['special'] == 'main':
                     return 'main'
+                elif opt[user_input]['special'] == 'quit':
+                    return 'quit'
             elif 'class' in opt[user_input]:
                 opt_class = opt[user_input]['class']
                 new_menu = opt_class()
