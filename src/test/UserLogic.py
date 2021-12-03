@@ -21,6 +21,13 @@ class UserAPI:
     def deleteEmployee(self, id) -> list:
         return self.userRepo.delete(id)
 
+    def findEmployeesByEmployeeId(self, employeeId: int):
+        return self.userRepo.find({ 
+            'where': {
+                'ssn': employeeId
+            }
+        })
+    
     def findEmployeesByCountry(self, country: str):
         return self.userRepo.find({ 
             'where': {
@@ -30,12 +37,27 @@ class UserAPI:
             }
         })
 
+    def findEmployee(self, id):
+        found = self.userRepo.findOne({
+            'where': {
+                '_id': id
+            }
+        })
+        try:
+            return found['ERROR']
+        except TypeError:
+            return found
+
     def findManagers(self):
         return self.userRepo.find({
             'where': {
                 'isManager': True
             }
         })
+
+    def updateEmployeeInfo(self, id, data):
+        data['_id'] = id
+        return self.userRepo.update(data)
     
     def findByAttributy(self, *attr):
         ({"name":"jón"},)

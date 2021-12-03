@@ -30,5 +30,20 @@
         "employees": [
             "37a229db-6157-4bbe-b898-9d2abafb464d"
         ]
+    },
+    {
+        "_id": "686ff43f-e498-4283-92f4-6ce784d4d824",
+        "created_at": "2021-12-01 14:24:56.143309",
+        "isActive": true,
+        "isArchived": false,
+        "address": "\u00edsland ",
+        "propertyId": "F34535",
+        "amenities": [
+            "scasv",
+            "sofa",
+            "kitchen",
+            "sofa 2",
+            ""
+        ]
     }
 ]

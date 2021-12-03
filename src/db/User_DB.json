@@ -1,29 +1,11 @@
 [
     {
-        "_id": "45eb6d0f-fb7a-4c03-b995-fc312cc1ae37",
-        "created_at": "2021-11-29 23:34:55.168732",
-        "isActive": true,
-        "isArchived": false,
-        "name": "Kiddi Sales",
-        "email": "sales@nan.is",
-        "isManager": false,
-        "ssn": 1234567890,
-        "Address": {
-            "country": "Greenland",
-            "city": "Nuuk",
-            "zip": 420,
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
         "_id": "37a229db-6157-4bbe-b898-9d2abafb464d",
         "created_at": "2021-11-30 12:24:24.627809",
         "isActive": true,
         "isArchived": false,
         "name": "Kiddi Jr",
-        "email": "jr@nan.is",
+        "email": "goon@gonus.is",
         "isManager": true,
         "ssn": 1234567890,
         "Address": {
@@ -40,8 +22,8 @@
         "created_at": "2021-11-30 15:04:24.156604",
         "isActive": true,
         "isArchived": false,
-        "name": "Blanco",
-        "email": "jr@nan.is",
+        "name": "Gummi",
+        "email": "gamli@gomus.is",
         "isManager": true,
         "ssn": 1234567890,
         "Address": {
