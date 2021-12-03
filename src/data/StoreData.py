@@ -1,11 +1,13 @@
 import json
 import uuid
 from datetime import datetime
+from data.ReadData import ReadData
 from data.DBError import DBError
 
 class StoreData:
     def __init__(self, modelObj: object) -> None:
         self.modelObj = modelObj
+        self.__readData = ReadData(modelObj)
     
 
     def store(self, filename, obj):
@@ -46,6 +48,27 @@ class StoreData:
                 return True
         except FileNotFoundError:
             return DBError('TABLE_NOT_EXIST') # Returns DBError if file doesn't exist
+
+    def update(self, filename, data) -> object:
+        _id = data['_id']
+
+        try:
+            with open(filename) as file: # Open the given file
+                listObj = json.load(file) # Convert the records in the file to a list
+
+                for i, record in enumerate(listObj):
+                    if record['_id'] == _id:
+                        for key in data:
+                            listObj[i][key] = data[key]
+                        updated_record = listObj[i]
+                        break
+
+                with open(filename, 'w') as json_file: # Open the same file in write mode
+                    json.dump(listObj, json_file, indent=4, separators=(',',': ')) # Add our updated list to the file
+
+                    return self.__readData._dictToModel(updated_record) # Returns the updated object
+        except FileNotFoundError:
+            pass
                     
 
     def _objToDict(self, obj) -> dict:
