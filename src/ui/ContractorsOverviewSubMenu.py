@@ -36,7 +36,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             },     
             "6": {
                 "title": "Delete contractor from our system",
-                "access": "manager",
+                "access": "Manager",
                 "function": "delete_contractor"
             },           
             "X": {
@@ -64,6 +64,13 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
         found_contractor = self.contractorapi.findOneContractor(contractor_id)
         print(found_contractor)
+
+        contractors_name = (input("Enter employee name: ")).upper()
+        contractors_list = []
+        for item in contractors_list:
+            if contractors_name == contractors_name:
+                print (item)
+
 
     def find_contractor(self):
         pass
