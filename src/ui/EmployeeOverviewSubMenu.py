@@ -22,7 +22,11 @@ class EmployeeOverviewSubMenu(BaseMenu):
             "3": {
                 "title": "Search employees by name",
                 "function": "search_employee_by_name"
-            }, 
+            },
+            "3": {
+                "title": "Edit employee",
+                "function": "update_employee"
+            },
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -82,4 +86,26 @@ class EmployeeOverviewSubMenu(BaseMenu):
         else:
             for employee in employee_list:
                 print (employee)
+
+    def update_employee(self):
+        update_employee = False
+        while update_employee == False:
+            employee_id = input("Enter employee SSN: ")
+            employee = self.userApi.findEmployeesByEmployeeId(employee_id)
+            try:
+                employee['ERROR']
+                print("Employee not found")
+            except TypeError:
+                print(employee)
+                dictionary = employee[0].__dict__
+                for i, key in enumerate(dictionary):
+                    print(f"[{i+1}]{(dictionary[key])}")
+                factor = input("\nSelect factor you want to change: ")
+                update_employee = True
+
+
+
+        self.userApi.updateEmployeeInfo('suhdfsuohf898f2-32f2h3f',{
+            'name': 'Bónus'
+        })
 

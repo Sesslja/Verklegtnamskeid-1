@@ -21,7 +21,7 @@ class UserAPI:
     def deleteEmployee(self, id) -> list:
         return self.userRepo.delete(id)
 
-    def findEmployeesByEmployeeId(self, employeeId: int):
+    def findEmployeesByEmployeeId(self, employeeId: str):
         return self.userRepo.find({ 
             'where': {
                 'ssn': employeeId
