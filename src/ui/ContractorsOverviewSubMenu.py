@@ -21,7 +21,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 "function": "find_new_contractors"
             },                             
             "3": {
-                "title": "Contractors overview",
+                "title": "See all contractors",
                 "access": "",
                 "function": "all_contractors_overview"
             },  
@@ -70,16 +70,20 @@ class ContractorsOverviewSubMenu(BaseMenu):
         for item in contractors_list:
             if contractors_name == contractors_name:
                 print (item)
+        self.waitForKeyPress()
 
 
     def find_contractor(self):
-        contractor_list = self.contractorapi.findContractor()
-        if len(contractor_list) == 0:
-            print("No contractor to show :(")
-        else:
-            show_keys = ['name', 'email', 'ssn']
-            print(self.createTable(show_keys, contractor_list))
-            self.waitForKeyPress()
+        try:
+            contractor_list = self.contractorapi.findContractor()
+            if len(contractor_list) == 0:
+                print("No contractor to show :(")
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, contractor_list))
+        except ValueError:
+            print("No contractors found")
+        self.waitForKeyPress()
 
     def delete_contractor(self):
         contractor_id = input("Enter contractors ID: ")
@@ -87,6 +91,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             print("Contractor deleted")
         else: 
             print("Contractor not found")
+        self.waitForKeyPress()
 
     def find_contractor_by_profession(self):
         contractors_profession = None
@@ -96,26 +101,33 @@ class ContractorsOverviewSubMenu(BaseMenu):
             except ValueError:
                 print("Please enter a valid profession")
         
-        contractors_prof_list = self.contractorapi.findContractorByProfession()
-        if len(contractors_prof_list) == 0:
-            print("Profession not found!")
-            contractors_profession = None
-        else:
-            show_keys = ['name', 'email', 'ssn']
-            print(self.createTable(show_keys, contractors_prof_list))
-            self.waitForKeyPress()
+        try:
+            contractors_prof_list = self.contractorapi.findContractorByProfession()
+            if len(contractors_prof_list) == 0:
+                print("Profession not found!")
+                contractors_profession = None
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, contractors_prof_list))
+        except ValueError:
+            print ("No contractors found")
+        self.waitForKeyPress()
 
     def find_new_contractors(self): # Numer 2 á eftir að græja fallið
         print('serach me contractors')
 
     def all_contractors_overview(self):
-        contractor_list = self.contractorapi.findContractor()
-        if len(contractor_list) == 0:
-            print("No contractors to show")
-        else:
-            show_keys = ['name', 'email', 'ssn']
-            print(self.createTable(show_keys, contractor_list))
-            self.waitForKeyPress()
+        try:
+            contractor_list = self.contractorapi.findContractor()
+            if len(contractor_list) == 0:
+                print("No contractors to show")
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, contractor_list))
+                self.waitForKeyPress()
+        except ValueError:
+            print("No contractors found")
+        self.waitForKeyPress()
 
     def search_contractor_by_id(self):
         contractor_id = None
@@ -124,14 +136,17 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 contractor_id = int(input("Enter contractors ID: "))
             except ValueError:
                 print("Please enter a valid ID")
-        
-        contractor_list = self.contractorapi.findContractorByContractorId()
-        if len(contractor_list) == 0:
-            print("Contractor not found!")
-            contractor_id = None
-        else:
-            show_keys = ['name', 'email', 'ssn']
-            print(self.createTable(show_keys, contractor_list))
-            self.waitForKeyPress()
+        try:
+            contractor_list = self.contractorapi.findContractorByContractorId()
+            if len(contractor_list) == 0:
+                print("Contractor not found!")
+                contractor_id = None
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, contractor_list))
+                self.waitForKeyPress()
+        except ValueError:
+            print("No contractors found")
+        self.waitForKeyPress()
 
         

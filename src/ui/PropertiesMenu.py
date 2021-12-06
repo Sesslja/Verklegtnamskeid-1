@@ -35,6 +35,7 @@ class PropertiesMenu(BaseMenu):
         property_id = input("Enter Property ID: ")
         amenities_list = []
         user_input = None
+        print("Enter empty string to finish amenities list")
         while user_input != "":
             user_input = input("Enter amenities: ")
             amenities_list.append(user_input)

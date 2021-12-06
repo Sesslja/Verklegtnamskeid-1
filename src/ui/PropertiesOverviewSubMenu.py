@@ -40,39 +40,55 @@ class PropertiesOverviewSubMenu(BaseMenu):
         }
 
     def search_by_employee(self):
-        employee_id = input("Find property by employee:\nEnter employee ID: ")
-        property_list = self.propertyapi.findPropertyByEmployee(employee_id)
-        if len(property_list) == 0:
+        try:
+            employee_id = input("Find property by employee:\nEnter employee ID: ")
+            property_list = self.propertyapi.findPropertyByEmployee(employee_id)
+            if len(property_list) == 0:
+                print("No properties found with that ID")
+            else:
+                header_list = ['address', 'amenities', 'propertyId', 'isActive']
+                print(self.createTable(header_list, property_list, line_between_records=True))
+        except ValueError:
             print("No properties found with that ID")
-        else:
-            for prop in property_list:
-                print(prop)
+        self.waitForKeyPress()
 
     def search_by_id(self):
-        property_id = input("Find property by property ID:\nEnter property ID: ")
-        property_list = self.propertyapi.findPropertyByPropertyId(property_id)
-        if len(property_list) == 0:
+        try:
+            property_id = input("Find property by property ID:\nEnter property ID: ")
+            property_list = self.propertyapi.findPropertyByPropertyId(property_id)
+            if len(property_list) == 0:
+                print("Property not found!")
+            else:
+                header_list = ['address', 'amenities', 'propertyId', 'isActive']
+                print(self.createTable(header_list, property_list, line_between_records=True))
+        except ValueError:
             print("Property not found!")
-        else:
-            for prop in property_list:
-                print(prop)
+        self.waitForKeyPress()
 
     def search_by_region(self):
         property_region = input("Find property by region:\nEnter region: ")
-        property_list = self.propertyapi.findPropertyByCountry(property_region)
-        if len(property_list) == 0:
-            print("There do not seem to be any properties in that region")
-        else:
-            for prop in property_list:
-                print(prop)
+        try:
+            property_list = self.propertyapi.findPropertyByCountry(property_region)
+            if len(property_list) == 0:
+                print("There do not seem to be any properties in that region")
+            else:
+                header_list = ['address', 'amenities', 'propertyId', 'isActive']
+                print(self.createTable(header_list, property_list, line_between_records=True))
+        except ValueError:
+            print ("Region not found")
+        self.waitForKeyPress()
 
 
     def print_all_properties(self):
-        property_list = self.propertyapi.findProperty()
-        if len(property_list) == 0:
+        try:
+            property_list = self.propertyapi.findProperty()
+            if len(property_list) == 0:
+                print("There are no properties to show")
+            else:
+                header_list = ['address', 'amenities', 'propertyId', 'isActive']
+                print(self.createTable(header_list, property_list, line_between_records=True))
+        except ValueError:
             print("There are no properties to show")
-        else:
-            header_list = ['address', 'propertyId']
-            print(self.createTable(header_list, property_list, line_between_records=True))
+
         self.waitForKeyPress()
 
