@@ -1,7 +1,7 @@
 import json
 from typing import Type
 from data.ModelListConstants import SUBMODELS
-from data.DBError import DBError
+from data.DBError import DBError, RecordNotFoundError
 
 class ReadData:
     def __init__(self, modelObj: object) -> None:
@@ -49,7 +49,7 @@ class ReadData:
         try:
             return self.find(filename, options)[0]
         except IndexError:
-            return {'ERROR': 'NOT_FOUND'}
+            return RecordNotFoundError
 
     
     def _getKeys(self, obj):

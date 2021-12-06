@@ -1,0 +1,86 @@
+[
+    {
+        "_id": "c1d475f2-05c0-4965-af65-9bd716942999",
+        "created_at": "2021-12-03 15:33:37.247073",
+        "isActive": true,
+        "isArchived": false,
+        "isOpen": true,
+        "isFinished": false,
+        "isClosed": false,
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjavik",
+            "zip": "101",
+            "address1": "Bankastr\u00e6ti 5",
+            "address2": null,
+            "address3": null
+        },
+        "to_do": [
+            "Bor\u00f0a mat",
+            "sl\u00e1 vegg",
+            "kaupa b\u00edl"
+        ],
+        "isRegular": true,
+        "occurance": "ha",
+        "priority": "HIGH",
+        "start_date": "now",
+        "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
+        "verification_number": "VB00001"
+    },
+    {
+        "_id": "1faed923-f5f1-4a2f-9f98-ae8040746f89",
+        "created_at": "2021-12-03 16:01:11.521074",
+        "isActive": true,
+        "isArchived": false,
+        "isOpen": true,
+        "isFinished": false,
+        "isClosed": false,
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjavik",
+            "zip": "101",
+            "address1": "Prikah\u00fas 2",
+            "address2": null,
+            "address3": null
+        },
+        "to_do": [
+            "Bor\u00f0a mat",
+            "kaupa t\u00f6lvu",
+            "selja hj\u00f3l"
+        ],
+        "isRegular": true,
+        "occurance": "ha",
+        "priority": "HIGH",
+        "start_date": "now",
+        "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
+        "verification_number": "VB00002"
+    },
+    {
+        "_id": "1ae343f7-4b27-469b-88c9-92bcd293f6df",
+        "created_at": "2021-12-03 16:01:18.224285",
+        "isActive": true,
+        "isArchived": false,
+        "isOpen": true,
+        "isFinished": false,
+        "isClosed": false,
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjavik",
+            "zip": "101",
+            "address1": "Prikah\u00fas 2",
+            "address2": null,
+            "address3": null
+        },
+        "to_do": [
+            "Bor\u00f0a mat",
+            "kaupa t\u00f6lvu",
+            "selja hj\u00f3l"
+        ],
+        "isRegular": true,
+        "occurance": "ha",
+        "priority": "HIGH",
+        "start_date": "now",
+        "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
+        "verification_number": "VB00003"
+    }
+]
