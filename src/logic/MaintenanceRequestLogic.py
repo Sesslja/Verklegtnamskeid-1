@@ -20,8 +20,15 @@ class MaintenanceRequestAPI :
         )
         return self.requestRepo.save(new_maintenance_request)
     
-    def findMaintenanceRequest(self) -> list:
+    def MaintenanceRequestOverview(self) -> list :
         return self.requestRepo.find()
+    
+    def findOneByVerificationNumber(self, verification_number: str) -> dict:
+        return self.requestRepo.findOne({
+            'where': {
+                'verification_number': verification_number
+            }
+        })
 
     def findMRequestByStatus(self, request_status: str): #Closed, Opened, Upcoming, Outstanding
         return self.requestRepo.find({
@@ -30,7 +37,7 @@ class MaintenanceRequestAPI :
             }
         })
 
-    def _createVerificationNumber(self) -> str :
+    def _createVerificationNumber(self):
         used_numbers = self.requestRepo.find() # Find all maintenance request to see used numbers
         num_length = len(used_numbers) - 1
         last_number = used_numbers[num_length].verification_number

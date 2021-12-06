@@ -47,3 +47,10 @@
 - þufum að finna leið til að edita employee, contracor og property
 - finn hvernig við getum search eftir tímabilum
 - okkur langar til að forritið sé farið að geta framkvæmt einfalda hluti í enda dags
+## Kvöldfundur
+- framfarir í dag þar sem mikil virkni hefur verið bætt við í menu ui hlutann
+- Einnig  lagfæringar í data og logic
+- maintenance request logic
+- nánast búin með maintance report
+
+

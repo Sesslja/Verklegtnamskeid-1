@@ -23,9 +23,11 @@ class ContractorAPI:
             }
         })
     
-    def findContractorByContractorId(self, contractorId: int):
+    def findContractorByContractorId(self, contractorId: str):
         return self.contractorRepo.find({ 
             'where': {
                 'ssn': contractorId
             }
         })
+    
+    

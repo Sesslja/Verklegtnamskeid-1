@@ -129,6 +129,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             print("No contractors found")
         self.waitForKeyPress()
 
+
     def search_contractor_by_id(self):
         contractor_id = None
         while contractor_id == None:

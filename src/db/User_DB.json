@@ -430,5 +430,16 @@
             "address2": null,
             "address3": null
         }
+    },
+    {
+        "_id": "0ae28b51-f611-4f35-bdcb-5078954fc97e",
+        "created_at": "2021-12-06 17:19:43.507848",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Jim",
+        "email": "jim@jim.is",
+        "isManager": false,
+        "ssn": "91384",
+        "Address": "haha"
     }
 ]

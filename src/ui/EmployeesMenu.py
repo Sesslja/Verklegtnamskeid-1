@@ -39,7 +39,6 @@ class EmployeesMenu(BaseMenu):
         zip_code = input("Enter zip code: ")
 
         self.userapi.createEmployee(name, email, ssn, address)
-        print("Employee created!")
 
 
 
