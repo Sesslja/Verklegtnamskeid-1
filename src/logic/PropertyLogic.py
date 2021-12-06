@@ -32,7 +32,7 @@ class PropertyAPI:
     def deleteProperty(self, propertyId) -> list:
         return self.propertyRepo.delete(propertyId)
 
-    def findPropertyByPropertyId(self, propertyID: int):
+    def findPropertyByPropertyId(self, propertyID: str):
         return self.propertyRepo.find({
             'where': {
                 'propertyId': propertyID
