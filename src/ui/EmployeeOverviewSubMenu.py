@@ -18,10 +18,6 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "function": "search_employee_by_id"
             },
             "3": {
-                "title": "Search employees by name",
-                "function": "search_employee_by_name"
-            },
-            "3": {
                 "title": "Edit employee",
                 "function": "update_employee"
             },
@@ -44,35 +40,6 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
         self.waitForKeyPress()
 
-    def search_employee_by_name(self):
-        # employees = self.userApi.findEmployees()
-        # list_employee_names = []
-        # list_employee_ids = []
-        # for employee in employees:
-        #     list_employee_names.append(employee.name)
-        #     list_employee_ids.append(employee._id)
-    # 
-        # employee_name = self.autocomplete_input(list_employee_names)
-        # employee_id = list_employee_ids[list_employee_names.index(employee_name)]
-    # 
-        # found_employee = self.userApi.findOneEmployee(employee_id)
-        # print(found_employee)
-        input('la')
-    
-        #employee_name = (input("Enter employee name: ")).upper()
-        # employee_list = []
-        # for item in employee_list:
-        #     if employee_name == employee_name:
-        #         print (item)
-    
-        employee_list = self.userApi.findEmployees()
-        if len(employee_list) == 0:
-            print("No employees to show ")
-        else:
-            for employee in employee_list:
-                print (employee.name, employee.email, employee.ssn)
-        input('Select user\n"x"to leave')
-
     def search_employee_by_id(self):
         employee_id = None
         while employee_id == None:
@@ -86,9 +53,9 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("employee not found!")
             employee_id = None
         else:
-            for employee in employee_list:
-                print (employee)
-        self.waitForKeyPress()
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, employee_list))
+            self.waitForKeyPress()
 
     def update_employee(self):
         update_employee = False
