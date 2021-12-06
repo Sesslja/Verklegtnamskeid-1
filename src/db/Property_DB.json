@@ -45,5 +45,16 @@
             "sofa 2",
             ""
         ]
+    },{
+        "_id": "5a87664c-63d2-4218-9821-0ad6f7ecfdb9",
+        "created_at": "2021-12-03 15:51:28.335375",
+        "isActive": true,
+        "isArchived": false,
+        "address": "",
+        "propertyId": "",
+        "amenities": [
+            ""
+        ],
+        "employees": null
     }
 ]
