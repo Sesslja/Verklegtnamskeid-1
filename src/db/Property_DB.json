@@ -1,5 +1,9 @@
 [
     {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0519810ca2ace190c1a511bfab041dc12497197c
         "id": "generated Id",
         "created_at": "CREATED_AT_TIME",
         "isActive": true,
@@ -45,5 +49,20 @@
             "sofa 2",
             ""
         ]
+<<<<<<< HEAD
+=======
+        "_id": "5a87664c-63d2-4218-9821-0ad6f7ecfdb9",
+        "created_at": "2021-12-03 15:51:28.335375",
+        "isActive": true,
+        "isArchived": false,
+        "address": "",
+        "propertyId": "",
+        "amenities": [
+            ""
+        ],
+        "employees": null
+>>>>>>> 8a30efe5f54ef222f0e521709a67f7bbce48d6ac
+=======
+>>>>>>> 0519810ca2ace190c1a511bfab041dc12497197c
     }
 ]
