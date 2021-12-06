@@ -95,6 +95,16 @@ class BaseMenu :
                 show_keys[key]['special_color']
             except KeyError:
                 show_keys[key].update({'special_color': None})
+            try:
+                show_keys[key]['display_name']
+            except KeyError:
+                show_keys[key].update({'display_name': key})
+            try:
+                show_keys[key]['suffix']
+            except KeyError:
+                show_keys[key].update({'suffix': ''})
+
+            print(show_keys)
 
         # Finds max length for each key
         for record in objList:
@@ -122,7 +132,7 @@ class BaseMenu :
                 ), 'black',
                 'white')) for i, key in enumerate(show_keys) # For each header value
             ])
-            .format(*show_keys)) + '\n'# Input all header keys
+            .format(*[show_keys[key]['display_name'] for key in show_keys])) + '\n'# Input all header keys
         
         printout += '|'+('-'*total_length)+'|\n' if line_between_records else ''
 
@@ -153,7 +163,7 @@ class BaseMenu :
                        # ).format(''.join([x+(', ' if i2 < (len(record[key])-1) else '') for i2, x in enumerate(record[key])]))
                     ) for i, key in enumerate(show_keys)
                 ])
-                .format(*[(record[key] if type(record[key]) is not list else ''.join(
+                .format(*[(record[key]+show_keys[key]['suffix'] if type(record[key]) is not list else ''.join(
                     [x+(', ' if i2 < (len(record[key])-1) else '') for i2, x in enumerate(record[key])]
                 )) for key in show_keys]))+'\n'+(('|'+('-'*total_length)+'|\n') if line_between_records else '')
 
