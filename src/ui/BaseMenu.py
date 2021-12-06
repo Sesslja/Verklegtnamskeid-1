@@ -76,7 +76,7 @@ class BaseMenu :
             print(f'Invalid input: {user_input}')
             return 'run'
 
-    def createTable(self, header=list, objList=list):
+    def createTable(self, header=list, objList=list, line_between_records=False):
         '''Creates and returns a formatted table. \n
         header input is a list of those keys you want to include in the table\n
         \t Ex. header = ['name', 'email', 'ssn', 'isManager'] \n
@@ -120,6 +120,8 @@ class BaseMenu :
                 'white')) for i, key in enumerate(show_keys) # For each header value
             ])
             .format(*show_keys)) + '\n'# Input all header keys
+        
+        printout += '|'+('-'*total_length)+'|\n' if line_between_records else ''
 
         # printout += color(
         #     (''.join([
@@ -145,10 +147,10 @@ class BaseMenu :
                         ['| {:<',str(show_keys[key]['length']),'}', (" |" if (len(show_keys) - 1) is i else " " )]
                     )) for i, key in enumerate(show_keys)
                 ])
-                .format(*[record[key] for key in show_keys]))+'\n'
+                .format(*[record[key] for key in show_keys]))+'\n'+(('|'+('-'*total_length)+'|\n') if line_between_records else '')
 
         # Adds bottom line
-        printout += color((''.join(['| {:<',str(total_length-2), '} |\n'])).format('Nr. of records: '+str(len(objList))), 'black', 'blue', 'underline')
+        printout += '|'+color((''.join([' {:<',str(total_length-2), '} '])).format('Nr. of records: '+str(len(objList))), 'black', 'blue', 'underline')+'|\n'
         printout += ' '+('‾'*total_length)+' '
             
         return printout
