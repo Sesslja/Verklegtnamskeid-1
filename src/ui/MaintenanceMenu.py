@@ -102,27 +102,27 @@ class MaintenanceMenu(BaseMenu):
         user_input = None
         input_list = []
         while user_input != "":
-            user_input = input("Enter stuff to do: ")
+            user_input = input("What maintenance is requested: ")
             input_list.append(user_input)
         occurrence = None
         isRegular = True
         while occurrence == None:
-            occurrence = input("How often per year\n[0] if this is not regular")
+            occurrence = input("How often per year\n[0] if this is not regular: ")
             try:
                 occurrence = int(occurrence)
                 if occurrence == 0:
                     occurrence = False
                     isRegular = False
             except ValueError:
-                print("Enter an integer")
+                print("Enter an integer: ")
                 occurrence = None
         priority = ""
         while priority == "":
-            priority = (input("Priority [A][B][C]")).upper()
+            priority = (input("Priority [A][B][C]: ")).upper()
             valid_priority_list = ["A","B","C"]
             if priority not in valid_priority_list:
                 priority = ""
-                print("Enter a valid priority")
+                print("Enter a valid priority: ")
         start_date = input("Enter start date [dd,mm,yyyy]: ")
         employee_id = ""
         while employee_id == "":
@@ -131,8 +131,8 @@ class MaintenanceMenu(BaseMenu):
                 employee_id = int(employee_id)
             except ValueError:
                 employee_id = ""
-                print("Enter a valid ID")
-        verificationnumber = self.maintenanceRequestAPI._createVerificationNumber()
+                print("Enter a valid ID: ")
+        verificationnumber = self.maintenanceRequestAPI._createVerificationNumber(self)
 
 
         self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verificationnumber)
