@@ -36,7 +36,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
-        employee_list = self.userApi.findEmployees(10)
+        employee_list = self.userApi.findEmployees()
 
         # What keys from record list to use
         show_keys = ['name', 'email', 'ssn']
@@ -88,6 +88,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         else:
             for employee in employee_list:
                 print (employee)
+        self.waitForKeyPress()
 
     def update_employee(self):
         update_employee = False

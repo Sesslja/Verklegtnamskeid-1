@@ -4,6 +4,7 @@ try:
 except ImportError:
     pass
 from ui.textCompleter import TextCompleter
+from ui.Colors import color
 
 class BaseMenu :
     def __init__(self):
@@ -80,41 +81,60 @@ class BaseMenu :
         header input is a list of those keys you want to include in the table\n
         \t Ex. header = ['name', 'email', 'ssn', 'isManager'] \n
         objList is a list of model objects'''
-        
-        show_keys = header
-        keys_val_dict = {}
+        show_keys = {}
+        for key in header:
+            show_keys.update({key: {}})
+
         # Add length of each key to dictionary
         for key in show_keys:
-            keys_val_dict.update({key: len(key)})
-        
+            show_keys[key].update({'length': len(key)})
+            try:
+                show_keys[key]['special_color']
+            except KeyError:
+                show_keys[key].update({'special_color': None})
+
         # Finds max length for each key
         for record in objList:
             record = record.__dict__
-            for key in keys_val_dict:
+            for key in show_keys:
                 record_keyVal = len(str(record[key]))
-                if record_keyVal > keys_val_dict[key]:
-                    keys_val_dict[key] = record_keyVal
+                if record_keyVal > show_keys[key]['length']:
+                    show_keys[key]['length'] = record_keyVal
 
         # Find total character length of longest line
         total_length = sum([(
-            keys_val_dict[key] + (2 if (len(keys_val_dict) - 1) is i else 3)
-            ) for i, key in enumerate(keys_val_dict)])
+            show_keys[key]['length'] + (2 if (len(show_keys) - 1) is i else 3)
+            ) for i, key in enumerate(show_keys)])
 
         # Add top line to table printout
-        printout = ' '+('-'*total_length)+'\n'
+        printout = ''#.join([('-'*total_length),'\n'])
 
         # Add key header to table printout
-        printout += (
-            ''.join([
-                (''.join(
-                    ['| {:<',str(keys_val_dict[key]),'}', (" |" if (len(keys_val_dict) - 1) is i else " " )]
-                )) for i, key in enumerate(keys_val_dict)
+        printout += (''.join([
+                (color(''.join(
+                    [   # Bit convoluted but, part before the if statement is the normal printout of the header,        the part after the if statement is if header list has a 'special_color' key which then colors that column
+                        '| ',(''.join(['{:<',str(show_keys[key]['length']),'}']) ),  # Specify length of field
+                        (" |" if (len(show_keys) - 1) is i else " " ) # Put a pipe if this is the end field
+                    ]
+                ), 'black',
+                'white')) for i, key in enumerate(show_keys) # For each header value
             ])
-            .format(*show_keys)
-        )+'\n'
+            .format(*show_keys)) + '\n'# Input all header keys
+
+        # printout += color(
+        #     (''.join([
+        #         (color(''.join(
+        #             [   # Bit convoluted but, part before the if statement is the normal printout of the header,        the part after the if statement is if header list has a 'special_color' key which then colors that column
+        #                 '| ',(''.join(['{:<',str(show_keys[key]['length']),'}']) if show_keys[key]['special_color'] is None else color(''.join(['{:<',str(show_keys[key]['length']),'}']), show_keys[key]['special_color']['color'], show_keys[key]['special_color']['background']) ),  # Specify length of field
+        #                 (" |" if (len(show_keys) - 1) is i else " " ) # Put a pipe if this is the end field
+        #             ]
+        #         ), 'white' if show_keys[key]['special_color'] is None else show_keys[key]['special_color']['color'])) for i, key in enumerate(show_keys) # For each header value
+        #     ])
+        #     .format(*show_keys)) # Input all header keys
+        # , 'black', 'white') + '\n'
         
         # Add lines under header keys
-        printout += '|'+('-'*total_length)+'|\n'
+        # printout += '|'+('-'*total_length)+'|\n'
 
         # Adds values for each record to table printout
         for record in objList:
@@ -122,13 +142,14 @@ class BaseMenu :
             printout += (
                 ''.join([
                     (''.join(
-                        ['| {:<',str(keys_val_dict[key]),'}', (" |" if (len(keys_val_dict) - 1) is i else " " )]
-                    )) for i, key in enumerate(keys_val_dict)
+                        ['| {:<',str(show_keys[key]['length']),'}', (" |" if (len(show_keys) - 1) is i else " " )]
+                    )) for i, key in enumerate(show_keys)
                 ])
-                .format(*[record[key] for key in keys_val_dict]))+'\n'
+                .format(*[record[key] for key in show_keys]))+'\n'
 
         # Adds bottom line
-        printout += '|'+('_'*total_length)+'|'
+        printout += color((''.join(['| {:<',str(total_length-2), '} |\n'])).format('Nr. of records: '+str(len(objList))), 'black', 'blue', 'underline')
+        printout += ' '+('‾'*total_length)+' '
             
         return printout
 
