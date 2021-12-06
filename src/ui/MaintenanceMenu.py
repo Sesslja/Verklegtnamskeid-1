@@ -89,7 +89,7 @@ class MaintenanceMenu(BaseMenu):
         salary = int(input("Enter salary for the project"))
         finish_at = []
 
-        self.maintreportAPI.createReport(request_info, verification_num, property_id, maintenance_list, contractor_id, materialcost, salary, contractors_fee, finish_at)
+        self.maintreportAPI.createReport(request_info, verification_num, maintenance_list, contractor_id, materialcost, salary, contractors_fee, finish_at)
 
     def createMRequest(self):
         status = ""
