@@ -7,12 +7,27 @@ class PropertyAPI:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
 
-    def createProperty(self, address: str, propertyId: str, amenities: list):
-        new_property = Property(address, propertyId, amenities)
+    def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
+        new_property = Property(address=address, propertyId=propertyId, amenities=amenities, rooms=rooms)
         return self.propertyRepo.save(new_property)
 
-    def findProperty(self) -> list:
-        return self.propertyRepo.find()
+    def findProperties(self, limit=0, page=0) -> list:
+        properties = self.propertyRepo.find({
+            'limit': {
+                'limit': limit,
+                'page': page
+            }
+        })
+
+        for i, property in enumerate(properties):
+            total_size = 0
+            for room in property.rooms:
+                total_size += room['size']
+            properties[i].total_size = round(total_size)
+            properties[i].room_amount = len(property.rooms)
+
+        return properties
+
     
     def deleteProperty(self, propertyId) -> list:
         return self.propertyRepo.delete(propertyId)
