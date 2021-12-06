@@ -37,7 +37,7 @@ class MaintenanceRequestAPI :
             }
         })
 
-    def _createVerificationNumber(self) -> str :
+    def _createVerificationNumber(self):
         used_numbers = self.requestRepo.find() # Find all maintenance request to see used numbers
         num_length = len(used_numbers) - 1
         last_number = used_numbers[num_length].verification_number
