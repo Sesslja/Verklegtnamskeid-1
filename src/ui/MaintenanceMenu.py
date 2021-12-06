@@ -13,7 +13,7 @@ class MaintenanceMenu(BaseMenu):
         super().__init__()
 
         self.menu_title = "Maintenance Request Menu"
-        self.maintenanceRequestAPI = MaintenanceRequestAPI
+        self.MaintenanceRequestAPI = MaintenanceRequestAPI
         self.maintreportAPI = MaintReportAPI
         self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
@@ -124,15 +124,15 @@ class MaintenanceMenu(BaseMenu):
                 priority = ""
                 print("Enter a valid priority: ")
         start_date = input("Enter start date [dd,mm,yyyy]: ")
-        employee_id = ""
-        while employee_id == "":
-            employee_id = input("Enter employee id: ")
+        employee_Id = ""
+        while employee_Id == "":
+            employee_Id = str(input("Enter employee id: "))
             try:
-                employee_id = int(employee_id)
+                employee_Id = int(employee_Id)
             except ValueError:
-                employee_id = ""
+                employee_Id = ""
                 print("Enter a valid ID: ")
 
 
-        self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id)
+        self.MaintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_Id=None)
         print("Maintenance Request succesfully created! ")
