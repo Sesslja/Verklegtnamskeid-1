@@ -3,6 +3,8 @@ from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from logic.MaintReportLogic import MaintReportAPI
+from logic.PropertyLogic import PropertyAPI
+from logic.ContractorLogic import ContractorAPI
 
 class MaintenanceMenu(BaseMenu):
     def __init__(self):
@@ -11,6 +13,8 @@ class MaintenanceMenu(BaseMenu):
         self.menu_title = "Maintenance Request Menu"
         self.maintenanceRequestAPI = MaintenanceRequestAPI
         self.maintreportAPI = MaintReportAPI
+        self.propertyAPI = PropertyAPI 
+        self.contractorAPI = ContractorAPI
 
 
         self.menu_options = {               
@@ -46,7 +50,50 @@ class MaintenanceMenu(BaseMenu):
         }
     
     def create_report(self):
-        pass
+        verification_num = None
+        while verification_num == None:
+            verification_num = input("Enter the verification number of the maintenane request")
+            try:
+                verification_num = self.maintenanceRequestAPI.findMRequestByVerificationId()
+            except ValueError:
+                print("Enter a valid ID")
+                verification_num = None 
+            
+        request_info = ""
+
+        property_id = None
+        while property_id == None:
+            property_id = input("Enter Property ID: ")
+            try:
+                property_id = self.propertyAPI.findPropertyByPropertyId()
+            except ValueError:
+                print("Enter a valid ID")
+                property_id = None 
+
+        was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
+        if was_contractor == "Y".islower():
+            contractor_id = None
+            while contractor_id == None:
+                contractor_id = self.contractorAPI.findContractorByContractorId()
+                try:
+                    contractor_id = int(contractor_id)
+                except ValueError:
+                    print("Enter a valid ID")
+                    contractor_id = None
+
+            fee_input = float(input("Enter the contractors fee '%': "))
+            contractors_fee = (fee_input / 100)
+
+        maintenance_list = []
+        while user_input != "":
+            user_input = input("Enter what Maintenance was done: ")
+            maintenance_list.append(user_input)
+
+        materialcost = int(input("Enter the materalcost for the project"))
+        salary = int(input("Enter salary for the project"))
+        finish_at = []
+
+        self.maintreportAPI.createReport(request_info, verification_num, property_id, maintenance_list, contractor_id, materialcost, salary, contractors_fee, finish_at)
 
 
     def createMRequest(self):
