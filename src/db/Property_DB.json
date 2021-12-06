@@ -20,7 +20,7 @@
         "created_at": "CREATED_AT_TIME",
         "isActive": true,
         "isArchived": false,
-        "address": "Kom´sit",
+        "address": "Kom\u00b4sit",
         "propertyId": "85858328jfjfu83",
         "amenities": [
             "bleh",
@@ -45,7 +45,8 @@
             "sofa 2",
             ""
         ]
-    },{
+    },
+    {
         "_id": "5a87664c-63d2-4218-9821-0ad6f7ecfdb9",
         "created_at": "2021-12-03 15:51:28.335375",
         "isActive": true,
@@ -53,6 +54,39 @@
         "address": "",
         "propertyId": "",
         "amenities": [
+            ""
+        ],
+        "employees": null
+    },
+    {
+        "_id": "6b2b6dc5-55ce-47bb-bb6d-2d9daf6a5f14",
+        "created_at": "2021-12-06 15:58:57.996091",
+        "isActive": true,
+        "isArchived": false,
+        "address": "a",
+        "propertyId": "a",
+        "amenities": [
+            "a",
+            "a",
+            "a",
+            "a",
+            "a",
+            "a",
+            ""
+        ],
+        "employees": null
+    },
+    {
+        "_id": "f008fc9e-e37c-4e3a-bab5-6b042f0d036d",
+        "created_at": "2021-12-06 16:17:22.983796",
+        "isActive": true,
+        "isArchived": false,
+        "address": "a",
+        "propertyId": "a",
+        "amenities": [
+            "a",
+            "a",
+            "a",
             ""
         ],
         "employees": null

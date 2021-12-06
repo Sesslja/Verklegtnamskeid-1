@@ -117,6 +117,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             print(self.createTable(show_keys, contractor_list))
             self.waitForKeyPress()
 
+
     def search_contractor_by_id(self):
         contractor_id = None
         while contractor_id == None:
