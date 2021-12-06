@@ -60,20 +60,17 @@ class ReadData:
         ''' Check wether row confines with the constraints given in where'''
         if where is not None:
             #if [key for key in where]
-            try :
-                for key in where:
-                    if type(row[key]) is dict:
-                        if not self._checkWhereOptions(row[key], where[key]):
-                            return False
-                    elif type(row[key]) is list:
-                        try:
-                            row[key].index(where[key])
-                        except ValueError:
-                            return False
-                    elif row[key] != where[key]:
+            for key in where:
+                if type(row[key]) is dict:
+                    if not self._checkWhereOptions(row[key], where[key]):
                         return False
-            except KeyError :
-                print('Invalid input')
+                elif type(row[key]) is list:
+                    try:
+                        row[key].index(where[key])
+                    except ValueError:
+                        return False
+                elif row[key] != where[key]:
+                    return False
         return True
 
 

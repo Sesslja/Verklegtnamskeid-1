@@ -116,6 +116,7 @@ class BaseMenu :
                 record_keyVal = len(str(record[key]))
                 if record_keyVal > show_keys[key]['length']:
                     show_keys[key]['length'] = record_keyVal
+ 
 
         # Find total character length of longest line
         total_length = sum([(
