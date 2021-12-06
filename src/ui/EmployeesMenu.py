@@ -1,3 +1,4 @@
+from AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
@@ -33,10 +34,11 @@ class EmployeesMenu(BaseMenu):
         name = input("Enter employee name: ")
         email = input("Enter email: ")
         ssn = input("Enter Social-Security number: ")
-        address = {}
         country = input("enter country: ")
         city = input("Enter city: ")
         zip_code = input("Enter zip code: ")
+        
+        address = Address(country=country, city=city, zip=zip_code)
 
         self.userapi.createEmployee(name, email, ssn, address)
 
