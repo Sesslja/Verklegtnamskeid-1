@@ -52,3 +52,5 @@
 - Einnig  lagfæringar í data og logic
 - maintenance request logic
 - nánast búin með maintance report
+
+
