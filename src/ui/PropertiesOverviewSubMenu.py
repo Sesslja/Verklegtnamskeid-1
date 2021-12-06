@@ -72,6 +72,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
         if len(property_list) == 0:
             print("There are no properties to show")
         else:
-            for prop in property_list:
-                print(prop)
+            header_list = ['address', 'propertyId']
+            print(self.createTable(header_list, property_list, line_between_records=True))
+        self.waitForKeyPress()
 
