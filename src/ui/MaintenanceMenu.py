@@ -95,7 +95,6 @@ class MaintenanceMenu(BaseMenu):
 
         self.maintreportAPI.createReport(request_info, verification_num, property_id, maintenance_list, contractor_id, materialcost, salary, contractors_fee, finish_at)
 
-
     def createMRequest(self):
         status = ""
         address = input("Enter Address: ")
