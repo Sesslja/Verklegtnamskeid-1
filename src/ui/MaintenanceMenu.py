@@ -1,3 +1,4 @@
+from model.MaintenanceRequestModel import MaintenanceRequest
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
@@ -132,7 +133,7 @@ class MaintenanceMenu(BaseMenu):
             except ValueError:
                 employee_id = ""
                 print("Enter a valid ID: ")
-        verification_number = self.maintenanceRequestAPI.createVerificationNumber
+        verification_number = MaintenanceRequestAPI.createVerificationNumber
 
 
         self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verification_number)
