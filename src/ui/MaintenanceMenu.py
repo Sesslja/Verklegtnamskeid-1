@@ -53,7 +53,7 @@ class MaintenanceMenu(BaseMenu):
     def create_report(self):
         verification_num = None
         while verification_num == None:
-            verification_num = input("Enter the verification number of the maintenane request")
+            verification_num = input("Enter the verification number of the maintenane request: ")
             try:
                 verification_num = self.maintenanceRequestAPI.findMRequestByVerificationId()
             except ValueError:
@@ -117,22 +117,22 @@ class MaintenanceMenu(BaseMenu):
                 print("Enter an integer")
                 occurrence = None
         priority = ""
-        while priority == None:
+        while priority == "":
             priority = (input("Priority [A][B][C]")).upper()
             valid_priority_list = ["A","B","C"]
             if priority not in valid_priority_list:
-                priority = None
+                priority = ""
                 print("Enter a valid priority")
         start_date = input("Enter start date [dd,mm,yyyy]: ")
         employee_id = ""
-        while employee_id == None:
+        while employee_id == "":
             employee_id = input("Enter employee id: ")
             try:
                 employee_id = int(employee_id)
             except ValueError:
-                employee_id = None
+                employee_id = ""
                 print("Enter a valid ID")
-        verificationnumber = self.maintenanceRequestAPI.createVerificationNumber()
+        verificationnumber = self.maintenanceRequestAPI._createVerificationNumber()
 
 
         self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verificationnumber)
