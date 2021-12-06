@@ -1,3 +1,4 @@
+from typing import TypeVar
 from data.DBError import DBError
 from data.ReadData import ReadData
 from data.StoreData import StoreData

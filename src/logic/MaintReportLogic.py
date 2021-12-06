@@ -1,33 +1,37 @@
+from model.MaintenanceRequestModel import MaintenanceRequest
 from model.MaintReportModel import Report
 from model.userModel import User
 from model.PropertyModel import Property
 from data.database import DB
 from model.AddressType import Address
+from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
+from model.BaseModel import BaseModel
+
 
 class MaintReportAPI:
     def __init__(self) -> None:
         self.reportRepo = DB(Report)
         self.userRepo = DB(User)
         self.propertyRepo = DB(Property)
+        self.maintenanceStatus = DB(MaintenanceRequest)
 
-    def createReport(self, maintenanceId: int, propertyId: str=None,address: Address=None, maintenance: list=None, isRegular: bool=True, employeeId: str=None, contractorId: str=None, materialcost: int=None, salary: int=None, contractorsfee: float=None, finish_at: str=None):
-        new_report = Report(maintenanceId, propertyId,address, maintenance, isRegular, employeeId, contractorId, materialcost, salary, contractorsfee, finish_at)
+
+    def createReport(self, request_info, verification_number: str, propertyId: str, maintenance: list, contractorId: str, materialcost: int, salary: int, contractorsfee: float, finish_at: float):
+        MaintenanceRequestAPI.changeMRequestStatus(self, verification_number, 'Finished')
+        new_report = Report(request_info,verification_number, propertyId, maintenance, contractorId, materialcost, salary, contractorsfee, finish_at)
         return self.reportRepo.save(new_report)
 
     def findReport(self) -> list:
         return self.reportRepo.find()
-    
-    def deleteReport(self, maintenanceId) -> list:
-        return self.reportRepo.delete(maintenanceId)
 
-    def findReportByMaintenanceId(self, maintenanceId: int):
+    def findReportByMaintenanceId(self, verification_number: int):
         return self.reportRepo.find({
             'where': {
-                'maintenanceId': maintenanceId
+                'maintenanceId': verification_number
             }
         })
 
-    def findReportByEmployee(self, employeeId: int):
+    def findReportByEmployee(self, employeeId: str):
         user = self.userRepo.find({
             'where': {
                 'ssn': employeeId
@@ -40,8 +44,8 @@ class MaintReportAPI:
             }
         })
     
-    def findReportByProperty(self, propertyId: int):
-        user = self.propertyRepo.find({
+    def findReportByProperty(self, propertyId: str):
+        property = self.propertyRepo.find({
             'where': {
                 'propertyId': propertyId
             }
@@ -53,10 +57,14 @@ class MaintReportAPI:
             }
         })
 
-    def findReportByDate(self, startDate: str, endDate: str):
-        return self.reportRepo(find({
+    def findReportByDate(self, startDate: list, endDate: list):
+        start_Date = BaseModel.datetimeToUtc(startDate)
+        end_Date = BaseModel.datetimeToUtc(endDate)
+        x = range(start_Date, end_Date)
+        return self.reportRepo.find({
             'where': {
+                'finish_date': x
                 
             }
-        }))
+        })
 
