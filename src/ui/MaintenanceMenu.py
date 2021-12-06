@@ -1,5 +1,5 @@
-from AddressType import Address
-from PropertyModel import Property
+from model.AddressType import Address
+from model.PropertyModel import Property
 from model.MaintenanceRequestModel import MaintenanceRequest
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu

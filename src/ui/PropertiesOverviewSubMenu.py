@@ -101,5 +101,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
         except ValueError:
             print("There are no properties to show")
 
+        print(self.waitForKeyPress())
+
         self.waitForKeyPress()
 

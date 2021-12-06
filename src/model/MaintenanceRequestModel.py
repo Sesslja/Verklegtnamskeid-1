@@ -1,4 +1,4 @@
-from PropertyModel import Property
+from model.PropertyModel import Property
 from model.AddressType import Address
 from model.BaseModel import BaseModel
 from datetime import datetime

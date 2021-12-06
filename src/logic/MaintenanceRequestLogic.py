@@ -1,4 +1,4 @@
-from PropertyModel import Property
+from model.PropertyModel import Property
 from model.AddressType import Address
 from model.MaintenanceRequestModel import MaintenanceRequest
 from model.userModel import User

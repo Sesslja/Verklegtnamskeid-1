@@ -184,7 +184,7 @@ class BaseMenu :
         print('Press any key to continue ', end='')
         if os.name == 'nt': # If user is on windows then use msvcrt
             import msvcrt
-            msvcrt.getch()
+            return msvcrt.getch()
         else: # If user is on a unix based system then use termios
             import termios
             fd = sys.stdin.fileno()
@@ -195,7 +195,7 @@ class BaseMenu :
             termios.tcsetattr(fd, termios.TCSANOW, newattr)
 
             try:
-                sys.stdin.read(1)
+                return sys.stdin.read(1)
             except IOError:
                 pass
             finally:
