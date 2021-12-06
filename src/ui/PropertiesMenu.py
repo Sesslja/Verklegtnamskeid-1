@@ -16,7 +16,7 @@ class PropertiesMenu(BaseMenu):
                 "function": "createProperty"
             },
             "2": {
-                "title": "Create new properties",
+                "title": "Edit property",
                 "access": "manager",
                 "class": PropertiesEditSubMenu
             },
