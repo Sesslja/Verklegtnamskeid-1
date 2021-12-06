@@ -33,7 +33,10 @@ class EmployeesMenu(BaseMenu):
         name = input("Enter employee name: ")
         email = input("Enter email: ")
         ssn = input("Enter Social-Security number: ")
-        address = input("Enter address: ")
+        address = {}
+        country = input("enter country: ")
+        city = input("Enter city: ")
+        zip_code = input("Enter zip code: ")
 
         self.userapi.createEmployee(name, email, ssn, address)
 
