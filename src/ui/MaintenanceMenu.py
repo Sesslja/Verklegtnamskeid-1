@@ -12,6 +12,7 @@ class MaintenanceMenu(BaseMenu):
         self.maintenanceRequestAPI = MaintenanceRequestAPI
         self.maintreportAPI = MaintReportAPI
 
+
         self.menu_options = {               
             "1": {
                 "title": "Create maintenance requests",  
@@ -47,20 +48,24 @@ class MaintenanceMenu(BaseMenu):
     def create_report(self):
         pass
 
+
     def createMRequest(self):
-        adress = input("Enter Adress: ")
+        status = ""
+        address = input("Enter Address: ")
         user_input = None
         input_list = []
         while user_input != "":
             user_input = input("Enter stuff to do: ")
             input_list.append(user_input)
         occurrence = None
+        isRegular = True
         while occurrence == None:
             occurrence = input("How often per year\n[0] if this is not regular")
             try:
                 occurrence = int(occurrence)
                 if occurrence == 0:
                     occurrence = False
+                    isRegular = False
             except ValueError:
                 print("Enter an integer")
                 occurrence = None
@@ -71,7 +76,7 @@ class MaintenanceMenu(BaseMenu):
             if priority not in valid_priority_list:
                 priority = None
                 print("Enter a valid priority")
-        start_date = input("Enter start date [dd.mm.yyyy]: ")
+        start_date = input("Enter start date [dd,mm,yyyy]: ")
         employee_id = ""
         while employee_id == None:
             employee_id = input("Enter employee id: ")
@@ -80,6 +85,8 @@ class MaintenanceMenu(BaseMenu):
             except ValueError:
                 employee_id = None
                 print("Enter a valid ID")
+        verificationnumber = self.maintenanceRequestAPI.createVerificationNumber()
 
-        self.maintenanceRequestAPI.createMaintenanceRequest(adress, input_list, occurrence, priority, start_date, employee_id)
+
+        self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verificationnumber)
         print("Maintenance Request succesfully created! ")
