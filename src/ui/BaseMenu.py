@@ -76,14 +76,17 @@ class BaseMenu :
             print(f'Invalid input: {user_input}')
             return 'run'
 
-    def createTable(self, header=list, objList=list, line_between_records=False):
+    def createTable(self, header: list or dict, objList: list, line_between_records=False):
         '''Creates and returns a formatted table. \n
         header input is a list of those keys you want to include in the table\n
         \t Ex. header = ['name', 'email', 'ssn', 'isManager'] \n
         objList is a list of model objects'''
-        show_keys = {}
-        for key in header:
-            show_keys.update({key: {}})
+        if type(header) is list: 
+            show_keys = {}
+            for key in header:
+                show_keys.update({key: {}})
+        else:
+            show_keys = header
 
         # Add length of each key to dictionary
         for key in show_keys:

@@ -81,11 +81,11 @@ class PropertiesOverviewSubMenu(BaseMenu):
 
     def print_all_properties(self):
         try:
-            property_list = self.propertyapi.findProperty()
+            property_list = self.propertyapi.findProperties()
             if len(property_list) == 0:
                 print("There are no properties to show")
             else:
-                header_list = ['address', 'amenities', 'propertyId', 'isActive']
+                header_list = ['address', 'amenities', 'propertyId', 'isActive', 'total_size']
                 print(self.createTable(header_list, property_list, line_between_records=True))
         except ValueError:
             print("There are no properties to show")
