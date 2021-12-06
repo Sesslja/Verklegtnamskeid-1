@@ -44,3 +44,10 @@ class MaintenanceRequestAPI :
             'status': status
         }
         return self.requestRepo.update(data)
+    
+    def findMRequestByVerificationId(self, verification_number: str):
+        return self.requestRepo.find({
+            'where': {
+                'verification_number': verification_number
+            }
+        })
