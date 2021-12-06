@@ -47,8 +47,9 @@ class MaintenanceRequestMenu(BaseMenu):
 
     def openedMRequest(self):
         open_request_list = self.maintenanceRequestAPI.getOpenedMRequest()
-        for request in open_request_list:
-            print(request)
+        show_keys = ['name', 'email', 'ssn']
+        print(self.createTable(show_keys, open_request_list))
+        self.waitForKeyPress()
 
     def closedMRequest(self):
         closed_request_list = self.maintenanceRequestAPI.getClosedMRequest()

@@ -15,13 +15,19 @@ if __name__ == "__main__" :
 # mReq = MaintenanceRequestAPI()
 # 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0519810ca2ace190c1a511bfab041dc12497197c
 # addr = Address('Iceland', 'Reykjavik', '101', 'Bankastræti 5')
 # mReq.createMaintenanceRequest(addr, ['Borða mat', 'slá vegg', 'kaupa bíl'], 'ha', 'HIGH', 'now', '37a229db-6157-4bbe-b898-9d2abafb464d', 'VB00001')
 # 
 # mReq.createVerificationNumber()
+<<<<<<< HEAD
 =======
 # addr = Address('Iceland', 'Reykjavik', '101', 'Prikahús 2')
 # mReq.createMaintenanceRequest(addr, ['Borða mat', 'kaupa tölvu', 'selja hjól'], 'ha', 'HIGH', 'now', '37a229db-6157-4bbe-b898-9d2abafb464d')
 
 #print(mReq.createVerificationNumber())
 >>>>>>> 8a30efe5f54ef222f0e521709a67f7bbce48d6ac
+=======
+>>>>>>> 0519810ca2ace190c1a511bfab041dc12497197c

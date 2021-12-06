@@ -73,7 +73,13 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
 
     def find_contractor(self):
-        pass
+        contractor_list = self.contractorapi.findContractor()
+        if len(contractor_list) == 0:
+            print("No contractor to show :(")
+        else:
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, contractor_list))
+            self.waitForKeyPress()
 
     def delete_contractor(self):
         contractor_id = input("Enter contractors ID: ")
@@ -95,8 +101,9 @@ class ContractorsOverviewSubMenu(BaseMenu):
             print("Profession not found!")
             contractors_profession = None
         else:
-            for contractor in contractors_prof_list:
-                print(contractor)
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, contractors_prof_list))
+            self.waitForKeyPress()
 
     def find_new_contractors(self): # Numer 2 á eftir að græja fallið
         print('serach me contractors')
@@ -106,8 +113,9 @@ class ContractorsOverviewSubMenu(BaseMenu):
         if len(contractor_list) == 0:
             print("No contractors to show")
         else:
-            for contractor in contractor_list:
-                print (contractor)
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, contractor_list))
+            self.waitForKeyPress()
 
     def search_contractor_by_id(self):
         contractor_id = None
@@ -122,7 +130,8 @@ class ContractorsOverviewSubMenu(BaseMenu):
             print("Contractor not found!")
             contractor_id = None
         else:
-            for contractor in contractor_list:
-                print(contractor)
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, contractor_list))
+            self.waitForKeyPress()
 
         
