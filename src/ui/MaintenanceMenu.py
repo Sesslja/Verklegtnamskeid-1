@@ -1,10 +1,11 @@
 from ui.BaseMenu import BaseMenu
-from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
+from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
+
 
 class MaintenanceMenu(BaseMenu):
     def __init__(self):

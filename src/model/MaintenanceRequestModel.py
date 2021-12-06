@@ -5,7 +5,7 @@ from model.StatusModel import Status
 
 class MaintenanceRequest(BaseModel) :
     '''Model for Maintenance Request information'''
-    def __init__(self,status: str='Open' , address: Address=None, to_do: list=None, isRegular: bool=True, occurrence: int=None, priority: str=None, start_date: str=None, employeeId: int=None, verification_number: str=None) -> None :
+    def __init__(self,status: str='Open' , address: Address=None, to_do: list=None, isRegular: bool=True, occurrence: int=None, priority: str=None, start_date: str=None, employeeId: str=None, verification_number: str=None) -> None :
         super().__init__()
         self.status = Status(status)
         self.Address: Address = address

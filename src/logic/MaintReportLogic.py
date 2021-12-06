@@ -24,12 +24,6 @@ class MaintReportAPI:
     def findReport(self) -> list:
         return self.reportRepo.find()
 
-    def findReportByMaintenanceId(self, verification_number: int):
-        return self.reportRepo.find({
-            'where': {
-                'maintenanceId': verification_number
-            }
-        })
 
     def findReportByEmployee(self, employeeId: str):
         user = self.userRepo.find({
