@@ -8,17 +8,9 @@ class MaintenanceRequestAPI :
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
 
-    def createMaintenanceRequest(self, address: Address, to_do: list, occurrence: str, priority: str, start_date: str, employeeid: str) :
-        new_maintenance_request = MaintenanceRequest(
-            address=address,
-            to_do=to_do,
-            occurrence=occurrence,
-            priority=priority,
-            start_date=start_date,
-            employeeId=employeeid,
-            verification_number=self._createVerificationNumber()
-        )
-        return self.requestRepo.save(new_maintenance_request)
+    def createMaintenanceRequest(self,status: str, address: Address, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employee_Id =None):
+        new_request = MaintenanceRequest(self,status, address, to_do, isRegular, occurrence, priority, start_date, employee_Id)
+        return self.requestRepo.save(new_request)
     
     def MaintenanceRequestOverview(self) -> list :
         return self.requestRepo.find()
@@ -37,13 +29,14 @@ class MaintenanceRequestAPI :
             }
         })
 
-    def _createVerificationNumber(self):
+    def createVerificationNumber(self):
         used_numbers = self.requestRepo.find() # Find all maintenance request to see used numbers
         num_length = len(used_numbers) - 1
         last_number = used_numbers[num_length].verification_number
         last_number = int(last_number[2:])
         new_num = str(last_number+1).zfill(5)
-        return 'VB'+new_num
+        verification_number = 'VB'+new_num
+        return verification_number
     
     def changeMRequestStatus(self, id, status):
         data = {

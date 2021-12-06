@@ -1,3 +1,4 @@
+from model.MaintenanceRequestModel import MaintenanceRequest
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
@@ -12,11 +13,10 @@ class MaintenanceMenu(BaseMenu):
         super().__init__()
 
         self.menu_title = "Maintenance Request Menu"
-        self.maintenanceRequestAPI = MaintenanceRequestAPI
+        self.MaintenanceRequestAPI = MaintenanceRequestAPI
         self.maintreportAPI = MaintReportAPI
-        self.propertyAPI = PropertyAPI 
+        self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
-
 
         self.menu_options = {               
             "1": {
@@ -102,38 +102,37 @@ class MaintenanceMenu(BaseMenu):
         user_input = None
         input_list = []
         while user_input != "":
-            user_input = input("Enter stuff to do: ")
+            user_input = input("What maintenance is requested: ")
             input_list.append(user_input)
         occurrence = None
         isRegular = True
         while occurrence == None:
-            occurrence = input("How often per year\n[0] if this is not regular")
+            occurrence = input("How often per year\n[0] if this is not regular: ")
             try:
                 occurrence = int(occurrence)
                 if occurrence == 0:
                     occurrence = False
                     isRegular = False
             except ValueError:
-                print("Enter an integer")
+                print("Enter an integer: ")
                 occurrence = None
         priority = ""
         while priority == "":
-            priority = (input("Priority [A][B][C]")).upper()
+            priority = (input("Priority [A][B][C]: ")).upper()
             valid_priority_list = ["A","B","C"]
             if priority not in valid_priority_list:
                 priority = ""
-                print("Enter a valid priority")
+                print("Enter a valid priority: ")
         start_date = input("Enter start date [dd,mm,yyyy]: ")
-        employee_id = ""
-        while employee_id == "":
-            employee_id = input("Enter employee id: ")
+        employee_Id = ""
+        while employee_Id == "":
+            employee_Id = str(input("Enter employee id: "))
             try:
-                employee_id = int(employee_id)
+                employee_Id = int(employee_Id)
             except ValueError:
-                employee_id = ""
-                print("Enter a valid ID")
-        verificationnumber = self.maintenanceRequestAPI._createVerificationNumber()
+                employee_Id = ""
+                print("Enter a valid ID: ")
 
 
-        self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verificationnumber)
+        self.MaintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_Id=None)
         print("Maintenance Request succesfully created! ")
