@@ -46,21 +46,30 @@ class MaintenanceRequestMenu(BaseMenu):
         }
 
     def openedMRequest(self):
-        open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Opened")
-        show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
-        print(self.createTable(show_keys, open_request_list))
+        try:
+            open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Opened")
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            print(self.createTable(show_keys, open_request_list))
+        except ValueError:
+            print("Nothing to Show :(")
         self.waitForKeyPress()
 
     def closedMRequest(self):
-        closed_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Closed")
-        show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
-        print(self.createTable(show_keys, closed_request_list))
+        try:
+            closed_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Closed")
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            print(self.createTable(show_keys, closed_request_list))
+        except ValueError:
+            print("Nothing to Show :(")
         self.waitForKeyPress()
 
     def upcomingMaintenance(self):
-        upcoming_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Upcoming")
-        show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
-        print(self.createTable(show_keys, upcoming_request_list))
+        try:
+            upcoming_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Upcoming")
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            print(self.createTable(show_keys, upcoming_request_list))
+        except ValueError:
+            print("Nothing to Show :(")
         self.waitForKeyPress()
 
 

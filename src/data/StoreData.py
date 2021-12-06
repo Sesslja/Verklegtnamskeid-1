@@ -77,9 +77,21 @@ class StoreData:
         and converts them.'''
         data = vars(obj)
         for key in data:
-            try:
-                print(data[key].__dict__)
-                data.update({ key: self._objToDict(data[key]) }) # Update the dictionary with the same method if an class instance is found.
-            except AttributeError:
-                continue # If value is not a class instance then it continues.
+            if type(data[key]) is list:
+                for i, entry in enumerate(data[key]):
+                    try:
+                        entry.__dict__
+                        print('yes')
+                        print(entry)
+                        data[key][i] = (self._objToDict(entry))
+                    except AttributeError:
+                        print('no')
+                        print(entry)
+                        continue
+            else:
+                try:
+                    print(data[key].__dict__)
+                    data.update({ key: self._objToDict(data[key]) }) # Update the dictionary with the same method if an class instance is found.
+                except AttributeError:
+                    continue # If value is not a class instance then it continues.
         return data

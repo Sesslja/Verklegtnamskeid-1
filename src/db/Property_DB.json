@@ -37,13 +37,12 @@
         "isActive": true,
         "isArchived": false,
         "address": "\u00edsland ",
-        "propertyId": "F34535",
+        "propertyId": "PR7910",
         "amenities": [
             "scasv",
             "sofa",
             "kitchen",
-            "sofa 2",
-            ""
+            "sofa 2"
         ]
     },
     {
@@ -52,10 +51,35 @@
         "isActive": true,
         "isArchived": false,
         "address": "",
-        "propertyId": "",
+        "propertyId": "PR7910",
         "amenities": [
-            ""
+            "heho"
         ],
+        "employees": null,
+        "rooms": [
+            {
+                "size": 120.02,
+                "roomId": "PR7911"
+            },
+            {
+                "size": 20.00,
+                "roomId": "PR7912"
+            }
+        ]
+    },
+    {
+        "_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
+        "created_at": "2021-12-06 16:36:40.913595",
+        "isActive": true,
+        "isArchived": false,
+        "address": "husstadur",
+        "propertyId": "PP7990",
+        "amenities": [
+            "klost",
+            "bad",
+            "eldhus"
+        ],
+<<<<<<< HEAD
         "employees": null
     },
     {
@@ -90,5 +114,18 @@
             ""
         ],
         "employees": null
+=======
+        "employees": null,
+        "rooms": [
+            {
+                "size": 115.02,
+                "roomId": "PR7991"
+            },
+            {
+                "size": 89.02,
+                "roomId": "PR7992"
+            }
+        ]
+>>>>>>> 2076976fb2d6b1aea07fadcdc59c11357bafc973
     }
 ]
