@@ -81,8 +81,8 @@ class MaintenanceMenu(BaseMenu):
                     print("Enter a valid ID")
                     contractor_id = None
 
-            fee_input = float(input("Enter the contractors fee '%': "))
-            contractors_fee = (fee_input / 100)
+            fe_input = float(input("Enter the contractors fee '%': "))
+            contractors_fee = (fe_input / 100)
 
         maintenance_list = []
         while user_input != "":
