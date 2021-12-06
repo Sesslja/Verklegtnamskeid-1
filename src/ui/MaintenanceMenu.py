@@ -132,8 +132,8 @@ class MaintenanceMenu(BaseMenu):
             except ValueError:
                 employee_id = ""
                 print("Enter a valid ID: ")
-        verificationnumber = self.maintenanceRequestAPI._createVerificationNumber(self)
+        verification_number = self.maintenanceRequestAPI.createVerificationNumber
 
 
-        self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verificationnumber)
+        self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verification_number)
         print("Maintenance Request succesfully created! ")
