@@ -1,6 +1,7 @@
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
 from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
+from ui.PropertiesEditSubMenu import PropertiesEditSubMenu
 
 class PropertiesMenu(BaseMenu):
     def __init__(self):
@@ -13,12 +14,17 @@ class PropertiesMenu(BaseMenu):
                 "title": "Create new properties",
                 "access": "manager",
                 "function": "createProperty"
-            },                   
-            "2":  {
+            },
+            "2": {
+                "title": "Create new properties",
+                "access": "manager",
+                "class": PropertiesEditSubMenu
+            },
+            "3":  {
                 "title": "Properties overview",
                 "access": "",
                 "class": PropertiesOverviewSubMenu
-            },                
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
