@@ -15,9 +15,8 @@ class MaintenanceMenu(BaseMenu):
         self.menu_title = "Maintenance Request Menu"
         self.maintenanceRequestAPI = MaintenanceRequestAPI
         self.maintreportAPI = MaintReportAPI
-        self.propertyAPI = PropertyAPI 
+        self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
-
 
         self.menu_options = {               
             "1": {
@@ -133,8 +132,7 @@ class MaintenanceMenu(BaseMenu):
             except ValueError:
                 employee_id = ""
                 print("Enter a valid ID: ")
-        verification_number = MaintenanceRequestAPI.createVerificationNumber
 
 
-        self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id, verification_number)
+        self.maintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_id)
         print("Maintenance Request succesfully created! ")

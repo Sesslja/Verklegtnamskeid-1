@@ -8,8 +8,8 @@ class MaintenanceRequestAPI :
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
 
-    def createMaintenanceRequest(self,status: str, address: Address, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str, employeeId: str, verification_number: str):
-        new_request = MaintenanceRequest(self,status, address, to_do, isRegular, occurrence, priority, start_date, employeeId, verification_number)
+    def createMaintenanceRequest(self,status: str, address: Address, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str, employeeId: str):
+        new_request = MaintenanceRequest(self,status, address, to_do, isRegular, occurrence, priority, start_date, employeeId, self.createVerificationNumber())
         return self.requestRepo.save(new_request)
     
     def findMaintenanceRequest(self) -> list:
