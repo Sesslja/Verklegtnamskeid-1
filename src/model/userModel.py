@@ -11,4 +11,3 @@ class User(BaseModel):
         self.isManager = isManager
         self.ssn = ssn
         self.Address: Address = address
-

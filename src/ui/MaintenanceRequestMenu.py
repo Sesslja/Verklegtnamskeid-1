@@ -46,23 +46,35 @@ class MaintenanceRequestMenu(BaseMenu):
         }
 
     def openedMRequest(self):
-        open_request_list = self.maintenanceRequestAPI.getOpenedMRequest()
-        show_keys = ['name', 'email', 'ssn']
-        print(self.createTable(show_keys, open_request_list))
+        try:
+            open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Opened")
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            print(self.createTable(show_keys, open_request_list))
+        except ValueError:
+            print("Nothing to Show :(")
         self.waitForKeyPress()
 
     def closedMRequest(self):
-        closed_request_list = self.maintenanceRequestAPI.getClosedMRequest()
-        for request in closed_request_list:
-            print(request)
+        try:
+            closed_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Closed")
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            print(self.createTable(show_keys, closed_request_list))
+        except ValueError:
+            print("Nothing to Show :(")
+        self.waitForKeyPress()
 
     def upcomingMaintenance(self):
-        upcoming_request_list = self.maintenanceRequestAPI.upcomingMRequest()
-        for request in upcoming_request_list:
-            print(request)
+        try:
+            upcoming_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Upcoming")
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            print(self.createTable(show_keys, upcoming_request_list))
+        except ValueError:
+            print("Nothing to Show :(")
+        self.waitForKeyPress()
 
 
     def outstandingMRequest(self):
-        outstanding_request_list = self.maintenanceRequestAPI.outstandingMRequest()
-        for request in outstanding_request_list:
-            print(request)
+        outstanding_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Outstanding")
+        show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+        print(self.createTable(show_keys, outstanding_request_list))
+        self.waitForKeyPress()

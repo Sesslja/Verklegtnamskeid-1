@@ -12,8 +12,15 @@ class MaintenanceRequestAPI :
         new_request = MaintenanceRequest(self,status, address, to_do, isRegular, occurrence, priority, start_date, employee_Id)
         return self.requestRepo.save(new_request)
     
-    def findMaintenanceRequest(self) -> list:
+    def MaintenanceRequestOverview(self) -> list :
         return self.requestRepo.find()
+    
+    def findOneByVerificationNumber(self, verification_number: str) -> dict:
+        return self.requestRepo.findOne({
+            'where': {
+                'verification_number': verification_number
+            }
+        })
 
     def findMRequestByStatus(self, request_status: str): #Closed, Opened, Upcoming, Outstanding
         return self.requestRepo.find({

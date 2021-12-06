@@ -32,12 +32,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
-        employee_list = self.userApi.findEmployees()
+        try:
+            employee_list = self.userApi.findEmployees()
 
-        # What keys from record list to use
-        show_keys = ['name', 'email', 'ssn']
-        print(self.createTable(show_keys, employee_list))
-
+            # What keys from record list to use
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, employee_list))
+        except ValueError:
+            print("No employees to show")
         self.waitForKeyPress()
 
     def search_employee_by_id(self):
@@ -47,32 +49,37 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 employee_id = int(input("Enter employee ID: "))
             except ValueError:
                 print("Please enter a valid ID")
-
-        employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
-        if len(employee_list) == 0:
-            print("employee not found!")
-            employee_id = None
-        else:
-            show_keys = ['name', 'email', 'ssn']
-            print(self.createTable(show_keys, employee_list))
-            self.waitForKeyPress()
+        try:
+            employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
+            if len(employee_list) == 0:
+                print("employee not found!")
+                employee_id = None
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, employee_list))
+        except ValueError:
+            print("No employee found")
+        self.waitForKeyPress()
 
     def update_employee(self):
         update_employee = False
         while update_employee == False:
             employee_id = input("Enter employee SSN: ")
-            employee = self.userApi.findEmployeesByEmployeeId(employee_id)
             try:
-                employee['ERROR']
-                print("Employee not found")
-            except TypeError:
-                print(employee)
-                dictionary = employee[0].__dict__
-                for i, key in enumerate(dictionary):
-                    print(f"| {key:<15}:  {(dictionary[key])}")
-                factor = input("\nSelect factor you want to change: ")
-                
-                update_employee = True
+                employee = self.userApi.findEmployeesByEmployeeId(employee_id)
+                try:
+                    employee['ERROR']
+                    print("Employee not found")
+                except TypeError:
+                    print(employee)
+                    dictionary = employee[0].__dict__
+                    for i, key in enumerate(dictionary):
+                        print(f"| {key:<15}:  {(dictionary[key])}")
+                    factor = input("\nSelect factor you want to change: ")
+                    
+                    update_employee = True
+            except ValueError:
+                print("No employee found")
 
 
 
