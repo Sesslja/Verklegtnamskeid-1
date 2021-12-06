@@ -100,11 +100,14 @@ class BaseMenu :
             except KeyError:
                 show_keys[key].update({'display_name': key})
             try:
+                show_keys[key]['prefix']
+            except KeyError:
+                show_keys[key].update({'prefix': ''})
+            try:
                 show_keys[key]['suffix']
             except KeyError:
                 show_keys[key].update({'suffix': ''})
 
-            print(show_keys)
 
         # Finds max length for each key
         for record in objList:
@@ -163,7 +166,7 @@ class BaseMenu :
                        # ).format(''.join([x+(', ' if i2 < (len(record[key])-1) else '') for i2, x in enumerate(record[key])]))
                     ) for i, key in enumerate(show_keys)
                 ])
-                .format(*[(record[key]+show_keys[key]['suffix'] if type(record[key]) is not list else ''.join(
+                .format(*[(str(show_keys[key]['prefix'])+str(record[key])+str(show_keys[key]['suffix']) if type(record[key]) is not list else ''.join(
                     [x+(', ' if i2 < (len(record[key])-1) else '') for i2, x in enumerate(record[key])]
                 )) for key in show_keys]))+'\n'+(('|'+('-'*total_length)+'|\n') if line_between_records else '')
 
