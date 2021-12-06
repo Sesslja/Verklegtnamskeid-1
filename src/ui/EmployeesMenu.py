@@ -1,4 +1,4 @@
-from AddressType import Address
+from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
