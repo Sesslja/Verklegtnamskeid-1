@@ -1,3 +1,5 @@
+from AddressType import Address
+from PropertyModel import Property
 from model.MaintenanceRequestModel import MaintenanceRequest
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
@@ -13,7 +15,7 @@ class MaintenanceMenu(BaseMenu):
         super().__init__()
 
         self.menu_title = "Maintenance Request Menu"
-        self.MaintenanceRequestAPI = MaintenanceRequestAPI
+        self.MaintenanceRequestAPI = MaintenanceRequestAPI()
         self.maintreportAPI = MaintReportAPI
         self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
@@ -62,14 +64,7 @@ class MaintenanceMenu(BaseMenu):
             
         request_info = ""
 
-        property_id = None
-        while property_id == None:
-            property_id = input("Enter Property ID: ")
-            try:
-                property_id = self.propertyAPI.findPropertyByPropertyId()
-            except ValueError:
-                print("Enter a valid ID")
-                property_id = None 
+         
 
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
         if was_contractor == "Y".islower():
@@ -87,7 +82,7 @@ class MaintenanceMenu(BaseMenu):
 
         maintenance_list = []
         while user_input != "":
-            user_input = input("Enter what Maintenance was done: ")
+            user_input = input("Enter what Maintenance was done: [Enter to continue]")
             maintenance_list.append(user_input)
 
         materialcost = int(input("Enter the materalcost for the project"))
@@ -98,7 +93,20 @@ class MaintenanceMenu(BaseMenu):
 
     def createMRequest(self):
         status = ""
-        address = input("Enter Address: ")
+        property_id = None
+        while property_id == None:
+            property_id = input("Enter Property ID: ")
+            try:
+                property_id = self.propertyAPI.findPropertyByPropertyId()
+            except ValueError:
+                print("Enter a valid ID")
+                property_id = None
+        property = self.propertyAPI.findPropertyByPropertyId(self, property_id)
+        room_number = None
+        while room_number == None:
+            room_number = input("Do you want to add a room number? [Y/N]: ")
+            if room_number == 'Y'.lower():
+                room_input = input("What is the room number?: ")
         user_input = None
         input_list = []
         while user_input != "":
@@ -134,5 +142,5 @@ class MaintenanceMenu(BaseMenu):
                 print("Enter a valid ID: ")
 
 
-        self.MaintenanceRequestAPI.createMaintenanceRequest(status, address, input_list, isRegular, occurrence, priority, start_date, employee_Id=None)
+        self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id=property_id, to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
         print("Maintenance Request succesfully created! ")
