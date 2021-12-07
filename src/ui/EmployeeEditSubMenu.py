@@ -39,11 +39,11 @@ class EmployeeEditMenu(BaseMenu):
         employeeSSN_input = input("Please enter employee ssn: ")
 
         try:
-            found_employee = self.userAPI.findEmployeesByEmployeeId(employeeSSN_input)
+            found_employee = self.userAPI.findEmployeeByEmployeeId(employeeSsn=employeeSSN_input)
         except RecordNotFoundError:
             return self.employeeSSN_input(True)
         
-        return found_employee.employeeSSN
+        return found_employee.ssn
     
     def edit_employee_name(self):
         found_user = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)

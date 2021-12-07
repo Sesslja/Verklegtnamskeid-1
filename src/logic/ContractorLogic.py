@@ -6,8 +6,8 @@ class ContractorAPI:
     def __init__(self) -> None:
         self.contractorRepo = DB(Contractor)
 
-    def createContractor(self, company: str=None, name: str=None, ssn: int=None, profession: str=None, phone: int=None, openinghours: str=None, address: Address=None):
-        new_contractor = Contractor(company=company, name=name, ssn=ssn, profession=profession, phone=phone, openinghours=openinghours, address=address)
+    def createContractor(self, company: str=None, name: str=None, ssn: int=None, profession: str=None, phone: int=None, openinghours: str=None, email: str=None, address: Address=None):
+        new_contractor = Contractor(company=company, name=name, ssn=ssn, profession=profession, phone=phone, openinghours=openinghours, email=email, address=address)
         return self.contractorRepo.save(new_contractor)
 
     def findContractor(self) -> list:
@@ -30,4 +30,9 @@ class ContractorAPI:
             }
         })
     
-    
+    def findContractorByName(self, name: str):
+        return self.contractorRepo.find({ 
+            'where': {
+                'name': name
+            }
+        })

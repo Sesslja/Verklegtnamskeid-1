@@ -65,7 +65,7 @@ class PropertiesEditSubMenu(BaseMenu):
 
         created_room = self.propertyapi.createRoom(size=roomSize, roomId=roomId, propertyId=self.propertyId)
 
-        created_room = created_room.rooms
+        created_room = created_room.Rooms
 
         print('Successfully created new room')
         header = {

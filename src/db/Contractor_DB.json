@@ -1,0 +1,84 @@
+[
+    {
+        "_id": "07492eae-8c46-4fb2-9219-37aa629de7b5",
+        "created_at": "2021-12-07 14:36:41.088232",
+        "isActive": true,
+        "isArchived": false,
+        "company": "",
+        "name": "",
+        "ssn": "",
+        "profession": "",
+        "phone": "",
+        "openinghours": "",
+        "Address": {
+            "country": "",
+            "city": "",
+            "zip": "",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
+        "_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307",
+        "created_at": "2021-12-07 14:39:46.950301",
+        "isActive": true,
+        "isArchived": false,
+        "company": "blabla",
+        "name": "daniel",
+        "ssn": "3",
+        "profession": "3",
+        "phone": "3",
+        "openinghours": "3",
+        "Address": {
+            "country": "3",
+            "city": "3",
+            "zip": "3",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
+        "_id": "9aa0e3ff-16e1-423c-9af5-3dd6edd7fba2",
+        "created_at": "2021-12-07 14:54:10.186320",
+        "isActive": true,
+        "isArchived": false,
+        "company": "daniel ehf",
+        "name": "daniel",
+        "ssn": "123",
+        "profession": "bla",
+        "phone": "1234567",
+        "openinghours": "12-12",
+        "email": "dhm@mail.com",
+        "Address": {
+            "country": "iceland",
+            "city": "rvk",
+            "zip": "201",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
+        "_id": "0cb310fd-2843-41e3-aef7-e4575c49b5c5",
+        "created_at": "2021-12-07 15:14:59.473217",
+        "isActive": true,
+        "isArchived": false,
+        "company": "test ehf",
+        "name": "test name",
+        "ssn": "123",
+        "profession": "test",
+        "phone": "1234567",
+        "openinghours": "1-1",
+        "email": "test@test.com",
+        "Address": {
+            "country": "testland",
+            "city": "test city",
+            "zip": "123",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
+    }
+]

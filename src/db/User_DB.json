@@ -430,5 +430,23 @@
             "address2": null,
             "address3": null
         }
+    },
+    {
+        "_id": "9f1871c7-cba2-4c41-b4c8-088acc66a2f0",
+        "created_at": "2021-12-07 13:48:07.914029",
+        "isActive": true,
+        "isArchived": false,
+        "name": "",
+        "email": "",
+        "isManager": false,
+        "ssn": "",
+        "Address": {
+            "country": "",
+            "city": "",
+            "zip": "",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
     }
 ]
