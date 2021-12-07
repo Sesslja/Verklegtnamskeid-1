@@ -1,13 +1,12 @@
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceMenu import MaintenanceMenu
-from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from ui.ContractorsMenu import ContractorsMenu
 from ui.EmployeesMenu import EmployeesMenu
-from ui.MaintenanceMenu import MaintenanceMenu
 from ui.PropertiesMenu import PropertiesMenu
 
 
 class MainMenu(BaseMenu):
+    '''Shows main menu and restricts access to employees'''
     def __init__(self):
         super().__init__()
 

@@ -2,6 +2,7 @@ from ui.BaseMenu import BaseMenu
 from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 
 class MaintenanceRequestMenu(BaseMenu):
+    '''Gives Maintenance request options'''
     def __init__(self):
         super().__init__()
 
@@ -46,6 +47,7 @@ class MaintenanceRequestMenu(BaseMenu):
         }
 
     def openedMRequest(self):
+        '''prints out a table of all opened requests'''
         try:
             open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Opened")
             show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
@@ -55,6 +57,7 @@ class MaintenanceRequestMenu(BaseMenu):
         self.waitForKeyPress()
 
     def closedMRequest(self):
+        '''prints out a table of all closed requests'''
         try:
             closed_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Closed")
             show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
@@ -64,6 +67,7 @@ class MaintenanceRequestMenu(BaseMenu):
         self.waitForKeyPress()
 
     def upcomingMaintenance(self):
+        '''prints out a table of all upcoming requests'''
         try:
             upcoming_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Upcoming")
             show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
@@ -74,6 +78,7 @@ class MaintenanceRequestMenu(BaseMenu):
 
 
     def outstandingMRequest(self):
+        '''prints out a table of all outstanding requests'''
         outstanding_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Outstanding")
         show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
         print(self.createTable(show_keys, outstanding_request_list))

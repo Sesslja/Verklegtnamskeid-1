@@ -6,6 +6,7 @@ from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
 from model.AddressType import Address
 
 class EmployeesMenu(BaseMenu):
+    '''Shows employee options'''
     def __init__(self):
         super().__init__()
         self.userapi = UserAPI()
@@ -37,6 +38,7 @@ class EmployeesMenu(BaseMenu):
         }
 
     def createEmployee(self):
+        '''option to create new employee'''
         name = input("Enter employee name: ")
         email = input("Enter email: ")
         ssn = input("Enter Social-Security number: ")
