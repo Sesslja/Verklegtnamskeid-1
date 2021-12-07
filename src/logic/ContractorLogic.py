@@ -29,5 +29,3 @@ class ContractorAPI:
                 'ssn': contractorId
             }
         })
-    
-    
