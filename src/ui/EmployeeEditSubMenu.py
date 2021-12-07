@@ -6,7 +6,7 @@ from logic.UserLogic import UserAPI
 class EmployeeEditMenu(BaseMenu):
     def __init__(self):
         super().__init__()
-        self.userAPI = UserAPI
+        self.userAPI = UserAPI()
         self.employeeSSN = self.employeeSSN_input()
 
         self.menu_title = f"Edit Employee\n SSN: {self.employeeSSN}"
@@ -39,11 +39,11 @@ class EmployeeEditMenu(BaseMenu):
         employeeSSN_input = input("Please enter employee ssn: ")
 
         try:
-            found_employee = self.userAPI.findEmployeesByEmployeeId(employeeSSN_input)
+            found_employee = self.userAPI.findEmployeeByEmployeeId(employeeSsn=employeeSSN_input)
         except RecordNotFoundError:
             return self.employeeSSN_input(True)
         
-        return found_employee.employeeSSN
+        return found_employee.ssn
     
     def edit_employee_name(self):
         pass
