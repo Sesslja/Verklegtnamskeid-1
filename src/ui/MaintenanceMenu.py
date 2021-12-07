@@ -12,6 +12,7 @@ from data.database import DB
 from data.DBError import RecordNotFoundError
 from logic.UserLogic import UserAPI
 from ui.EmployeesMenu import EmployeesMenu
+from ui.PropertiesMenu import PropertiesMenu
 
 
 class MaintenanceMenu(BaseMenu):
@@ -27,6 +28,7 @@ class MaintenanceMenu(BaseMenu):
         self.propertyRepo = DB(Property)
         self.userAPI = UserAPI()
         self.employeesMenu = EmployeesMenu()
+        self.propertiesMenu = PropertiesMenu()
 
         self.menu_options = {               
             "1": {
@@ -109,8 +111,12 @@ class MaintenanceMenu(BaseMenu):
                 found_property = self.propertyAPI.findPropertyByPropertyId(property_id)
                 property_id = property_id
             except RecordNotFoundError:
-                print("Enter a valid ID")
-                property_id = None
+                print("This property is not in the system ")
+                create_property = input("Do you want to create a new property?: Y/N ")
+                if create_property.lower() == "y":
+                    self.propertiesMenu.createProperty()
+                else:
+                    property_id = None
         room_number = None
         while room_number == None:
             room_number = input("Do you want to sign it to a room number? [Y/N]: ")
@@ -169,7 +175,9 @@ class MaintenanceMenu(BaseMenu):
                 create_employee = input("Do you want to create a new employee?: Y/N ")
                 if create_employee.lower() == "y":
                     new_employee = self.employeesMenu.createEmployee()
-                employee_Id == ""
+                else:
+                    employee_Id = ""
+
 
 
         self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
