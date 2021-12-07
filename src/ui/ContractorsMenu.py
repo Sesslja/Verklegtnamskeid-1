@@ -1,3 +1,4 @@
+from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.ContractorLogic import ContractorAPI
 from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu 
@@ -40,7 +41,11 @@ class ContractorsMenu(BaseMenu):
         profession = input("Enter profession: ")
         phone = input("Enter phone number: ")
         openinghours = input("Enter opening hours: ")
-        address = input("Enter address: ")
+        country = input('Country: ')
+        city = input('City: ')
+        zip_code = input('Zip code: ')
+        address = Address(country=country, city=city, zip=zip_code)
 
         self.contractorapi.createContractor(company, name, ssn, profession, phone, openinghours, address)
+
         print("Contractor added!")

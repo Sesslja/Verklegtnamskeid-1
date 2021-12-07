@@ -8,6 +8,7 @@ from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
+from data.database import DB
 
 
 class MaintenanceMenu(BaseMenu):
@@ -15,11 +16,12 @@ class MaintenanceMenu(BaseMenu):
     def __init__(self):
         super().__init__()
 
-        self.menu_title = "Maintenance Request Menu"
-        self.MaintenanceRequestAPI = MaintenanceRequestAPI()
+        self.menu_title = "Maintenance Menu"
+        self.MaintenanceRequestAPI = MaintenanceRequestAPI
         self.maintreportAPI = MaintReportAPI
         self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
+        self.propertyRepo = DB(Property)
 
         self.menu_options = {               
             "1": {
@@ -99,7 +101,7 @@ class MaintenanceMenu(BaseMenu):
         while property_id == None:
             property_id = input("Enter Property ID: ")
             try:
-                property_id = self.propertyAPI.findPropertyByPropertyId()
+                find_property = self.propertyAPI().findPropertyByPropertyId(property_id)
             except ValueError:
                 print("Enter a valid ID")
                 property_id = None

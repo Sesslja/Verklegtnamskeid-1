@@ -1,9 +1,7 @@
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceMenu import MaintenanceMenu
-from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from ui.ContractorsMenu import ContractorsMenu
 from ui.EmployeesMenu import EmployeesMenu
-from ui.MaintenanceMenu import MaintenanceMenu
 from ui.PropertiesMenu import PropertiesMenu
 
 
@@ -14,6 +12,12 @@ class MainMenu(BaseMenu):
 
         self.menu_title = "Main Menu"
         self.isMainMenu = True
+        self.PropertiesMenu = PropertiesMenu
+        self.MaintenanceMenu = MaintenanceMenu
+        self.ContractorsMenu = ContractorsMenu
+        self.EmployeesMenu = EmployeesMenu
+
+
         self.menu_options = { 
             "1": {
                 "title": "Properties",
