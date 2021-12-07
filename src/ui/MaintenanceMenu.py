@@ -9,7 +9,7 @@ from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
 from data.database import DB
-from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
+from data.DBError import RecordNotFoundError
 
 
 class MaintenanceMenu(BaseMenu):
@@ -17,13 +17,12 @@ class MaintenanceMenu(BaseMenu):
     def __init__(self):
         super().__init__()
 
-        self.menu_title = "Maintenance Menu"
-        self.MaintenanceRequestAPI = MaintenanceRequestAPI
-        self.maintreportAPI = MaintReportAPI
-        self.propertyAPI = PropertyAPI
-        self.contractorAPI = ContractorAPI
+        self.menu_title = "Maintenance Request Menu"
+        self.MaintenanceRequestAPI = MaintenanceRequestAPI()
+        self.maintreportAPI = MaintReportAPI()
+        self.propertyAPI = PropertyAPI()
+        self.contractorAPI = ContractorAPI()
         self.propertyRepo = DB(Property)
-        self.propertiesOverviewSubMenu = PropertiesOverviewSubMenu
 
         self.menu_options = {               
             "1": {
@@ -103,16 +102,21 @@ class MaintenanceMenu(BaseMenu):
         while property_id == None:
             property_id = input("Enter Property ID: ")
             try:
-                find_property = self.propertyAPI.findPropertyByPropertyId(self, property_id)
-            except ValueError:
+                found_property = self.propertyAPI.findPropertyByPropertyId(property_id)
+            except RecordNotFoundError:
                 print("Enter a valid ID")
                 property_id = None
-        property = self.propertyAPI.findPropertyByPropertyId(self, property_id)
         room_number = None
         while room_number == None:
             room_number = input("Do you want to sign it to a room number? [Y/N]: ")
             if room_number.lower() == 'y':
-                self.propertiesOverviewSubMenu.findRoomsByPropertyId(self, property_id)
+                found_prop = self.propertyAPI.findPropertyByPropertyId(property_id)
+                rooms = found_prop.Rooms
+
+                print(self.createTable(['size','roomId'], rooms))
+
+                self.waitForKeyPress()
+
         room_signing = None
         while room_signing == None:
             room_signing = input("What room number do you want to sing it to? ")

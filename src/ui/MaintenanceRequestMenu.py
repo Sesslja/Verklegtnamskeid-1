@@ -7,7 +7,7 @@ class MaintenanceRequestMenu(BaseMenu):
         super().__init__()
 
         self.menu_title = "Maintenance Request Menu"
-        self.maintenanceRequestAPI = MaintenanceRequestAPI
+        self.maintenanceRequestAPI = MaintenanceRequestAPI()
 
         self.menu_options = {
             "1": {
