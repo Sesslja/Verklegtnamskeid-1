@@ -3,8 +3,7 @@ from ui.MaintenanceMenu import MaintenanceMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from ui.ContractorsMenu import ContractorsMenu
 from ui.EmployeesMenu import EmployeesMenu
-from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
-from ui.MaintenanceReportMenu import MaintenanceReportMenu
+from ui.MaintenanceMenu import MaintenanceMenu
 from ui.PropertiesMenu import PropertiesMenu
 
 
@@ -14,6 +13,12 @@ class MainMenu(BaseMenu):
 
         self.menu_title = "Main Menu"
         self.isMainMenu = True
+        self.PropertiesMenu = PropertiesMenu
+        self.MaintenanceMenu = MaintenanceMenu
+        self.ContractorsMenu = ContractorsMenu
+        self.EmployeesMenu = EmployeesMenu
+
+
         self.menu_options = { 
             "1": {
                 "title": "Properties",
@@ -21,21 +26,16 @@ class MainMenu(BaseMenu):
                 "class": PropertiesMenu
             },  
             "2": {
-                "title": "Maintenance Requests",
+                "title": "Maintenance Menu",
                 "access": "",
-                "class": MaintenanceRequestMenu
-            },
+                "class": MaintenanceMenu
+            },   
             "3": {
-                "title": "Maintenance Report",
-                "access": "Manager",
-                "class": MaintenanceReportMenu
-            },     
-            "4": {
                 "title": "Contractors",
                 "access": "",
                 "class": ContractorsMenu
             },
-            "5": {
+            "4": {
                 "title": "Employees",
                 "access": "Manager",
                 "class": EmployeesMenu

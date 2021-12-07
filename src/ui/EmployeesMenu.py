@@ -1,7 +1,8 @@
-from AddressType import Address
+from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
+from model.AddressType import Address
 
 class EmployeesMenu(BaseMenu):
     def __init__(self):
@@ -41,7 +42,3 @@ class EmployeesMenu(BaseMenu):
         address = Address(country=country, city=city, zip=zip_code)
 
         self.userapi.createEmployee(name, email, ssn, address)
-
-
-
-    

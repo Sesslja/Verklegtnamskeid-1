@@ -30,14 +30,14 @@ class DB:
         '''Use update() in StoreData'''
         return self.storeObj.update(self.filename, updateDict)
 
-    def find(self, options: dict={}) -> list:
+    def find(self, options: dict={}) -> list[object]:
         '''Use StoreData functions'''
         found_data = self.readObj.find(self.filename, options)
         if found_data is not False:
             return found_data
         return False
 
-    def findOne(self, options: dict={}) -> dict:
+    def findOne(self, options: dict={}) -> object or bool:
         found_item: dict = self.readObj.findOne(self.filename, options)
         if found_item is not False:
             return found_item

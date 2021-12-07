@@ -16,9 +16,9 @@ class MaintReportAPI:
         self.maintenanceStatus = DB(MaintenanceRequest)
 
 
-    def createReport(self, request_info, verification_number: str, propertyId: str, maintenance: list, contractorId: str, materialcost: int, salary: int, contractorsfee: float, finish_at: float):
+    def createReport(self, request_info, verification_number: str, maintenance: list, contractorId: str, materialcost: int, salary: int, contractorsfee: float, finish_at: float):
         MaintenanceRequestAPI.changeMRequestStatus(self, verification_number, 'Finished')
-        new_report = Report(request_info,verification_number, propertyId, maintenance, contractorId, materialcost, salary, contractorsfee, finish_at)
+        new_report = Report(request_info,verification_number, maintenance, contractorId, materialcost, salary, contractorsfee, finish_at)
         return self.reportRepo.save(new_report)
 
     def findReport(self) -> list:

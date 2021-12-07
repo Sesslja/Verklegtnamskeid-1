@@ -8,7 +8,7 @@ class ReadData:
         self.modelObj = modelObj
         self.modelKeys = self._getKeys(self.modelObj())
 
-    def find(self, filename: str,  options: dict= {}):
+    def find(self, filename: str,  options: dict= {}) -> list[object]:
         try:
             where = options['where']
         except KeyError:
@@ -39,17 +39,18 @@ class ReadData:
         except FileNotFoundError:
             print('file not found, might need to run a migration')
 
-    def findOne(self, filename: str, options: dict = {}) -> dict:
+    def findOne(self, filename: str, options: dict = {}) -> object:
         '''Returns the first record found matching given options'''
         try:
             options.pop('limit')
         except KeyError:
             pass
-        options.update({'limit': {'limit':1, 'page':0}})
+        # options.update({'limit': {'limit':1, 'page':0}})
         try:
             return self.find(filename, options)[0]
         except IndexError:
-            return RecordNotFoundError
+            print('didnt find')
+            raise RecordNotFoundError
 
     
     def _getKeys(self, obj):
@@ -88,9 +89,18 @@ class ReadData:
                 if key in foundDict and not None:
                     if attr_types[key] is type and key in SUBMODELS:
                         foundDict[key] = self._dictToModel(dict(foundDict[key]), SUBMODELS[key])
+                    elif type(attr_types[key]) is list:
+                        sub_list = []
+                        for col in attr_types[key]:
+                            if col is type and key in SUBMODELS:
+                                print('er i dotinu')
+                                sub_list.append(self._dictToModel(dict(foundDict[key]), SUBMODELS[key]))
+                        print(sub_list)
+                        foundDict[key] = sub_list
                     model.__setattr__(key, foundDict[key])
             except TypeError:
-                return DBError('TYPE_NOT_AVAILABLE')
+                print('typu err')
+                raise RecordNotFoundError
         return model
 
 

@@ -1,10 +1,17 @@
 [
     {
-        "id": "generated Id",
+        "_id": "generated Id",
         "created_at": "CREATED_AT_TIME",
         "isActive": true,
         "isArchived": false,
-        "address": "D\u00fafnah\u00f3lar 10",
+        "Address": {
+            "country": "Iceland",
+            "city": "Eih",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        },
         "propertyId": "85858328jfjfu83",
         "amenities": [
             "Kl\u00f3sett",
@@ -16,11 +23,18 @@
         ]
     },
     {
-        "id": "generateds",
+        "_id": "generateds",
         "created_at": "CREATED_AT_TIME",
         "isActive": true,
         "isArchived": false,
-        "address": "Kom\u00b4sit",
+        "Address": {
+            "country": "Iceland",
+            "city": "Eih",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        },
         "propertyId": "85858328jfjfu83",
         "amenities": [
             "bleh",
@@ -28,7 +42,8 @@
             "Eldh\u00fas"
         ],
         "employees": [
-            "37a229db-6157-4bbe-b898-9d2abafb464d"
+            "37a229db-6157-4bbe-b898-9d2abafb464d",
+            "2a183d14-41e5-49f0-bbca-fcf19028a130"
         ]
     },
     {
@@ -36,8 +51,16 @@
         "created_at": "2021-12-01 14:24:56.143309",
         "isActive": true,
         "isArchived": false,
-        "address": "\u00edsland ",
-        "propertyId": "PR7910",
+        "Address": {
+            "country": "Iceland",
+            "city": "Eih",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "PR7900",
+        "employees": [],
         "amenities": [
             "scasv",
             "sofa",
@@ -50,19 +73,26 @@
         "created_at": "2021-12-03 15:51:28.335375",
         "isActive": true,
         "isArchived": false,
-        "address": "k",
+        "Address": {
+            "country": "Iceland",
+            "city": "Eih",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        },
         "propertyId": "PR7910",
         "amenities": [
             "heho"
         ],
-        "employees": null,
-        "rooms": [
+        "employees": "2a183d14-41e5-49f0-bbca-fcf19028a130",
+        "Rooms": [
             {
                 "size": 120.02,
                 "roomId": "PR7911"
             },
             {
-                "size": 20.00,
+                "size": 20.0,
                 "roomId": "PR7912"
             }
         ]
@@ -72,15 +102,25 @@
         "created_at": "2021-12-06 16:36:40.913595",
         "isActive": true,
         "isArchived": false,
-        "address": "husstadur",
+        "Address": {
+            "country": "Iceland",
+            "city": "Eih",
+            "zip": 420,
+            "address1": "Nuukway 1",
+            "address2": null,
+            "address3": null
+        },
         "propertyId": "PP7990",
         "amenities": [
             "klost",
             "bad",
             "eldhus"
         ],
-        "employees": null,
-        "rooms": [
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130",
+            "37a229db-6157-4bbe-b898-9d2abafb464d"
+        ],
+        "Rooms": [
             {
                 "size": 115.02,
                 "roomId": "PR7991"
@@ -88,7 +128,55 @@
             {
                 "size": 89.02,
                 "roomId": "PR7992"
+            },
+            {
+                "size": 90.2,
+                "roomId": "PR7993"
+            },
+            {
+                "size": 23.1,
+                "roomId": "PR7994"
+            },
+            {
+                "size": 300.0,
+                "roomId": "PR7995"
+            },
+            {
+                "size": 10.0,
+                "roomId": "PR7995"
+            },
+            {
+                "size": 43.0,
+                "roomId": "PR7996"
             }
         ]
+    },
+    {
+        "_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "created_at": "2021-12-07 02:40:35.445155",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "9902",
+            "address1": "Longearbyen 1",
+            "address2": "",
+            "address3": ""
+        },
+        "propertyId": "PP8000",
+        "amenities": [
+            "Toilet",
+            "Kitchen",
+            "Airport",
+            ""
+        ],
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130",
+            "0068302d-fcf5-429c-9d01-1655ed6ce816",
+            "e6f25e0b-659c-434e-9261-e251a87d4ed9",
+            "0c53e3c4-090d-4d6e-8449-39de2c170e1b"
+        ],
+        "Rooms": []
     }
 ]
