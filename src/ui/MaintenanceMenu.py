@@ -10,6 +10,10 @@ from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
 from data.database import DB
 from data.DBError import RecordNotFoundError
+from logic.UserLogic import UserAPI
+from ui.EmployeesMenu import EmployeesMenu
+from ui.PropertiesMenu import PropertiesMenu
+from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 
 
 class MaintenanceMenu(BaseMenu):
@@ -23,6 +27,10 @@ class MaintenanceMenu(BaseMenu):
         self.propertyAPI = PropertyAPI()
         self.contractorAPI = ContractorAPI()
         self.propertyRepo = DB(Property)
+        self.userAPI = UserAPI()
+        self.employeesMenu = EmployeesMenu()
+        self.propertiesMenu = PropertiesMenu()
+        self.maintenanceRequestMenu = MaintenanceRequestMenu()
 
         self.menu_options = {               
             "1": {
@@ -61,14 +69,14 @@ class MaintenanceMenu(BaseMenu):
         while verification_num == None:
             verification_num = input("Enter the verification number of the maintenane request: ")
             try:
-                verification_num = self.maintenanceRequestAPI.findMRequestByVerificationId()
-            except ValueError:
-                print("Enter a valid ID")
-                verification_num = None 
-            
+                verification_num = self.MaintenanceRequestAPI.findOneByVerificationNumber(verification_num)
+            except RecordNotFoundError:
+                find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
+                if find_request.lower() == 'y':
+                    self.maintenanceRequestMenu.menu_options("1")
+                verification_num = None
+    
         request_info = ""
-
-         
 
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
         if was_contractor == "Y".islower():
@@ -103,9 +111,14 @@ class MaintenanceMenu(BaseMenu):
             property_id = input("Enter Property ID: ")
             try:
                 found_property = self.propertyAPI.findPropertyByPropertyId(property_id)
+                property_id = property_id
             except RecordNotFoundError:
-                print("Enter a valid ID")
-                property_id = None
+                print("This property is not in the system ")
+                create_property = input("Do you want to create a new property?: Y/N ")
+                if create_property.lower() == "y":
+                    self.propertiesMenu.createProperty()
+                else:
+                    property_id = None
         room_number = None
         while room_number == None:
             room_number = input("Do you want to sign it to a room number? [Y/N]: ")
@@ -117,17 +130,17 @@ class MaintenanceMenu(BaseMenu):
 
                 self.waitForKeyPress()
 
-        room_signing = None
-        while room_signing == None:
-            room_signing = input("What room number do you want to sing it to? ")
-            room = self.propertyAPI.findIfRoomInProperty(self, property_id, room_signing)
-            if room == False: 
-                print("Enter a valid room number: ")
                 room_signing = None
+                while room_signing == None:
+                    room_signing = input("\nWhat room number do you want to sing it to? ")
+                    room = self.propertyAPI.findIfRoomInProperty(property_id, room_signing)
+                    if room == False: 
+                        print("Enter a valid room number: ")
+                        room_signing = None
         user_input = None
         input_list = []
         while user_input != "":
-            user_input = input("What maintenance is requested: ")
+            user_input = input("What maintenance is requested: (Enter empty string to continue) ")
             input_list.append(user_input)
         occurrence = None
         isRegular = True
@@ -157,7 +170,16 @@ class MaintenanceMenu(BaseMenu):
             except ValueError:
                 employee_Id = ""
                 print("Enter a valid ID: ")
+            try:
+                find_employee = self.userAPI.findEmployeeByEmployeeId(employee_Id)
+            except RecordNotFoundError:
+                print("This employee is not in the system ")
+                create_employee = input("Do you want to create a new employee?: Y/N ")
+                if create_employee.lower() == "y":
+                    self.employeesMenu.createEmployee()
+                else:
+                    employee_Id = ""
 
-
-        self.MaintenanceRequestAPI().createMaintenanceRequest(status=status, property = property._id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
+        self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
+        
         print("Maintenance Request succesfully created! ")
