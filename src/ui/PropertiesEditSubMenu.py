@@ -4,6 +4,7 @@ from logic.PropertyLogic import PropertyAPI
 
 
 class PropertiesEditSubMenu(BaseMenu):
+    '''gives menu optins to edit property'''
     def __init__(self):
         super().__init__()
         self.propertyapi = PropertyAPI()
@@ -57,6 +58,7 @@ class PropertiesEditSubMenu(BaseMenu):
         return foundProp.propertyId
 
     def addRoom(self):
+        '''adds a room to property'''
         
         roomSize = input('How large is the room?: ')
         roomId = input('What is the property ID of the room? (ID of parent Property will be used if none): ')
@@ -79,6 +81,7 @@ class PropertiesEditSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def assignEmployeeToProperty(self):
+        '''assignes employee to a specific property\n(needs employee ssn)'''
         empl_ssn = input('Enter employee SSN: ')
 
         try:

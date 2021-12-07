@@ -2,6 +2,7 @@ from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 
 class EmployeeOverviewSubMenu(BaseMenu):
+    '''Shows sub menu to employee overview'''
     def __init__(self):
         super().__init__()
         self.userApi = UserAPI()
@@ -32,6 +33,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
+        '''Shows all employees of NAN'''
         try:
             employee_list = self.userApi.findEmployees()
 
@@ -43,6 +45,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def search_employee_by_id(self):
+        '''option to search for employees \ngiven employee ID'''
         employee_id = None
         while employee_id == None:
             try:
@@ -62,28 +65,51 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def update_employee(self):
-        update_employee = False
-        while update_employee == False:
-            employee_id = input("Enter employee SSN: ")
+        '''option to edit employee \ngiven employee SSN'''
+        '''Býður notenda upp á að breyta eiginleikum starfsmanns\ngefið að notandi viti ssn starfsmanns'''
+        employee_id = input("Enter employee SSN: ")
+        try:
+            employee = self.userApi.findEmployeesByEmployeeId(employee_id)
             try:
-                employee = self.userApi.findEmployeesByEmployeeId(employee_id)
-                try:
-                    employee['ERROR']
-                    print("Employee not found")
-                except TypeError:
-                    print(employee)
-                    dictionary = employee[0].__dict__
-                    for i, key in enumerate(dictionary):
-                        print(f"| {key:<15}:  {(dictionary[key])}")
-                    factor = input("\nSelect factor you want to change: ")
-                    
-                    update_employee = True
-            except ValueError:
-                print("No employee found")
+                employee['ERROR']
+                print("Employee not found")
+            except TypeError:
+                print(employee)
+                dictionary = employee[0].__dict__
+                for i, key in enumerate(dictionary):
+                    print(f"| {key:<15}:  {(dictionary[key])}")
+                factor = input("\nSelect factor you want to change: ")
+
+        except ValueError:
+            print("No employee found")
 
 
 
         self.userApi.updateEmployeeInfo('suhdfsuohf898f2-32f2h3f',{
             'name': 'Bónus'
         })
+
+    def delete_employee(self):
+        employee_ssn = input("Enter employees SSN: ")
+        if self.userApi.deleteEmployee(employee_ssn) == True:
+            print("Employee deleted")
+        else:
+            print("Employee not found")
+        self.waitForKeyPress()
+
+    def find_employees_by_country(self):
+        pass
+
+    def find_employee(self):
+        pass
+
+    def find_manager(self):
+        pass
+
+    def update_employee_info(self):
+        pass
+
+    def find_by_attributy(self):
+        pass
+    
 

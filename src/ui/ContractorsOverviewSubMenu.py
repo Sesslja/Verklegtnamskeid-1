@@ -3,6 +3,7 @@ from ui.BaseMenu import BaseMenu
 from logic.ContractorLogic import ContractorAPI
 
 class ContractorsOverviewSubMenu(BaseMenu):
+    '''Shows sub-menu to contractor options'''
     def __init__(self):
         super().__init__()
         self.contractorapi = ContractorAPI
@@ -52,6 +53,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
 
     def search_contractor_by_name(self):
+        '''allows user to search for contractor given the name of contractor'''
         contractors = self.contractorapi.findContractor()
         list_contractor_name = []
         list_contractor_ids = []
@@ -73,19 +75,21 @@ class ContractorsOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def find_contractor(self):
-        try:
-            contractor_list = self.contractorapi.findContractor()
-            if len(contractor_list) == 0:
-                print("No contractor to show :(")
-            else:
-                show_keys = ['name', 'email', 'ssn']
-                print(self.createTable(show_keys, contractor_list))
-        except ValueError:
-            print("No contractors found")
-        self.waitForKeyPress()
+    # def find_contractor(self):
+    #     '''Shows all contractors'''
+    #     try:
+    #         contractor_list = self.contractorapi.findContractor()
+    #         if len(contractor_list) == 0:
+    #             print("No contractor to show :(")
+    #         else:
+    #             show_keys = ['name', 'email', 'ssn']
+    #             print(self.createTable(show_keys, contractor_list))
+    #     except ValueError:
+    #         print("No contractors found")
+    #     self.waitForKeyPress()
 
     def delete_contractor(self):
+        '''option to delete contractor from system \nGiven the contractor ID'''
         contractor_id = input("Enter contractors ID: ")
         if self.contractorapi.deleteContractor(contractor_id) == True:
             print("Contractor deleted")
@@ -94,6 +98,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def find_contractor_by_profession(self):
+        '''option to search for contractor \ngiven contractor proffesion'''
         contractors_profession = None
         while contractors_profession == None:
             try:
@@ -113,10 +118,12 @@ class ContractorsOverviewSubMenu(BaseMenu):
             print ("No contractors found")
         self.waitForKeyPress()
 
-    def find_new_contractors(self): # Numer 2 á eftir að græja fallið
+    def find_new_contractors(self):
+        '''Show availible contractors not working for us at the moment'''
         print('serach me contractors')
 
     def all_contractors_overview(self):
+        '''Shows all contractors working for NAN'''
         try:
             contractor_list = self.contractorapi.findContractor()
             if len(contractor_list) == 0:
@@ -131,6 +138,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
 
     def search_contractor_by_id(self):
+        '''option to search for contractor \ngiven contractor ID'''
         contractor_id = None
         while contractor_id == None:
             try:

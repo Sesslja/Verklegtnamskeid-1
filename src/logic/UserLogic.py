@@ -10,7 +10,7 @@ class UserAPI:
         new_user = User(name=name, email=email, ssn=ssn, address=address)
         return self.userRepo.save(new_user)
 
-    def findEmployees(self, limit=0, page=0) -> list:
+    def allEmployeesOverview(self, limit=0, page=0) -> list:
         return self.userRepo.find({
             'limit': {
                 'limit': limit,

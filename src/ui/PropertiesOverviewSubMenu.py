@@ -3,6 +3,7 @@ from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
 
 class PropertiesOverviewSubMenu(BaseMenu):
+    '''sub menu to property overview'''
     def __init__(self):
         super().__init__()
         self.propertyapi = PropertyAPI()
@@ -58,6 +59,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def search_by_id(self):
+        '''Finds all properties given a property ID'''
         try:
             property_id = input("Find property by property ID:\nEnter property ID: ")
             property_list = [self.propertyapi.findPropertyByPropertyId(property_id)]
@@ -69,6 +71,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def search_by_region(self):
+        '''Finds all properties given a property Region'''
         property_region = input("Find property by region:\nEnter region: ").capitalize()
         try:
             property_list = self.propertyapi.findPropertyByCountry(property_region)
@@ -80,6 +83,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def findRoomsByPropertyId(self):
+        '''Finds all rooms of a property given property ID'''
         propertyId = input('Find rooms by property ID:\nEnter property ID: ')
         try:
             found_property = self.propertyapi.findPropertyByPropertyId(propertyId)
@@ -98,6 +102,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
 
 
     def print_all_properties(self):
+        '''prints a table of all properties og NAN'''
         try:
             property_list = self.propertyapi.findProperties()
             if len(property_list) == 0:

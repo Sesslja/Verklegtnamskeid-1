@@ -1,3 +1,4 @@
+from ui.EmployeeEdit import EmployeeEditSubMenu
 from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
@@ -5,6 +6,7 @@ from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
 from model.AddressType import Address
 
 class EmployeesMenu(BaseMenu):
+    '''Shows employee options'''
     def __init__(self):
         super().__init__()
         self.userapi = UserAPI()
@@ -20,7 +22,11 @@ class EmployeesMenu(BaseMenu):
             "2": {
                 "title": "Employees overview",
                 "class": EmployeeOverviewSubMenu
-            },                  
+            },  
+            "3": {
+                "title": "Edit Employee",
+                "class": EmployeeEditSubMenu
+            },                 
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -32,6 +38,7 @@ class EmployeesMenu(BaseMenu):
         }
 
     def createEmployee(self):
+        '''option to create new employee'''
         name = input("Enter employee name: ")
         email = input("Enter email: ")
         ssn = input("Enter Social-Security number: ")
