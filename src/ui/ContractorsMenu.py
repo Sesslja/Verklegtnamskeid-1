@@ -4,6 +4,7 @@ from logic.ContractorLogic import ContractorAPI
 from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu 
 
 class ContractorsMenu(BaseMenu):
+    '''sýnir aðal valmynd fyrir verktaka options'''
     def __init__(self):
         super().__init__()
         self.contractorapi = ContractorAPI()
@@ -32,6 +33,7 @@ class ContractorsMenu(BaseMenu):
         }
 
     def createContractor(self):
+        '''Býður notenda upp á að búa til verktaka'''
         company = input("Enter company's name: ")
         name = input("Enter contractors name: ")
         ssn = input("Enter Social-Security number: ")

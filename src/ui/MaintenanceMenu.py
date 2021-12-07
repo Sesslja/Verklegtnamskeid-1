@@ -8,9 +8,11 @@ from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
+from data.database import DB
 
 
 class MaintenanceMenu(BaseMenu):
+    '''Shows option for maintenance requests'''
     def __init__(self):
         super().__init__()
 
@@ -19,6 +21,7 @@ class MaintenanceMenu(BaseMenu):
         self.maintreportAPI = MaintReportAPI
         self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
+        self.propertyRepo = DB(Property)
 
         self.menu_options = {               
             "1": {
@@ -92,6 +95,7 @@ class MaintenanceMenu(BaseMenu):
         self.maintreportAPI.createReport(request_info, verification_num, maintenance_list, contractor_id, materialcost, salary, contractors_fee, finish_at)
 
     def createMRequest(self):
+        '''Gives option to create maintenace request '''
         status = ""
         property_id = None
         while property_id == None:
@@ -106,7 +110,9 @@ class MaintenanceMenu(BaseMenu):
         while room_number == None:
             room_number = input("Do you want to add a room number? [Y/N]: ")
             if room_number == 'Y'.lower():
+                self.propertyAPI.findRoomsByPropertyId()
                 room_input = input("What is the room number?: ")
+
         user_input = None
         input_list = []
         while user_input != "":

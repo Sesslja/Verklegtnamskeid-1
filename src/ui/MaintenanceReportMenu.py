@@ -2,6 +2,7 @@ from ui.BaseMenu import BaseMenu
 from logic.MaintReportLogic import MaintReportAPI
 
 class MaintenanceReportMenu(BaseMenu):
+    '''Gives maintenace report optins'''
     def __init__(self):
         super().__init__()
 
@@ -53,6 +54,7 @@ class MaintenanceReportMenu(BaseMenu):
         self.waitForKeyPress()
 
     def find_by_maintenance_id(self):
+        '''Gives option to find maintenace report given the id of request'''
         maintenence_id = None
         while maintenence_id == None:
             maintenence_id = input("Enter maintenance ID: ")
@@ -73,6 +75,7 @@ class MaintenanceReportMenu(BaseMenu):
 
 
     def find_by_employee(self):
+        '''Gives option to find maintenace report given the id of employee'''
         employee_id = None
         while employee_id == None:
             employee_id = input("Enter employee ID: ")
@@ -92,6 +95,7 @@ class MaintenanceReportMenu(BaseMenu):
                 employee_id = None
 
     def find_by_property(self):
+        '''Gives option to find maintenace report given the id of property'''
         property_id = None
         while property_id == None:
             property_id = input("Enter property ID: ")
@@ -111,6 +115,7 @@ class MaintenanceReportMenu(BaseMenu):
                 property_id = None
 
     def find_by_date(self):
+        '''Gives option to find maintenace report given the date of report'''
         start_date = None
         end_date = None
         while start_date == None or end_date == None:

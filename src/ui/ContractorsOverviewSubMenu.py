@@ -3,6 +3,7 @@ from ui.BaseMenu import BaseMenu
 from logic.ContractorLogic import ContractorAPI
 
 class ContractorsOverviewSubMenu(BaseMenu):
+    '''Shows sub-menu to contractor options'''
     def __init__(self):
         super().__init__()
         self.contractorapi = ContractorAPI()
@@ -88,6 +89,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
 
     def find_contractor_by_profession(self):
+        '''option to search for contractor \ngiven contractor proffesion'''
         contractors_profession = None
         while contractors_profession == None:
             try:
@@ -109,6 +111,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
 
     def all_contractors_overview(self):
+        '''Shows all contractors working for NAN'''
         try:
             contractor_list = self.contractorapi.findContractor()
             if len(contractor_list) == 0:
