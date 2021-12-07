@@ -8,6 +8,7 @@ from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
+from data.database import DB
 
 
 class MaintenanceMenu(BaseMenu):
@@ -19,6 +20,7 @@ class MaintenanceMenu(BaseMenu):
         self.maintreportAPI = MaintReportAPI
         self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
+        self.propertyRepo = DB(Property)
 
         self.menu_options = {               
             "1": {
