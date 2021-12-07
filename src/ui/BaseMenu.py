@@ -111,11 +111,15 @@ class BaseMenu :
 
         # Finds max length for each key
         for record in objList:
-            record = record.__dict__
+            try:
+                record = record.__dict__
+            except AttributeError:
+                pass
             for key in show_keys:
                 record_keyVal = len(str(record[key]))
                 if record_keyVal > show_keys[key]['length']:
                     show_keys[key]['length'] = record_keyVal
+ 
 
         # Find total character length of longest line
         total_length = sum([(
@@ -156,7 +160,10 @@ class BaseMenu :
 
         # Adds values for each record to table printout
         for record in objList:
-            record = record.__dict__
+            try:
+                record = record.__dict__
+            except AttributeError:
+                pass
             printout += (
                 ''.join([
                     ((''.join(
@@ -183,7 +190,7 @@ class BaseMenu :
         print('Press any key to continue ', end='')
         if os.name == 'nt': # If user is on windows then use msvcrt
             import msvcrt
-            msvcrt.getch()
+            return msvcrt.getch()
         else: # If user is on a unix based system then use termios
             import termios
             fd = sys.stdin.fileno()
@@ -194,7 +201,7 @@ class BaseMenu :
             termios.tcsetattr(fd, termios.TCSANOW, newattr)
 
             try:
-                sys.stdin.read(1)
+                return sys.stdin.read(1)
             except IOError:
                 pass
             finally:

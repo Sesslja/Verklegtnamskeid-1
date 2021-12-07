@@ -1,3 +1,4 @@
+from model.PropertyModel import Property
 from model.AddressType import Address
 from model.MaintenanceRequestModel import MaintenanceRequest
 from model.userModel import User
@@ -8,8 +9,8 @@ class MaintenanceRequestAPI :
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
 
-    def createMaintenanceRequest(self,status: str, address: Address, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employee_Id =None):
-        new_request = MaintenanceRequest(self,status, address, to_do, isRegular, occurrence, priority, start_date, employee_Id)
+    def createMaintenanceRequest(self,status: str, property: Property, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employee_Id =None):
+        new_request = MaintenanceRequest(status, property, to_do, isRegular, occurrence, priority, start_date, employee_Id, self.createVerificationNumber())
         return self.requestRepo.save(new_request)
     
     def MaintenanceRequestOverview(self) -> list :

@@ -63,6 +63,8 @@ class StoreData:
                         updated_record = listObj[i]
                         break
 
+                    #print(record)
+
                 with open(filename, 'w') as json_file: # Open the same file in write mode
                     json.dump(listObj, json_file, indent=4, separators=(',',': ')) # Add our updated list to the file
 
@@ -81,12 +83,8 @@ class StoreData:
                 for i, entry in enumerate(data[key]):
                     try:
                         entry.__dict__
-                        print('yes')
-                        print(entry)
                         data[key][i] = (self._objToDict(entry))
                     except AttributeError:
-                        print('no')
-                        print(entry)
                         continue
             else:
                 try:
