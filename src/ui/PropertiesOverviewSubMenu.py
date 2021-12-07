@@ -6,7 +6,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
     '''sub menu to property overview'''
     def __init__(self):
         super().__init__()
-        self.propertyapi = PropertyAPI
+        self.propertyapi = PropertyAPI()
         self.menu_title = "Properties Menu\nProperties overview"
 
         self.menu_options = {
@@ -120,8 +120,11 @@ class PropertiesOverviewSubMenu(BaseMenu):
                         'display_name': 'Total size',
                         'suffix': ' m²'
                     }
-                }#['amenities', 'propertyId', 'isActive', 'total_size']
-                print(self.createTable(header_list, property_list, line_between_records=True))
+                }#
+                header = ['amenities', 'propertyId', 'isActive', 'total_size']
+
+                self.createRichTable(header, property_list)
+                #print(self.createTable(header_list, property_list, line_between_records=True))
         except ValueError:
             print("There are no properties to show")
 

@@ -5,6 +5,9 @@ except ImportError:
     pass
 from ui.textCompleter import TextCompleter
 from ui.Colors import color
+from rich import box, print
+from rich.console import Console
+from rich.table import Table
 
 class BaseMenu :
     def __init__(self):
@@ -75,6 +78,42 @@ class BaseMenu :
         else:
             print(f'Invalid input: {user_input}')
             return 'run'
+
+    def createRichTable(self, header, obj):
+
+        table = Table()
+
+        if type(header) is list:
+            for key in header:
+                table.add_column(key)
+        else:
+            for key in header:
+                for val in key:
+                    pass
+
+
+
+        for record in obj:
+            record = record.__dict__
+            row_list = []
+            for key in header:
+                if key in record:
+                    if type(record[key]) is list:
+                        record[key] = ''.join([f'{list_val}'+(',\n' if i < (len(record[key]) -1) else '') for i, list_val in enumerate(record[key])])
+                    elif type(record[key]) is bool:
+                        record[key] = 'True' if record[key] else 'False'
+                    elif type(record[key]) is int:
+                        record[key] = str(record[key])
+                    row_list.append(record[key])
+            table.add_row(*row_list)
+
+        table.caption = f'Found {len(obj)} entries.'
+        table.row_styles = ['none', 'dim']
+        table.box = box.SQUARE
+
+        print(table)
+        self.waitForKeyPress()
+
 
     def createTable(self, header: list or dict, objList: list, line_between_records=False):
         '''Creates and returns a formatted table. \n

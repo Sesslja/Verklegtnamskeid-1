@@ -49,7 +49,6 @@ class ReadData:
         try:
             return self.find(filename, options)[0]
         except IndexError:
-            print('didnt find')
             raise RecordNotFoundError
 
     
