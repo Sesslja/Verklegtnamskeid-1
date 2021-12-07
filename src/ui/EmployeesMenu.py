@@ -16,11 +16,12 @@ class EmployeesMenu(BaseMenu):
         self.menu_options = {
             "1": {
                 "title": "Create employee",
-                "access": "Manager",
+                "access": "manager",
                 "function": "createEmployee"
             },                     
             "2": {
                 "title": "Employees overview",
+                "access": "manager",
                 "class": EmployeeOverviewSubMenu
             },  
             "3": {
