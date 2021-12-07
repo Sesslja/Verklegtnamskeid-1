@@ -9,6 +9,7 @@ from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
 from data.database import DB
+from data.DBError import RecordNotFoundError
 
 
 class MaintenanceMenu(BaseMenu):
@@ -19,7 +20,7 @@ class MaintenanceMenu(BaseMenu):
         self.menu_title = "Maintenance Request Menu"
         self.MaintenanceRequestAPI = MaintenanceRequestAPI()
         self.maintreportAPI = MaintReportAPI
-        self.propertyAPI = PropertyAPI
+        self.propertyAPI = PropertyAPI()
         self.contractorAPI = ContractorAPI
         self.propertyRepo = DB(Property)
 
@@ -101,11 +102,10 @@ class MaintenanceMenu(BaseMenu):
         while property_id == None:
             property_id = input("Enter Property ID: ")
             try:
-                property_id = self.propertyAPI.findPropertyByPropertyId()
-            except ValueError:
+                found_property = self.propertyAPI.findPropertyByPropertyId(property_id)
+            except RecordNotFoundError:
                 print("Enter a valid ID")
                 property_id = None
-        property = self.propertyAPI.findPropertyByPropertyId(self, property_id)
         room_number = None
         while room_number == None:
             room_number = input("Do you want to add a room number? [Y/N]: ")
