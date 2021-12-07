@@ -13,10 +13,10 @@ class MainMenu(BaseMenu):
 
         self.menu_title = "Main Menu"
         self.isMainMenu = True
-        self.PropertiesMenu = PropertiesMenu()
-        self.MaintenanceMenu = MaintenanceMenu()
-        self.ContractorsMenu = ContractorsMenu()
-        self.EmployeesMenu = EmployeesMenu()
+        self.PropertiesMenu = PropertiesMenu
+        self.MaintenanceMenu = MaintenanceMenu
+        self.ContractorsMenu = ContractorsMenu
+        self.EmployeesMenu = EmployeesMenu
 
 
         self.menu_options = { 
