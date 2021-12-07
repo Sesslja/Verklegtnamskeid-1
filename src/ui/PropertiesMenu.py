@@ -1,3 +1,5 @@
+from model.AddressType import Address
+from model.RoomType import RoomType
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
 from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
@@ -11,7 +13,7 @@ class PropertiesMenu(BaseMenu):
 
         self.menu_options = {
             "1": {
-                "title": "Create new properties",
+                "title": "Create new property",
                 "access": "manager",
                 "function": "createProperty"
             },
@@ -37,16 +39,41 @@ class PropertiesMenu(BaseMenu):
         }
 
     def createProperty(self):
-        adress = input("Property adress: ")
         property_id = input("Enter Property ID: ")
+        country = input("Country: ")
+        city = input("City: ")
+        zip = input("Zip code: ")
+        addr1 = input("Address 1: ")
+        addr2 = input("Address 2: ")
+        addr3 = input("Address 3: ")
+
+        address = Address(country=country, city=city, zip=zip, address1=addr1, address2=addr2, address3=addr3)
+
         amenities_list = []
         user_input = None
-        print("Enter empty string to finish amenities list")
+        print("Enter amenities (Enter empty string to continue): ")
         while user_input != "":
-            user_input = input("Enter amenities: ")
-            amenities_list.append(user_input)
+            user_input = input("    Enter amenity: ")
+            if user_input is not "":
+                amenities_list.append(user_input)
+
+        rooms_list = []
+        user_input = None
+        print("Enter rooms (Enter empty string to continue): ")
+        while user_input != "":
+            room = RoomType()
+            user_input = input("    Enter room ID: ")
+            if user_input is "":
+                break
+            room.roomId = user_input
+            user_input = input("    Enter room size: ")
+            if user_input is "":
+                break
+            room.size = user_input
+
+            rooms_list.append(room)
         
-        self.propertyapi.createProperty(adress, property_id, amenities_list)
+        self.propertyapi.createProperty(address=address, propertyId=property_id, amenities=amenities_list, rooms=rooms_list)
         
         
 

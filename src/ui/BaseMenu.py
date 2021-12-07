@@ -111,7 +111,10 @@ class BaseMenu :
 
         # Finds max length for each key
         for record in objList:
-            record = record.__dict__
+            try:
+                record = record.__dict__
+            except AttributeError:
+                pass
             for key in show_keys:
                 record_keyVal = len(str(record[key]))
                 if record_keyVal > show_keys[key]['length']:
@@ -157,7 +160,10 @@ class BaseMenu :
 
         # Adds values for each record to table printout
         for record in objList:
-            record = record.__dict__
+            try:
+                record = record.__dict__
+            except AttributeError:
+                pass
             printout += (
                 ''.join([
                     ((''.join(

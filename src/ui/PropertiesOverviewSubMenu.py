@@ -1,3 +1,4 @@
+from data.DBError import RecordNotFoundError
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
 
@@ -27,7 +28,12 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 "title": "Search by Employee",
                 "access": "Manager",
                 "function": "search_by_employee"
-            },                
+            },
+            "5":  {
+                "title": "Find rooms by property ID",
+                "access": "Manager",
+                "function": "findRoomsByPropertyId"
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
@@ -40,42 +46,54 @@ class PropertiesOverviewSubMenu(BaseMenu):
         }
 
     def search_by_employee(self):
+        ''' Finds all properties assigned to an employee '''
         try:
-            employee_id = input("Find property by employee:\nEnter employee ID: ")
-            property_list = self.propertyapi.findPropertyByEmployee(employee_id)
-            if len(property_list) == 0:
-                print("No properties found with that ID")
-            else:
-                header_list = ['address', 'amenities', 'propertyId', 'isActive']
-                print(self.createTable(header_list, property_list, line_between_records=True))
-        except ValueError:
-            print("No properties found with that ID")
+            employee_id = input("Find property by employee:\nEnter employee SSN: ")
+            property_list = self.propertyapi.findPropertyByEmployeeSsn(employee_id)
+
+            header_list = ['amenities', 'propertyId', 'isActive']
+            print(self.createTable(header_list, property_list, line_between_records=True))
+        except RecordNotFoundError:
+            print("No employees found with that SSN")
         self.waitForKeyPress()
 
     def search_by_id(self):
         try:
             property_id = input("Find property by property ID:\nEnter property ID: ")
-            property_list = self.propertyapi.findPropertyByPropertyId(property_id)
-            if len(property_list) == 0:
-                print("Property not found!")
-            else:
-                header_list = ['address', 'amenities', 'propertyId', 'isActive']
-                print(self.createTable(header_list, property_list, line_between_records=True))
-        except ValueError:
+            property_list = [self.propertyapi.findPropertyByPropertyId(property_id)]
+
+            header_list = ['amenities', 'propertyId', 'isActive']
+            print(self.createTable(header_list, property_list, line_between_records=True))
+        except RecordNotFoundError:
             print("Property not found!")
         self.waitForKeyPress()
 
     def search_by_region(self):
-        property_region = input("Find property by region:\nEnter region: ")
+        property_region = input("Find property by region:\nEnter region: ").capitalize()
         try:
             property_list = self.propertyapi.findPropertyByCountry(property_region)
-            if len(property_list) == 0:
-                print("There do not seem to be any properties in that region")
-            else:
-                header_list = ['address', 'amenities', 'propertyId', 'isActive']
-                print(self.createTable(header_list, property_list, line_between_records=True))
-        except ValueError:
-            print ("Region not found")
+
+            header_list = ['amenities', 'propertyId', 'isActive']
+            print(self.createTable(header_list, property_list, line_between_records=True))
+        except RecordNotFoundError:
+            print ("No properties found in region")
+        self.waitForKeyPress()
+
+    def findRoomsByPropertyId(self):
+        propertyId = input('Find rooms by property ID:\nEnter property ID: ')
+        try:
+            found_property = self.propertyapi.findPropertyByPropertyId(propertyId)
+
+            # print(found_property)
+
+            rooms = found_property.Rooms
+
+            header = ['size', 'roomId']
+            print(self.createTable(header, rooms))
+
+        except RecordNotFoundError:
+            print('Property not found')
+        
         self.waitForKeyPress()
 
 
