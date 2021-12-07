@@ -7,7 +7,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -30,7 +30,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -54,7 +54,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -76,7 +76,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -105,7 +105,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null

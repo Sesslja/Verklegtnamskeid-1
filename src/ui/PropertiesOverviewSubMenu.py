@@ -106,26 +106,34 @@ class PropertiesOverviewSubMenu(BaseMenu):
         '''prints a table of all properties og NAN'''
         try:
             property_list = self.propertyapi.findProperties()
-            if len(property_list) == 0:
-                print("There are no properties to show")
-            else:
-                header_list = {
-                    'amenities': {
-                        'display_name': 'Amenities'
-                    },
-                    'propertyId': {
-                        'display_name': 'Property ID'
-                    },
-                    'total_size': {
-                        'display_name': 'Total size',
-                        'suffix': ' m²'
-                    }
-                }#
-                header = ['amenities', 'propertyId', 'isActive', 'total_size']
+            header_list = {
+                'propertyId': {
+                    'display_name': 'Property ID',
+                    'header_style': 'bold'
+                },
+                'address_str': {
+                    'display_name': 'Address',
+                    'header_style': 'bold'
+                },
+                'amenities': {
+                    'display_name': 'Amenities',
+                    'header_style': 'bold'
+                },
+                'total_size': {
+                    'display_name': 'Total size',
+                    'suffix': ' m²',
+                    'header_style': 'bold'
+                },
+                'room_amount': {
+                    'display_name': 'Amount of rooms',
+                    'header_style': 'bold'
+                }
+            }#
+            #header = ['amenities', 'propertyId', 'isActive', 'total_size']
 
-                self.createRichTable(header, property_list)
-                #print(self.createTable(header_list, property_list, line_between_records=True))
-        except ValueError:
+            print(self.createTable(header_list, property_list, line_between_records=True))
+            #print(self.createTable(header_list, property_list, line_between_records=True))
+        except RecordNotFoundError:
             print("There are no properties to show")
 
         print(self.waitForKeyPress())

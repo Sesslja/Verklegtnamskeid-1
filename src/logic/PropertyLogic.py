@@ -1,3 +1,4 @@
+from model.AddressType import Address
 from data.DBError import RecordNotFoundError
 from model.RoomType import RoomType
 from model.PropertyModel import Property
@@ -34,12 +35,16 @@ class PropertyAPI:
             }
         })
 
-        for i, property in enumerate(properties):
+        for i, f_property in enumerate(properties):
             total_size = 0
-            for room in property.Rooms:
+            for room in f_property.Rooms:
                 total_size += room['size']
             properties[i].total_size = round(total_size)
-            properties[i].room_amount = len(property.Rooms)
+            properties[i].room_amount = len(f_property.Rooms)
+            
+            
+            properties[i].address_str = Address().addrToString(f_property.Address)
+
 
         return properties
 
