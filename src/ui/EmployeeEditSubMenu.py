@@ -47,7 +47,12 @@ class EmployeeEditMenu(BaseMenu):
     
     def edit_employee_name(self):
         found_user = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
-        new_name = input("Enter new name: ")
+        old_name = found_user.name
+        new_name = input(f"Enter new name: (Old name is {old_name}")
+
+        updated_user = self.userAPI.updateEmployeeInfo(found_user._id, {
+            'name': new_name
+        })
 
 
     def edit_user_ssn(self):
