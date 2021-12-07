@@ -87,3 +87,25 @@ class EmployeeOverviewSubMenu(BaseMenu):
             'name': 'Bónus'
         })
 
+    def delete_employee(self):
+        employee_ssn = input("Enter employees SSN: ")
+        if self.userApi.deleteEmployee(employee_ssn) == True:
+            print("Employee deleted")
+        else:
+            print("Employee not found")
+        self.waitForKeyPress()
+
+    def find_employees_by_country(self):
+        pass
+
+    def find_employee(self):
+        pass
+
+    def find_manager(self):
+        pass
+
+    def update_employee_info(self):
+        pass
+
+    def find_by_attributy(self):
+        pass

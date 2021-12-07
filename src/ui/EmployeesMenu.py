@@ -1,3 +1,4 @@
+from ui.EmployeeEdit import EmployeeEditSubMenu
 from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
@@ -20,7 +21,11 @@ class EmployeesMenu(BaseMenu):
             "2": {
                 "title": "Employees overview",
                 "class": EmployeeOverviewSubMenu
-            },                  
+            },  
+            "3": {
+                "title": "Edit Employee",
+                "class": EmployeeEditSubMenu
+            },                 
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
