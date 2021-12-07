@@ -1,4 +1,4 @@
-from ui.EmployeeEdit import EmployeeEditSubMenu
+from EmployeeEditSubMenu import EmployeeEditSubMenu
 from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
