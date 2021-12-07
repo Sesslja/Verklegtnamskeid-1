@@ -9,8 +9,8 @@ class MaintenanceRequestAPI :
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
 
-    def createMaintenanceRequest(self,status: str, property: str, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employee_Id =None):
-        new_request = MaintenanceRequest(status, property, to_do, isRegular, occurrence, priority, start_date, employee_Id, self.createVerificationNumber())
+    def createMaintenanceRequest(self,status: str, property_id: str, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employee_Id =None):
+        new_request = MaintenanceRequest(status, property_id, to_do, isRegular, occurrence, priority, start_date, employee_Id, self.createVerificationNumber())
         return self.requestRepo.save(new_request)
     
     def MaintenanceRequestOverview(self) -> list :
