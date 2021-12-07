@@ -15,7 +15,7 @@ class ContractorsMenu(BaseMenu):
             "1": {
                 "title": "Create contractors",
                 "access": "Manager",
-                "function": "createcontractor"
+                "function": "createContractor"
             },                            
             "2": {
                 "title": "Contractors overview",
