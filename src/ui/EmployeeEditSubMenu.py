@@ -46,14 +46,18 @@ class EmployeeEditMenu(BaseMenu):
         return found_employee.ssn
     
     def edit_employee_name(self):
-        pass
+        found_user = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
+        new_name = input("Enter new name: ")
+
 
     def edit_user_ssn(self):
         pass
 
     def delete_employee(self):
-        if self.userApi.deleteEmployee(self.employeeSSN) == True:
-            print("Employee deleted")
-        else:
-            print("Employee not found")
+        comfirm = input("Are you sure? \n[1] Yes!\n[other] Cancel")
+        if comfirm == "1":
+            if self.userApi.deleteEmployee(self.employeeSSN) == True:
+                print("Employee deleted")
+            else:
+                print("Employee not found")
         self.waitForKeyPress()
