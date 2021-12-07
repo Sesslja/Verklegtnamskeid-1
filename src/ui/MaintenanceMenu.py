@@ -138,7 +138,7 @@ class MaintenanceMenu(BaseMenu):
         user_input = None
         input_list = []
         while user_input != "":
-            user_input = input("What maintenance is requested: ")
+            user_input = input("What maintenance is requested: (Enter empty string to continue) ")
             input_list.append(user_input)
         occurrence = None
         isRegular = True
@@ -181,4 +181,5 @@ class MaintenanceMenu(BaseMenu):
 
 
         self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
+        
         print("Maintenance Request succesfully created! ")

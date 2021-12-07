@@ -448,5 +448,59 @@
             "address2": null,
             "address3": null
         }
+    },
+    {
+        "_id": "d715977f-8d4c-4b90-9df9-5481c2bbc6cd",
+        "created_at": "2021-12-07 17:27:12.326158",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Saedis",
+        "email": "saedisbjork@gmail.com",
+        "isManager": false,
+        "ssn": "1005952149",
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjav\u00edk",
+            "zip": "102",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
+        "_id": "dafa6157-1fb3-4001-a247-e3c692cddab3",
+        "created_at": "2021-12-07 17:34:53.781356",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Mr.Sales",
+        "email": "...",
+        "isManager": false,
+        "ssn": "....",
+        "Address": {
+            "country": "...",
+            "city": "...",
+            "zip": "...",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
+        "_id": "f27c4340-bf12-42f8-86f9-35faee1caefc",
+        "created_at": "2021-12-07 17:52:41.810898",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Saedis",
+        "email": "saedis@gmail.com",
+        "isManager": false,
+        "ssn": "1005952149",
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjav\u00edk",
+            "zip": "112",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
     }
 ]
