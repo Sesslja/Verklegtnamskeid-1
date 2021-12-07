@@ -106,7 +106,7 @@ class PropertyAPI:
 
         return self.propertyRepo.update({
             '_id': found_property._id,
-            'rooms': rooms
+            'Rooms': rooms
         })
 
     def assignEmployeeToProperty(self, employeeSSN, propertyId):
