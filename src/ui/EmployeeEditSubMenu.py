@@ -3,7 +3,7 @@ from data.DBError import RecordNotFoundError
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 
-class EmployeeEditSubMenu(BaseMenu):
+class EmployeeEditMenu(BaseMenu):
     def __init__(self):
         super().__init__()
         self.userAPI = UserAPI
@@ -52,4 +52,8 @@ class EmployeeEditSubMenu(BaseMenu):
         pass
 
     def delete_employee(self):
-        pass
+        if self.userApi.deleteEmployee(self.employeeSSN) == True:
+            print("Employee deleted")
+        else:
+            print("Employee not found")
+        self.waitForKeyPress()
