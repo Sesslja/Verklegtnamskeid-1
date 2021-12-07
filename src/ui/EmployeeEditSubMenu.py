@@ -6,7 +6,7 @@ from logic.UserLogic import UserAPI
 class EmployeeEditMenu(BaseMenu):
     def __init__(self):
         super().__init__()
-        self.userAPI = UserAPI
+        self.userAPI = UserAPI()
         self.employeeSSN = self.employeeSSN_input()
 
         self.menu_title = f"Edit Employee\n SSN: {self.employeeSSN}"
@@ -46,14 +46,18 @@ class EmployeeEditMenu(BaseMenu):
         return found_employee.employeeSSN
     
     def edit_employee_name(self):
-        pass
+        found_user = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
+        new_name = input("Enter new name: ")
+
 
     def edit_user_ssn(self):
         pass
 
     def delete_employee(self):
-        if self.userApi.deleteEmployee(self.employeeSSN) == True:
-            print("Employee deleted")
-        else:
-            print("Employee not found")
+        comfirm = input("Are you sure? \n[1] Yes!\n[other] Cancel")
+        if comfirm == "1":
+            if self.userApi.deleteEmployee(self.employeeSSN) == True:
+                print("Employee deleted")
+            else:
+                print("Employee not found")
         self.waitForKeyPress()
