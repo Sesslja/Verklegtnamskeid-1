@@ -50,7 +50,6 @@ class ReadData:
             return self.find(filename, options)[0]
         except IndexError:
             print('didnt find')
-            raise RecordNotFoundError
 
     
     def _getKeys(self, obj):

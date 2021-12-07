@@ -13,6 +13,7 @@ from data.DBError import RecordNotFoundError
 from logic.UserLogic import UserAPI
 from ui.EmployeesMenu import EmployeesMenu
 from ui.PropertiesMenu import PropertiesMenu
+from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 
 
 class MaintenanceMenu(BaseMenu):
@@ -29,6 +30,7 @@ class MaintenanceMenu(BaseMenu):
         self.userAPI = UserAPI()
         self.employeesMenu = EmployeesMenu()
         self.propertiesMenu = PropertiesMenu()
+        self.maintenanceRequestMenu = MaintenanceRequestMenu()
 
         self.menu_options = {               
             "1": {
@@ -67,14 +69,14 @@ class MaintenanceMenu(BaseMenu):
         while verification_num == None:
             verification_num = input("Enter the verification number of the maintenane request: ")
             try:
-                verification_num = self.maintenanceRequestAPI.findMRequestByVerificationId()
-            except ValueError:
-                print("Enter a valid ID")
-                verification_num = None 
-            
+                verification_num = self.MaintenanceRequestAPI.findOneByVerificationNumber(verification_num)
+            except RecordNotFoundError:
+                find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
+                if find_request.lower() == 'y':
+                    self.maintenanceRequestMenu.menu_options("1")
+                verification_num = None
+    
         request_info = ""
-
-         
 
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
         if was_contractor == "Y".islower():
@@ -174,11 +176,9 @@ class MaintenanceMenu(BaseMenu):
                 print("This employee is not in the system ")
                 create_employee = input("Do you want to create a new employee?: Y/N ")
                 if create_employee.lower() == "y":
-                    new_employee = self.employeesMenu.createEmployee()
+                    self.employeesMenu.createEmployee()
                 else:
                     employee_Id = ""
-
-
 
         self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
         
