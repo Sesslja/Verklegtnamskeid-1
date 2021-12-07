@@ -35,7 +35,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
     def all_employees_overview(self):
         '''Shows all employees of NAN'''
         try:
-            employee_list = self.userApi.findEmployees()
+            employee_list = self.userApi.allEmployeesOverview()
 
             # What keys from record list to use
             show_keys = ['name', 'email', 'ssn']
