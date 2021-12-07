@@ -22,6 +22,10 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "title": "Edit employee",
                 "function": "update_employee"
             },
+            "4": {
+                "title": "Search employee by country",
+                "function": "find_employees_by_country"
+            },
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -98,7 +102,24 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def find_employees_by_country(self):
-        pass
+        '''Option to search for employees \ngiven country'''
+        country = None
+        while country == None:
+            try:
+                country = input("Enter a Country: ")
+            except ValueError:
+                print("Please enter a valid Country")
+        try:
+            country_list = self.userApi.findEmployeesByCountry(country)
+            if len(country_list) == 0:
+                print("No employee found by this country!")
+                country = None
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, country_list))
+        except ValueError:
+            print("No employee found")
+        self.waitForKeyPress()
 
     def find_employee(self):
         pass
@@ -112,4 +133,3 @@ class EmployeeOverviewSubMenu(BaseMenu):
     def find_by_attributy(self):
         pass
     
-
