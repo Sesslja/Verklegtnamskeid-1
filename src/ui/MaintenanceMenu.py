@@ -155,5 +155,5 @@ class MaintenanceMenu(BaseMenu):
                 print("Enter a valid ID: ")
 
 
-        self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id=property_id, to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
+        self.MaintenanceRequestAPI().createMaintenanceRequest(status=status, property = property._id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
         print("Maintenance Request succesfully created! ")

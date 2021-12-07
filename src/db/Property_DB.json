@@ -177,6 +177,21 @@
             "e6f25e0b-659c-434e-9261-e251a87d4ed9",
             "0c53e3c4-090d-4d6e-8449-39de2c170e1b"
         ],
-        "Rooms": []
+        "Rooms": [
+            {
+                "size": 30.0,
+                "roomId": "PP8000"
+            },
+            {
+                "size": 50.0,
+                "roomId": "room2"
+            }
+        ],
+        "rooms": [
+            {
+                "size": 20.0,
+                "roomId": "PP8000"
+            }
+        ]
     }
 ]

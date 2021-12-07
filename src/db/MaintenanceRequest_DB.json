@@ -102,5 +102,62 @@
         "start_date": 1638813209,
         "employeeId": null,
         "verification_number": "VB00004"
+    },
+    {
+        "_id": "8ed48fd6-3d04-428a-be9c-41350c8f3e2e",
+        "created_at": "2021-12-07 16:42:55.508473",
+        "isActive": true,
+        "isArchived": false,
+        "status": {
+            "status": ""
+        },
+        "property": {
+            "_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+            "created_at": "2021-12-07 02:40:35.445155",
+            "isActive": true,
+            "isArchived": false,
+            "Address": {
+                "country": "Greenland",
+                "city": "Nuuk",
+                "zip": "9902",
+                "address1": "Longearbyen 1",
+                "address2": "",
+                "address3": ""
+            },
+            "propertyId": "PP8000",
+            "amenities": [
+                "Toilet",
+                "Kitchen",
+                "Airport",
+                ""
+            ],
+            "employees": [
+                "2a183d14-41e5-49f0-bbca-fcf19028a130",
+                "0068302d-fcf5-429c-9d01-1655ed6ce816",
+                "e6f25e0b-659c-434e-9261-e251a87d4ed9",
+                "0c53e3c4-090d-4d6e-8449-39de2c170e1b"
+            ],
+            "Rooms": [
+                {
+                    "size": 30.0,
+                    "roomId": "PP8000"
+                },
+                {
+                    "size": 50.0,
+                    "roomId": "room2"
+                }
+            ]
+        },
+        "to_do": [
+            "clean window",
+            "empty pool",
+            ""
+        ],
+        "isRegular": true,
+        "occurance": 12,
+        "priority": "B",
+        "start_date": 1638895375,
+        "employeeId": null,
+        "verification_number": "VB00005"
     }
 ]

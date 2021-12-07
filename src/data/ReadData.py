@@ -58,7 +58,7 @@ class ReadData:
         return [*vars(obj)]
 
     def _checkWhereOptions(self, row, where: dict=None):
-        ''' Check wether row confines with the constraints given in where'''
+        ''' Check weather row confines with the constraints given in where'''
         if where is not None:
             #if [key for key in where]
             for key in where:
