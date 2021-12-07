@@ -9,6 +9,7 @@ from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
 from data.database import DB
+from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
 
 
 class MaintenanceMenu(BaseMenu):
@@ -22,6 +23,7 @@ class MaintenanceMenu(BaseMenu):
         self.propertyAPI = PropertyAPI
         self.contractorAPI = ContractorAPI
         self.propertyRepo = DB(Property)
+        self.propertiesOverviewSubMenu = PropertiesOverviewSubMenu
 
         self.menu_options = {               
             "1": {
@@ -108,11 +110,16 @@ class MaintenanceMenu(BaseMenu):
         property = self.propertyAPI.findPropertyByPropertyId(self, property_id)
         room_number = None
         while room_number == None:
-            room_number = input("Do you want to add a room number? [Y/N]: ")
-            if room_number == 'Y'.lower():
-                self.propertyAPI.findRoomsByPropertyId()
-                room_input = input("What is the room number?: ")
-
+            room_number = input("Do you want to sign it to a room number? [Y/N]: ")
+            if room_number.lower() == 'y':
+                room_list = self.propertiesOverviewSubMenu.findRoomsByPropertyId(self, property_id)
+        room_signing = None
+        while room_signing == None:
+            room_signing = input("What room number do you want to sing it to? ")
+            room = self.propertyAPI.findIfRoomInProperty(self, property_id, room_signing)
+            if room == None: 
+                print("Enter a valid room number: ")
+                room_signing = None
         user_input = None
         input_list = []
         while user_input != "":
