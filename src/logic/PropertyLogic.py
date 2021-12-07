@@ -96,7 +96,7 @@ class PropertyAPI:
         })
 
         try:
-            rooms = found_property.rooms
+            rooms = found_property.Rooms
         except KeyError:
             rooms = []
         
