@@ -13,7 +13,7 @@ class EmployeeEditMenu(BaseMenu):
         
         self.menu_options = {
             "1": {
-                "title": "Edit name of employee",
+                "title": "Edit name",
                 "access": "manager",
                 "function": "edit_employee_name"
             },
