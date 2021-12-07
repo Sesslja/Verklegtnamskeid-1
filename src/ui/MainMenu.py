@@ -8,6 +8,7 @@ from ui.PropertiesMenu import PropertiesMenu
 
 
 class MainMenu(BaseMenu):
+    '''Shows main menu and restricts access to employees'''
     def __init__(self):
         super().__init__()
 

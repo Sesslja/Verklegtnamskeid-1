@@ -6,6 +6,7 @@ from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
 from ui.PropertiesEditSubMenu import PropertiesEditSubMenu
 
 class PropertiesMenu(BaseMenu):
+    '''Main menu for property options'''
     def __init__(self):
         super().__init__()
         self.propertyapi = PropertyAPI()
@@ -39,6 +40,7 @@ class PropertiesMenu(BaseMenu):
         }
 
     def createProperty(self):
+        '''creates a property object'''
         property_id = input("Enter Property ID: ")
         country = input("Country: ")
         city = input("City: ")
