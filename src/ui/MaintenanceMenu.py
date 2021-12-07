@@ -108,7 +108,9 @@ class MaintenanceMenu(BaseMenu):
         while room_number == None:
             room_number = input("Do you want to add a room number? [Y/N]: ")
             if room_number == 'Y'.lower():
+                self.propertyAPI.findRoomsByPropertyId()
                 room_input = input("What is the room number?: ")
+
         user_input = None
         input_list = []
         while user_input != "":

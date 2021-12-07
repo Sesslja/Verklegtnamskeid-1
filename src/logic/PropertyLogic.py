@@ -13,6 +13,21 @@ class PropertyAPI:
         new_property = Property(address=address, propertyId=propertyId, amenities=amenities, Rooms=rooms)
         return self.propertyRepo.save(new_property)
 
+    def findRoomsInProperty(self, propertyId: str):
+        try:
+            property = self.propertyRepo.findOne({
+                'where': {
+                    'propertyId': propertyId
+                }
+            })
+        except RecordNotFoundError:
+            raise RecordNotFoundError
+        return self.propertyRepo.find({
+            'where': {
+                'Rooms'
+            }
+        })
+
     def findProperties(self, limit=0, page=0) -> list:
         properties = self.propertyRepo.find({
             'limit': {
