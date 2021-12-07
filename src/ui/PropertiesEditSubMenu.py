@@ -4,7 +4,7 @@ from logic.PropertyLogic import PropertyAPI
 
 
 class PropertiesEditSubMenu(BaseMenu):
-    '''gives menu optins to edit property'''
+    '''gives menu options to edit property'''
     def __init__(self):
         super().__init__()
         self.propertyapi = PropertyAPI()
