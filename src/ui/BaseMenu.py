@@ -1,18 +1,23 @@
 import sys, os
+
 try:
     import readline
 except ImportError:
     pass
 from ui.textCompleter import TextCompleter
 from ui.Colors import color
-from rich import box, print
-from rich.console import Console
-from rich.table import Table
+try:
+    from rich import box, print
+    from rich.console import Console
+    from rich.table import Table
+    RICH_AVAILABLE = True
+except ModuleNotFoundError:
+    RICH_AVAILABLE = False
 
 class BaseMenu :
     def __init__(self):
         self.menu_options = {}
-        self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear')
+        self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear') if not RICH_AVAILABLE else Console().clear()
         self.menu_title = str()
         self.isMainMenu = False
 
@@ -21,6 +26,8 @@ class BaseMenu :
         while menuState == 'run':
             self.clear()
             to_print = self.menu_title + '\n'
+            if not RICH_AVAILABLE: # Checks if Rich module is installed, install with 'pip install rich'
+                to_print = color('Rich package is not installed, program may not render correctly\n', backgroundColor='red') + to_print
             to_print += ("-"*30) + '\n'
             for key in  self.menu_options :
                 to_print += f"[{key}] {self.menu_options[key]['title']} \n"
@@ -79,43 +86,67 @@ class BaseMenu :
             print(f'Invalid input: {user_input}')
             return 'run'
 
-    def createRichTable(self, header, obj):
+    def createTable(self, header, obj, line_between_records: bool=False):
 
-        table = Table()
+        if not RICH_AVAILABLE:
+            return self.createTableNoDependency(header, obj, line_between_records)
+
+        table = Table(show_lines=line_between_records)
 
         if type(header) is list:
-            for key in header:
+            old_header = header
+            header = {}
+            for key in old_header:
                 table.add_column(key)
+                header.update({key: {}})
         else:
-            for key in header:
-                for val in key:
+            for i, key in enumerate(header):
+                try:
+                    table.add_column(header[key]['display_name'])
+                except KeyError:
+                    table.add_column(key)
+                try:
+                    table.columns[i].justify = header[key]['justify']
+                except KeyError:
                     pass
-
-
-
+                try:
+                    table.columns[i].style = header[key]['style']
+                except KeyError:
+                    pass
+                try:
+                    table.columns[i].header_style = header[key]['header_style']
+                except KeyError:
+                    pass
+                
         for record in obj:
             record = record.__dict__
             row_list = []
             for key in header:
                 if key in record:
                     if type(record[key]) is list:
-                        record[key] = ''.join([f'{list_val}'+(',\n' if i < (len(record[key]) -1) else '') for i, list_val in enumerate(record[key])])
+                        record[key] = ''.join([f'{list_val}'+(', ' if i < (len(record[key]) -1) else '') for i, list_val in enumerate(record[key])])
                     elif type(record[key]) is bool:
                         record[key] = 'True' if record[key] else 'False'
                     elif type(record[key]) is int:
                         record[key] = str(record[key])
+
+                    try:
+                        record[key] += header[key]['suffix']
+                    except KeyError:
+                        pass
+
                     row_list.append(record[key])
             table.add_row(*row_list)
 
         table.caption = f'Found {len(obj)} entries.'
         table.row_styles = ['none', 'dim']
-        table.box = box.SQUARE
+        table.border_style = 'bright_yellow'
+        table.box = box.ROUNDED
 
         print(table)
-        self.waitForKeyPress()
 
 
-    def createTable(self, header: list or dict, objList: list, line_between_records=False):
+    def createTableNoDependency(self, header: list or dict, objList: list, line_between_records=False):
         '''Creates and returns a formatted table. \n
         header input is a list of those keys you want to include in the table\n
         \t Ex. header = ['name', 'email', 'ssn', 'isManager'] \n
@@ -220,7 +251,7 @@ class BaseMenu :
         printout += '|'+color((''.join([' {:<',str(total_length-2), '} '])).format('Nr. of records: '+str(len(objList))), 'black', 'blue', 'underline')+'|\n'
         printout += ' '+('‾'*total_length)+' '
             
-        return printout
+        print(printout)
 
     def waitForKeyPress(self):
         ''' Wait for a key press on the console and return it. '''
