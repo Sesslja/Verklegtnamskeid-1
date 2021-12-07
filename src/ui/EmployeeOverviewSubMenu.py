@@ -44,6 +44,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No employees to show")
         self.waitForKeyPress()
 
+
     def search_employee_by_id(self):
         '''option to search for employees \ngiven employee ID'''
         employee_id = None
@@ -65,41 +66,6 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-<<<<<<< HEAD
-=======
-# Setja í Employee Edit Menu
-    # def update_employee(self):
-    #     '''option to edit employee \ngiven employee SSN'''
-    #     '''Býður notenda upp á að breyta eiginleikum starfsmanns\ngefið að notandi viti ssn starfsmanns'''
-    #     employee_id = input("Enter employee SSN: ")
-    #     try:
-    #         employee = self.userApi.findEmployeesByEmployeeId(employee_id)
-    #         try:
-    #             employee['ERROR']
-    #             print("Employee not found")
-    #         except TypeError:
-    #             print(employee)
-    #             dictionary = employee[0].__dict__
-    #             for i, key in enumerate(dictionary):
-    #                 print(f"| {key:<15}:  {(dictionary[key])}")
-    #             factor = input("\nSelect factor you want to change: ")
-
-    #     except ValueError:
-    #         print("No employee found")
-
-    #     self.userApi.updateEmployeeInfo('suhdfsuohf898f2-32f2h3f',{
-    #         'name': 'Bónus'
-    #     })
-
-    # def delete_employee(self):
-    #     employee_ssn = input("Enter employees SSN: ")
-    #     if self.userApi.deleteEmployee(employee_ssn) == True:
-    #         print("Employee deleted")
-    #     else:
-    #         print("Employee not found")
-    #     self.waitForKeyPress()
-
->>>>>>> 6819d90d4586fbf0df0aed9ac4195b063c044762
     def find_employees_by_country(self):
         '''Option to search for employees \ngiven country'''
         country = None
@@ -120,7 +86,8 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No employee found")
         self.waitForKeyPress()
 
-    # def find_manager(self):
+    def find_manager(self):
+        pass
     #     ismanager = None
     #     while ismanager == 
         
