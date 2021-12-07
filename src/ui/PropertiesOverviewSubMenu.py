@@ -6,7 +6,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
     '''sub menu to property overview'''
     def __init__(self):
         super().__init__()
-        self.propertyapi = PropertyAPI()
+        self.propertyapi = PropertyAPI
         self.menu_title = "Properties Menu\nProperties overview"
 
         self.menu_options = {
@@ -82,11 +82,12 @@ class PropertiesOverviewSubMenu(BaseMenu):
             print ("No properties found in region")
         self.waitForKeyPress()
 
-    def findRoomsByPropertyId(self):
+    def findRoomsByPropertyId(self, propertyId: str=None):
         '''Finds all rooms of a property given property ID'''
-        propertyId = input('Find rooms by property ID:\nEnter property ID: ')
+        if propertyId == None:
+            propertyId = input('Find rooms by property ID:\nEnter property ID: ')
         try:
-            found_property = self.propertyapi.findPropertyByPropertyId(propertyId)
+            found_property = PropertyAPI().findPropertyByPropertyId(propertyId)
 
             # print(found_property)
 
