@@ -103,7 +103,7 @@ class MaintenanceMenu(BaseMenu):
         while property_id == None:
             property_id = input("Enter Property ID: ")
             try:
-                find_property = self.propertyAPI().findPropertyByPropertyId(property_id)
+                find_property = self.propertyAPI.findPropertyByPropertyId(self, property_id)
             except ValueError:
                 print("Enter a valid ID")
                 property_id = None
@@ -112,12 +112,12 @@ class MaintenanceMenu(BaseMenu):
         while room_number == None:
             room_number = input("Do you want to sign it to a room number? [Y/N]: ")
             if room_number.lower() == 'y':
-                room_list = self.propertiesOverviewSubMenu.findRoomsByPropertyId(self, property_id)
+                self.propertiesOverviewSubMenu.findRoomsByPropertyId(self, property_id)
         room_signing = None
         while room_signing == None:
             room_signing = input("What room number do you want to sing it to? ")
             room = self.propertyAPI.findIfRoomInProperty(self, property_id, room_signing)
-            if room == None: 
+            if room == False: 
                 print("Enter a valid room number: ")
                 room_signing = None
         user_input = None

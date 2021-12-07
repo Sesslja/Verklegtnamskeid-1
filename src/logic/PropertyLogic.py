@@ -8,7 +8,6 @@ class PropertyAPI:
     def __init__(self) -> None:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
-        self.roomRepo = DB(RoomType)
 
     def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
         new_property = Property(address=address, propertyId=propertyId, amenities=amenities, Rooms=rooms)
@@ -16,21 +15,15 @@ class PropertyAPI:
 
     def findIfRoomInProperty(self, propertyId: str, roomId: str):
         try:
-            property = self.propertyRepo.findOne({
+            property = self.propertyRepo.find({
                 'where': {
-                    'propertyId': propertyId
+                    'propertyId': propertyId,
+                    'Rooms': roomId
                 }
             })
+            return True
         except RecordNotFoundError:
-            raise RecordNotFoundError
-        try:
-            return self.roomRepo.find({
-                'where': {
-                    'roomID': roomId
-                }
-            })
-        except RecordNotFoundError:
-            return None
+            return False
         
 
     def findProperties(self, limit=0, page=0) -> list:
