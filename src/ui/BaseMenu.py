@@ -1,7 +1,5 @@
 import sys, os
 
-from rich.repr import T
-
 try:
     import readline
 except ImportError:
@@ -105,7 +103,7 @@ class BaseMenu :
             #print(f'Invalid input: {user_input}')
             return 'run'
 
-    def createTable(self, header, obj, line_between_records: bool=False, justify_table: str='left'):
+    def createTable(self, header, obj, table_title: str=None, line_between_records: bool=False, return_table: bool=False, justify_table: str='left'):
 
         if not RICH_AVAILABLE:
             return self.createTableNoDependency(header, obj, line_between_records)
@@ -162,6 +160,9 @@ class BaseMenu :
                     row_list.append(record[key])
             table.add_row(*row_list)
 
+        if table_title:
+            table.title = table_title
+
         table.caption = f'Found {len(obj)} entries.'
         table.row_styles = ['none', 'dim']
         table.border_style = 'bright_yellow'
@@ -177,8 +178,11 @@ class BaseMenu :
         #else:
         table_aligned = Align.center(table)
 
-        print(table_aligned)
-        return ''
+        if return_table:
+            return table_aligned
+        else:
+            print(table_aligned)
+            return ''
 
 
     def createTableNoDependency(self, header: list or dict, objList: list, line_between_records=False):

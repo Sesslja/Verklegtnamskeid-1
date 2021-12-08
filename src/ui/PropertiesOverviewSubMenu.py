@@ -1,12 +1,21 @@
 from data.DBError import RecordNotFoundError
-from ui.BaseMenu import BaseMenu
+from ui.BaseMenu import RICH_AVAILABLE, BaseMenu
 from logic.PropertyLogic import PropertyAPI
+from logic.UserLogic import UserAPI
+from ui.Colors import color
+
+try:
+    from rich.layout import Layout
+    from rich import print
+except ModuleNotFoundError:
+    pass
 
 class PropertiesOverviewSubMenu(BaseMenu):
     '''sub menu to property overview'''
     def __init__(self):
         super().__init__()
         self.propertyapi = PropertyAPI()
+        self.userApi = UserAPI()
         self.menu_title = "Properties Menu\nProperties overview"
 
         self.menu_options = {
@@ -62,13 +71,74 @@ class PropertiesOverviewSubMenu(BaseMenu):
         '''Finds all properties given a property ID'''
         try:
             property_id = input("Find property by property ID:\nEnter property ID: ")
-            property_list = [self.propertyapi.findPropertyByPropertyId(property_id)]
+            property_list = self.propertyapi.findPropertyByPropertyId(property_id)
 
-            header_list = ['amenities', 'propertyId', 'isActive']
-            print(self.createTable(header_list, property_list, line_between_records=True))
+            employee_list = self.propertyapi.findEmployeesByPropertyId(property_id)
+
+
+            header_employees = {
+                'name': {
+                    'display_name': 'Name'
+                },
+                'email': {
+                    'display_name': 'E-Mail'
+                },
+                'ssn': {
+                    'display_name': 'SSN'
+                }
+            }
+            header_rooms = {
+                'size': {
+                    'display_name': 'Size',
+                    'suffix': ' m²'
+                },
+                'roomId': {
+                    'display_name': 'Room ID'
+                }
+            }
+            header_amenities = {
+                'amenity': {
+                    'display_name': 'Size',
+                    'suffix': ' m²'
+                }
+            }
+            if RICH_AVAILABLE:
+                layout = Layout()
+                layout.split_column(
+                    Layout(name="header", size=1),
+                    Layout(name="main")
+                )
+                layout["main"].split_row(
+                    Layout(name="property", ratio=1),
+                    Layout(name="relations")
+                )
+                layout["relations"].split_row(
+                    Layout(name="employees"),
+                    Layout(name="rooms"),
+                    Layout(name="amenities")
+                )
+
+                layout["employees"].update(
+                    self.createTable(header_employees, employee_list, table_title='Employees', line_between_records=True, return_table=True)
+                )
+
+                layout["rooms"].update(
+                    self.createTable(header_rooms, property_list.Rooms, table_title='Rooms', line_between_records=True, return_table=True)
+                )
+
+                layout["amenities"].update(
+                    self.createTable(header_amenities, property_list.amenities, table_title='Amenities', line_between_records=True, return_table=True)
+                )
+
+                print(layout)
+            else:
+                print(color('Rich module not installed, unable to display', backgroundColor='red'))
+
+            #print(self.createTable(header_list, property_list, line_between_records=True))
         except RecordNotFoundError:
             print("Property not found!")
         self.waitForKeyPress()
+
 
     def search_by_region(self):
         '''Finds all properties given a property Region'''

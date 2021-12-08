@@ -134,3 +134,20 @@ class PropertyAPI:
             'employees': current_employees
         })
 
+    def findEmployeesByPropertyId(self, propertyId):
+        found_property = self.findPropertyByPropertyId(propertyId)
+        employee_ids_in_prop = found_property.employees
+
+        employees_list = []
+        for e in employee_ids_in_prop:
+            try:
+                user = self.userRepo.findOne({
+                    'where': {
+                        '_id': e
+                    }
+                })
+                employees_list.append(user)
+            except RecordNotFoundError:
+                pass
+
+        return employees_list
