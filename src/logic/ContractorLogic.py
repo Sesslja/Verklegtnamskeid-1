@@ -1,4 +1,4 @@
-from DBError import RecordNotFoundError
+from data.DBError import RecordNotFoundError
 from model.MaintenanceRequestModel import MaintenanceRequest
 from model.AddressType import Address
 from model.ContractorModel import Contractor
