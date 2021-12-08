@@ -55,14 +55,14 @@ class ContractorsOverviewSubMenu(BaseMenu):
     
     def see_contractor_history(self):
         contractor_ssn = input("Enter contractor SSN: ")
-        contractorID = self.contractorapi.findContractorByContractorId(contractor_ssn)
-        requests = self.contractorapi.find_requests_by_contractorID(contractorID._id)
-        if len(requests) == 0:
-                print("Lazy contractor!")
-                contractor_id = None
-        else:
+        try:    
+            contractorID = self.contractorapi.findContractorByContractorId(contractor_ssn)
+            requests = self.contractorapi.find_requests_by_contractorID(contractorID._id)
+            
             show_keys = ['status', 'to_do', 'priority']
             print(self.createTable(show_keys, requests))
+        except RecordNotFoundError:
+            print('Nothing found ')
         self.waitForKeyPress()
 
 
@@ -70,7 +70,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
         contractor_id = None
         while contractor_id == None:
             try:
-                contractor_id = int(input("Enter contractors ID: "))
+                contractor_id = input("Enter contractors ID: ")
             except ValueError:
                 print("Please enter a valid ID")
                 contractor_id = None

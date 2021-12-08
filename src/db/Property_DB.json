@@ -214,5 +214,79 @@
                 "roomId": "PP8000"
             }
         ]
+    },
+    {
+        "_id": "3106e24c-d73e-4dd3-89c0-577fe5d0be1a",
+        "created_at": "2021-12-08 18:02:48.586781",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "\u00cdsland",
+            "city": "Reykjavik",
+            "zip": "108",
+            "address1": "Menntavegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "PP8100",
+        "amenities": [
+            "Shop",
+            "Classrooms",
+            "Cafeteria",
+            "Shop",
+            "Study area",
+            "Lounge",
+            "Toilets"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 260.2,
+                "roomId": "M101"
+            },
+            {
+                "size": 310.72,
+                "roomId": "V101"
+            },
+            {
+                "size": 180.02,
+                "roomId": "M201"
+            }
+        ]
+    },
+    {
+        "_id": "49420f5b-d2a0-4712-aa2b-0394e43edfaf",
+        "created_at": "2021-12-08 19:10:41.593523",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "\u00cdsland",
+            "city": "Reykjavik",
+            "zip": "108",
+            "address1": "Menntavegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "PP8200",
+        "amenities": [
+            "Classroom",
+            "Lounge",
+            "Shop"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 300.2,
+                "roomId": "M101"
+            },
+            {
+                "size": 429.31,
+                "roomId": "V101"
+            },
+            {
+                "size": 180.94,
+                "roomId": "M201"
+            }
+        ]
     }
 ]

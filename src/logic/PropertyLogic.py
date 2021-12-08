@@ -1,3 +1,4 @@
+from logic.DestinationsLogic import DestinationsAPI
 from model.AddressType import Address
 from data.DBError import RecordNotFoundError
 from model.RoomType import RoomType
@@ -9,6 +10,7 @@ class PropertyAPI:
     def __init__(self) -> None:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
+        self.destinationApi = DestinationsAPI()
 
     def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
         new_property = Property(address=address, propertyId=propertyId, amenities=amenities, Rooms=rooms)
@@ -153,3 +155,7 @@ class PropertyAPI:
                 pass
 
         return employees_list
+
+    def findAvailableCountries(self):
+        '''Finds countries that are available to create a property in, according to destinations.'''
+        return self.destinationApi.findCountriesOfDestinations()
