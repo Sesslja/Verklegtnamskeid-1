@@ -1,8 +1,11 @@
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from data.DBError import RecordNotFoundError
-from rich.prompt import Prompt
-
+try: 
+    from rich.prompt import Prompt
+except:
+    None
+ 
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self, logged_in_user=None):
         super().__init__(logged_in_user)
@@ -12,28 +15,24 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
         self.menu_options = {
             "1": {
-                "title": "See all employees",
-                "function": "all_employees_overview"
+                "title": "Show all employees",
+                "function": "allEmployeesOverview"
             },
             "2": {
-                "title": "Find employee by employeeID",
-                "function": "search_employee_by_id"
+                "title": "Find employee by employee Number",
+                "function": "findEmployeeByEmplyeeNum"
             },
             "3": {
                 "title": "Find employee by country",
-                "function": "find_employees_by_country"
+                "function": "findEmployeesByCountry"
             },
             "4": {
-                "title": "Find one employee by ID",
-                "function": "find_one_employee"
+                "title": "Find managers by Country",
+                "function": "findManagerByCountry"
             },
             "5": {
-                "title": "Find managers",
-                "function": "find_manager_by_country"
-            },
-            "6": {
                 "title": "Find all managers",
-                "function": "find_managers"
+                "function": "findManagers"
             },
             "X": {
                 "title": "Return to previous page",
@@ -45,39 +44,42 @@ class EmployeeOverviewSubMenu(BaseMenu):
             }
         }
 
-    def all_employees_overview(self):
+    def allEmployeesOverview(self):
         '''Shows all employees working for NAN'''
         try:
             employee_list = self.userApi.allEmployeesOverview()
             # What keys from record list to use
-            show_keys = ['name', 'email', 'ssn']
+            show_keys = ['name', 'email', 'ssn', 'isManager']
             print(self.createTable(show_keys, employee_list))
 
         except RecordNotFoundError:
             print("No employees to show")
         self.waitForKeyPress()
 
-    def search_employee_by_id(self):
-        employee_id = None
-        while employee_id == None:
-            try:
-                employee_id = int(input("Enter employee ID: "))
-            except ValueError:
-                print("Please enter a valid ID")
+    def findEmployeeByEmplyeeNum(self):
+        '''Option to find employee by employee number'''
+        employee_num = Prompt.ask('Please enter employee number: ')
         try:
-            employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
-            if len(employee_list) == 0:
-                print("employee not found!")
-                employee_id = None
-            else:
-                show_keys = ['name', 'email', 'ssn']
-                print(self.createTable(show_keys, employee_list))
-        except ValueError:
-            print("No employee found")
+            found_employee = self.userApi.findEmployeeByEmployeeId(employee_num)
+
+            header = ['1', '2']
+
+            single_employee_to_table_list = [
+                {'1': 'Name', '2': found_employee.name},
+                {'1': 'Email', '2': found_employee.email},
+            ]
+
+            self.createTable(header, 
+            single_employee_to_table_list,
+            hide_header=True,
+            line_between_records=True)
+        except RecordNotFoundError:
+            print('User not found')
+
         self.waitForKeyPress()
 
 
-    def find_employees_by_country(self):
+    def findEmployeesByCountry(self):
         '''Option to search for employees \ngiven country'''
         country = None
         while country == None:
@@ -98,7 +100,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def find_manager_by_country(self):
+    def findManagerByCountry(self):
         '''Option to search for manager \n given country'''
     
         country = Prompt.ask('Please enter a country')
@@ -108,20 +110,25 @@ class EmployeeOverviewSubMenu(BaseMenu):
             for record in manager_list:
                 record.name 
             
-            # if len(manager_list) == 0:
-            #     print("No manager found!")
-            # else:
-            show_keys = ['name', 'email', 'ssn']
-            print(self.createTable(show_keys, manager_list))
+            if len(manager_list) == 0:
+                print("No manager found!")
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, manager_list))
 
         except RecordNotFoundError:
             print("No manager found")
         self.waitForKeyPress()
 
-   
+    def findManagers(self):
+        ismanager = True
+        try:
+            employee_list = self.userApi.findManagers()
+            # What keys from record list to use
+            show_keys = ['name', 'email', 'ssn', 'isManager']
+            print(self.createTable(show_keys, employee_list))
 
-    def find_by_attributy(self):
-        pass
-
-    def find_one_employee(self):
-        pass
+        except RecordNotFoundError:
+            print("No employees to show")
+        self.waitForKeyPress()
+    

@@ -108,7 +108,6 @@ class MaintenanceMenu(BaseMenu):
 
     def createMRequest(self):
         '''Gives option to create maintenace request '''
-        status = ""
         property_id = None
         while property_id == None:
             property_id = input("Enter Property ID: ")
@@ -166,23 +165,20 @@ class MaintenanceMenu(BaseMenu):
 
         date = False
         while date is False:
-            start_date = list(input("Enter start date [yyyy,mm,dd]: "))
-            test_date = self.datetime(start_date)
-            if test_date is False:
+            start_date = input("Enter start date [yyyy,mm,dd]: ").split(',')
+            try:
+                start_date = [int(i) for i in start_date]
+                date, dt = self.datetime.testDate(start_date)
+                if date == False:
+                    print("Date is out of range - Try again")
+            except:
                 print("Date is out of range - Try again")
-                date = False
-            elif test_date is True:
-                try:
-                    test_date == int(datetime.now())
-                    status = 'Open'
-                except:
-                    status = 'Upcoming'
-                #self.datetime.relative_date(test_date)
-                date = True
-                #print self.datetime.get_relative_date(days_ahead)
-                #print self.datetime.get_relative_date(weeks_ahead)
-                #print self.datetime.get_relative_date(month_ahead)
-                #print self.datetime.get_relative_date(months_ahead)
+        status = 'Upcoming'
+        #self.datetime.relative_date(test_date)
+            #print self.datetime.get_relative_date(days_ahead)
+            #print self.datetime.get_relative_date(weeks_ahead)
+            #print self.datetime.get_relative_date(month_ahead)
+            #print self.datetime.get_relative_date(months_ahead)
 
         employee_Id = ""
         while employee_Id == "":
@@ -202,6 +198,8 @@ class MaintenanceMenu(BaseMenu):
                 else:
                     employee_Id = ""
 
-        self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
-        
-        print("Maintenance Request succesfully created! ")
+        try:
+            print(f"Maintenance Request succesfully created and set for {dt}! ")
+            self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
+        except:
+            print(f"Something when wrong")
