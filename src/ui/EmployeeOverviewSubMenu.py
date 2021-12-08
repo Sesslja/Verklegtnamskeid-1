@@ -18,8 +18,8 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "function": "search_employee_by_id"
             },
             "3": {
-                "title": "Edit employee",
-                "function": "update_employee"
+                "title": "Find employee by country",
+                "function": "find_employees_by_country"
             },
             "X": {
                 "title": "Return to previous page",
