@@ -6,6 +6,7 @@ except ImportError:
     pass
 from ui.textCompleter import TextCompleter
 from ui.Colors import color
+
 try:
     from rich import box, print
     from rich.console import Console

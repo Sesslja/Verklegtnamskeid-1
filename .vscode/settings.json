@@ -1,10 +1,13 @@
 {
+    "python.pythonPath": "/home/evabj/.virtualenvs/app-FzQGSFjf/bin/python",
     "python.analysis.extraPaths": [
         "./src/model",
         "./src/test",
         "./src/ui",
         "./src/logic",
         "./src/data",
+        "C:/Users/evabj/Desktop/Forritun"
+
     ],
     "python.linting.banditEnabled": false,
     "python.linting.enabled": false,
