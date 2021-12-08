@@ -16,6 +16,7 @@ try:
     from rich.prompt import Prompt
     RICH_AVAILABLE = True
 except ModuleNotFoundError:
+    print('not imported')
     RICH_AVAILABLE = False
 
 class BaseMenu :
@@ -31,6 +32,7 @@ class BaseMenu :
     def login(self, failed_attempt: bool=False):
         from logic.AuthLogic import AuthAPI
         authApi = AuthAPI()
+        self.waitForKeyPress()
         self.clear()
         print('Incorrect login details, please try again') if failed_attempt else ''
         userSsn = Prompt.ask('Please enter your ID')
