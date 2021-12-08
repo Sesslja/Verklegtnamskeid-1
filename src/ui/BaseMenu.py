@@ -22,8 +22,11 @@ class BaseMenu :
         self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear') if not RICH_AVAILABLE else Console().clear()
         self.menu_title = str()
         self.isMainMenu = False
+        self.failed = False
 
     def print_options(self):
+        if self.failed:
+            return 'run'
         menuState = 'run'
         while menuState == 'run':
             self.clear()
@@ -112,7 +115,8 @@ class BaseMenu :
     line_between_records: bool=False, 
     return_table: bool=False, 
     justify_table: str='left',
-    table_style: str='bright_yellow'):
+    table_style: str='bright_yellow',
+    color_newest: bool=False):
 
         if not RICH_AVAILABLE:
             return self.createTableNoDependency(header, obj, line_between_records)
@@ -171,6 +175,9 @@ class BaseMenu :
 
         if table_title:
             table.title = table_title
+
+        if color_newest:
+            table.rows[table.row_count-1].style = 'bright_blue'
 
         table.caption = f'Found {len(obj)} entries.'
         table.row_styles = ['none', 'dim']

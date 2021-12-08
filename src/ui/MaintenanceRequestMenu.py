@@ -45,6 +45,17 @@ class MaintenanceRequestMenu(BaseMenu):
                 "special": "main"
             }
         }
+    
+    def All_M_Request(self):
+        '''prints out a table of all maintenance Requests'''
+        try:
+            request_list = self.maintenanceRequestAPI.MaintenanceRequestOverview()
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId', 'status']
+            print(self.createTable(show_keys, request_list))
+        except ValueError:
+            print("Nothing to Show :(")
+        self.waitForKeyPress()
+
 
     def openedMRequest(self):
         '''prints out a table of all opened requests'''

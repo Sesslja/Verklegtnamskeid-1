@@ -198,6 +198,14 @@
             {
                 "size": 20.0,
                 "roomId": "PR8007"
+            },
+            {
+                "size": 300.0,
+                "roomId": "PR8008"
+            },
+            {
+                "size": 1.0,
+                "roomId": "PR8009"
             }
         ],
         "rooms": [

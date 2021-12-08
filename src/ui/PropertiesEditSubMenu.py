@@ -9,6 +9,8 @@ class PropertiesEditSubMenu(BaseMenu):
         super().__init__()
         self.propertyapi = PropertyAPI()
         self.propertyId = self.propertyIdInput()
+        if self.propertyId is 'q':
+            self.failed = True
 
         self.menu_title = f"Edit property nr. {self.propertyId}"
 
@@ -47,8 +49,9 @@ class PropertiesEditSubMenu(BaseMenu):
     def propertyIdInput(self, retry: bool= False):
         self.clear()
         print('No property ID found please input a correct one') if retry else None
-        propId = input('Please input the property ID: ')
-
+        propId = input('Please input ID of property ([Q] to Quit): ')
+        if propId.lower() == "q":
+            return "q"
 
         try:
             foundProp = self.propertyapi.findPropertyByPropertyId(propId)
@@ -69,14 +72,15 @@ class PropertiesEditSubMenu(BaseMenu):
 
         print('Successfully created new room')
         header = {
-            'size': {
-                'display_name': 'Room Size'
-            },
             'roomId': {
                 'display_name': 'Room ID'
+            },
+            'size': {
+                'display_name': 'Room Size',
+                'suffix': ' m²'
             }
         }
-        print(self.createTable(header, created_room))
+        print(self.createTable(header, created_room, table_title='Rooms in property', color_newest=True))
 
         self.waitForKeyPress()
 
