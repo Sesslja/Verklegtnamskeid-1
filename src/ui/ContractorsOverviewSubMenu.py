@@ -1,6 +1,7 @@
 from typing import Container
 from ui.BaseMenu import BaseMenu
 from logic.ContractorLogic import ContractorAPI
+from data.DBError import RecordNotFoundError
 
 class ContractorsOverviewSubMenu(BaseMenu):
     '''Shows sub-menu to contractor options'''
@@ -61,8 +62,8 @@ class ContractorsOverviewSubMenu(BaseMenu):
             else:
                 show_keys = ['name', 'email', 'ssn']
                 print(self.createTable(show_keys, contractor_list))
-                self.waitForKeyPress()
-        except ValueError:
+
+        except RecordNotFoundError:
             print("No contractors found")
         self.waitForKeyPress()
     
@@ -83,7 +84,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             else:
                 show_keys = ['name', 'email', 'ssn']
                 print(self.createTable(show_keys, contractors_name_list))
-        except ValueError:
+        except RecordNotFoundError:
             print ("No contractors found")
         self.waitForKeyPress()
 
@@ -94,7 +95,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
         while contractors_profession == None:
             try:
                 contractors_profession = input("Enter profession: ")
-            except ValueError:
+            except RecordNotFoundError:
                 print("Please enter a valid profession")
         
         try:
@@ -105,7 +106,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             else:
                 show_keys = ['name', 'email', 'ssn']
                 print(self.createTable(show_keys, contractors_prof_list))
-        except ValueError:
+        except RecordNotFoundError:
             print ("No contractors found")
         self.waitForKeyPress()
 
@@ -119,7 +120,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             else:
                 show_keys = ['name', 'email', 'ssn']
                 print(self.createTable(show_keys, contractor_list))
-                self.waitForKeyPress()
+
         except ValueError:
             print("No contractors found")
         self.waitForKeyPress()
