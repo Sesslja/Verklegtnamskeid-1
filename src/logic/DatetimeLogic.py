@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date
 import datetime
 try:
     from dateutil.relativedelta import relativedelta
@@ -7,7 +7,6 @@ except ModuleNotFoundError:
 
 class DateTime():
     def __init__(self) -> None:
-        self.datetime = datetime()
         '''self.now = datetime.datetime.now()
         self.days_ahead = datetime.datetime.now() + relativedelta(days=3)
         self.weeks_ahead = datetime.datetime.now() + relativedelta(weeks=2)
@@ -26,17 +25,16 @@ class DateTime():
         return int(date) 
     
     def testDate(self, start_date: list = None): 
-        start_date = start_date
         if start_date is None:
-            dt = self.datetime.now()
+            dt = datetime.now()
         else:
-            dt = self.datetime(start_date[0], start_date[1], start_date[2])
+            dt = datetime.date(start_date[0],start_date[1],start_date[2]).strftime('%A %d %B %Y')
         try: 
-            dt >= self.datetime.now()
+            datetime.datetime(start_date[0],start_date[1],start_date[2]) >= datetime.datetime.now()
             date = True
         except: 
             date = False
-        return date
+        return date, dt
 
     def betweenTwoDates(self, start_date, end_date):
         date_search_from = self.datetime(start_date)
