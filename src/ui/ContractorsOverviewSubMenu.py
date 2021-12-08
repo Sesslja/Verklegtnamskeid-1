@@ -18,7 +18,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
             },                             
             "2": {
                 "title": "Search contractors by id",
-                "access": "Manager",
+                "access": "",
                 "function": "find_contractors_by_id"
             },  
             "3": {
@@ -32,9 +32,14 @@ class ContractorsOverviewSubMenu(BaseMenu):
             },     
             "5": {
                 "title": "Delete contractor from our system",
-                "access": "Manager",
+                "access": "manager",
                 "function": "delete_contractor"
-            },           
+            },
+            "6": {
+                "title": "See contractors history",
+                "access": "manager",
+                "function": "see_contractor_history"
+            },          
             "X": {
                 "title": "Return to previous page",
                 "access": "",
@@ -45,6 +50,12 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 "special": "main"
             }
         }
+    
+    
+    def see_contractor_history(self):
+        contractor_ssn = input("Enter contractor SSN: ")
+        contractor = self.contractorapi.find_contractor_requests(contractor_ssn)
+
 
     def find_contractors_by_id(self): #1
         contractor_id = None
@@ -53,6 +64,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 contractor_id = int(input("Enter contractors ID: "))
             except ValueError:
                 print("Please enter a valid ID")
+                contractor_id = None
         try:
             contractor_list = self.contractorapi.findContractorByContractorId(contractor_id)
             if len(contractor_list) == 0:
@@ -68,13 +80,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
     
 
     def find_contractor_by_name(self):
-        contractors_name = None
-        while contractors_name == None:
-            try:
-                contractors_name = input("Enter name: ")
-            except ValueError:
-                print("Please enter a valid name")
-        
+        contractors_name = input("Enter name: ")   
         try:
             contractors_name_list = self.contractorapi.findContractorByName(contractors_name)
             if len(contractors_name_list) == 0:
