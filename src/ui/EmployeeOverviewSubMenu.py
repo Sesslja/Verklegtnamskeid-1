@@ -106,13 +106,17 @@ class EmployeeOverviewSubMenu(BaseMenu):
             manager_list = self.userApi.findManagersByCountry(country)
 
             for record in manager_list:
-                name = record.name 
-                print(name)
+                record.name 
+            
+            if len(manager_list) == 0:
+                print("No manager found!")
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, manager_list))
 
         except RecordNotFoundError:
-            print("Manager not found")
+            print("No manager found")
         self.waitForKeyPress()
-
 
 
     def find_by_attributy(self):
