@@ -33,7 +33,10 @@ class BaseMenu :
         authApi = AuthAPI()
         self.clear()
         print('Incorrect login details, please try again') if failed_attempt else ''
-        userSsn = Prompt.ask('Please enter your ID')
+        userSsn = ""
+        while userSsn == "":
+            userSsn = Prompt.ask('Please enter your ID')
+            self.clear()
         login_res = authApi.userLogin(userSsn)
 
         if login_res:

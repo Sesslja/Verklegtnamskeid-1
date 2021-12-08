@@ -288,5 +288,31 @@
                 "roomId": "M201"
             }
         ]
+    },
+    {
+        "_id": "2ccfd947-5459-4518-a421-34aa4165fbd7",
+        "created_at": "2021-12-08 19:40:08.284133",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "902",
+            "address1": "Moggvej 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "PP8300",
+        "amenities": [
+            "Mogg",
+            "Sugs"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 4096.0,
+                "roomId": "PR8301"
+            }
+        ]
     }
 ]

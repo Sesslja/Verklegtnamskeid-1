@@ -32,9 +32,7 @@
         "created_at": "2021-12-03 16:01:11.521074",
         "isActive": true,
         "isArchived": false,
-        "isOpen": true,
-        "isFinished": false,
-        "isClosed": false,
+        "status": "",
         "Address": {
             "country": "Iceland",
             "city": "Reykjavik",
@@ -60,9 +58,7 @@
         "created_at": "2021-12-03 16:01:18.224285",
         "isActive": true,
         "isArchived": false,
-        "isOpen": true,
-        "isFinished": false,
-        "isClosed": false,
+        "status": "",
         "Address": {
             "country": "Iceland",
             "city": "Reykjavik",
@@ -88,9 +84,7 @@
         "created_at": "2021-12-06 17:53:29.036064",
         "isActive": true,
         "isArchived": false,
-        "status": {
-            "status": ""
-        },
+        "status": "",
         "Address": "sdf",
         "to_do": [
             "3",
@@ -108,9 +102,7 @@
         "created_at": "2021-12-07 16:42:55.508473",
         "isActive": true,
         "isArchived": false,
-        "status": {
-            "status": ""
-        },
+        "status": "",
         "property": {
             "_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
             "created_at": "2021-12-07 02:40:35.445155",
