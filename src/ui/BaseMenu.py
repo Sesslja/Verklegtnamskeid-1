@@ -21,8 +21,11 @@ class BaseMenu :
         self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear') if not RICH_AVAILABLE else Console().clear()
         self.menu_title = str()
         self.isMainMenu = False
+        self.failed = False
 
     def print_options(self):
+        if self.failed:
+            return 'run'
         menuState = 'run'
         while menuState == 'run':
             self.clear()

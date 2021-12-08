@@ -13,6 +13,10 @@ class ContractorAPI:
     def findContractor(self) -> list:
         return self.contractorRepo.find()
 
+    def updateContractorInfo(self, id, data):
+        data['_id'] = id
+        return self.contractorRepo.update(data)
+
     def deleteContractor(self, id) -> list:
         return self.contractorRepo.delete(id)
 
@@ -24,7 +28,7 @@ class ContractorAPI:
         })
     
     def findContractorByContractorId(self, contractorId: str):
-        return self.contractorRepo.find({ 
+        return self.contractorRepo.findOne({ 
             'where': {
                 'ssn': contractorId
             }
