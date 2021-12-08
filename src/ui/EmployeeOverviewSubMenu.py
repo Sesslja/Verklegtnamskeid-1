@@ -12,28 +12,24 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
         self.menu_options = {
             "1": {
-                "title": "See all employees",
-                "function": "all_employees_overview"
+                "title": "Show all employees",
+                "function": "allEmployeesOverview"
             },
             "2": {
-                "title": "Find employee by employeeID",
-                "function": "search_employee_by_id"
+                "title": "Find employee by employee Number",
+                "function": "findEmployeeByEmplyeeNum"
             },
             "3": {
                 "title": "Find employee by country",
-                "function": "find_employees_by_country"
+                "function": "findEmployeesByCountry"
             },
             "4": {
-                "title": "Find one employee by ID",
-                "function": "find_one_employee"
+                "title": "Find managers by Country",
+                "function": "findManagerByCountry"
             },
             "5": {
-                "title": "Find managers",
-                "function": "find_manager_by_country"
-            },
-            "6": {
                 "title": "Find all managers",
-                "function": "find_managers"
+                "function": "findManagers"
             },
             "X": {
                 "title": "Return to previous page",
@@ -45,7 +41,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             }
         }
 
-    def all_employees_overview(self):
+    def allEmployeesOverview(self):
         '''Shows all employees working for NAN'''
         try:
             employee_list = self.userApi.allEmployeesOverview()
@@ -57,23 +53,8 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No employees to show")
         self.waitForKeyPress()
 
-    def search_employee_by_id(self):
-        # employee_id = None
-        # while employee_id == None:
-        #     try:
-        #         employee_id = int(input("Enter employee ID: "))
-        #     except ValueError:
-        #         print("Please enter a valid ID")
-        # try:
-        #     employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
-        #     if len(employee_list) == 0:
-        #         print("employee not found!")
-        #         employee_id = None
-        #     else:
-        #         show_keys = ['name', 'email', 'ssn']
-        #         print(self.createTable(show_keys, employee_list))
-        # except ValueError:
-        #     print("No employee found")
+    def findEmployeeByEmplyeeNum(self):
+        '''Option to find employee by employee number'''
         employee_num = Prompt.ask('Please enter employee number: ')
         try:
             found_employee = self.userApi.findEmployeeByEmployeeId(employee_num)
@@ -95,7 +76,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def find_employees_by_country(self):
+    def findEmployeesByCountry(self):
         '''Option to search for employees \ngiven country'''
         country = None
         while country == None:
@@ -116,7 +97,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def find_manager_by_country(self):
+    def findManagerByCountry(self):
         '''Option to search for manager \n given country'''
     
         country = Prompt.ask('Please enter a country')
@@ -136,6 +117,6 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No manager found")
         self.waitForKeyPress()
 
-    def find_managers(self):
+    def findManagers(self):
         pass
     
