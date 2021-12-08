@@ -72,14 +72,15 @@ class PropertiesEditSubMenu(BaseMenu):
 
         print('Successfully created new room')
         header = {
-            'size': {
-                'display_name': 'Room Size'
-            },
             'roomId': {
                 'display_name': 'Room ID'
+            },
+            'size': {
+                'display_name': 'Room Size',
+                'suffix': ' m²'
             }
         }
-        print(self.createTable(header, created_room))
+        print(self.createTable(header, created_room, table_title='Rooms in property', color_newest=True))
 
         self.waitForKeyPress()
 
