@@ -121,13 +121,12 @@ class MaintenanceMenu(BaseMenu):
             salary = 0
         dt = self.datetime.generateDatetimeNow()
 
-        try:
-            self.maintreportAPI.createReport(request_info = request_info, verification_num = verificationNum, maintenance = maintenanceList, contractorId = contractorId, materialcost = materialCost, salary = salary, contractorsfee = contractorsFee, dt = dt)
-            print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
-            self.waitForKeyPress()
-        except:
-            print(f"Something whent wrong")
-            self.waitForKeyPress()
+        report = self.maintreportAPI.createReport(request_info = request_info, verification_num = verificationNum, maintenance = maintenanceList, contractorId = contractorId, materialcost = materialCost, salary = salary, contractorsfee = contractorsFee, dt = dt)
+        print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
+        self.waitForKeyPress()
+        #except:
+           # print(f"Something whent wrong")
+           3self.waitForKeyPress()
         
 
     def createMRequest(self):
