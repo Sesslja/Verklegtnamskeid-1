@@ -76,7 +76,7 @@ class MaintenanceMenu(BaseMenu):
             except RecordNotFoundError:
                 find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
-                    self.maintenanceRequestMenu.menu_options("1")
+                    self.maintenanceRequestMenu.openedMRequest()
                 verification_num = None
     
         request_info = ""
@@ -121,6 +121,7 @@ class MaintenanceMenu(BaseMenu):
                     self.propertiesMenu.createProperty()
                 else:
                     property_id = None
+
         room_number = None
         while room_number == None:
             room_number = input("Do you want to sign it to a room number? [Y/N]: ")
@@ -134,11 +135,12 @@ class MaintenanceMenu(BaseMenu):
 
                 room_signing = None
                 while room_signing == None:
-                    room_signing = input("\nWhat room number do you want to sing it to? ")
+                    room_signing = input("\nWhat room number do you want to sign it to? ")
                     room = self.propertyAPI.findIfRoomInProperty(property_id, room_signing)
                     if room == False: 
                         print("Enter a valid room number: ")
                         room_signing = None
+
         user_input = None
         input_list = []
         while user_input != "":
@@ -146,6 +148,7 @@ class MaintenanceMenu(BaseMenu):
             input_list.append(user_input)
         occurrence = None
         isRegular = True
+
         while occurrence == None:
             occurrence = input("How often per year\n[0] if this is not regular: ")
             try:
@@ -156,6 +159,7 @@ class MaintenanceMenu(BaseMenu):
                 print("Enter an integer: ")
                 occurrence = None
         priority = ""
+
         while priority == "":
             priority = (input("Priority [A][B][C]: ")).upper()
             valid_priority_list = ["A","B","C"]
@@ -173,7 +177,7 @@ class MaintenanceMenu(BaseMenu):
                     print("Date is out of range - Try again")
             except:
                 print("Date is out of range - Try again")
-        status = 'Upcoming'
+        status = 'Open'
         #self.datetime.relative_date(test_date)
             #print self.datetime.get_relative_date(days_ahead)
             #print self.datetime.get_relative_date(weeks_ahead)
@@ -189,7 +193,7 @@ class MaintenanceMenu(BaseMenu):
                 employee_Id = ""
                 print("Enter a valid ID: ")
             try:
-                find_employee = self.userAPI.findEmployeeByEmployeeId(employee_Id)
+                find_employee = self.userAPI.findEmployeeByEmployeeId(str(employee_Id))
             except RecordNotFoundError:
                 print("This employee is not in the system ")
                 create_employee = input("Do you want to create a new employee?: Y/N ")
@@ -200,6 +204,7 @@ class MaintenanceMenu(BaseMenu):
 
         try:
             print(f"Maintenance Request succesfully created and set for {dt}! ")
-            self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = None, employee_Id=None)
+            self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employee_Id=None)
+            self.waitForKeyPress()
         except:
             print(f"Something when wrong")

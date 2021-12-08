@@ -60,8 +60,8 @@ class MaintenanceRequestMenu(BaseMenu):
     def openedMRequest(self):
         '''prints out a table of all opened requests'''
         try:
-            open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Opened")
-            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Open")
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId', 'start_date']
             print(self.createTable(show_keys, open_request_list))
         except ValueError:
             print("Nothing to Show :(")
@@ -94,3 +94,85 @@ class MaintenanceRequestMenu(BaseMenu):
         show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
         print(self.createTable(show_keys, outstanding_request_list))
         self.waitForKeyPress()
+
+    def find_by_maintenance_id(self):
+        '''Gives option to find maintenace report given the id of request'''
+        maintenence_id = None
+        while maintenence_id == None:
+            maintenence_id = input("Enter maintenance ID: ")
+            try:
+                int(maintenence_id)
+                request_list = self.maintrequestAPI.findRequestByMaintenanceId(maintenence_id)
+                if len(request_list) == 0:
+                    print ("No items to show")
+                    request_list == None
+                    self.waitForKeyPress()
+                else:
+                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                    print(self.createTable(show_keys, request_list))
+                    self.waitForKeyPress()
+            except ValueError:
+                print("Please enter a valid ID")
+                maintenence_id = None
+
+
+    def find_by_employee(self):
+        '''Gives option to find maintenace request given the id of employee'''
+        employee_id = None
+        while employee_id == None:
+            employee_id = input("Enter employee ID: ")
+            try:
+                int(employee_id)
+                request_list = self.maintrequestAPI.findRequestByEmployee(employee_id)
+                if len(request_list) == 0:
+                    print ("No items to show")
+                    request_list == None
+                    self.waitForKeyPress()
+                else:
+                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                    print(self.createTable(show_keys, request_list))
+                    self.waitForKeyPress()
+            except ValueError:
+                print("Please enter a valid ID")
+                employee_id = None
+
+    def find_by_property(self):
+        '''Gives option to find maintenace request given the id of property'''
+        property_id = None
+        while property_id == None:
+            property_id = input("Enter property ID: ")
+            try:
+                int(property_id)
+                request_list = self.maintrequestAPI.findRequestByProperty(property_id)
+                if len(request_list) == 0:
+                    print ("No items to show")
+                    request_list == None
+                    self.waitForKeyPress()
+                else:
+                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                    print(self.createTable(show_keys, request_list))
+                    self.waitForKeyPress()
+            except ValueError:
+                print("Please enter a valid ID")
+                property_id = None
+
+    def find_by_date(self):
+        '''Gives option to find maintenace request given the date of report'''
+        start_date = None
+        end_date = None
+        while start_date == None or end_date == None:
+            start_date = input("Enter start date: ")
+            end_date = input("Enter start date: ")
+            if start_date == "" or  end_date == "":
+                start_date == None
+                end_date == None
+            else:
+                request_list = self.maintrequestAPI.findRequestByDate(start_date, end_date)
+                if len(request_list) == 0:
+                    print ("No items to show")
+                    request_list == None
+                    self.waitForKeyPress()
+                else:
+                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                    print(self.createTable(show_keys, request_list))
+                    self.waitForKeyPress()
