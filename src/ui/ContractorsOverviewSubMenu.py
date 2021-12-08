@@ -61,7 +61,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 print("Lazy contractor!")
                 contractor_id = None
         else:
-            show_keys = ['name', 'email', 'ssn']
+            show_keys = ['status', 'to_do', 'priority']
             print(self.createTable(show_keys, requests))
         self.waitForKeyPress()
 
