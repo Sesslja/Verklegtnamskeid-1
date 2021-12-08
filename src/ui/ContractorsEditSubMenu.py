@@ -1,3 +1,4 @@
+from model.MaintenanceRequestModel import MaintenanceRequest
 from data.DBError import RecordNotFoundError
 from ui.BaseMenu import BaseMenu
 from logic.ContractorLogic import ContractorAPI
@@ -191,7 +192,7 @@ class ContractorsEditSubMenu(BaseMenu):
         contractor_ssn = input('Enter contractor SSN: ')
 
         try:
-            updated = self.contractorsapi.assignContractorToMaintenance(employeeSSN=contractor_ssn, propertyId=self.contractorSSN)
+            updated = self.contractorsapi.assignContractorToProperty(contractorSSN=contractor_ssn, aintenanceRequest_id=self.contractorSSN)
 
             print(f'Successfully added contractor with SSN: {contractor_ssn}, to maintenance with ID: {self.contractorSSN}')
 
