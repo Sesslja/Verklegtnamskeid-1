@@ -96,12 +96,6 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     'display_name': 'Room ID'
                 }
             }
-            header_amenities = {
-                'amenity': {
-                    'display_name': 'Size',
-                    'suffix': ' m²'
-                }
-            }
             if RICH_AVAILABLE:
                 layout = Layout()
                 layout.split_column(
@@ -113,9 +107,25 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     Layout(name="relations")
                 )
                 layout["relations"].split_row(
-                    Layout(name="employees"),
+                    Layout(name="employees", ratio=2),
                     Layout(name="rooms"),
                     Layout(name="amenities")
+                )
+                single_property_to_table_list = [
+                    {'1': 'Property in use', '2': property_list.isActive},
+                    {'1': 'Address', '2': property_list.address_str},
+                ]
+                #prop = property_list.__dict__
+                ##for key in prop:
+                #single_prop_dict = {
+                #    ''
+                #}
+                #single_prop_dict.update({'1': key, '2': prop[key]})
+                #single_property_to_table_list.append(single_prop_dict)
+                #print(single_property_to_table_list)
+
+                layout["property"].update(
+                    self.createTable(['1', '2'], single_property_to_table_list, table_title='Property', return_table=True, hide_header=True, table_style='red')
                 )
 
                 layout["employees"].update(
@@ -126,8 +136,12 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     self.createTable(header_rooms, property_list.Rooms, table_title='Rooms', line_between_records=True, return_table=True)
                 )
 
+                amenities_list = []
+                for amen in property_list.amenities:
+                    amenities_list.append({'amenity': amen})
+
                 layout["amenities"].update(
-                    self.createTable(header_amenities, property_list.amenities, table_title='Amenities', line_between_records=True, return_table=True)
+                    self.createTable(['amenity'], amenities_list, hide_header=True, table_title='Amenities', line_between_records=True, return_table=True)
                 )
 
                 print(layout)
