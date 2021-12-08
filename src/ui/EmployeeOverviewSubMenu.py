@@ -58,22 +58,40 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def search_employee_by_id(self):
-        employee_id = None
-        while employee_id == None:
-            try:
-                employee_id = int(input("Enter employee ID: "))
-            except ValueError:
-                print("Please enter a valid ID")
+        # employee_id = None
+        # while employee_id == None:
+        #     try:
+        #         employee_id = int(input("Enter employee ID: "))
+        #     except ValueError:
+        #         print("Please enter a valid ID")
+        # try:
+        #     employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
+        #     if len(employee_list) == 0:
+        #         print("employee not found!")
+        #         employee_id = None
+        #     else:
+        #         show_keys = ['name', 'email', 'ssn']
+        #         print(self.createTable(show_keys, employee_list))
+        # except ValueError:
+        #     print("No employee found")
+        employee_num = Prompt.ask('Please enter employee number: ')
         try:
-            employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
-            if len(employee_list) == 0:
-                print("employee not found!")
-                employee_id = None
-            else:
-                show_keys = ['name', 'email', 'ssn']
-                print(self.createTable(show_keys, employee_list))
-        except ValueError:
-            print("No employee found")
+            found_employee = self.userApi.findEmployeeByEmployeeId(employee_num)
+
+            header = ['1', '2']
+
+            single_employee_to_table_list = [
+                {'1': 'Name', '2': found_employee.name},
+                {'1': 'Email', '2': found_employee.email},
+            ]
+
+            self.createTable(header, 
+            single_employee_to_table_list,
+            hide_header=True,
+            line_between_records=True)
+        except RecordNotFoundError:
+            print('User not found')
+
         self.waitForKeyPress()
 
 
@@ -108,20 +126,16 @@ class EmployeeOverviewSubMenu(BaseMenu):
             for record in manager_list:
                 record.name 
             
-            # if len(manager_list) == 0:
-            #     print("No manager found!")
-            # else:
-            show_keys = ['name', 'email', 'ssn']
-            print(self.createTable(show_keys, manager_list))
+            if len(manager_list) == 0:
+                print("No manager found!")
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, manager_list))
 
         except RecordNotFoundError:
             print("No manager found")
         self.waitForKeyPress()
 
-   
-
-    def find_by_attributy(self):
+    def find_managers(self):
         pass
-
-    def find_one_employee(self):
-        pass
+    
