@@ -46,7 +46,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         try:
             employee_list = self.userApi.allEmployeesOverview()
             # What keys from record list to use
-            show_keys = ['name', 'email', 'ssn']
+            show_keys = ['name', 'email', 'ssn', 'isManager']
             print(self.createTable(show_keys, employee_list))
 
         except RecordNotFoundError:
@@ -118,5 +118,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def findManagers(self):
-        pass
+        ismanager = True
+        try:
+            employee_list = self.userApi.findManagers()
+            # What keys from record list to use
+            show_keys = ['name', 'email', 'ssn', 'isManager']
+            print(self.createTable(show_keys, employee_list))
+
+        except RecordNotFoundError:
+            print("No employees to show")
+        self.waitForKeyPress()
     
