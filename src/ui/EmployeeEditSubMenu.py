@@ -9,6 +9,8 @@ class EmployeeEditMenu(BaseMenu):
         super().__init__()
         self.userAPI = UserAPI()
         self.employeeSSN = self.employeeSSN_input()
+        if self.employeeSSN is 'q':
+            self.failed = True
 
         self.menu_title = f"Edit Employee\n SSN: {self.employeeSSN}"
         
@@ -52,7 +54,9 @@ class EmployeeEditMenu(BaseMenu):
     def employeeSSN_input(self, retry: bool= False):
         self.clear()
         print('No User found\nplease input a correct one') if retry else None
-        employeeSSN_input = input("Please enter employee ssn: ")
+        employeeSSN_input = input("Please input the employee's SSN ([Q] to Quit): ")
+        if employeeSSN_input.lower() == 'q':
+            return 'q'
 
         try:
             found_employee = self.userAPI.findEmployeeByEmployeeId(employeeSsn=employeeSSN_input)

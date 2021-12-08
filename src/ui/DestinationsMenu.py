@@ -1,8 +1,6 @@
 from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.DestinationsLogic import DestinationsAPI
-#from logic.ContractorLogic import ContractorAPI
-#from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu 
 
 class DestinationsMenu(BaseMenu):
 
@@ -63,7 +61,7 @@ class DestinationsMenu(BaseMenu):
 
         self.waitForKeyPress()
 
-    def find_destination_by_country(self): #1
+    def find_destination_by_country(self):
         destination_country = None
         while destination_country == None:
             try:
@@ -78,14 +76,13 @@ class DestinationsMenu(BaseMenu):
             else:
                 addresslist = []
                 for i, dest in enumerate(destination_list):
-                    #destination_list[i].addr_str = Address.addrToString(dest.Address)
                     record_dict = {}
                     for key in dest.Address:
                         record_dict.update({key: dest.Address[key]})
                     addresslist.append(record_dict)
 
                 show_keys = ['country', 'city']
-                #show_keys = ['addr_str']
+
                 print(self.createTable(show_keys, addresslist))
                 self.waitForKeyPress()
         except ValueError:
@@ -107,14 +104,11 @@ class DestinationsMenu(BaseMenu):
             else:
                 addresslist = []
                 for i, dest in enumerate(destination_list):
-                    #destination_list[i].addr_str = Address.addrToString(dest.Address)
                     record_dict = {}
                     for key in dest.Address:
                         record_dict.update({key: dest.Address[key]})
                     addresslist.append(record_dict)
-
                 show_keys = ['country', 'city']
-                #show_keys = ['addr_str']
                 print(self.createTable(show_keys, addresslist))
                 self.waitForKeyPress()
         except ValueError:
@@ -129,25 +123,27 @@ class DestinationsMenu(BaseMenu):
                 print("No destinations to show")
             else:
                 for i, dest in enumerate(destination_list):
-                    #destination_list[i].addr_str = Address.addrToString(dest.Address)
                     for key in dest.Address:
-                        setattr(destination_list[i], key, dest.Address[key]) #{key: dest.Address[key]})
+                        setattr(destination_list[i], key, dest.Address[key])
 
                 print(destination_list)
-                show_keys = ['country','city']
+                show_keys = {
+                    'country': {
+                        'display_name': 'Country'
+                    },
+                    'city': {
+                        'display_name': 'City'
+                    }
+                }
                 print(self.createTable(show_keys, destination_list))
-                self.waitForKeyPress()
+
         except ValueError:
             print("No destinations found")
         self.waitForKeyPress()
     
     def delete_destination(self):
-        destination_zip = input("Enter destination zip: ")
-        found_destinations = self.destinationsapi.findDestinationsByZip(destination_zip)
 
-        # select one destination here
-
-        selected_dest_id = "961a5ad3-eb66-422e-a833-888dfa6d9b89"
+        selected_dest_id = input('Enter destination id: ')
 
         if self.destinationsapi.deleteContractor(selected_dest_id) == True:
             print("Destination deleted")

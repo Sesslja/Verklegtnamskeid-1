@@ -2,9 +2,10 @@ from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.ContractorLogic import ContractorAPI
 from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu 
+from ui.ContractorsEditSubMenu import ContractorsEditSubMenu
 
 class ContractorsMenu(BaseMenu):
-    '''sýnir aðal valmynd fyrir verktaka options'''
+    '''Shows main contractor menu'''
     def __init__(self):
         super().__init__()
         self.contractorapi = ContractorAPI()
@@ -14,12 +15,17 @@ class ContractorsMenu(BaseMenu):
         self.menu_options = {
             "1": {
                 "title": "Create contractors",
-                "access": "Manager",
+                "access": "manager",
                 "function": "createContractor"
             },                            
             "2": {
                 "title": "Contractors overview",
                 "class": ContractorsOverviewSubMenu
+            },
+            "3": {
+                "title": "Edit Contractor",
+                "access": "manager",
+                "class": ContractorsEditSubMenu
             },
             "X": {
                 "title": "Return to previous page",

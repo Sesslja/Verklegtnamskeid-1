@@ -11,6 +11,7 @@ try:
     from rich.console import Console
     from rich.table import Table
     from rich.align import Align
+    from rich.style import Style
     RICH_AVAILABLE = True
 except ModuleNotFoundError:
     RICH_AVAILABLE = False
@@ -21,8 +22,11 @@ class BaseMenu :
         self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear') if not RICH_AVAILABLE else Console().clear()
         self.menu_title = str()
         self.isMainMenu = False
+        self.failed = False
 
     def print_options(self):
+        if self.failed:
+            return 'run'
         menuState = 'run'
         while menuState == 'run':
             self.clear()
@@ -103,7 +107,16 @@ class BaseMenu :
             #print(f'Invalid input: {user_input}')
             return 'run'
 
-    def createTable(self, header, obj, table_title: str=None, line_between_records: bool=False, return_table: bool=False, justify_table: str='left'):
+    def createTable(self, 
+    header, 
+    obj, 
+    hide_header: bool=False,
+    table_title: str=None, 
+    line_between_records: bool=False, 
+    return_table: bool=False, 
+    justify_table: str='left',
+    table_style: str='bright_yellow',
+    color_newest: bool=False):
 
         if not RICH_AVAILABLE:
             return self.createTableNoDependency(header, obj, line_between_records)
@@ -163,10 +176,14 @@ class BaseMenu :
         if table_title:
             table.title = table_title
 
+        if color_newest:
+            table.rows[table.row_count-1].style = 'bright_blue'
+
         table.caption = f'Found {len(obj)} entries.'
         table.row_styles = ['none', 'dim']
-        table.border_style = 'bright_yellow'
+        table.border_style = Style.parse(table_style)
         table.box = box.ROUNDED
+        table.show_header = not hide_header
 
         #if justify_table == 'center':
         #    print('heha')
