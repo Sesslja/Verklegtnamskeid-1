@@ -54,7 +54,15 @@ class ContractorsOverviewSubMenu(BaseMenu):
     
     def see_contractor_history(self):
         contractor_ssn = input("Enter contractor SSN: ")
-        contractor = self.contractorapi.find_contractor_requests(contractor_ssn)
+        contractorID = self.contractorapi.findContractorByContractorId(contractor_ssn)
+        requests = self.contractorapi.find_requests_by_contractorID(contractorID._id)
+        if len(requests) == 0:
+                print("Lazy contractor!")
+                contractor_id = None
+        else:
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, requests))
+        self.waitForKeyPress()
 
 
     def find_contractors_by_id(self): #1

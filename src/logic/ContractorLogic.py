@@ -13,9 +13,14 @@ class ContractorAPI:
         new_contractor = Contractor(company=company, name=name, ssn=ssn, profession=profession, phone=phone, openinghours=openinghours, email=email, address=address)
         return self.contractorRepo.save(new_contractor)
 
-    def find_contractor_requests(self, contractor_ssn):
+    def find_requests_by_contractorID(self, contractor_id):
         '''Shows all requests assigned to contractor\ngiven contractor SSN'''
-        pass
+        maint_reqs = self.maintReqRepo.find({
+            'where': {
+                'contractor': contractor_id
+            }
+        })
+        return maint_reqs
     
     
     def findContractor(self) -> list:
