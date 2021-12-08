@@ -25,40 +25,4 @@ class MaintReportAPI:
         return self.reportRepo.find()
 
 
-    def findReportByEmployee(self, employeeId: str):
-        user = self.userRepo.find({
-            'where': {
-                'ssn': employeeId
-            }
-        })
-
-        return self.reportRepo.find({
-            'where': {
-                'employeeId': employeeId
-            }
-        })
-    
-    def findReportByProperty(self, propertyId: str):
-        property = self.propertyRepo.find({
-            'where': {
-                'propertyId': propertyId
-            }
-        })
-
-        return self.reportRepo.find({
-            'where': {
-                'propertyId': propertyId
-            }
-        })
-
-    def findReportByDate(self, startDate: list, endDate: list):
-        start_Date = BaseModel.datetimeToUtc(startDate)
-        end_Date = BaseModel.datetimeToUtc(endDate)
-        x = range(start_Date, end_Date)
-        return self.reportRepo.find({
-            'where': {
-                'finish_date': x
-                
-            }
-        })
 

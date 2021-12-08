@@ -3,6 +3,7 @@ from model.AddressType import Address
 from model.MaintenanceRequestModel import MaintenanceRequest
 from model.userModel import User
 from data.database import DB
+from model.BaseModel import BaseModel
 
 class MaintenanceRequestAPI :
 
@@ -50,5 +51,43 @@ class MaintenanceRequestAPI :
         return self.requestRepo.find({
             'where': {
                 'verification_number': verification_number
+            }
+        })
+    
+    
+    def findRequestByEmployee(self, employeeId: str):
+        user = self.userRepo.find({
+            'where': {
+                'ssn': employeeId
+            }
+        })
+
+        return self.requestRepo.find({
+            'where': {
+                'employeeId': employeeId
+            }
+        })
+    
+    def findRequestByProperty(self, propertyId: str):
+        property = self.propertyRepo.find({
+            'where': {
+                'propertyId': propertyId
+            }
+        })
+
+        return self.requestRepo.find({
+            'where': {
+                'propertyId': propertyId
+            }
+        })
+
+    def findRequestByDate(self, startDate: list, endDate: list):
+        start_Date = BaseModel.datetimeToUtc(startDate)
+        end_Date = BaseModel.datetimeToUtc(endDate)
+        x = range(start_Date, end_Date)
+        return self.requestRepo.find({
+            'where': {
+                'finish_date': x
+                
             }
         })
