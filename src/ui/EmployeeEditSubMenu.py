@@ -63,15 +63,19 @@ class EmployeeEditMenu(BaseMenu):
 
     def edit_employee_address(self):
         found_user = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
-        address = Address(found_user)
-        old_country = address.country
-        old_city = address.city
-        old_zip = address.zip
-        new_country = input(f"Old country: {old_country}\nNew country:  ")
-        new_city = input(f"Old city: {old_city}\nNew city:  ")
-        new_zip = input(f"Old zip: {old_zip}\nNew zip:  ")
-
-        pass
+        comfirm = input("Do you want to change employee address?\n[1] Yes\n[2] No\n: ")
+        if comfirm == "1":
+            address = found_user.Address
+            old_country = address["country"]
+            old_city = address["city"]
+            old_zip = address["zip"]
+            new_country = input(f"Old country: {old_country}\nNew country:  ")
+            new_city = input(f"Old city: {old_city}\nNew city:  ")
+            new_zip = input(f"Old zip: {old_zip}\nNew zip:  ")
+            print("Address successfully changed.")
+        else:
+            print("Okey, lets go back")
+        self.waitForKeyPress()
         
     
     def edit_employee_name(self):
