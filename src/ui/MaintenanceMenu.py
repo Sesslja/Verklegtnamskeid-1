@@ -83,9 +83,9 @@ class MaintenanceMenu(BaseMenu):
     
         request_info = ""
 
+        contractorId, contractorsFee, = None, None
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
         if was_contractor.lower() == "y":
-            contractorId = None
             while contractorId == None:
                 contractorId = input("\nEnter contractors id: ")
                 try:
@@ -121,12 +121,12 @@ class MaintenanceMenu(BaseMenu):
             salary = 0
         dt = self.datetime.generateDatetimeNow()
 
-        report = self.maintreportAPI.createReport(request_info = request_info, verification_num = verificationNum, maintenance = maintenanceList, contractorId = contractorId, materialcost = materialCost, salary = salary, contractorsfee = contractorsFee, dt = dt)
+        report = self.maintreportAPI.createReport(request_info = request_info, verificationNumber = verificationNum, maintenance = maintenanceList, contractorId = contractorId, materialcost = materialCost, salary = salary, contractorsfee = contractorsFee, dt = dt)
         print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
         self.waitForKeyPress()
         #except:
            # print(f"Something whent wrong")
-           3self.waitForKeyPress()
+           #self.waitForKeyPress()
         
 
     def createMRequest(self):
