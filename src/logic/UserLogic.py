@@ -62,6 +62,16 @@ class UserAPI:
                 'isManager': True
             }
         })
+    
+    def findManagersByCountry(self, country: str):
+        return self.userRepo.find({
+            'where': {
+                'isManager': True,
+                'Addess': {
+                    'country': country
+                }
+            }
+        })
 
     def updateEmployeeInfo(self, id, data):
         data['_id'] = id
