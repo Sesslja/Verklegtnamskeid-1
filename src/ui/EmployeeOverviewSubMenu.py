@@ -54,7 +54,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             except ValueError:
                 print("Please enter a valid ID")
         try:
-            employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
+            employee_list = self.userApi.findEmployeeByEmployeeId(employee_id)
             if len(employee_list) == 0:
                 print("employee not found!")
                 employee_id = None

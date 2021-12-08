@@ -53,7 +53,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
             property_list = self.propertyapi.findPropertyByEmployeeSsn(employee_id)
 
             header_list = ['amenities', 'propertyId', 'isActive']
-            print(self.createTable(header_list, property_list, line_between_records=True))
+            self.createTable(header_list, property_list, line_between_records=True, justify_table='center')
         except RecordNotFoundError:
             print("No employees found with that SSN")
         self.waitForKeyPress()
@@ -82,11 +82,12 @@ class PropertiesOverviewSubMenu(BaseMenu):
             print ("No properties found in region")
         self.waitForKeyPress()
 
-    def findRoomsByPropertyId(self):
+    def findRoomsByPropertyId(self, propertyId: str=None):
         '''Finds all rooms of a property given property ID'''
-        propertyId = input('Find rooms by property ID:\nEnter property ID: ')
+        if propertyId == None:
+            propertyId = input('Find rooms by property ID:\nEnter property ID: ')
         try:
-            found_property = self.propertyapi.findPropertyByPropertyId(propertyId)
+            found_property = PropertyAPI().findPropertyByPropertyId(propertyId)
 
             # print(found_property)
 
@@ -105,26 +106,35 @@ class PropertiesOverviewSubMenu(BaseMenu):
         '''prints a table of all properties og NAN'''
         try:
             property_list = self.propertyapi.findProperties()
-            if len(property_list) == 0:
-                print("There are no properties to show")
-            else:
-                header_list = {
-                    'amenities': {
-                        'display_name': 'Amenities'
-                    },
-                    'propertyId': {
-                        'display_name': 'Property ID'
-                    },
-                    'total_size': {
-                        'display_name': 'Total size',
-                        'suffix': ' m²'
-                    }
-                }#['amenities', 'propertyId', 'isActive', 'total_size']
-                print(self.createTable(header_list, property_list, line_between_records=True))
-        except ValueError:
+            header_list = {
+                'propertyId': {
+                    'display_name': 'Property ID',
+                    'header_style': 'bold'
+                },
+                'address_str': {
+                    'display_name': 'Address',
+                    'header_style': 'bold'
+                },
+                'amenities': {
+                    'display_name': 'Amenities',
+                    'header_style': 'bold'
+                },
+                'total_size': {
+                    'display_name': 'Total size',
+                    'suffix': ' m²',
+                    'header_style': 'bold'
+                },
+                'room_amount': {
+                    'display_name': 'Amount of rooms',
+                    'header_style': 'bold'
+                }
+            }#
+            #header = ['amenities', 'propertyId', 'isActive', 'total_size']
+
+            print(self.createTable(header_list, property_list, line_between_records=True))
+            #print(self.createTable(header_list, property_list, line_between_records=True))
+        except RecordNotFoundError:
             print("There are no properties to show")
 
-        print(self.waitForKeyPress())
-
-        self.waitForKeyPress()
+        self.waitForKeyPress(text_to_print='Press any key to return')
 

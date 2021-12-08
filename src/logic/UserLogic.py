@@ -21,11 +21,11 @@ class UserAPI:
     def deleteEmployee(self, id) -> list:
         return self.userRepo.delete(id)
 
-    def findEmployeesByEmployeeId(self, employeeSsn: str) -> list:
+    def findEmployeesByEmployeeId(self, employeeId: str) -> list:
         '''Deprecated do not use.'''
         return self.userRepo.find({ 
             'where': {
-                'ssn': employeeSsn
+                'ssn': employeeId
             }
         })
 

@@ -47,3 +47,4 @@ class MainMenu(BaseMenu):
                 "special": "quit"
             }
         }
+
