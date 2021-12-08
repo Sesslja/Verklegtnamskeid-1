@@ -166,7 +166,8 @@ class MaintenanceMenu(BaseMenu):
 
         date = False
         while date is False:
-            start_date = input("Enter start date [yyyy,mm,dd]: ")
+            start_date = input("Enter start date [yyyy,mm,dd]: ").split(',')
+            start_date = [int(i) for i in start_date]
             test_date = self.datetime.testDate(start_date)
             if test_date is False:
                 print("Date is out of range - Try again")
