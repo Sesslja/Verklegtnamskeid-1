@@ -34,6 +34,10 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "title": "Find all managers",
                 "function": "findManagers"
             },
+            "6": {
+                "title": "See employee history",
+                "function": "see_employee_history"
+            },
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -44,6 +48,19 @@ class EmployeeOverviewSubMenu(BaseMenu):
             }
         }
 
+    def see_employee_history(self):
+        employee_ssn = input("Enter employee SSN: ")
+        try:    
+            employeeID = self.userApi.findEmployeesByEmployeeId(employee_ssn)
+            requests = self.userApi.FindRequestsByUserID(employeeID._id)
+            
+            show_keys = ['status', 'to_do', 'priority']
+            print(self.createTable(show_keys, requests))
+        except RecordNotFoundError:
+            print('Nothing foud :(')
+        self.waitForKeyPress()
+    
+    
     def allEmployeesOverview(self):
         '''Shows all employees working for NAN'''
         try:

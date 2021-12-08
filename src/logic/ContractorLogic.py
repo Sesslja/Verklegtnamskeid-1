@@ -17,7 +17,7 @@ class ContractorAPI:
         '''Shows all requests assigned to contractor\ngiven contractor SSN'''
         maint_reqs = self.maintReqRepo.find({
             'where': {
-                'contractor': contractor_id
+                'contractor_id': contractor_id
             }
         })
         return maint_reqs
