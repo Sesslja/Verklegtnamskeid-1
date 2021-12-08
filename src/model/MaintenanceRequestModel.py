@@ -13,7 +13,7 @@ class MaintenanceRequest(BaseModel) :
         self.isRegular = isRegular
         self.occurance = occurrence
         self.priority = priority
-        self.start_date = datetime(start_date)
+        self.start_date = start_date
         self.employeeId = employeeId
         self.verification_number = verification_number
         self.contractor_id = contractor_id
