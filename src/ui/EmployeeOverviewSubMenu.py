@@ -31,6 +31,10 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "title": "Find managers",
                 "function": "find_managers_by_country"
             },
+            "6": {
+                "title": "Find all managers",
+                "function": "find_managers"
+            },
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -95,6 +99,8 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
 
     def find_managers_by_country(self):
+        '''Option to search for manager \n given country'''
+    
         country = Prompt.ask('Please enter a country')
         try:
             manager_list = self.userApi.findManagersByCountry(country)
