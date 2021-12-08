@@ -7,7 +7,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -30,7 +30,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -54,7 +54,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -76,7 +76,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -105,7 +105,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -175,8 +175,36 @@
             "2a183d14-41e5-49f0-bbca-fcf19028a130",
             "0068302d-fcf5-429c-9d01-1655ed6ce816",
             "e6f25e0b-659c-434e-9261-e251a87d4ed9",
-            "0c53e3c4-090d-4d6e-8449-39de2c170e1b"
+            "0c53e3c4-090d-4d6e-8449-39de2c170e1b",
+            "2a183d14-41e5-49f0-bbca-fcf19028a130"
         ],
-        "Rooms": []
+        "Rooms": [
+            {
+                "size": 30.0,
+                "roomId": "PP8000"
+            },
+            {
+                "size": 50.0,
+                "roomId": "room2"
+            },
+            {
+                "size": 90.0,
+                "roomId": "PP8005"
+            },
+            {
+                "size": 80.0,
+                "roomId": "PR8006"
+            },
+            {
+                "size": 20.0,
+                "roomId": "PR8007"
+            }
+        ],
+        "rooms": [
+            {
+                "size": 20.0,
+                "roomId": "PP8000"
+            }
+        ]
     }
 ]

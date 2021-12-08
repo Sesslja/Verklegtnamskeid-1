@@ -21,10 +21,18 @@ class UserAPI:
     def deleteEmployee(self, id) -> list:
         return self.userRepo.delete(id)
 
-    def findEmployeesByEmployeeId(self, employeeId: str):
+    def findEmployeesByEmployeeId(self, employeeId: str) -> list:
+        '''Deprecated do not use.'''
         return self.userRepo.find({ 
             'where': {
                 'ssn': employeeId
+            }
+        })
+
+    def findEmployeeByEmployeeId(self, employeeSsn: str):
+        return self.userRepo.findOne({ 
+            'where': {
+                'ssn': employeeSsn
             }
         })
     
@@ -61,3 +69,5 @@ class UserAPI:
     
     def findByAttributy(self, *attr):
         ({"name":"jón"},)
+
+

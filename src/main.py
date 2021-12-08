@@ -5,6 +5,7 @@ from ui.MainMenu import MainMenu
 from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from model.AddressType import Address
 
+
 def main():
     menu = MainMenu()
     menu.print_options()

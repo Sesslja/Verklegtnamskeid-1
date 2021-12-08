@@ -36,3 +36,25 @@ class ContractorAPI:
                 'name': name
             }
         })
+
+    def assignContractorToProperty(self, contractorSSN, contractorId):
+        contractor = self.contractorRepo.findOne({
+            'where': {
+                'ssn': contractorSSN
+            }
+        })
+        contractorId = contractor._id
+
+        found_prop = self.findContractorByContractorId(contractorId)
+
+        try:
+            current_contractors = found_prop.contractors
+        except KeyError:
+            current_contractors = []
+
+        current_contractors.append(contractorId)
+
+        return self.contractorRepo.update({
+            '_id': found_prop._id,
+            'contractors': current_contractors
+        })
