@@ -24,5 +24,10 @@ class MaintReportAPI:
     def findReport(self) -> list:
         return self.reportRepo.find()
 
-
+    def findMReportByVerificationId(self, verification_number: str):
+        return self.reportRepo.find({
+            'where': {
+                'verification_number': verification_number
+            }
+        })
 
