@@ -1,5 +1,6 @@
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
+from data.DBError import RecordNotFoundError
 
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self):
@@ -14,7 +15,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "function": "all_employees_overview"
             },
             "2": {
-                "title": "Search employee by id",
+                "title": "Find employee by employeeID",
                 "function": "search_employee_by_id"
             },
             "3": {
@@ -32,13 +33,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
+        '''Shows all employees working for NAN'''
         try:
-            employee_list = self.userApi.findEmployees()
-
+            employee_list = self.userApi.allEmployeesOverview()
             # What keys from record list to use
             show_keys = ['name', 'email', 'ssn']
             print(self.createTable(show_keys, employee_list))
-        except ValueError:
+            
+        except RecordNotFoundError:
             print("No employees to show")
         self.waitForKeyPress()
 
@@ -83,5 +85,12 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    
+    def find_manager(self):
+        pass
+
+    def find_by_attributy(self):
+        pass
+
+    def find_one_employee(self):
+        pass
 
