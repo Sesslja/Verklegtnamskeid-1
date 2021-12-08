@@ -1,3 +1,5 @@
+from re import L
+from typing import Text
 from data.DBError import RecordNotFoundError
 from ui.BaseMenu import RICH_AVAILABLE, BaseMenu
 from logic.PropertyLogic import PropertyAPI
@@ -8,6 +10,8 @@ try:
     from rich.layout import Layout
     from rich import print
     from rich.prompt import Prompt
+    from rich.panel import Panel
+    from rich.text import Text
 except ModuleNotFoundError:
     pass
 
@@ -33,7 +37,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
             "3":  {
                 "title": "Search by property ID",
                 "access": "",
-                "function": "search_by_id"
+                "function": "searchById"
             },
             "4":  {
                 "title": "Search by Employee",
@@ -90,7 +94,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
             print("No employees found with that SSN")
         self.waitForKeyPress()
 
-    def search_by_id(self):
+    def searchById(self):
         '''Finds all properties given a property ID'''
         try:
             property_id = input("Find property by property ID:\nEnter property ID: ")
@@ -111,12 +115,12 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 }
             }
             header_rooms = {
+                'roomId': {
+                    'display_name': 'Room ID'
+                },
                 'size': {
                     'display_name': 'Size',
                     'suffix': ' m²'
-                },
-                'roomId': {
-                    'display_name': 'Room ID'
                 }
             }
             if RICH_AVAILABLE:
@@ -124,6 +128,9 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 layout.split_column(
                     Layout(name="header", size=1),
                     Layout(name="main")
+                )
+                layout["header"].update(
+                    Text('')
                 )
                 layout["main"].split_row(
                     Layout(name="property", ratio=1),
@@ -148,7 +155,9 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 #print(single_property_to_table_list)
 
                 layout["property"].update(
-                    self.createTable(['1', '2'], single_property_to_table_list, table_title='Property', return_table=True, hide_header=True, table_style='red')
+                    Panel(
+                        self.createTable(['1', '2'], single_property_to_table_list, return_table=True, hide_header=True, table_style='red'),
+                    title='Property Info')
                 )
 
                 layout["employees"].update(
