@@ -3,11 +3,11 @@ from logic.MaintReportLogic import MaintReportAPI
 
 class MaintenanceReportMenu(BaseMenu):
     '''Gives maintenace report optins'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
 
         self.menu_title = "Maintenance Report Menu"
-        self.maintreportAPI = MaintReportAPI
+        self.maintreportAPI = MaintReportAPI()
 
         self.menu_options = {
             

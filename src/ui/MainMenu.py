@@ -11,8 +11,8 @@ from ui.DestinationsMenu import DestinationsMenu
 
 class MainMenu(BaseMenu):
     '''Shows main menu and restricts access to employees'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
 
         self.menu_title = "Main Menu"
         self.isMainMenu = True
@@ -41,7 +41,7 @@ class MainMenu(BaseMenu):
             },
             "4": {
                 "title": "Employees",
-                "access": "Manager",
+                "access": "manager",
                 "class": EmployeesMenu
             },
             "5": {

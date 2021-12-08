@@ -1,5 +1,23 @@
 [
     {
+        "_id": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37",
+        "created_at": "2021-12-08 16:55:43.168732",
+        "isActive": true,
+        "isArchived": false,
+        "name": "admin",
+        "email": "admin@nan.is",
+        "isManager": true,
+        "ssn": "1",
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjavik",
+            "zip": "103",
+            "address1": "Menntavegur 1",
+            "address2": null,
+            "address3": null
+        }
+    },
+    {
         "_id": "45eb6d0f-fb7a-4c03-b995-fc312cc1ae37",
         "created_at": "2021-11-29 23:34:55.168732",
         "isActive": true,
@@ -7,11 +25,11 @@
         "name": "Kiddi Sales",
         "email": "sales@nan.is",
         "isManager": false,
-        "ssn": "1234567890",
+        "ssn": "1234561890",
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -29,7 +47,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -43,11 +61,11 @@
         "name": "Blanco",
         "email": "jr@nan.is",
         "isManager": true,
-        "ssn": "1234567890",
+        "ssn": "1234587890",
         "Address": {
             "country": "Iceland",
             "city": "Reykjav\u00edk",
-            "zip": 108,
+            "zip": "108",
             "address1": "Menntavegur 1",
             "address2": null,
             "address3": null
@@ -65,7 +83,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -83,7 +101,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -101,7 +119,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -119,7 +137,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -137,7 +155,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -155,7 +173,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -173,7 +191,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -191,7 +209,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -209,7 +227,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -227,7 +245,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -245,7 +263,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -263,7 +281,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -274,14 +292,14 @@
         "created_at": "2021-12-01 15:15:22.959906",
         "isActive": true,
         "isArchived": false,
-        "name": 11,
+        "name": "11",
         "email": "11@nan.is",
         "isManager": false,
         "ssn": "105",
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -299,7 +317,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -317,7 +335,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -335,7 +353,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -353,7 +371,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -371,7 +389,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -389,7 +407,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -407,7 +425,7 @@
         "Address": {
             "country": "Iceland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null
@@ -425,7 +443,7 @@
         "Address": {
             "country": "Greenland",
             "city": "Eih",
-            "zip": 420,
+            "zip": "420",
             "address1": "Nuukway 1",
             "address2": null,
             "address3": null

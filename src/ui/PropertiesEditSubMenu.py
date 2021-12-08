@@ -5,8 +5,8 @@ from logic.PropertyLogic import PropertyAPI
 
 class PropertiesEditSubMenu(BaseMenu):
     '''gives menu options to edit property'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.propertyapi = PropertyAPI()
         self.propertyId = self.propertyIdInput()
         if self.propertyId is 'q':

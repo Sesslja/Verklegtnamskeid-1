@@ -6,8 +6,8 @@ from ui.ContractorsEditSubMenu import ContractorsEditSubMenu
 
 class ContractorsMenu(BaseMenu):
     '''Shows main contractor menu'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.contractorapi = ContractorAPI()
 
         self.menu_title = "Menu\nContractors Menu"

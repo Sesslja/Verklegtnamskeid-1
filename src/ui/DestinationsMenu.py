@@ -4,9 +4,8 @@ from logic.DestinationsLogic import DestinationsAPI
 
 class DestinationsMenu(BaseMenu):
 
-    def __init__(self):
-
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.destinationsapi = DestinationsAPI()
 
         self.menu_title = "Menu\nDestinations Menu"
@@ -64,10 +63,9 @@ class DestinationsMenu(BaseMenu):
     def find_destination_by_country(self):
         destination_country = None
         while destination_country == None:
-            try:
-                destination_country = input("Enter the destination's country: ")
-            except ValueError:
-                print("Please enter a valid country")
+            
+            destination_country = input("Enter the destination's country: ")
+
         try:
             destination_list = self.destinationsapi.findDestinationByCountry(destination_country)
             if len(destination_list) == 0:
@@ -84,7 +82,7 @@ class DestinationsMenu(BaseMenu):
                 show_keys = ['country', 'city']
 
                 print(self.createTable(show_keys, addresslist))
-                self.waitForKeyPress()
+
         except ValueError:
             print("No destination found")
         self.waitForKeyPress()
@@ -92,10 +90,9 @@ class DestinationsMenu(BaseMenu):
     def find_destination_by_city(self): 
         destination_city = None
         while destination_city == None:
-            try:
-                destination_city = input("Enter the destination's country: ")
-            except ValueError:
-                print("Please enter a valid city")
+
+            destination_city = input("Enter the destination's country: ")
+
         try:
             destination_list = self.destinationsapi.findDestinationByCity(destination_city)
             if len(destination_list) == 0:
@@ -110,7 +107,7 @@ class DestinationsMenu(BaseMenu):
                     addresslist.append(record_dict)
                 show_keys = ['country', 'city']
                 print(self.createTable(show_keys, addresslist))
-                self.waitForKeyPress()
+
         except ValueError:
             print("No destination found")
         self.waitForKeyPress()
