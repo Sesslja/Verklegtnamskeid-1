@@ -33,6 +33,11 @@ class DestinationsMenu(BaseMenu):
                 "title": "Create destination",
                 "access": "",
                 "function": "create_destination"
+            },                            
+            "5": {
+                "title": "Delete destination",
+                "access": "",
+                "function": "delete_destination"
             },
             "X": {
                 "title": "Return to previous page",
@@ -50,7 +55,7 @@ class DestinationsMenu(BaseMenu):
         country = input('Country: ')
         city = input('City: ')
         zip_code = input('Zip code: ')
-        address = Address(country=country, city=city, zip_code=zip_code)#, zip_code=zip_code)
+        address = Address(country=country, city=city, zip=zip_code)
 
         self.destinationsapi.createDestination(address)
 
@@ -71,8 +76,17 @@ class DestinationsMenu(BaseMenu):
                 print("Destinations not found!")
                 destination_country = None
             else:
+                addresslist = []
+                for i, dest in enumerate(destination_list):
+                    #destination_list[i].addr_str = Address.addrToString(dest.Address)
+                    record_dict = {}
+                    for key in dest.Address:
+                        record_dict.update({key: dest.Address[key]})
+                    addresslist.append(record_dict)
+
                 show_keys = ['country', 'city']
-                print(self.createTable(show_keys, destination_list))
+                #show_keys = ['addr_str']
+                print(self.createTable(show_keys, addresslist))
                 self.waitForKeyPress()
         except ValueError:
             print("No destination found")
@@ -82,7 +96,7 @@ class DestinationsMenu(BaseMenu):
         destination_city = None
         while destination_city == None:
             try:
-                destination_city = input("Enter the destination's city: ")
+                destination_city = input("Enter the destination's country: ")
             except ValueError:
                 print("Please enter a valid city")
         try:
@@ -91,8 +105,17 @@ class DestinationsMenu(BaseMenu):
                 print("Destinations not found!")
                 destination_city = None
             else:
+                addresslist = []
+                for i, dest in enumerate(destination_list):
+                    #destination_list[i].addr_str = Address.addrToString(dest.Address)
+                    record_dict = {}
+                    for key in dest.Address:
+                        record_dict.update({key: dest.Address[key]})
+                    addresslist.append(record_dict)
+
                 show_keys = ['country', 'city']
-                print(self.createTable(show_keys, destination_list))
+                #show_keys = ['addr_str']
+                print(self.createTable(show_keys, addresslist))
                 self.waitForKeyPress()
         except ValueError:
             print("No destination found")
@@ -101,13 +124,33 @@ class DestinationsMenu(BaseMenu):
     def all_destinations_overview(self):
 
         try:
-            destination_list = self.destinationsapi.findDestination()
+            destination_list = self.destinationsapi.findDestinations()
             if len(destination_list) == 0:
                 print("No destinations to show")
             else:
+                for i, dest in enumerate(destination_list):
+                    #destination_list[i].addr_str = Address.addrToString(dest.Address)
+                    for key in dest.Address:
+                        setattr(destination_list[i], key, dest.Address[key]) #{key: dest.Address[key]})
+
+                print(destination_list)
                 show_keys = ['country','city']
                 print(self.createTable(show_keys, destination_list))
                 self.waitForKeyPress()
         except ValueError:
             print("No destinations found")
+        self.waitForKeyPress()
+    
+    def delete_destination(self):
+        destination_zip = input("Enter destination zip: ")
+        found_destinations = self.destinationsapi.findDestinationsByZip(destination_zip)
+
+        # select one destination here
+
+        selected_dest_id = "961a5ad3-eb66-422e-a833-888dfa6d9b89"
+
+        if self.destinationsapi.deleteContractor(selected_dest_id) == True:
+            print("Destination deleted")
+        else: 
+            print("Destination not found")
         self.waitForKeyPress()

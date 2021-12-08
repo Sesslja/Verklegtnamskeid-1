@@ -6,23 +6,43 @@ class DestinationsAPI:
     def __init__(self) -> None:
         self.destinationsRepo = DB(Destination)
 
-    def findDestination(self) -> list:
+    def findDestinations(self) -> list:
         return self.destinationsRepo.find()
+
+    def findDestinationsByZip(self, zip_code) -> list:
+        return self.destinationsRepo.find({
+            'where': {
+                'Address': {
+                    'zip': zip_code
+                }
+            }
+        })
     
-    def createDestination(self, country=None, city=None, zip_code=None, address: Address=None):
-        new_destination = Destination(country=country, city=city, zip_code=zip_code, address=address)
+    def deleteContractor(self, _id) -> list:
+        return self.destinationsRepo.delete(_id)
+    
+    #def createDestination(self, country: str=None, city: str=None, zip: str=None, address: Address=None):
+    #    new_destination = Destination(country=country, city=city, zip=zip, address=address)
+    #    return self.destinationsRepo.save(new_destination)
+
+    def createDestination(self, address: Address=None):
+        new_destination = Destination(address=address)
         return self.destinationsRepo.save(new_destination)
 
     def findDestinationByCountry(self, country: str):
         return self.destinationsRepo.find({ 
             'where': {
-                'country': country
+                'Address': {
+                    'country': country
+                }
             }
         })
 
     def findDestinationByCity(self, city: str):
         return self.destinationsRepo.find({ 
             'where': {
+                'Address': {
                 'city': city
+                }
             }
         })
