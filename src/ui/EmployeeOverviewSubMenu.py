@@ -1,8 +1,11 @@
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from data.DBError import RecordNotFoundError
-from rich.prompt import Prompt
-
+try: 
+    from rich.prompt import Prompt
+except:
+    None
+ 
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self):
         super().__init__()
