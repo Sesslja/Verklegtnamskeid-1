@@ -41,11 +41,6 @@ class MainMenu(BaseMenu):
                 "access": "Manager",
                 "class": EmployeesMenu
             },
-            "5": {
-                "title": "Employees",
-                "access": "Manager",
-                "function": "printTable"
-            },
             "Q": {
                 "title": "Exit program",
                 "access": "",
@@ -53,5 +48,3 @@ class MainMenu(BaseMenu):
             }
         }
 
-    def printTable(self):
-        self.createRichTable(['la'], ['heho'])

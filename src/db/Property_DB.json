@@ -185,6 +185,18 @@
             {
                 "size": 50.0,
                 "roomId": "room2"
+            },
+            {
+                "size": 90.0,
+                "roomId": "PP8005"
+            },
+            {
+                "size": 80.0,
+                "roomId": "PR8006"
+            },
+            {
+                "size": 20.0,
+                "roomId": "PR8007"
             }
         ],
         "rooms": [

@@ -1,5 +1,7 @@
 import sys, os
 
+from rich.repr import T
+
 try:
     import readline
 except ImportError:
@@ -10,6 +12,7 @@ try:
     from rich import box, print
     from rich.console import Console
     from rich.table import Table
+    from rich.align import Align
     RICH_AVAILABLE = True
 except ModuleNotFoundError:
     RICH_AVAILABLE = False
@@ -25,14 +28,26 @@ class BaseMenu :
         menuState = 'run'
         while menuState == 'run':
             self.clear()
-            to_print = self.menu_title + '\n'
-            if not RICH_AVAILABLE: # Checks if Rich module is installed, install with 'pip install rich'
+            if not RICH_AVAILABLE:
+                to_print = self.menu_title + '\n'
+                # Checks if Rich module is installed, install with 'pip install rich'
                 to_print = color('Rich package is not installed, program may not render correctly\n', backgroundColor='red') + to_print
-            to_print += ("-"*30) + '\n'
-            for key in  self.menu_options :
-                to_print += f"[{key}] {self.menu_options[key]['title']} \n"
-            to_print += ("-"*30)
-            print(to_print)
+                to_print += ("-"*30) + '\n'
+                for key in  self.menu_options :
+                    to_print += f"[{key}] {self.menu_options[key]['title']} \n"
+                to_print += ("-"*30)
+                print(to_print)
+            else:
+                menuTable = Table(show_header=False, show_lines=True)
+                menuTable.title = self.menu_title
+                menuTable.add_column()
+                menuTable.add_column()
+                for key in self.menu_options:
+                    menuTable.add_row(key, self.menu_options[key]['title'])
+                menuTable.box = box.MINIMAL
+                menuTable_centered = Align.center(menuTable)
+                print(menuTable_centered)
+
             menuState = self.getUserInput()
             if menuState == 'main': # Check if the user wanted to go to the main menu
                 if self.isMainMenu == False:
@@ -45,10 +60,10 @@ class BaseMenu :
                 exit()
 
     def getUserInput(self):
+        '''Gets the user input, then directs that input into computeUserOptions.\n
+        Only used in menus'''
         try:
-            user_input = None
-            while user_input is None:
-                user_input = input("").upper() #User input P/M/C/E
+            user_input = self.waitForKeyPress(print_text=False).upper() #User input
             return self.computeUserOptions(user_input)
         except KeyboardInterrupt:
             print('')
@@ -58,6 +73,10 @@ class BaseMenu :
                 self.getUserInput()
 
     def computeUserOptions(self, user_input)-> str:
+        ''' Finds what option the user input corresponds to.\n
+        If it's a function, it runs the function.\n
+        if it's a class it initiates the class\n
+        There are also "special" values such as back, menu or quit'''
         opt = self.menu_options
 
         if user_input in opt:
@@ -83,10 +102,10 @@ class BaseMenu :
             else:
                 return 'run'
         else:
-            print(f'Invalid input: {user_input}')
+            #print(f'Invalid input: {user_input}')
             return 'run'
 
-    def createTable(self, header, obj, line_between_records: bool=False):
+    def createTable(self, header, obj, line_between_records: bool=False, justify_table: str='left'):
 
         if not RICH_AVAILABLE:
             return self.createTableNoDependency(header, obj, line_between_records)
@@ -119,7 +138,10 @@ class BaseMenu :
                     pass
                 
         for record in obj:
-            record = record.__dict__
+            try:
+                record = record.__dict__
+            except AttributeError:
+                pass
             row_list = []
             for key in header:
                 if key in record:
@@ -129,6 +151,8 @@ class BaseMenu :
                         record[key] = 'True' if record[key] else 'False'
                     elif type(record[key]) is int:
                         record[key] = str(record[key])
+                    elif type(record[key]) is float:
+                        record[key] = str(round(record[key]))
 
                     try:
                         record[key] += header[key]['suffix']
@@ -143,7 +167,18 @@ class BaseMenu :
         table.border_style = 'bright_yellow'
         table.box = box.ROUNDED
 
-        print(table)
+        #if justify_table == 'center':
+        #    print('heha')
+        #    table_aligned = Align.center(table)
+        #elif justify_table == 'right':
+        #    table_aligned = Align.right(table)
+        #elif justify_table == 'left':
+        #    table_aligned = Align.left(table)
+        #else:
+        table_aligned = Align.center(table)
+
+        print(table_aligned)
+        return ''
 
 
     def createTableNoDependency(self, header: list or dict, objList: list, line_between_records=False):
@@ -252,15 +287,20 @@ class BaseMenu :
         printout += ' '+('‾'*total_length)+' '
             
         print(printout)
+        return ''
 
-    def waitForKeyPress(self):
+    def waitForKeyPress(self, text_to_print: str='Press any key to continue ', print_text: bool=True):
         ''' Wait for a key press on the console and return it. '''
         # Script gotten from https://stackoverflow.com/questions/983354/how-to-make-a-python-script-wait-for-a-pressed-key
         # Which was rewritten code from the Python Docs
-        print('Press any key to continue ', end='')
+        if print_text:
+            print(text_to_print, end='')
         if os.name == 'nt': # If user is on windows then use msvcrt
             import msvcrt
-            return msvcrt.getch()
+            key = msvcrt.getch()
+            if ord(key) == 3:
+                raise KeyboardInterrupt
+            return key.decode('ASCII')
         else: # If user is on a unix based system then use termios
             import termios
             fd = sys.stdin.fileno()

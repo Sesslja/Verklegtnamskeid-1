@@ -53,7 +53,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
             property_list = self.propertyapi.findPropertyByEmployeeSsn(employee_id)
 
             header_list = ['amenities', 'propertyId', 'isActive']
-            print(self.createTable(header_list, property_list, line_between_records=True))
+            self.createTable(header_list, property_list, line_between_records=True, justify_table='center')
         except RecordNotFoundError:
             print("No employees found with that SSN")
         self.waitForKeyPress()
@@ -136,7 +136,5 @@ class PropertiesOverviewSubMenu(BaseMenu):
         except RecordNotFoundError:
             print("There are no properties to show")
 
-        print(self.waitForKeyPress())
-
-        self.waitForKeyPress()
+        self.waitForKeyPress(text_to_print='Press any key to return')
 
