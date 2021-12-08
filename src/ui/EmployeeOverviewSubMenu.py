@@ -29,7 +29,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             },
             "5": {
                 "title": "Find managers",
-                "function": "find_managers_by_country"
+                "function": "find_manager_by_country"
             },
             "6": {
                 "title": "Find all managers",
@@ -98,7 +98,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def find_managers_by_country(self):
+    def find_manager_by_country(self):
         '''Option to search for manager \n given country'''
     
         country = Prompt.ask('Please enter a country')
@@ -118,7 +118,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No manager found")
         self.waitForKeyPress()
 
-
+   
 
     def find_by_attributy(self):
         pass
