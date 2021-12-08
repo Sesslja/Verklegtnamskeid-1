@@ -46,3 +46,12 @@ class DestinationsAPI:
                 }
             }
         })
+
+    def findCountriesOfDestinations(self) -> list[str]:
+        found_destinations = self.destinationsRepo.find()
+        country_list = []
+        for destination in found_destinations:
+            country = destination.Address["country"]
+            country_list.append(country)
+        
+        return country_list

@@ -14,13 +14,15 @@ class ContractorAPI:
         return self.contractorRepo.save(new_contractor)
 
     def find_requests_by_contractorID(self, contractor_id):
-        '''Shows all requests assigned to contractor\ngiven contractor SSN'''
+        '''Shows all requests assigned to contractor \n
+        given contractor SSN'''
         maint_reqs = self.maintReqRepo.find({
             'where': {
                 'contractor_id': contractor_id
             }
         })
         return maint_reqs
+
     
     
     def findContractor(self) -> list:
@@ -72,4 +74,3 @@ class ContractorAPI:
             '_id': maintReqId,
             'contractors': contractorId
         })
-        
