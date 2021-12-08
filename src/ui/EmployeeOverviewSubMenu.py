@@ -1,3 +1,4 @@
+from logic.DestinationsLogic import DestinationsAPI
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from data.DBError import RecordNotFoundError
@@ -10,6 +11,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self, logged_in_user=None):
         super().__init__(logged_in_user)
         self.userApi = UserAPI()
+        self.destApi = DestinationsAPI()
 
         self.menu_title = "Employees Menu\nEmployee Overview"
 
@@ -36,7 +38,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             },
             "6": {
                 "title": "See employee history",
-                "function": "see_employee_history"
+                "function": "findEmployeeHistory"
             },
             "X": {
                 "title": "Return to previous page",
@@ -48,11 +50,11 @@ class EmployeeOverviewSubMenu(BaseMenu):
             }
         }
 
-    def see_employee_history(self):
+    def findEmployeeHistory(self):
         '''Shows all request assigned to employee'''
-        employee_ssn = input("Enter employee SSN: ")
+        employee_ssn = Prompt.ask("Enter employee SSN: ")
         try:    
-            employeeID = self.userApi.findEmployeesByEmployeeId(employee_ssn)
+            employeeID = self.userApi.findEmployeeByEmployeeId(employee_ssn)
             requests = self.userApi.FindRequestsByUserID(employeeID._id)
             
             show_keys = ['status', 'to_do', 'priority']
@@ -99,22 +101,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
     def findEmployeesByCountry(self):
         '''Option to search for employees \ngiven country'''
-        country = None
-        while country == None:
-            try:
-                country = input("Enter a Country: ")
-            except ValueError:
-                print("Please enter a valid Country")
+        input_country = Prompt.ask('Enter country', choices=self.destApi.findCountriesOfDestinations())
         try:
-            country_list = self.userApi.findEmployeesByCountry(country)
-            if len(country_list) == 0:
-                print("No employee found by this country!")
-                country = None
-            else:
-                show_keys = ['name', 'email', 'ssn']
-                print(self.createTable(show_keys, country_list))
-        except ValueError:
-            print("No employee found")
+            country_list = self.userApi.findEmployeesByCountry(input_country)
+
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, country_list))
+        except RecordNotFoundError:
+            print("No employees found")
         self.waitForKeyPress()
 
 

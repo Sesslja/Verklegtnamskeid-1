@@ -80,5 +80,26 @@
             "address2": null,
             "address3": null
         }
+    },
+    {
+        "_id": "e3b45b09-6b6a-4964-82e5-7685ebd9e981",
+        "created_at": "2021-12-08 21:27:57.699642",
+        "isActive": true,
+        "isArchived": false,
+        "company": "Kex",
+        "name": "St\u00edna",
+        "ssn": "2525",
+        "profession": "blabla",
+        "phone": "7779087",
+        "openinghours": "9-9",
+        "email": "bla@kex.com",
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjav\u00edk",
+            "zip": "102",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
     }
 ]

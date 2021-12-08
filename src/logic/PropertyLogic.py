@@ -1,3 +1,4 @@
+from model.MaintenanceRequestModel import MaintenanceRequest
 from logic.DestinationsLogic import DestinationsAPI
 from model.AddressType import Address
 from data.DBError import RecordNotFoundError
@@ -11,19 +12,21 @@ class PropertyAPI:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
         self.destinationApi = DestinationsAPI()
+        self.maintReqRepo = DB(MaintenanceRequest)
 
     def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
         new_property = Property(address=address, propertyId=propertyId, amenities=amenities, Rooms=rooms)
         return self.propertyRepo.save(new_property)
 
 
-    def FindRequestsByPropertyID(self, propID):
+    def findRequestsByPropertyID(self, propID):
         '''Shows all requests assigned to property\ngiven property ID'''
         maint_reqs = self.maintReqRepo.find({
             'where': {
                 'property_id': propID
             }
         })
+        
         return maint_reqs
 
 

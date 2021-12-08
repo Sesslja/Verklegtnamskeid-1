@@ -12,7 +12,7 @@ class MaintenanceRequestMenu(BaseMenu):
         self.menu_options = {
             "1": {
                 "title": "Opened maintenance request",
-                "access": "Manager",
+                "access": "manager",
                 "function": "openedMRequest"
             },
             "2": {
@@ -27,14 +27,34 @@ class MaintenanceRequestMenu(BaseMenu):
             },                  
             "4": {
                 "title": "Outstanding maintenance requests",
-                "access": "Manager",
+                "access": "manager",
                 "function": "outstandingMRequest"
             },
             "5": {
                 "title": "All requests!",
-                "access": "Manager",
-                "function": "All_M_Request"
-            },  
+                "access": "manager",
+                "function": "allMaintRequest"
+            },
+            "6": {
+                "title": "Find maintenance request by id",
+                "access": "manager",
+                "function": "find_by_maintenance_id"
+            },
+            "7": {
+                "title": "Find maintenance request by employee",
+                "access": "manager",
+                "function": "find_by_employee"
+            },
+            "8": {
+                "title": "Find maintenance request by property",
+                "access": "manager",
+                "function": "find_by_property"
+            },
+            "9": {
+                "title": "Find maintenance request by date",
+                "access": "manager",
+                "function": "find_by_date"  
+            },
             "X": {
                 "title": "Return to previous page",
                 "Access": "",
@@ -46,7 +66,7 @@ class MaintenanceRequestMenu(BaseMenu):
             }
         }
     
-    def All_M_Request(self):
+    def allMaintRequest(self):
         '''prints out a table of all maintenance Requests'''
         try:
             request_list = self.maintenanceRequestAPI.MaintenanceRequestOverview()
