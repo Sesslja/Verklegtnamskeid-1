@@ -5,7 +5,7 @@
         "./src/ui",
         "./src/logic",
         "./src/data",
-        "C:/Users/evabj/Desktop/Forritun"
+        "C:/Users/evabj"
 
     ],
     "python.linting.banditEnabled": false,
