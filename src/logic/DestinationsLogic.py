@@ -25,8 +25,8 @@ class DestinationsAPI:
     #    new_destination = Destination(country=country, city=city, zip=zip, address=address)
     #    return self.destinationsRepo.save(new_destination)
 
-    def createDestination(self, address: Address=None):
-        new_destination = Destination(address=address)
+    def createDestination(self, name: str, address: Address=None):
+        new_destination = Destination(name=name, address=address)
         return self.destinationsRepo.save(new_destination)
 
     def findDestinationByCountry(self, country: str):
@@ -46,3 +46,12 @@ class DestinationsAPI:
                 }
             }
         })
+
+    def findCountriesOfDestinations(self) -> list[str]:
+        found_destinations = self.destinationsRepo.find()
+        country_list = []
+        for destination in found_destinations:
+            country = destination.Address["country"]
+            country_list.append(country)
+        
+        return country_list

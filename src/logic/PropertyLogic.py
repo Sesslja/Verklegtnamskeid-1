@@ -1,3 +1,4 @@
+from logic.DestinationsLogic import DestinationsAPI
 from model.AddressType import Address
 from data.DBError import RecordNotFoundError
 from model.RoomType import RoomType
@@ -9,6 +10,7 @@ class PropertyAPI:
     def __init__(self) -> None:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
+        self.destinationApi = DestinationsAPI()
 
     def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
         new_property = Property(address=address, propertyId=propertyId, amenities=amenities, Rooms=rooms)
@@ -35,18 +37,23 @@ class PropertyAPI:
             }
         })
 
-        for i, f_property in enumerate(properties):
+        new_prop_list = self.insertPropInfo(properties)
+
+        return new_prop_list
+
+    def insertPropInfo(self, prop_list: list[object]) -> list[object]:
+        '''Inserts room info and address string into object'''
+        for i, f_property in enumerate(prop_list):
             total_size = 0
             for room in f_property.Rooms:
                 total_size += room['size']
-            properties[i].total_size = round(total_size)
-            properties[i].room_amount = len(f_property.Rooms)
+            prop_list[i].total_size = round(total_size)
+            prop_list[i].room_amount = len(f_property.Rooms)
             
             
-            properties[i].address_str = Address().addrToString(f_property.Address)
+            prop_list[i].address_str = Address().addrToString(f_property.Address)
+        return prop_list
 
-
-        return properties
 
     
     def deleteProperty(self, propertyId) -> list:
@@ -62,7 +69,7 @@ class PropertyAPI:
         return found_prop
 
     def findPropertyByCountry(self, country: str):
-        return self.propertyRepo.find({
+        found_properties = self.propertyRepo.find({
             'where': {
                 'Address': {
                     'country': country
@@ -70,6 +77,8 @@ class PropertyAPI:
                 }
             }
         })
+
+        return self.insertPropInfo(found_properties)
 
     def findPropertyByEmployeeSsn(self, employeeSsn: int):
         try:
@@ -153,3 +162,7 @@ class PropertyAPI:
                 pass
 
         return employees_list
+
+    def findAvailableCountries(self):
+        '''Finds countries that are available to create a property in, according to destinations.'''
+        return self.destinationApi.findCountriesOfDestinations()

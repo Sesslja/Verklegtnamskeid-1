@@ -18,6 +18,16 @@ class UserAPI:
             }
         })
 
+    def FindRequestsByUserID(self, userID):
+        '''Shows all requests assigned to contractor\ngiven contractor SSN'''
+        maint_reqs = self.maintReqRepo.find({
+            'where': {
+                'employees': userID
+            }
+        })
+        return maint_reqs
+
+
     def deleteEmployee(self, id) -> list:
         return self.userRepo.delete(id)
 
