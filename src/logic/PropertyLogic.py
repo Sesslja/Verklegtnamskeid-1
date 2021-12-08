@@ -16,6 +16,17 @@ class PropertyAPI:
         new_property = Property(address=address, propertyId=propertyId, amenities=amenities, Rooms=rooms)
         return self.propertyRepo.save(new_property)
 
+
+    def FindRequestsByPropertyID(self, propID):
+        '''Shows all requests assigned to property\ngiven property ID'''
+        maint_reqs = self.maintReqRepo.find({
+            'where': {
+                'property_id': propID
+            }
+        })
+        return maint_reqs
+
+
     def findIfRoomInProperty(self, propertyId: str, roomId: str):
         try:
             property = self.propertyRepo.find({

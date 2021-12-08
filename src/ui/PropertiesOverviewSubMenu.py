@@ -44,6 +44,11 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 "access": "Manager",
                 "function": "findRoomsByPropertyId"
             },
+            "6":  {
+                "title": "Find Requsest assigned to property",
+                "access": "Manager",
+                "function": "ShowPropertyRequests"
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
@@ -54,6 +59,21 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 "special": "main"
             }
         }
+
+    def ShowPropertyRequests(self):
+        '''Shows all request assigned to property'''
+        property_id = input("Enter property ID: ")
+        try:    
+            propertyIdSpecial = self.propertyapi.findPropertyByPropertyId(property_id)
+            requests = self.propertyapi.FindRequestsByPropertyID(propertyIdSpecial)
+            
+            show_keys = ['status', 'to_do', 'priority']
+            print(self.createTable(show_keys, requests))
+        except RecordNotFoundError:
+            print('Nothing foud :(')
+        self.waitForKeyPress()
+    
+
 
     def search_by_employee(self):
         ''' Finds all properties assigned to an employee '''
