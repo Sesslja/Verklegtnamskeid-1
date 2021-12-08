@@ -1,12 +1,11 @@
 {
-    "python.pythonPath": "/home/evabj/.virtualenvs/app-FzQGSFjf/bin/python",
     "python.analysis.extraPaths": [
         "./src/model",
         "./src/test",
         "./src/ui",
         "./src/logic",
         "./src/data",
-        "C:/Users/evabj/Desktop/Forritun/Verklegtnamskeid-1"
+        "C:/Users/evabj"
 
     ],
     "python.linting.banditEnabled": false,

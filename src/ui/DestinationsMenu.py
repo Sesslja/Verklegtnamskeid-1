@@ -48,13 +48,15 @@ class DestinationsMenu(BaseMenu):
         }
 
     def create_destination(self):
+        print('Create destination:')
 
+        name = input('Name: ')
         country = input('Country: ')
         city = input('City: ')
         zip_code = input('Zip code: ')
         address = Address(country=country, city=city, zip=zip_code)
 
-        self.destinationsapi.createDestination(address)
+        self.destinationsapi.createDestination(name, address)
 
         print(f"{city}, {country} added as a destination!")
 

@@ -9,9 +9,24 @@
             "country": "Iceland",
             "city": "Reykjavik",
             "zip": "101",
-            "address1": "Vatnsmýri",
+            "address1": "Vatnsm\u00fdri",
             "address2": null,
             "address3": null
         }
+    },
+    {
+        "_id": "8285a9bf-72e5-42e2-9f5e-1efa02f70e55",
+        "created_at": "2021-12-08 19:37:31.772703",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "901",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        },
+        "name": "Nuuk Airport"
     }
 ]
