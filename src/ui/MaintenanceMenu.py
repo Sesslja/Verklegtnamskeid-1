@@ -1,3 +1,4 @@
+from datetime import datetime
 from model.AddressType import Address
 from model.PropertyModel import Property
 from model.MaintenanceRequestModel import MaintenanceRequest
@@ -14,6 +15,7 @@ from logic.UserLogic import UserAPI
 from ui.EmployeesMenu import EmployeesMenu
 from ui.PropertiesMenu import PropertiesMenu
 from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
+from logic.DatetimeLogic import DateTime
 
 
 class MaintenanceMenu(BaseMenu):
@@ -31,6 +33,7 @@ class MaintenanceMenu(BaseMenu):
         self.employeesMenu = EmployeesMenu()
         self.propertiesMenu = PropertiesMenu()
         self.maintenanceRequestMenu = MaintenanceRequestMenu()
+        self.datetime = DateTime()
 
         self.menu_options = {               
             "1": {
@@ -149,7 +152,6 @@ class MaintenanceMenu(BaseMenu):
             try:
                 occurrence = int(occurrence)
                 if occurrence == 0:
-                    occurrence = False
                     isRegular = False
             except ValueError:
                 print("Enter an integer: ")
@@ -161,7 +163,27 @@ class MaintenanceMenu(BaseMenu):
             if priority not in valid_priority_list:
                 priority = ""
                 print("Enter a valid priority: ")
-        start_date = input("Enter start date [dd,mm,yyyy]: ")
+
+        date = False
+        while date is False:
+            start_date = list(input("Enter start date [yyyy,mm,dd]: "))
+            test_date = self.datetime(start_date)
+            if test_date is False:
+                print("Date is out of range - Try again")
+                date = False
+            elif test_date is True:
+                try:
+                    test_date == int(datetime.now())
+                    status = 'Open'
+                except:
+                    status = 'Upcoming'
+                #self.datetime.relative_date(test_date)
+                date = True
+                #print self.datetime.get_relative_date(days_ahead)
+                #print self.datetime.get_relative_date(weeks_ahead)
+                #print self.datetime.get_relative_date(month_ahead)
+                #print self.datetime.get_relative_date(months_ahead)
+
         employee_Id = ""
         while employee_Id == "":
             employee_Id = str(input("Enter employee id: "))
