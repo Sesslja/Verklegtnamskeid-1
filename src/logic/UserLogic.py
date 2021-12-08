@@ -67,7 +67,7 @@ class UserAPI:
         return self.userRepo.find({
             'where': {
                 'isManager': True,
-                'Addess': {
+                'Address': {
                     'country': country
                 }
             }
