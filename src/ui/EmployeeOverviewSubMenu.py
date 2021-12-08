@@ -49,6 +49,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def see_employee_history(self):
+        '''Shows all request assigned to employee'''
         employee_ssn = input("Enter employee SSN: ")
         try:    
             employeeID = self.userApi.findEmployeesByEmployeeId(employee_ssn)

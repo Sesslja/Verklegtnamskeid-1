@@ -7,6 +7,7 @@ from ui.Colors import color
 try:
     from rich.layout import Layout
     from rich import print
+    from rich.prompt import Prompt
 except ModuleNotFoundError:
     pass
 
@@ -44,6 +45,11 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 "access": "Manager",
                 "function": "findRoomsByPropertyId"
             },
+            "6":  {
+                "title": "Find Requsest assigned to property",
+                "access": "Manager",
+                "function": "ShowPropertyRequests"
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
@@ -54,6 +60,21 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 "special": "main"
             }
         }
+
+    def ShowPropertyRequests(self):
+        '''Shows all request assigned to property'''
+        property_id = input("Enter property ID: ")
+        try:    
+            propertyIdSpecial = self.propertyapi.findPropertyByPropertyId(property_id)
+            requests = self.propertyapi.FindRequestsByPropertyID(propertyIdSpecial)
+            
+            show_keys = ['status', 'to_do', 'priority']
+            print(self.createTable(show_keys, requests))
+        except RecordNotFoundError:
+            print('Nothing foud :(')
+        self.waitForKeyPress()
+    
+
 
     def search_by_employee(self):
         ''' Finds all properties assigned to an employee '''
@@ -156,11 +177,23 @@ class PropertiesOverviewSubMenu(BaseMenu):
 
     def search_by_region(self):
         '''Finds all properties given a property Region'''
-        property_region = input("Find property by region:\nEnter region: ").capitalize()
+        print('Find property by region:\n')
+        property_region = Prompt.ask("Enter region: ", choices=self.propertyapi.findAvailableCountries()).capitalize()
         try:
             property_list = self.propertyapi.findPropertyByCountry(property_region)
 
-            header_list = ['amenities', 'propertyId', 'isActive']
+            header_list = {
+                'amenities': {
+                    'display_name': 'Amenities'
+                },
+                'propertyId': {
+                    'display_name': 'Property ID'
+                },
+                'total_size': {
+                    'display_name': 'Total size',
+                    'suffix': ' m²'
+                }
+            }#['amenities', 'propertyId', 'isActive']
             print(self.createTable(header_list, property_list, line_between_records=True))
         except RecordNotFoundError:
             print ("No properties found in region")
