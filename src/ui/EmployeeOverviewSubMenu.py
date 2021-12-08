@@ -1,8 +1,8 @@
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
+from data.DBError import RecordNotFoundError
 
 class EmployeeOverviewSubMenu(BaseMenu):
-    '''Shows sub menu to employee overview'''
     def __init__(self):
         super().__init__()
         self.userApi = UserAPI()
@@ -15,12 +15,16 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "function": "all_employees_overview"
             },
             "2": {
-                "title": "Search employee by id",
+                "title": "Find employee by employeeID",
                 "function": "search_employee_by_id"
             },
             "3": {
-                "title": "Search employee by country",
+                "title": "Find employee by country",
                 "function": "find_employees_by_country"
+            },
+            "4": {
+                "title": "Find one employee by ID",
+                "function": "find_one_employee"
             },
             "X": {
                 "title": "Return to previous page",
@@ -33,20 +37,18 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
-        '''Shows all employees of NAN'''
+        '''Shows all employees working for NAN'''
         try:
             employee_list = self.userApi.allEmployeesOverview()
-
             # What keys from record list to use
             show_keys = ['name', 'email', 'ssn']
             print(self.createTable(show_keys, employee_list))
-        except ValueError:
+
+        except RecordNotFoundError:
             print("No employees to show")
         self.waitForKeyPress()
 
-
     def search_employee_by_id(self):
-        '''option to search for employees \ngiven employee ID'''
         employee_id = None
         while employee_id == None:
             try:
@@ -54,7 +56,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             except ValueError:
                 print("Please enter a valid ID")
         try:
-            employee_list = self.userApi.findEmployeeByEmployeeId(employee_id)
+            employee_list = self.userApi.findEmployeesByEmployeeId(employee_id)
             if len(employee_list) == 0:
                 print("employee not found!")
                 employee_id = None
@@ -86,13 +88,12 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No employee found")
         self.waitForKeyPress()
 
-    def find_manager(self):
-        pass
-    #     ismanager = None
-    #     while ismanager == 
-        
 
+    def find_managers(self):
+        pass
 
     def find_by_attributy(self):
         pass
-    
+
+    def find_one_employee(self):
+        pass

@@ -1,3 +1,4 @@
+
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceMenu import MaintenanceMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
@@ -5,6 +6,7 @@ from ui.ContractorsMenu import ContractorsMenu
 from ui.EmployeesMenu import EmployeesMenu
 from ui.MaintenanceMenu import MaintenanceMenu
 from ui.PropertiesMenu import PropertiesMenu
+from ui.DestinationsMenu import DestinationsMenu
 
 
 class MainMenu(BaseMenu):
@@ -18,6 +20,7 @@ class MainMenu(BaseMenu):
         self.MaintenanceMenu = MaintenanceMenu
         self.ContractorsMenu = ContractorsMenu
         self.EmployeesMenu = EmployeesMenu
+        self.DestinationsMenu = DestinationsMenu
 
 
         self.menu_options = { 
@@ -40,6 +43,11 @@ class MainMenu(BaseMenu):
                 "title": "Employees",
                 "access": "Manager",
                 "class": EmployeesMenu
+            },
+            "5": {
+                "title": "Destinations",
+                "access": "",
+                "class": DestinationsMenu
             },
             "Q": {
                 "title": "Exit program",
