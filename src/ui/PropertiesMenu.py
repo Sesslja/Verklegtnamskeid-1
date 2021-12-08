@@ -1,3 +1,4 @@
+from rich.prompt import Prompt, FloatPrompt
 from model.AddressType import Address
 from model.RoomType import RoomType
 from ui.BaseMenu import BaseMenu
@@ -42,13 +43,17 @@ class PropertiesMenu(BaseMenu):
 
     def createProperty(self):
         '''creates a property object'''
-        property_id = input("Enter Property ID: ")
-        country = input("Country: ")
-        city = input("City: ")
-        zip = input("Zip code: ")
-        addr1 = input("Address 1: ")
+        available_countries = self.propertyapi.findAvailableCountries()
+
+        property_id = Prompt.ask("Enter Property ID: ")
+        country = Prompt.ask("Country", choices=available_countries)
+        city = Prompt.ask("City").capitalize()
+        zip = Prompt.ask("Zip code")
+        addr1 = Prompt.ask("Address 1")
         addr2 = input("Address 2: ")
+        addr2 = addr2 if addr2 is not "" else None
         addr3 = input("Address 3: ")
+        addr3 = addr3 if addr3 is not "" else None
 
         address = Address(country=country, city=city, zip=zip, address1=addr1, address2=addr2, address3=addr3)
 
@@ -69,14 +74,17 @@ class PropertiesMenu(BaseMenu):
             if user_input is "":
                 break
             room.roomId = user_input
-            user_input = input("    Enter room size: ")
-            if user_input is "":
-                break
-            room.size = user_input
+            room.size = FloatPrompt.ask('  Enter room size')
 
             rooms_list.append(room)
+            print(f'Added room with id: {room.roomId}, and size: {room.size}')
+        
         
         self.propertyapi.createProperty(address=address, propertyId=property_id, amenities=amenities_list, rooms=rooms_list)
+        print(':checkmark: Successfully created a property!')
+
+        self.waitForKeyPress()
+
         
         
 
