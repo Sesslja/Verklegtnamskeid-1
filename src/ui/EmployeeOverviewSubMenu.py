@@ -50,7 +50,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         try:
             employee_list = self.userApi.allEmployeesOverview()
             # What keys from record list to use
-            show_keys = ['name', 'email', 'ssn', 'isManager']
+            show_keys = ['name', 'email', 'ssn']
             print(self.createTable(show_keys, employee_list))
 
         except RecordNotFoundError:
@@ -108,15 +108,16 @@ class EmployeeOverviewSubMenu(BaseMenu):
             for record in manager_list:
                 record.name 
             
-            if len(manager_list) == 0:
-                print("No manager found!")
-            else:
-                show_keys = ['name', 'email', 'ssn']
-                print(self.createTable(show_keys, manager_list))
+            # if len(manager_list) == 0:
+            #     print("No manager found!")
+            # else:
+            show_keys = ['name', 'email', 'ssn']
+            print(self.createTable(show_keys, manager_list))
 
         except RecordNotFoundError:
             print("No manager found")
         self.waitForKeyPress()
+
 
 
     def find_by_attributy(self):
