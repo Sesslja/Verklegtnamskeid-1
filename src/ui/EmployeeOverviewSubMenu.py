@@ -1,6 +1,7 @@
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from data.DBError import RecordNotFoundError
+from rich.prompt import Prompt
 
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self):
@@ -26,6 +27,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "title": "Find one employee by ID",
                 "function": "find_one_employee"
             },
+            "5": {
+                "title": "Find managers",
+                "function": "find_managers_by_country"
+            },
+            "6": {
+                "title": "Find all managers",
+                "function": "find_managers"
+            },
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -41,7 +50,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         try:
             employee_list = self.userApi.allEmployeesOverview()
             # What keys from record list to use
-            show_keys = ['name', 'email', 'ssn']
+            show_keys = ['name', 'email', 'ssn', 'isManager']
             print(self.createTable(show_keys, employee_list))
 
         except RecordNotFoundError:
@@ -89,8 +98,26 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def find_managers(self):
-        pass
+    def find_managers_by_country(self):
+        '''Option to search for manager \n given country'''
+    
+        country = Prompt.ask('Please enter a country')
+        try:
+            manager_list = self.userApi.findManagersByCountry(country)
+
+            for record in manager_list:
+                record.name 
+            
+            if len(manager_list) == 0:
+                print("No manager found!")
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, manager_list))
+
+        except RecordNotFoundError:
+            print("No manager found")
+        self.waitForKeyPress()
+
 
     def find_by_attributy(self):
         pass
