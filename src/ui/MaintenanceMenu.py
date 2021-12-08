@@ -82,19 +82,24 @@ class MaintenanceMenu(BaseMenu):
         request_info = ""
 
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
-        if was_contractor == "Y".islower():
+        if was_contractor.lower() == "y":
             contractor_id = None
             while contractor_id == None:
-                contractor_id = self.contractorAPI.findContractorByContractorId()
+                contractor_id = input("Enter contractors id: ")
                 try:
                     contractor_id = int(contractor_id)
                 except ValueError:
                     print("Enter a valid ID")
                     contractor_id = None
-
+                try:
+                    contractor = self.contractorAPI.findContractorByContractorId(contractor_id)
+                except:
+                    print("This contactor is not in the system - Try again")
+                    contractor_id = None
             fee_input = float(input("Enter the contractors fee '%': "))
             contractors_fee = (fee_input / 100)
 
+        user_input = None
         maintenance_list = []
         while user_input != "":
             user_input = input("Enter what Maintenance was done: [Enter to continue]")
@@ -102,9 +107,16 @@ class MaintenanceMenu(BaseMenu):
 
         materialcost = int(input("Enter the materalcost for the project"))
         salary = int(input("Enter salary for the project"))
-        finish_at = []
+        finished_at = datetime.datetime.now()
+        dt = datetime.date(finished_at)
 
-        self.maintreportAPI.createReport(request_info, verification_num, maintenance_list, contractor_id, materialcost, salary, contractors_fee, finish_at)
+        try:
+            print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
+            self.maintreportAPI.createReport(request_info, verification_num, maintenance_list, contractor_id, materialcost, salary, contractors_fee, dt)
+            self.waitForKeyPress()
+        except:
+            print(f"Something whent wrong")
+        
 
     def createMRequest(self):
         '''Gives option to create maintenace request '''
@@ -207,4 +219,4 @@ class MaintenanceMenu(BaseMenu):
             self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employee_Id=None)
             self.waitForKeyPress()
         except:
-            print(f"Something when wrong")
+            print(f"Something whent wrong")
