@@ -4,9 +4,7 @@
         "created_at": "2021-12-03 15:33:37.247073",
         "isActive": true,
         "isArchived": false,
-        "isOpen": true,
-        "isFinished": false,
-        "isClosed": false,
+        "status": "",
         "Address": {
             "country": "Iceland",
             "city": "Reykjavik",
@@ -25,7 +23,8 @@
         "priority": "HIGH",
         "start_date": "now",
         "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
-        "verification_number": "VB00001"
+        "verification_number": "VB00001",
+        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
     },
     {
         "_id": "1faed923-f5f1-4a2f-9f98-ae8040746f89",
@@ -51,7 +50,8 @@
         "priority": "HIGH",
         "start_date": "now",
         "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
-        "verification_number": "VB00002"
+        "verification_number": "VB00002",
+        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
     },
     {
         "_id": "1ae343f7-4b27-469b-88c9-92bcd293f6df",
@@ -77,7 +77,8 @@
         "priority": "HIGH",
         "start_date": "now",
         "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
-        "verification_number": "VB00003"
+        "verification_number": "VB00003",
+        "contractor_id": null
     },
     {
         "_id": "6007e8e4-3e77-47a1-a9a2-c855cff8475f",
@@ -95,7 +96,8 @@
         "priority": "A",
         "start_date": 1638813209,
         "employeeId": null,
-        "verification_number": "VB00004"
+        "verification_number": "VB00004",
+        "contractor_id": null
     },
     {
         "_id": "8ed48fd6-3d04-428a-be9c-41350c8f3e2e",
@@ -150,16 +152,15 @@
         "priority": "B",
         "start_date": 1638895375,
         "employeeId": null,
-        "verification_number": "VB00005"
+        "verification_number": "VB00005",
+        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
     },
     {
         "_id": "8b967d2c-29b2-42e2-8ef1-b16e37a98d3d",
         "created_at": "2021-12-07 17:52:50.439991",
         "isActive": true,
         "isArchived": false,
-        "status": {
-            "status": ""
-        },
+        "status": "",
         "property_id": "PP8000",
         "to_do": [
             ""
@@ -169,7 +170,8 @@
         "priority": "C",
         "start_date": 1638899570,
         "employeeId": null,
-        "verification_number": "VB00006"
+        "verification_number": "VB00006",
+        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
     },
     {
         "_id": "34c1af80-4bd7-4f5a-ac2c-c69becf26975",
