@@ -50,7 +50,7 @@ class MaintenanceRequestMenu(BaseMenu):
         '''prints out a table of all maintenance Requests'''
         try:
             request_list = self.maintenanceRequestAPI.MaintenanceRequestOverview()
-            show_keys = ["verification_number",'occurance', 'priority', 'employeeId', 'status']
+            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
             print(self.createTable(show_keys, request_list))
         except ValueError:
             print("Nothing to Show :(")
