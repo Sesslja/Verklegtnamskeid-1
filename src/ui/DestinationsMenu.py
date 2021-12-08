@@ -1,8 +1,6 @@
 from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.DestinationsLogic import DestinationsAPI
-#from logic.ContractorLogic import ContractorAPI
-#from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu 
 
 class DestinationsMenu(BaseMenu):
 
@@ -33,6 +31,11 @@ class DestinationsMenu(BaseMenu):
                 "title": "Create destination",
                 "access": "",
                 "function": "create_destination"
+            },                            
+            "5": {
+                "title": "Delete destination",
+                "access": "",
+                "function": "delete_destination"
             },
             "X": {
                 "title": "Return to previous page",
@@ -50,7 +53,7 @@ class DestinationsMenu(BaseMenu):
         country = input('Country: ')
         city = input('City: ')
         zip_code = input('Zip code: ')
-        address = Address(country=country, city=city, zip_code=zip_code)#, zip_code=zip_code)
+        address = Address(country=country, city=city, zip=zip_code)
 
         self.destinationsapi.createDestination(address)
 
@@ -58,7 +61,7 @@ class DestinationsMenu(BaseMenu):
 
         self.waitForKeyPress()
 
-    def find_destination_by_country(self): #1
+    def find_destination_by_country(self):
         destination_country = None
         while destination_country == None:
             try:
@@ -71,8 +74,16 @@ class DestinationsMenu(BaseMenu):
                 print("Destinations not found!")
                 destination_country = None
             else:
+                addresslist = []
+                for i, dest in enumerate(destination_list):
+                    record_dict = {}
+                    for key in dest.Address:
+                        record_dict.update({key: dest.Address[key]})
+                    addresslist.append(record_dict)
+
                 show_keys = ['country', 'city']
-                print(self.createTable(show_keys, destination_list))
+
+                print(self.createTable(show_keys, addresslist))
                 self.waitForKeyPress()
         except ValueError:
             print("No destination found")
@@ -82,7 +93,7 @@ class DestinationsMenu(BaseMenu):
         destination_city = None
         while destination_city == None:
             try:
-                destination_city = input("Enter the destination's city: ")
+                destination_city = input("Enter the destination's country: ")
             except ValueError:
                 print("Please enter a valid city")
         try:
@@ -91,8 +102,14 @@ class DestinationsMenu(BaseMenu):
                 print("Destinations not found!")
                 destination_city = None
             else:
+                addresslist = []
+                for i, dest in enumerate(destination_list):
+                    record_dict = {}
+                    for key in dest.Address:
+                        record_dict.update({key: dest.Address[key]})
+                    addresslist.append(record_dict)
                 show_keys = ['country', 'city']
-                print(self.createTable(show_keys, destination_list))
+                print(self.createTable(show_keys, addresslist))
                 self.waitForKeyPress()
         except ValueError:
             print("No destination found")
@@ -101,13 +118,35 @@ class DestinationsMenu(BaseMenu):
     def all_destinations_overview(self):
 
         try:
-            destination_list = self.destinationsapi.findDestination()
+            destination_list = self.destinationsapi.findDestinations()
             if len(destination_list) == 0:
                 print("No destinations to show")
             else:
-                show_keys = ['country','city']
+                for i, dest in enumerate(destination_list):
+                    for key in dest.Address:
+                        setattr(destination_list[i], key, dest.Address[key])
+
+                print(destination_list)
+                show_keys = {
+                    'country': {
+                        'display_name': 'Country'
+                    },
+                    'city': {
+                        'display_name': 'City'
+                    }
+                }
                 print(self.createTable(show_keys, destination_list))
-                self.waitForKeyPress()
+
         except ValueError:
             print("No destinations found")
+        self.waitForKeyPress()
+    
+    def delete_destination(self):
+
+        selected_dest_id = input('Enter destination id: ')
+
+        if self.destinationsapi.deleteContractor(selected_dest_id) == True:
+            print("Destination deleted")
+        else: 
+            print("Destination not found")
         self.waitForKeyPress()

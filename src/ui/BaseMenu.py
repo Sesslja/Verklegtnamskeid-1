@@ -11,6 +11,7 @@ try:
     from rich.console import Console
     from rich.table import Table
     from rich.align import Align
+    from rich.style import Style
     RICH_AVAILABLE = True
 except ModuleNotFoundError:
     RICH_AVAILABLE = False
@@ -106,7 +107,15 @@ class BaseMenu :
             #print(f'Invalid input: {user_input}')
             return 'run'
 
-    def createTable(self, header, obj, table_title: str=None, line_between_records: bool=False, return_table: bool=False, justify_table: str='left'):
+    def createTable(self, 
+    header, 
+    obj, 
+    hide_header: bool=False,
+    table_title: str=None, 
+    line_between_records: bool=False, 
+    return_table: bool=False, 
+    justify_table: str='left',
+    table_style: str='bright_yellow'):
 
         if not RICH_AVAILABLE:
             return self.createTableNoDependency(header, obj, line_between_records)
@@ -168,8 +177,9 @@ class BaseMenu :
 
         table.caption = f'Found {len(obj)} entries.'
         table.row_styles = ['none', 'dim']
-        table.border_style = 'bright_yellow'
+        table.border_style = Style.parse(table_style)
         table.box = box.ROUNDED
+        table.show_header = not hide_header
 
         #if justify_table == 'center':
         #    print('heha')

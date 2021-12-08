@@ -1,5 +1,6 @@
 from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
+from data.DBError import RecordNotFoundError
 
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self):
@@ -14,12 +15,16 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "function": "all_employees_overview"
             },
             "2": {
-                "title": "Search employee by id",
+                "title": "Find employee by employeeID",
                 "function": "search_employee_by_id"
             },
             "3": {
-                "title": "Edit employee",
-                "function": "update_employee"
+                "title": "Find employee by country",
+                "function": "find_employees_by_country"
+            },
+            "4": {
+                "title": "Find one employee by ID",
+                "function": "find_one_employee"
             },
             "X": {
                 "title": "Return to previous page",
@@ -32,13 +37,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
         }
 
     def all_employees_overview(self):
+        '''Shows all employees working for NAN'''
         try:
-            employee_list = self.userApi.findEmployees()
-
+            employee_list = self.userApi.allEmployeesOverview()
             # What keys from record list to use
             show_keys = ['name', 'email', 'ssn']
             print(self.createTable(show_keys, employee_list))
-        except ValueError:
+
+        except RecordNotFoundError:
             print("No employees to show")
         self.waitForKeyPress()
 
@@ -61,29 +67,33 @@ class EmployeeOverviewSubMenu(BaseMenu):
             print("No employee found")
         self.waitForKeyPress()
 
-    def update_employee(self):
-        update_employee = False
-        while update_employee == False:
-            employee_id = input("Enter employee SSN: ")
+
+    def find_employees_by_country(self):
+        '''Option to search for employees \ngiven country'''
+        country = None
+        while country == None:
             try:
-                employee = self.userApi.findEmployeesByEmployeeId(employee_id)
-                try:
-                    employee['ERROR']
-                    print("Employee not found")
-                except TypeError:
-                    print(employee)
-                    dictionary = employee[0].__dict__
-                    for i, key in enumerate(dictionary):
-                        print(f"| {key:<15}:  {(dictionary[key])}")
-                    factor = input("\nSelect factor you want to change: ")
-                    
-                    update_employee = True
+                country = input("Enter a Country: ")
             except ValueError:
-                print("No employee found")
+                print("Please enter a valid Country")
+        try:
+            country_list = self.userApi.findEmployeesByCountry(country)
+            if len(country_list) == 0:
+                print("No employee found by this country!")
+                country = None
+            else:
+                show_keys = ['name', 'email', 'ssn']
+                print(self.createTable(show_keys, country_list))
+        except ValueError:
+            print("No employee found")
+        self.waitForKeyPress()
 
 
+    def find_managers(self):
+        pass
 
-        self.userApi.updateEmployeeInfo('suhdfsuohf898f2-32f2h3f',{
-            'name': 'Bónus'
-        })
+    def find_by_attributy(self):
+        pass
 
+    def find_one_employee(self):
+        pass
