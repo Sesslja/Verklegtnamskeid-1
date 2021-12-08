@@ -1,3 +1,5 @@
+from data.DBError import RecordNotFoundError
+from model.MaintenanceRequestModel import MaintenanceRequest
 from model.AddressType import Address
 from model.ContractorModel import Contractor
 from data.database import DB
@@ -5,11 +7,22 @@ from data.database import DB
 class ContractorAPI:
     def __init__(self) -> None:
         self.contractorRepo = DB(Contractor)
+        self.maintReqRepo = DB(MaintenanceRequest)
 
     def createContractor(self, company: str=None, name: str=None, ssn: int=None, profession: str=None, phone: int=None, openinghours: str=None, email: str=None, address: Address=None):
         new_contractor = Contractor(company=company, name=name, ssn=ssn, profession=profession, phone=phone, openinghours=openinghours, email=email, address=address)
         return self.contractorRepo.save(new_contractor)
 
+    def find_requests_by_contractorID(self, contractor_id):
+        '''Shows all requests assigned to contractor\ngiven contractor SSN'''
+        maint_reqs = self.maintReqRepo.find({
+            'where': {
+                'contractor': contractor_id
+            }
+        })
+        return maint_reqs
+    
+    
     def findContractor(self) -> list:
         return self.contractorRepo.find()
 
@@ -41,24 +54,22 @@ class ContractorAPI:
             }
         })
 
-    def assignContractorToProperty(self, contractorSSN, contractorId):
+    def assignContractorToMaintenance(self, contractorSSN, maintReqId):
         contractor = self.contractorRepo.findOne({
             'where': {
                 'ssn': contractorSSN
             }
         })
         contractorId = contractor._id
-
-        found_prop = self.findContractorByContractorId(contractorId)
-
-        try:
-            current_contractors = found_prop.contractors
-        except KeyError:
-            current_contractors = []
-
-        current_contractors.append(contractorId)
-
-        return self.contractorRepo.update({
-            '_id': found_prop._id,
-            'contractors': current_contractors
+        
+        maint_req = self.maintReqRepo.findOne({
+            'where': {
+                '_id': maintReqId
+            }
         })
+
+        return self.maintReqRepo.update({
+            '_id': maintReqId,
+            'contractors': contractorId
+        })
+        
