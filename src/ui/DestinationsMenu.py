@@ -4,9 +4,8 @@ from logic.DestinationsLogic import DestinationsAPI
 
 class DestinationsMenu(BaseMenu):
 
-    def __init__(self):
-
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.destinationsapi = DestinationsAPI()
 
         self.menu_title = "Menu\nDestinations Menu"

@@ -7,7 +7,7 @@
         "name": "Kiddi Sales",
         "email": "sales@nan.is",
         "isManager": false,
-        "ssn": "1234567890",
+        "ssn": "1234561890",
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
@@ -43,7 +43,7 @@
         "name": "Blanco",
         "email": "jr@nan.is",
         "isManager": true,
-        "ssn": "1234567890",
+        "ssn": "1234587890",
         "Address": {
             "country": "Iceland",
             "city": "Reykjav\u00edk",

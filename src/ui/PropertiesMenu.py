@@ -7,8 +7,8 @@ from ui.PropertiesEditSubMenu import PropertiesEditSubMenu
 
 class PropertiesMenu(BaseMenu):
     '''Main menu for property options'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.propertyapi = PropertyAPI()
         self.menu_title = "Properties Menu"
 
@@ -35,6 +35,7 @@ class PropertiesMenu(BaseMenu):
             },
             "M": {
                 "title": "Return to main menu",
+                "access": "",
                 "special": "main"
             }
         }

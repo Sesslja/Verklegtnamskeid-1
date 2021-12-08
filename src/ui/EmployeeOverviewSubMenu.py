@@ -3,8 +3,8 @@ from logic.UserLogic import UserAPI
 from data.DBError import RecordNotFoundError
 
 class EmployeeOverviewSubMenu(BaseMenu):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.userApi = UserAPI()
 
         self.menu_title = "Employees Menu\nEmployee Overview"

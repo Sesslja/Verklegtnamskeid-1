@@ -4,8 +4,8 @@ from logic.ContractorLogic import ContractorAPI
 
 class ContractorsOverviewSubMenu(BaseMenu):
     '''Shows sub-menu to contractor options'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.contractorapi = ContractorAPI()
 
         self.menu_title = "ContractorsMenu\nContractors Overview"

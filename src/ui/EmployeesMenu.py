@@ -7,8 +7,8 @@ from model.AddressType import Address
 
 class EmployeesMenu(BaseMenu):
     '''Shows employee options'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.userapi = UserAPI()
 
         self.menu_title = "Employees Menu"
@@ -26,15 +26,18 @@ class EmployeesMenu(BaseMenu):
             },  
             "3": {
                 "title": "Edit Employee",
-                "class": EmployeeEditMenu
+                "class": EmployeeEditMenu,
+                "access": ""
             },                 
             "X": {
                 "title": "Return to previous page",
-                "special": "back"
+                "special": "back",
+                "access": ""
             },
             "M": {
                 "title": "Return to main menu",
-                "special": "main"
+                "special": "main",
+                "access": ""
             }
         }
 
