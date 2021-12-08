@@ -22,6 +22,10 @@ class EmployeeOverviewSubMenu(BaseMenu):
                 "title": "Find employee by country",
                 "function": "find_employees_by_country"
             },
+            "4": {
+                "title": "Find one employee by ID",
+                "function": "find_one_employee"
+            },
             "X": {
                 "title": "Return to previous page",
                 "special": "back"
@@ -39,7 +43,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
             # What keys from record list to use
             show_keys = ['name', 'email', 'ssn']
             print(self.createTable(show_keys, employee_list))
-            
+
         except RecordNotFoundError:
             print("No employees to show")
         self.waitForKeyPress()
@@ -85,7 +89,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def find_manager(self):
+    def find_managers(self):
         pass
 
     def find_by_attributy(self):
@@ -93,4 +97,3 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
     def find_one_employee(self):
         pass
-
