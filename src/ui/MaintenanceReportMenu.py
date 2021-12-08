@@ -21,21 +21,6 @@ class MaintenanceReportMenu(BaseMenu):
                 "access": "",
                 "function": "find_by_maintenance_id"
             },
-            "3": {
-                "title": "Find report by employee",
-                "access": "",
-                "function": "find_by_employee"
-            },
-            "4": {
-                "title": "Find report by property",
-                "access": "",
-                "function": "find_by_property"
-            },
-            "5": {
-                "title": "Find report by date",
-                "access": "",
-                "function": "find_by_date"
-            }, 
             "X": {
                 "title": "Return to previous page",
                 "Access": "",
@@ -52,4 +37,26 @@ class MaintenanceReportMenu(BaseMenu):
         show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
         print(self.createTable(show_keys, report_list))
         self.waitForKeyPress()
+    
+    def find_by_maintenance_id(self):
+        '''Gives option to find maintenace report given the id of request'''
+        maintenence_id = None
+        while maintenence_id == None:
+            maintenence_id = input("Enter maintenance ID: ")
+            try:
+                int(maintenence_id)
+                report_list = self.maintreportAPI.findReportByMaintenanceId(maintenence_id)
+                if len(report_list) == 0:
+                    print ("No items to show")
+                    report_list == None
+                    self.waitForKeyPress()
+                else:
+                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                    print(self.createTable(show_keys, report_list))
+                    self.waitForKeyPress()
+            except ValueError:
+                find_request = input("Maintenance Id not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
+                if find_request.lower() == 'y':
+                    self.maintenanceRequestMenu.openedMRequest()
+                maintenence_id = None
 

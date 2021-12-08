@@ -14,15 +14,11 @@ class DateTime():
         self.months_ahead = datetime.datetime.now() + relativedelta(months=3)'''
 
 
-    def datetimeToUtc(self, start_date: list=None):
-        start_date = start_date
-        if start_date is None:
-            dt = self.datetime.now()
-            date = dt.replace(tzinfo=timezone.utc).timestamp()
-        else:
-            dt = self.datetime(start_date[0], start_date[1], start_date[2])
-            date = dt.replace(tzinfo=timezone.utc).imestamp()
-        return int(date) 
+    def generateDatetimeNow(self, date_time: list=None):
+        date_time = date_time
+        if date_time is None:
+            dt = datetime.date.today().strftime('%A %d %B %Y')
+        return dt
     
     def testDate(self, start_date: list = None): 
         if start_date is None:

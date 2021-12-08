@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from model.AddressType import Address
 from model.PropertyModel import Property
 from model.MaintenanceRequestModel import MaintenanceRequest
@@ -16,6 +16,7 @@ from ui.EmployeesMenu import EmployeesMenu
 from ui.PropertiesMenu import PropertiesMenu
 from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from logic.DatetimeLogic import DateTime
+from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu
 
 
 class MaintenanceMenu(BaseMenu):
@@ -34,6 +35,7 @@ class MaintenanceMenu(BaseMenu):
         self.propertiesMenu = PropertiesMenu(logged_in_user=logged_in_user)
         self.maintenanceRequestMenu = MaintenanceRequestMenu(logged_in_user=logged_in_user)
         self.datetime = DateTime()
+        self.contractorsOverviewSubMenu = ContractorsOverviewSubMenu(logged_in_user=logged_in_user)
 
         self.menu_options = {               
             "1": {
@@ -70,7 +72,7 @@ class MaintenanceMenu(BaseMenu):
     def create_report(self):
         verification_num = None
         while verification_num == None:
-            verification_num = input("Enter the verification number of the maintenane request: ")
+            verification_num = input("\nEnter the verification number of the maintenane request: ")
             try:
                 verification_num = self.MaintenanceRequestAPI.findOneByVerificationNumber(verification_num)
             except RecordNotFoundError:
@@ -85,30 +87,39 @@ class MaintenanceMenu(BaseMenu):
         if was_contractor.lower() == "y":
             contractor_id = None
             while contractor_id == None:
-                contractor_id = input("Enter contractors id: ")
+                contractor_id = input("\nEnter contractors id: ")
                 try:
                     contractor_id = int(contractor_id)
+                    contractor = self.contractorAPI.findContractorByContractorId(str(contractor_id))
                 except ValueError:
                     print("Enter a valid ID")
                     contractor_id = None
-                try:
-                    contractor = self.contractorAPI.findContractorByContractorId(contractor_id)
-                except:
-                    print("This contactor is not in the system - Try again")
+                except RecordNotFoundError:
+                    find_contractor = input("This contactor is not in the system - Would you lika a overview of the contractors? Y/N ")
+                    if find_contractor.lower() == 'y':
+                        self.contractorsOverviewSubMenu.all_contractors_overview()
                     contractor_id = None
+                    
             fee_input = float(input("Enter the contractors fee '%': "))
             contractors_fee = (fee_input / 100)
 
         user_input = None
         maintenance_list = []
         while user_input != "":
-            user_input = input("Enter what Maintenance was done: [Enter to continue]")
+            user_input = input("Enter what Maintenance was done: (Enter empty string to continue) ")
             maintenance_list.append(user_input)
 
-        materialcost = int(input("Enter the materalcost for the project"))
-        salary = int(input("Enter salary for the project"))
-        finished_at = datetime.datetime.now()
-        dt = datetime.date(finished_at)
+        materialcost = input("Enter the materalcost for the project ")
+        if materialcost != "":
+            materialcost = int(materialcost)
+        else:
+            materialcost = 0
+        salary = input("Enter salary for the project ")
+        if salary != "":
+            salary = int(salary)
+        else:
+            salary = 0
+        dt = self.datetime.generateDatetimeNow()
 
         try:
             print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
