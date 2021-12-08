@@ -7,8 +7,8 @@ from model.AddressType import Address
 
 class ContractorsEditSubMenu(BaseMenu):
     '''gives menu options to edit property'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.contractorsapi = ContractorAPI()
         self.contractorSSN = self.contractorSSNInput()
         if self.contractorSSN is 'q':

@@ -12,17 +12,35 @@ try:
     from rich.table import Table
     from rich.align import Align
     from rich.style import Style
+    from rich.prompt import Prompt
     RICH_AVAILABLE = True
 except ModuleNotFoundError:
     RICH_AVAILABLE = False
 
 class BaseMenu :
-    def __init__(self):
+    def __init__(self, logged_in_user=None):
         self.menu_options = {}
         self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear') if not RICH_AVAILABLE else Console().clear()
         self.menu_title = str()
         self.isMainMenu = False
         self.failed = False
+        self.loggedIn = False
+        self.loggedInUser = self.login() if logged_in_user is None else logged_in_user
+    
+    def login(self, failed_attempt: bool=False):
+        from logic.AuthLogic import AuthAPI
+        authApi = AuthAPI()
+        self.clear()
+        print('Incorrect login details, please try again') if failed_attempt else ''
+        userSsn = Prompt.ask('Please enter your ID')
+        login_res = authApi.userLogin(userSsn)
+
+        if login_res:
+            self.loggedIn = True
+            return login_res
+        else:
+            return self.login(failed_attempt=True)
+
 
     def print_options(self):
         if self.failed:
@@ -45,8 +63,15 @@ class BaseMenu :
                 menuTable.add_column()
                 menuTable.add_column()
                 for key in self.menu_options:
-                    menuTable.add_row(key, self.menu_options[key]['title'])
+                    try:
+                        if self.menu_options[key]['access'] == 'manager' and self.loggedInUser.isManager:
+                            menuTable.add_row(key, self.menu_options[key]['title'])
+                        elif self.menu_options[key]['access'] != 'manager':
+                            menuTable.add_row(key, self.menu_options[key]['title'])
+                    except KeyError:
+                        menuTable.add_row(key, self.menu_options[key]['title'])
                 menuTable.box = box.MINIMAL
+                menuTable.caption = f'You are logged in as {self.loggedInUser.name}'
                 menuTable_centered = Align.center(menuTable)
                 print(menuTable_centered)
 
@@ -91,7 +116,7 @@ class BaseMenu :
                     return 'quit'
             elif 'class' in opt[user_input]:
                 opt_class = opt[user_input]['class']
-                new_menu = opt_class()
+                new_menu = opt_class(logged_in_user=self.loggedInUser)
                 if new_menu.print_options() == 'main':
                     return 'main'
                 return 'run'

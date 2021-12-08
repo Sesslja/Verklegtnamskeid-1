@@ -5,8 +5,8 @@ from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 
 class EmployeeEditMenu(BaseMenu):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.userAPI = UserAPI()
         self.employeeSSN = self.employeeSSN_input()
         if self.employeeSSN is 'q':

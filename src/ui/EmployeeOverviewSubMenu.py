@@ -4,8 +4,8 @@ from data.DBError import RecordNotFoundError
 from rich.prompt import Prompt
 
 class EmployeeOverviewSubMenu(BaseMenu):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.userApi = UserAPI()
 
         self.menu_title = "Employees Menu\nEmployee Overview"

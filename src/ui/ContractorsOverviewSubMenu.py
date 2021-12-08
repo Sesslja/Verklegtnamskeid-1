@@ -5,8 +5,8 @@ from data.DBError import RecordNotFoundError
 
 class ContractorsOverviewSubMenu(BaseMenu):
     '''Shows sub-menu to contractor options'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.contractorapi = ContractorAPI()
 
         self.menu_title = "ContractorsMenu\nContractors Overview"
@@ -61,7 +61,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 print("Lazy contractor!")
                 contractor_id = None
         else:
-            show_keys = ['name', 'email', 'ssn']
+            show_keys = ['status', 'to_do', 'priority']
             print(self.createTable(show_keys, requests))
         self.waitForKeyPress()
 

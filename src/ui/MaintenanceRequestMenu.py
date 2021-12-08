@@ -3,8 +3,8 @@ from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 
 class MaintenanceRequestMenu(BaseMenu):
     '''Gives Maintenance request options'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
 
         self.menu_title = "Maintenance Request Menu"
         self.maintenanceRequestAPI = MaintenanceRequestAPI()

@@ -20,8 +20,8 @@ from logic.DatetimeLogic import DateTime
 
 class MaintenanceMenu(BaseMenu):
     '''Shows option for maintenance requests'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
 
         self.menu_title = "Maintenance Request Menu"
         self.MaintenanceRequestAPI = MaintenanceRequestAPI()
@@ -30,9 +30,9 @@ class MaintenanceMenu(BaseMenu):
         self.contractorAPI = ContractorAPI()
         self.propertyRepo = DB(Property)
         self.userAPI = UserAPI()
-        self.employeesMenu = EmployeesMenu()
-        self.propertiesMenu = PropertiesMenu()
-        self.maintenanceRequestMenu = MaintenanceRequestMenu()
+        self.employeesMenu = EmployeesMenu(logged_in_user=logged_in_user)
+        self.propertiesMenu = PropertiesMenu(logged_in_user=logged_in_user)
+        self.maintenanceRequestMenu = MaintenanceRequestMenu(logged_in_user=logged_in_user)
         self.datetime = DateTime()
 
         self.menu_options = {               

@@ -12,8 +12,8 @@ except ModuleNotFoundError:
 
 class PropertiesOverviewSubMenu(BaseMenu):
     '''sub menu to property overview'''
-    def __init__(self):
-        super().__init__()
+    def __init__(self, logged_in_user=None):
+        super().__init__(logged_in_user)
         self.propertyapi = PropertyAPI()
         self.userApi = UserAPI()
         self.menu_title = "Properties Menu\nProperties overview"
