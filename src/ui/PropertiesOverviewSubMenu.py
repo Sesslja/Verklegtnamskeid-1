@@ -46,9 +46,9 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 "function": "findRoomsByPropertyId"
             },
             "6":  {
-                "title": "Find Requsest assigned to property",
+                "title": "Find Requests assigned to property",
                 "access": "Manager",
-                "function": "ShowPropertyRequests"
+                "function": "showPropertyRequests"
             },
             "X": {
                 "title": "Return to previous page",
@@ -61,15 +61,17 @@ class PropertiesOverviewSubMenu(BaseMenu):
             }
         }
 
-    def ShowPropertyRequests(self):
+    def showPropertyRequests(self):
         '''Shows all request assigned to property'''
         property_id = input("Enter property ID: ")
         try:    
             propertyIdSpecial = self.propertyapi.findPropertyByPropertyId(property_id)
-            requests = self.propertyapi.FindRequestsByPropertyID(propertyIdSpecial)
+            requests = self.propertyapi.findRequestsByPropertyID(propertyIdSpecial.propertyId)
             
-            show_keys = ['status', 'to_do', 'priority']
-            print(self.createTable(show_keys, requests))
+            show_keys = ['to_do', 'priority']
+            for req in requests:
+                print(req.priority)
+            #print(self.createTable(show_keys, requests))
         except RecordNotFoundError:
             print('Nothing foud :(')
         self.waitForKeyPress()

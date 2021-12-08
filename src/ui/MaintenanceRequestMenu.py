@@ -33,7 +33,7 @@ class MaintenanceRequestMenu(BaseMenu):
             "5": {
                 "title": "All requests!",
                 "access": "Manager",
-                "function": "All_M_Request"
+                "function": "allMaintRequest"
             },  
             "X": {
                 "title": "Return to previous page",
@@ -46,7 +46,7 @@ class MaintenanceRequestMenu(BaseMenu):
             }
         }
     
-    def All_M_Request(self):
+    def allMaintRequest(self):
         '''prints out a table of all maintenance Requests'''
         try:
             request_list = self.maintenanceRequestAPI.MaintenanceRequestOverview()
