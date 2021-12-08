@@ -83,7 +83,7 @@ class DestinationsMenu(BaseMenu):
                 show_keys = ['country', 'city']
 
                 print(self.createTable(show_keys, addresslist))
-                self.waitForKeyPress()
+
         except ValueError:
             print("No destination found")
         self.waitForKeyPress()
@@ -108,7 +108,7 @@ class DestinationsMenu(BaseMenu):
                     addresslist.append(record_dict)
                 show_keys = ['country', 'city']
                 print(self.createTable(show_keys, addresslist))
-                
+
         except ValueError:
             print("No destination found")
         self.waitForKeyPress()
