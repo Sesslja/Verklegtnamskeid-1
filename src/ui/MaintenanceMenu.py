@@ -70,50 +70,50 @@ class MaintenanceMenu(BaseMenu):
         }
     
     def create_report(self):
-        verification_num = None
-        while verification_num == None:
-            verification_num = input("\nEnter the verification number of the maintenane request: ")
+        verificationNum = None
+        while verificationNum == None:
+            verificationNum = input("\nEnter the verification number of the maintenane request: ")
             try:
-                verification_num = self.MaintenanceRequestAPI.findOneByVerificationNumber(verification_num)
+                verificationNum = self.MaintenanceRequestAPI.findOneByVerificationNumber(verificationNum)
             except RecordNotFoundError:
                 find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
                     self.maintenanceRequestMenu.openedMRequest()
-                verification_num = None
+                verificationuNum = None
     
         request_info = ""
 
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
         if was_contractor.lower() == "y":
-            contractor_id = None
-            while contractor_id == None:
-                contractor_id = input("\nEnter contractors id: ")
+            contractorId = None
+            while contractorId == None:
+                contractorId = input("\nEnter contractors id: ")
                 try:
-                    contractor_id = int(contractor_id)
-                    contractor = self.contractorAPI.findContractorByContractorId(str(contractor_id))
+                    contractorId = int(contractorId)
+                    contractor = self.contractorAPI.findContractorByContractorId(str(contractorId))
                 except ValueError:
                     print("Enter a valid ID")
-                    contractor_id = None
+                    contractorId = None
                 except RecordNotFoundError:
                     find_contractor = input("This contactor is not in the system - Would you lika a overview of the contractors? Y/N ")
                     if find_contractor.lower() == 'y':
                         self.contractorsOverviewSubMenu.all_contractors_overview()
-                    contractor_id = None
+                    contractorId = None
                     
             fee_input = float(input("Enter the contractors fee '%': "))
-            contractors_fee = (fee_input / 100)
+            contractorsFee = (fee_input / 100)
 
         user_input = None
-        maintenance_list = []
+        maintenanceList = []
         while user_input != "":
             user_input = input("Enter what Maintenance was done: (Enter empty string to continue) ")
-            maintenance_list.append(user_input)
+            maintenanceList.append(user_input)
 
-        materialcost = input("Enter the materalcost for the project ")
-        if materialcost != "":
-            materialcost = int(materialcost)
+        materialCost = input("Enter the materalcost for the project ")
+        if materialCost != "":
+            materialCost = int(materialCost)
         else:
-            materialcost = 0
+            materialCost = 0
         salary = input("Enter salary for the project ")
         if salary != "":
             salary = int(salary)
@@ -122,11 +122,12 @@ class MaintenanceMenu(BaseMenu):
         dt = self.datetime.generateDatetimeNow()
 
         try:
+            self.maintreportAPI.createReport(request_info = request_info, verification_num = verificationNum, maintenance = maintenanceList, contractorId = contractorId, materialcost = materialCost, salary = salary, contractorsfee = contractorsFee, dt = dt)
             print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
-            self.maintreportAPI.createReport(request_info, verification_num, maintenance_list, contractor_id, materialcost, salary, contractors_fee, dt)
             self.waitForKeyPress()
         except:
             print(f"Something whent wrong")
+            self.waitForKeyPress()
         
 
     def createMRequest(self):
