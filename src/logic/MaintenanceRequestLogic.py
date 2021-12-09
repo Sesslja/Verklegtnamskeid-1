@@ -1,3 +1,4 @@
+import re
 from model.PropertyModel import Property
 from model.AddressType import Address
 from model.MaintenanceRequestModel import MaintenanceRequest
@@ -10,6 +11,7 @@ class MaintenanceRequestAPI :
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
         self.propertyRepo = DB(Property)
+        self.userRepo = DB(User)
 
     def createMaintenanceRequest(self,status: str, property_id: str, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employees: list=None, roomNumId: str=None):
         found_prop = self.propertyRepo.findOne({
@@ -90,18 +92,23 @@ class MaintenanceRequestAPI :
             }
         })
     
-    def findRequestByProperty(self, propertyId: str):
+    def findRequestsByProperty(self, propertyId: str):
         found_property = self.propertyRepo.findOne({
             'where': {
                 'propertyId': propertyId
             }
         })
 
-        return self.requestRepo.find({
+        found_req = self.requestRepo.find({
             'where': {
                 'property_id': found_property._id
             }
         })
+        
+        for i, req in enumerate(found_req): # Insert relationships into the Maintenance Request
+            found_req[i] = self.insertRelationsIntoRequest(req)
+
+        return found_req
 
     def findRequestByDate(self, startDate: list, endDate: list):
         start_Date = BaseModel.datetimeToUtc(startDate)
@@ -113,3 +120,17 @@ class MaintenanceRequestAPI :
                 
             }
         })
+
+    def insertRelationsIntoRequest(self, inp_obj) -> object:
+        ''' Insert relationships into request '''
+        employee_list = []
+        for employee_id in inp_obj.employees:
+            found_employee = self.userRepo.findOne({
+                'where': {
+                    '_id': employee_id
+                }
+            })
+            employee_list.append(found_employee)
+        
+        inp_obj.employee_list = employee_list
+        return inp_obj

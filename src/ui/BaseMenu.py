@@ -146,7 +146,20 @@ class BaseMenu :
     justify_table: str='left',
     table_style: str='bright_yellow',
     color_newest: bool=False,
-    hide_entry_count: bool=False):
+    hide_entry_count: bool=False,
+    entry_limit: int=0):
+        ''' Creates a Rich table, falls back to default if not available\n
+        header can be a list, then it's just the keys to be used. or it can be a dict\n
+        Ex. header = {
+            KEY: {
+                'display_name': TITLE_TO_DISPLAY,
+                'prefix': STRING_TO_PREFIX_VALUE,
+                'suffix': STRING_TO_SUFFIX_VALUE,
+                'justify': string. left, right or center,
+                'style': STYLE (can be color, text style, ex. 'bold blue'),
+                'header_style': same as style but only applies to the header
+            }, ...
+        }'''
 
         if not RICH_AVAILABLE:
             return self.createTableNoDependency(header, obj, line_between_records)
@@ -177,8 +190,9 @@ class BaseMenu :
                     table.columns[i].header_style = header[key]['header_style']
                 except KeyError:
                     pass
-                
-        for record in obj:
+        
+        max_entries = len(obj) if entry_limit == 0 and (entry_limit >= len(obj) if entry_limit !=0 else True) else entry_limit
+        for record in obj[:max_entries]:
             try:
                 record = record.__dict__
             except AttributeError:
@@ -208,8 +222,9 @@ class BaseMenu :
 
         if color_newest:
             table.rows[table.row_count-1].style = 'bright_blue'
+        
         if not hide_entry_count:
-            table.caption = f'Found {len(obj)} entries.'
+            table.caption = (f'Found {len(obj)} entries.') if entry_limit == 0 or (entry_limit >= len(obj) if entry_limit !=0 else False) else (f'Showing {entry_limit} entries of {len(obj)}')
         table.row_styles = ['none', 'dim']
         table.border_style = Style.parse(table_style)
         table.box = box.ROUNDED

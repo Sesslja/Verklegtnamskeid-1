@@ -1,12 +1,19 @@
+from data.DBError import RecordNotFoundError
+from logic.UserLogic import UserAPI
 from model.AddressType import Address
 from ui.BaseMenu import BaseMenu
 from logic.DestinationsLogic import DestinationsAPI
+try:
+    from rich.prompt import Confirm, Prompt
+except ModuleNotFoundError:
+    pass
 
 class DestinationsMenu(BaseMenu):
 
     def __init__(self, logged_in_user=None):
         super().__init__(logged_in_user)
         self.destinationsapi = DestinationsAPI()
+        self.userApi = UserAPI()
 
         self.menu_title = "Menu\nDestinations Menu"
 
@@ -54,11 +61,39 @@ class DestinationsMenu(BaseMenu):
         country = input('Country: ')
         city = input('City: ')
         zip_code = input('Zip code: ')
+        manager_num_input = None
+        manager_id = None
+        while manager_num_input == None:
+            manager_num_input = input("Manager's employee number: ")
+            if manager_num_input != "":
+                try:
+                    found_manager = self.userApi.findEmployeeByEmployeeId(manager_num_input)
+                    if found_manager.isManager:
+                        manager_id = found_manager._id
+                    else:
+                        print("That's not a manager, please enter the number of a manager.")
+                        manager_num_input = None
+                except RecordNotFoundError:
+                    print("Couldn't find a manager with that number.")
+                    manager_num_input = None
+        
+        employees_input = None
+        employees_list = []
+        while employees_input != "":
+            employees_input = input("Enter employee number (Empty string continues): ")
+            if employees_input != "":
+                try:
+                    found_employee = self.userApi.findEmployeeByEmployeeId(employees_input)
+                    employees_list.append(found_employee._id)
+                except RecordNotFoundError:
+                    print("Couldn't find an employee with that number.")
+                    employees_input = None
+
         address = Address(country=country, city=city, zip=zip_code)
 
-        self.destinationsapi.createDestination(name, address)
+        self.destinationsapi.createDestination(name=name, address=address, manager=manager_id, employees=employees_list)
 
-        print(f"{city}, {country} added as a destination!")
+        print(f"{city}, {country} added as a destination with {found_manager.name} as a manager!")
 
         self.waitForKeyPress()
 
@@ -66,7 +101,7 @@ class DestinationsMenu(BaseMenu):
         destination_country = None
         while destination_country == None:
             
-            destination_country = input("Enter the destination's country: ")
+            destination_country = Prompt.ask("Enter the destinations country", choices=self.destinationsapi.findCountriesOfDestinations())
 
         try:
             destination_list = self.destinationsapi.findDestinationByCountry(destination_country)
@@ -93,7 +128,7 @@ class DestinationsMenu(BaseMenu):
         destination_city = None
         while destination_city == None:
 
-            destination_city = input("Enter the destination's country: ")
+            destination_city = Prompt.ask("Enter the destinations city", choices=self.destinationsapi.findCitiesOfDestinations())
 
         try:
             destination_list = self.destinationsapi.findDestinationByCity(destination_city)
@@ -144,8 +179,9 @@ class DestinationsMenu(BaseMenu):
 
         selected_dest_id = input('Enter destination id: ')
 
-        if self.destinationsapi.deleteContractor(selected_dest_id) == True:
-            print("Destination deleted")
-        else: 
-            print("Destination not found")
-        self.waitForKeyPress()
+        if Confirm.ask('Are you sure you want to delete that destination?'):
+            if self.destinationsapi.deleteDestination(selected_dest_id) == True:
+                print("Destination deleted")
+            else: 
+                print("Destination not found")
+            self.waitForKeyPress()

@@ -72,7 +72,7 @@ class MaintenanceMenu(BaseMenu):
     def create_report(self):
         verificationNum = None
         while verificationNum == None:
-            verificationNum = input("\nEnter the verification number of the maintenane request: ")
+            verificationNum = input("\nEnter the verification number of the maintenance request: ")
             try:
                 found_req = self.MaintenanceRequestAPI.findOneByVerificationNumber(verificationNum)
                 verificationNum = found_req.verification_number
@@ -101,7 +101,7 @@ class MaintenanceMenu(BaseMenu):
                         self.contractorsOverviewSubMenu.all_contractors_overview()
                     contractorId = None
                     
-            fee_input = float(input("Enter the contractors fee '%': "))
+            fee_input = float(input("Enter the contractors fee (in '%'): "))
             contractorsFee = (fee_input / 100)
 
         user_input = None
@@ -131,7 +131,8 @@ class MaintenanceMenu(BaseMenu):
             materialcost = materialCost, 
             salary = salary, 
             contractorsfee = contractorsFee, 
-            dt = dt)
+            dt = dt,
+            creator_user=self.loggedInUser)
         print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
         self.waitForKeyPress()
         #except:
