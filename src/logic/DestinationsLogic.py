@@ -64,3 +64,14 @@ class DestinationsAPI:
             city_list.append(city)
         
         return city_list
+    
+    def findDestinationByID(self, destinationId: str):
+        return self.destinationsRepo.findOne({
+            'where': {
+                '_id': destinationId
+            }
+        })
+
+    def updateDestinationInfo(self, id, data):
+        data['_id'] = id
+        return self.destinationsRepo.update(data)

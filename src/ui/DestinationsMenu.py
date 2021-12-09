@@ -14,6 +14,7 @@ class DestinationsMenu(BaseMenu):
         super().__init__(logged_in_user)
         self.destinationsapi = DestinationsAPI()
         self.userApi = UserAPI()
+        #self.destination_id = self.destinationIdInput()
 
         self.menu_title = "Menu\nDestinations Menu"
 
@@ -42,6 +43,11 @@ class DestinationsMenu(BaseMenu):
                 "title": "Delete destination",
                 "access": "",
                 "function": "delete_destination"
+            },                            
+            "6": {
+                "title": "Edit destination name",
+                "access": "",
+                "function": "editName"
             },
             "X": {
                 "title": "Return to previous page",
@@ -53,6 +59,20 @@ class DestinationsMenu(BaseMenu):
                 "special": "main"
             }
         }
+
+    def destinationIdInput(self, retry: bool=False):
+        self.clear()
+        print("No destination ID found please input a correct one") if retry else None
+        destId = input("Please input ID of destination ([Q] to Quit): ")
+        if destId.lower() == "q":
+            return "q"
+        
+        try :
+            foundDest = self.destinationsapi.findDestinationByID(destId)
+        except RecordNotFoundError:
+            return self.destinationIdInput(True)
+        
+        return foundDest._id
 
     def create_destination(self):
         print('Create destination:')
@@ -116,7 +136,7 @@ class DestinationsMenu(BaseMenu):
                         record_dict.update({key: dest.Address[key]})
                     addresslist.append(record_dict)
 
-                show_keys = ['country', 'city']
+                show_keys = ['country', 'city', 'name']
 
                 print(self.createTable(show_keys, addresslist))
 
@@ -142,7 +162,7 @@ class DestinationsMenu(BaseMenu):
                     for key in dest.Address:
                         record_dict.update({key: dest.Address[key]})
                     addresslist.append(record_dict)
-                show_keys = ['country', 'city']
+                show_keys = ['country', 'city', 'name']
                 print(self.createTable(show_keys, addresslist))
 
         except ValueError:
@@ -167,6 +187,9 @@ class DestinationsMenu(BaseMenu):
                     },
                     'city': {
                         'display_name': 'City'
+                    },
+                    'name': {
+                        'display_name': 'Name'
                     }
                 }
                 print(self.createTable(show_keys, destination_list, table_title="All destinations"))
@@ -185,3 +208,34 @@ class DestinationsMenu(BaseMenu):
             else: 
                 print("Destination not found")
             self.waitForKeyPress()
+    
+    def editName(self):
+        found_destination = self.destinationsapi.findDestinationByID(self.destinationIdInput())
+        old_name = found_destination.name
+        new_name = input(f"Change destination name\nOld name: {old_name}\nNew name: ")
+
+        updated_name = self.destinationsapi.updateDestinationInfo(found_destination._id, {
+            'name': new_name
+        })
+        print("Destination name successfully changed")
+        self.waitForKeyPress()
+        pass
+
+    def findDestinationByID(self):
+        destination_id = None
+        while destination_id == None:
+                destination_id = input("Enter destinations ID: ")
+        
+        try:
+            destination_list = self.destinationsapi.findDestinationByID(destination_id)
+            if len(destination_list) == 0:
+                print("Destination not found!")
+                destination_id = None
+            else:
+                show_keys = ['country','city','name']
+                print(self.createTable(show_keys, destination_list))
+        
+        except RecordNotFoundError:
+            print("No destinations found")
+        
+        self.waitForKeyPress()
