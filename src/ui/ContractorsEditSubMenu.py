@@ -214,8 +214,8 @@ class ContractorsEditSubMenu(BaseMenu):
         confirm = Prompt.ask('Are you sure? \n[1] Yes! \n[other] Cancel')
         #confirm = Prompt.choices('Are you sure?' 'Yes', 'No')
         if confirm == '1' :
-            self.contractorsapi.deleteContractorId(self.contractorSSN)
-            print('Contractor deleted')
-        else:
-            print('Contractor not found')
+            if self.contractorsapi.deleteContractorId(self.contractorSSN) == True:
+                print('Contractor deleted')
+            else:
+                print('Contractor not found')
         self.waitForKeyPress

@@ -610,5 +610,23 @@
             "address2": null,
             "address3": null
         }
+    },
+    {
+        "_id": "3ad8ecb9-171a-4754-9f3a-e5a1c89f111c",
+        "created_at": "2021-12-09 12:49:42.785127",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Sessy",
+        "email": "sessy@sn.com",
+        "isManager": false,
+        "ssn": "252525",
+        "Address": {
+            "country": "Icelands",
+            "city": "Reykjav\u00edk",
+            "zip": "102",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        }
     }
 ]
