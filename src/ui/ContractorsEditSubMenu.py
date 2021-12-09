@@ -1,9 +1,13 @@
+from rich import prompt
 from model.MaintenanceRequestModel import MaintenanceRequest
 from data.DBError import RecordNotFoundError
 from ui.BaseMenu import BaseMenu
 from logic.ContractorLogic import ContractorAPI
 from model.AddressType import Address
-
+try:
+    from rich.prompt import Prompt
+except:
+    None
 
 class ContractorsEditSubMenu(BaseMenu):
     '''gives menu options to edit property'''
@@ -63,6 +67,11 @@ class ContractorsEditSubMenu(BaseMenu):
                 "access": "",
                 "function": "edit_contractor_address"
             },
+            "D": {
+                "title": "Delete contractor",
+                "access": "",
+                "function": "deleteContractor"
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
@@ -74,7 +83,7 @@ class ContractorsEditSubMenu(BaseMenu):
             }
         }
 
-    def contractorSSNInput(self, retry: bool= False):
+    def contractorSSNInput(self, retry: bool = False):
         self.clear()
         print('No contractor found please input a correct SSN') if retry else None
         contractorSSN_input = input("Please input the contractor's SSN ([Q] to Quit): ")
@@ -200,3 +209,13 @@ class ContractorsEditSubMenu(BaseMenu):
             print('Employee not found')
         
         self.waitForKeyPress()
+
+    def deleteContractor(self):
+        confirm = Prompt.ask('Are you sure? \n[1] Yes! \n[other] Cancel')
+        #confirm = Prompt.choices('Are you sure?' 'Yes', 'No')
+        if confirm == '1' :
+            self.contractorsapi.deleteContractorId(self.contractorSSN)
+            print('Contractor deleted')
+        else:
+            print('Contractor not found')
+        self.waitForKeyPress

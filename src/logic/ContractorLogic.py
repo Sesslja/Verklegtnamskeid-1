@@ -8,6 +8,7 @@ class ContractorAPI:
     def __init__(self) -> None:
         self.contractorRepo = DB(Contractor)
         self.maintReqRepo = DB(MaintenanceRequest)
+        
 
     def createContractor(self, company: str=None, name: str=None, ssn: int=None, profession: str=None, phone: int=None, openinghours: str=None, email: str=None, address: Address=None):
         new_contractor = Contractor(company=company, name=name, ssn=ssn, profession=profession, phone=phone, openinghours=openinghours, email=email, address=address)
@@ -74,3 +75,6 @@ class ContractorAPI:
             '_id': maintReqId,
             'contractors': contractorId
         })
+
+    def deleteContractorId(self, id) -> list:
+        return self.contractorRepo.delete(id)
