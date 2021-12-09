@@ -10,7 +10,7 @@ class MaintenanceRequestMenu(BaseMenu):
 
         self.menu_title = "Maintenance Request Menu"
         self.maintenanceRequestAPI = MaintenanceRequestAPI()
-        self.employeeOverview = EmployeeOverviewSubMenu()
+        self.employeeOverview = EmployeeOverviewSubMenu(logged_in_user=logged_in_user)
         self.userAPI = UserAPI()
 
         self.menu_options = {
@@ -141,7 +141,7 @@ class MaintenanceRequestMenu(BaseMenu):
         employeeId = None
         while employeeId == None:
             employeeId = str(input("Enter employee id: "))
-            employeeList = self.userAPI.findEmployeeByEmployeeId(employeeId)
+            employeeList = [self.userAPI.findEmployeeByEmployeeId(employeeId)]
             if employeeList != []:
                 show_keys = ["property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
                 print(self.createTable(show_keys, employeeList))
