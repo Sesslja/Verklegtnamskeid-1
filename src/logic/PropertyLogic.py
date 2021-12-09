@@ -53,7 +53,7 @@ class PropertyAPI:
 
         return new_prop_list
 
-    def insertPropInfo(self, prop_list: list[object] | object) -> list[object]:
+    def insertPropInfo(self, prop_list: list[object] ) -> list[object]:
         '''Inserts room info and address string into object'''
         
         for i, f_property in enumerate(prop_list):
