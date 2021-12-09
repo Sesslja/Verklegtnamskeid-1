@@ -14,21 +14,23 @@ class DateTime():
         self.months_ahead = datetime.datetime.now() + relativedelta(months=3)'''
 
 
-    def generateDatetimeNow(self, date_time: list=None):
+    def generateDatetimeNow(self, date_time =None):
         date_time = date_time
         if date_time is None:
             dt = datetime.date.today().strftime('%A %d %B %Y')
         return dt
     
-    def testDate(self, start_date: list = None): 
+    def testDate(self, start_date: list = None):
+        now = datetime.datetime.now()
         if start_date is None:
-            dt = datetime.now()
+            date = datetime.datetime.now()
+            dt = self.generateDatetimeNow(None)
         else:
+            date = datetime.datetime(start_date[0],start_date[1],start_date[2])
             dt = datetime.date(start_date[0],start_date[1],start_date[2]).strftime('%A %d %B %Y')
-        try: 
-            datetime.datetime(start_date[0],start_date[1],start_date[2]) >= datetime.datetime.now()
+        if  date > now or date == now:
             date = True
-        except: 
+        else: 
             date = False
         return date, dt
 

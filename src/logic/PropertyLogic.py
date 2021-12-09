@@ -29,16 +29,17 @@ class PropertyAPI:
 
 
     def findIfRoomInProperty(self, propertyId: str, roomId: str):
-        try:
-            property = self.propertyRepo.find({
+        try: 
+            self.propertyRepo.find({
                 'where': {
                     'propertyId': propertyId,
                     'Rooms': roomId
                 }
             })
             return True
-        except RecordNotFoundError:
+        except FileNotFoundError:
             return False
+
         
 
     def findProperties(self, limit=0, page=0) -> list:

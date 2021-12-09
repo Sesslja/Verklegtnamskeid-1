@@ -140,7 +140,7 @@ class BaseMenu :
 
     def createTable(self, 
     header, 
-    obj, 
+    obj_list, 
     hide_header: bool=False,
     table_title: str=None, 
     line_between_records: bool=False, 
@@ -162,6 +162,8 @@ class BaseMenu :
                 'header_style': same as style but only applies to the header
             }, ...
         }'''
+
+        obj = obj_list.copy()
 
         if not RICH_AVAILABLE:
             return self.createTableNoDependency(header, obj, line_between_records)

@@ -99,18 +99,19 @@ class PropertiesEditSubMenu(BaseMenu):
                 'display_name': 'Room ID'
             },
             'size': {
-                'display_name': 'Size',
+                'display_name': 'Size (m²)',
                 'suffix': ' m²'
             }
         }
-        roomList = property_list.Rooms
+        roomList = property_list.Rooms[:]
 
         roomIdList = []
         for room in property_list.Rooms:
             roomIdList.append(room["roomId"])
 
 
-        self.createTable(header, property_list.Rooms, table_title='Rooms in property', line_between_records=True)
+        self.createTable(header, roomList, table_title='Rooms in property', line_between_records=True)
+
         print('Edit rooms')
         roomId = Prompt.ask("Enter room ID", choices=roomIdList, show_choices=False)
         roomIndex = roomIdList.index(roomId)
@@ -119,16 +120,17 @@ class PropertiesEditSubMenu(BaseMenu):
         confirm_change = None
         cancel_op = None
         while confirm_change != "y":
+            property_list = self.propertyapi.findPropertyByPropertyId(self.propertyId)
 
-            new_size = FloatPrompt.ask('Enter new size (in m2)', default=roomList[roomIndex]["size"])
-            new_id = Prompt.ask('Enter new ID', default=roomList[roomIndex]["roomId"])
+            new_size = FloatPrompt.ask('Enter new size (m²)', default=property_list.Rooms[roomIndex]["size"])
+            new_id = Prompt.ask('Enter new ID', default=property_list.Rooms[roomIndex]["roomId"])
 
-            if new_id != roomId or new_size != roomList[roomIndex]["size"]:
+            if new_id != roomId or new_size != property_list.Rooms[roomIndex]["size"]:
                 print('Are you sure you want to change')
                 if new_id != roomId:
                     print(f'The rooms ID from {roomId} to {new_id}.')
-                if new_size != roomList[roomIndex]["size"]:
-                    print(f'The rooms ID from {roomList[roomIndex]["size"]} to {new_size}.')
+                if new_size != property_list.Rooms[roomIndex]["size"]:
+                    print(f'The rooms size from {property_list.Rooms[roomIndex]["size"]} m² to {new_size} m².')
                 confirm_change = input("[y/N]: ").lower()
             else:
                 print('Nothing changed, operation cancelled.')
@@ -136,13 +138,13 @@ class PropertiesEditSubMenu(BaseMenu):
                 cancel_op = input("Do you want to cancel? [y/N]").lower()
                 if cancel_op == "y":
                     confirm_change = "y"
-            if confirm_change == "y":
-                roomList[roomIndex]["size"] = new_size
-                roomList[roomIndex]["roomId"] = new_id
+            if confirm_change == "y" and cancel_op != "y":
+                property_list.Rooms[roomIndex]["size"] = new_size
+                property_list.Rooms[roomIndex]["roomId"] = new_id
 
-        updated_rooms = self.propertyapi.updateRooms(property_list._id, roomList)
+        updated_rooms = self.propertyapi.updateRooms(property_list._id, property_list.Rooms)
         self.createTable(header, updated_rooms.Rooms, table_title='Rooms in property', line_between_records=True)
-        print("Successfully updated room nr. {new_id}\n")
+        print(f"Successfully updated room nr. {new_id}\n")
 
         self.waitForKeyPress()
 
