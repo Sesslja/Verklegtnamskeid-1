@@ -1,13 +1,15 @@
 from model.AddressType import Address
 from model.userModel import User
 from data.database import DB
+from model.MaintenanceRequestModel import MaintenanceRequest
 
 class UserAPI:
     def __init__(self) -> None:
         self.userRepo = DB(User)
+        self.maintReqRepo = DB(MaintenanceRequest)
 
-    def createEmployee(self, name: str, email: str, ssn: int, address: Address=None):
-        new_user = User(name=name, email=email, ssn=ssn, address=address)
+    def createEmployee(self, name: str, email: str, ssn: int, address: Address=None, isManegar: bool=False):
+        new_user = User(name=name, email=email, ssn=ssn, address=address, isManager=isManegar)
         return self.userRepo.save(new_user)
 
     def allEmployeesOverview(self, limit=0, page=0) -> list:
@@ -89,5 +91,3 @@ class UserAPI:
     
     def findByAttributy(self, *attr):
         ({"name":"jón"},)
-
-

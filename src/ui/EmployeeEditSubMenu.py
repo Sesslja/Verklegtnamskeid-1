@@ -40,6 +40,11 @@ class EmployeeEditMenu(BaseMenu):
                 "access": "",
                 "function": "delete_employee"
             },
+            "6": {
+                "title": "Change employee status",
+                "access": "",
+                "function": "changeEmployeeStatus"
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
@@ -118,10 +123,28 @@ class EmployeeEditMenu(BaseMenu):
 
 
     def delete_employee(self):
-        comfirm = input("Are you sure? \n[1] Yes!\n[other] Cancel")
+        comfirm = input("Are you sure? \n[1] Yes!\n[other] Cancel\n: ")
         if comfirm == "1":
-            if self.userApi.deleteEmployee(self.employeeSSN) == True:
-                print("Employee deleted")
-            else:
+            try:
+                employee_object = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
+                self.userAPI.deleteEmployee(employee_object._id)
+                print("Employee is deleted")
+            except FileNotFoundError:
                 print("Employee not found")
+        else:
+            print("OK, no changes made")
         self.waitForKeyPress()
+
+    def changeEmployeeStatus(self):
+
+        confirm = input(f"Do you want to change {self.employeeSSN} to manager? (Y/N): ")
+
+        if confirm.lower() == "y":
+            
+            employee_object = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
+            updated_user = self.userAPI.updateEmployeeInfo(employee_object._id, {
+                'isManager': True
+            })
+            print("Sucess, Employee is now a manager")
+        else :
+            print("Okey, no changes made")
