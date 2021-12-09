@@ -17,6 +17,7 @@ from ui.PropertiesMenu import PropertiesMenu
 from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from logic.DatetimeLogic import DateTime
 from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu
+from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
 
 
 class MaintenanceMenu(BaseMenu):
@@ -36,6 +37,7 @@ class MaintenanceMenu(BaseMenu):
         self.maintenanceRequestMenu = MaintenanceRequestMenu(logged_in_user=logged_in_user)
         self.datetime = DateTime()
         self.contractorsOverviewSubMenu = ContractorsOverviewSubMenu(logged_in_user=logged_in_user)
+        self.employeeOverviewSubMenu = EmployeeOverviewSubMenu(logged_in_user=logged_in_user)
 
         self.menu_options = {               
             "1": {
@@ -160,10 +162,10 @@ class MaintenanceMenu(BaseMenu):
 
 
         room_number_input = None
-        room_number = None
-        while room_number == None:
-            room_number = input("Do you want to sign it to a room number? [Y/N]: ")
-            if room_number.lower() == 'y':
+        roomNumId = None
+        while roomNumId == None:
+            roomNumId = input("Do you want to sign it to a room number? [Y/N]: ")
+            if roomNumId.lower() == 'y':
                 found_prop = self.propertyAPI.findPropertyByPropertyId(property_id)
                 rooms = found_prop.Rooms
 
@@ -208,13 +210,18 @@ class MaintenanceMenu(BaseMenu):
         date = False
         while date is False:
             start_date = input("Enter start date [yyyy,mm,dd]: ").split(',')
-            try:
-                start_date = [int(i) for i in start_date]
-                date, dt = self.datetime.testDate(start_date)
-                if date == False:
+            if start_date == ['']:
+                start_date = None
+                date,dt = self.datetime.testDate(start_date)
+            else:
+                try:
+                    start_date = [int(i) for i in start_date]
+                    date, dt = self.datetime.testDate(start_date)
+                    if date == False:
+                        print("Date is out of range - Try again")
+                except:
                     print("Date is out of range - Try again")
-            except:
-                print("Date is out of range - Try again")
+                    date = False
         status = 'Open'
         #self.datetime.relative_date(test_date)
             #print self.datetime.get_relative_date(days_ahead)
@@ -226,23 +233,29 @@ class MaintenanceMenu(BaseMenu):
         while employee_Id == "":
             employee_Id = str(input("Enter employee id: "))
             try:
-                employee_Id = int(employee_Id)
+                int(employee_Id)
             except ValueError:
                 employee_Id = ""
                 print("Enter a valid ID: ")
             try:
-                find_employee = self.userAPI.findEmployeeByEmployeeId(str(employee_Id))
+                find_employee = self.userAPI.findEmployeeByEmployeeId(employee_Id)
             except RecordNotFoundError:
                 print("This employee is not in the system ")
-                create_employee = input("Do you want to create a new employee?: Y/N ")
-                if create_employee.lower() == "y":
+                employeeOptions = input("
+                    "1: Create a new employee?\n"
+                    "2: Overview of all the employees?\n"
+                    "3: Try again? ")
+                if employeeOptions == "1":
                     self.employeesMenu.createEmployee()
+                elif employeeOptions == "2":
+                    self.employeeOverviewSubMenu.allEmployeesOverview()
+                    employee_Id == ""
                 else:
-                    employee_Id = ""
+                    employee_Id == ""
 
         try:
+            self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employees= find_employee._id, roomNumId=roomNumId)
             print(f"Maintenance Request succesfully created and set for {dt}! ")
-            self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employee_Id=None)
             self.waitForKeyPress()
         except:
             print(f"Something whent wrong")
