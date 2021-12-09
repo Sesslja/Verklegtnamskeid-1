@@ -116,26 +116,20 @@ class MaintenanceRequestMenu(BaseMenu):
         self.waitForKeyPress()
 
     def find_by_maintenance_id(self):
-        '''Gives option to find maintenace report given the id of request'''
+        '''Gives option to find maintenace request given the id of request'''
         maintenence_id = None
         while maintenence_id == None:
             maintenence_id = input("Enter maintenance ID: ")
-            try:
-                int(maintenence_id)
-                request_list = self.maintrequestAPI.findRequestByMaintenanceId(maintenence_id)
-                if len(request_list) == 0:
-                    print ("No items to show")
-                    request_list == None
-                    self.waitForKeyPress()
-                else:
-                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
-                    print(self.createTable(show_keys, request_list))
-                    self.waitForKeyPress()
-            except ValueError:
+            request_list = self.maintenanceRequestAPI.findMRequestByVerificationId(maintenence_id)
+            if request_list == []:
                 find_request = input("Maintenance Id not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
-                    self.find_all_reports()
+                    self.find_all_request()
                 maintenence_id = None
+            else:
+                show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                print(self.createTable(show_keys, request_list))
+                self.waitForKeyPress()
         
 
     def find_by_employee(self):
