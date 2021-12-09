@@ -151,6 +151,13 @@ class PropertyAPI:
             'Rooms': rooms
         })
 
+    def updateRooms(self, propertyId, roomList):
+        updated = self.propertyRepo.update({
+            '_id': propertyId,
+            'Rooms': roomList
+        })
+        return updated
+
     def assignEmployeeToProperty(self, employeeSSN, propertyId):
         user = self.userRepo.findOne({
             'where': {

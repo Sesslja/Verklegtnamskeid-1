@@ -32,10 +32,12 @@ class BaseMenu :
         from logic.AuthLogic import AuthAPI
         authApi = AuthAPI()
         self.clear()
+        print('Welcome to NaN Air!\nWhere dividing by zero makes sense.\n')
+
         print('Incorrect login details, please try again') if failed_attempt else ''
         userSsn = ""
         while userSsn == "":
-            userSsn = Prompt.ask('Please enter your ID')
+            userSsn = Prompt.ask('Please enter your employee number')
             self.clear()
         login_res = authApi.userLogin(userSsn)
 
