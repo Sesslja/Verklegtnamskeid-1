@@ -9,7 +9,7 @@ class MaintenanceReportMenu(BaseMenu):
 
         self.menu_title = "Maintenance Report Menu"
         self.maintreportAPI = MaintReportAPI()
-        self.maintanenceRequestMenu = MaintenanceRequestMenu()
+        self.maintanenceRequestMenu = MaintenanceRequestMenu(logged_in_user)
 
         self.menu_options = {
             
@@ -36,7 +36,7 @@ class MaintenanceReportMenu(BaseMenu):
 
     def find_all_reports(self):
         report_list = self.maintreportAPI.findReport()
-        show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
+        show_keys = ['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
         print(self.createTable(show_keys, report_list))
         self.waitForKeyPress()
     

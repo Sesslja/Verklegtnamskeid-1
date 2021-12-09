@@ -61,9 +61,10 @@ class MaintenanceRequestAPI :
         verification_number = 'VB'+new_num
         return verification_number
     
-    def changeMRequestStatus(self, id, status):
+    def changeMRequestStatus(self, verification_number, status):
+        found_req = self.findOneByVerificationNumber(verification_number)
         data = {
-            'id': id,
+            '_id': found_req._id,
             'status': status
         }
         return self.requestRepo.update(data)

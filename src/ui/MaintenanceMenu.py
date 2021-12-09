@@ -40,7 +40,7 @@ class MaintenanceMenu(BaseMenu):
         self.menu_options = {               
             "1": {
                 "title": "Create maintenance requests",  
-                "access": "",
+                "access": "manager",
                 "function": "createMRequest"
             },
             "2": {
@@ -74,7 +74,8 @@ class MaintenanceMenu(BaseMenu):
         while verificationNum == None:
             verificationNum = input("\nEnter the verification number of the maintenane request: ")
             try:
-                verificationNum = self.MaintenanceRequestAPI.findOneByVerificationNumber(verificationNum)
+                found_req = self.MaintenanceRequestAPI.findOneByVerificationNumber(verificationNum)
+                verificationNum = found_req.verification_number
             except RecordNotFoundError:
                 find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
@@ -107,7 +108,8 @@ class MaintenanceMenu(BaseMenu):
         maintenanceList = []
         while user_input != "":
             user_input = input("Enter what Maintenance was done: (Enter empty string to continue) ")
-            maintenanceList.append(user_input)
+            if user_input != "":
+                maintenanceList.append(user_input)
 
         materialCost = input("Enter the materalcost for the project ")
         if materialCost != "":
@@ -121,7 +123,15 @@ class MaintenanceMenu(BaseMenu):
             salary = 0
         dt = self.datetime.generateDatetimeNow()
 
-        report = self.maintreportAPI.createReport(request_info = request_info, verificationNumber = verificationNum, maintenance = maintenanceList, contractorId = contractorId, materialcost = materialCost, salary = salary, contractorsfee = contractorsFee, dt = dt)
+        report = self.maintreportAPI.createReport(
+            request_info = request_info, 
+            verification_number = verificationNum, 
+            maintenance = maintenanceList, 
+            contractorId = contractorId, 
+            materialcost = materialCost, 
+            salary = salary, 
+            contractorsfee = contractorsFee, 
+            dt = dt)
         print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
         self.waitForKeyPress()
         #except:
@@ -169,7 +179,8 @@ class MaintenanceMenu(BaseMenu):
         input_list = []
         while user_input != "":
             user_input = input("What maintenance is requested: (Enter empty string to continue) ")
-            input_list.append(user_input)
+            if user_input != "":
+                input_list.append(user_input)
         occurrence = None
         isRegular = True
 
