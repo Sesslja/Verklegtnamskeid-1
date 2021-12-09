@@ -80,7 +80,7 @@ class MaintenanceMenu(BaseMenu):
                 find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
                     self.maintenanceRequestMenu.openedMRequest()
-                verificationuNum = None
+                verificationNum = None
     
         request_info = ""
 
@@ -133,11 +133,12 @@ class MaintenanceMenu(BaseMenu):
             contractorsfee = contractorsFee, 
             dt = dt,
             creator_user=self.loggedInUser)
-        print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
-        self.waitForKeyPress()
-        #except:
-           # print(f"Something whent wrong")
-           #self.waitForKeyPress()
+        if report != None:
+            print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
+            self.waitForKeyPress()
+        else:
+           print(f"Something whent wrong - Try again")
+           self.waitForKeyPress()
         
 
     def createMRequest(self):
