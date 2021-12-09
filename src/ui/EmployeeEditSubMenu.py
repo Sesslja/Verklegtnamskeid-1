@@ -134,3 +134,17 @@ class EmployeeEditMenu(BaseMenu):
         else:
             print("OK, no changes made")
         self.waitForKeyPress()
+
+    def changeEmployeeStatus(self):
+
+        confirm = input(f"Do you want to change {self.employeeSSN} to manager? (Y/N): ")
+
+        if confirm.lower() == "y":
+            
+            employee_object = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
+            updated_user = self.userAPI.updateEmployeeInfo(employee_object._id, {
+                'isManager': True
+            })
+            print("Sucess, Employee is now a manager")
+        else :
+            print("Okey, no changes made")
