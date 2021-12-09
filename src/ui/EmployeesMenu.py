@@ -53,3 +53,6 @@ class EmployeesMenu(BaseMenu):
         address = Address(country=country, city=city, zip=zip_code)
 
         self.userapi.createEmployee(name, email, ssn, address)
+
+        print(f"{name} created as employee")
+        self.waitForKeyPress()
