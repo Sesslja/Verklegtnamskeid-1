@@ -90,8 +90,8 @@ class MaintenanceMenu(BaseMenu):
             while contractorID == None:
                 contractorID = input("\nEnter contractors id: ")
                 try:
-                    contractorID = int(contractorID)
-                    contractor = self.contractorAPI.findContractorByContractorId(str(contractorID))
+                    int(contractorID)
+                    contractor = self.contractorAPI.findContractorByContractorId(contractorID)
                 except ValueError:
                     print("Enter a valid ID")
                     contractorID = None
@@ -126,7 +126,7 @@ class MaintenanceMenu(BaseMenu):
             request_info = request_info, 
             verification_number = verificationNum, 
             maintenance = maintenanceList, 
-            contractorId = str(contractorID), 
+            contractorId = contractorID, 
             materialCost = materialCost, 
             salary = salary, 
             contractorsfee = contractorsFee, 

@@ -85,7 +85,7 @@ class MaintenanceRequestMenu(BaseMenu):
         '''prints out a table of all opened requests'''
         try:
             open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Open")
-            show_keys = ["verification_number",'occurance', 'priority', 'employeeId', 'start_date']
+            show_keys = ["verification_number",'occurance', 'priority', 'employee_id', 'start_date']
             print(self.createTable(show_keys, open_request_list))
         except ValueError:
             print("Nothing to Show :(")
