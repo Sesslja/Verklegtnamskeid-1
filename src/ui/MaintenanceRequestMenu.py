@@ -130,12 +130,13 @@ class MaintenanceRequestMenu(BaseMenu):
                 else:
                     show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                     print(self.createTable(show_keys, request_list))
-                    #self.approveReadyMRequest() #Test
                     self.waitForKeyPress()
             except ValueError:
-                print("Please enter a valid ID")
+                find_request = input("Maintenance Id not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
+                if find_request.lower() == 'y':
+                    self.find_all_reports()
                 maintenence_id = None
-
+        
 
     def find_by_employee(self):
         '''Gives option to find maintenace request given the id of employee'''
