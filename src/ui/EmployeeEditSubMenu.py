@@ -123,7 +123,7 @@ class EmployeeEditMenu(BaseMenu):
             try:
                 employee_object = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
                 self.userAPI.deleteEmployee(employee_object._id)
-                print("Employee deleted")
+                print("Employee is deleted")
             except FileNotFoundError:
                 print("Employee not found")
         else:
