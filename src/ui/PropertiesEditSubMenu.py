@@ -27,8 +27,14 @@ class PropertiesEditSubMenu(BaseMenu):
                 "function": "addRoom"
             },
             "3":  {
-                "title": "Edit rooms",
-                "access": ""
+                "title": "Edit room",
+                "access": "manager",
+                "function": "editRooms"
+            },
+            "3":  {
+                "title": "Delete room",
+                "access": "manager",
+                "function": "deleteRoom"
             },
             "4": {
                 "title": "Assign employees to property",
@@ -83,6 +89,10 @@ class PropertiesEditSubMenu(BaseMenu):
         print(self.createTable(header, created_room, table_title='Rooms in property', color_newest=True))
 
         self.waitForKeyPress()
+
+    def editRoom(self):
+        ''' Edit room size and ID'''
+        print('Edit rooms')
 
     def assignEmployeeToProperty(self):
         '''assignes employee to a specific property\n(needs employee ssn)'''
