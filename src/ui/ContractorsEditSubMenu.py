@@ -211,11 +211,15 @@ class ContractorsEditSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def deleteContractor(self):
-        confirm = Prompt.ask('Are you sure? \n[1] Yes! \n[other] Cancel')
+        confirm = Prompt.ask('Are you sure you want to delete this contractor?\n[1] Yes! \n Press any other key to Cancel\n')
         #confirm = Prompt.choices('Are you sure?' 'Yes', 'No')
-        if confirm == '1' :
-            if self.contractorsapi.deleteContractorId(self.contractorSSN) == True:
+        if confirm == '1':
+            try: 
+                contractorID= self.contractorsapi.findContractorByContractorId(self.contractorSSN)
+                self.contractorsapi.deleteContractorId(contractorID._id)
                 print('Contractor deleted')
-            else:
+            except RecordNotFoundError:
                 print('Contractor not found')
-        self.waitForKeyPress
+        else:
+            print('No changes made')
+        self.waitForKeyPress()

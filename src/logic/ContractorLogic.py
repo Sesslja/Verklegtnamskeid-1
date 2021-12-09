@@ -76,5 +76,5 @@ class ContractorAPI:
             'contractors': contractorId
         })
 
-    def deleteContractorId(self, id) -> list:
-        return self.contractorRepo.delete(id)
+    def deleteContractorId(self, contractorSSN) -> list:
+        return self.contractorRepo.delete(contractorSSN)
