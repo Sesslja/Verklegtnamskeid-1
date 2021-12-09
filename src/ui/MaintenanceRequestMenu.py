@@ -124,7 +124,7 @@ class MaintenanceRequestMenu(BaseMenu):
             if request_list == []:
                 find_request = input("Maintenance Id not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
-                    self.find_all_request()
+                    self.allMaintRequest()
                 maintenence_id = None
             else:
                 show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
