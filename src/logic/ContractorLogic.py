@@ -33,9 +33,6 @@ class ContractorAPI:
         data['_id'] = id
         return self.contractorRepo.update(data)
 
-    def deleteContractor(self, id) -> list:
-        return self.contractorRepo.delete(id)
-
     def findContractorByProfession(self, profession: str):
         return self.contractorRepo.find({ 
             'where': {
