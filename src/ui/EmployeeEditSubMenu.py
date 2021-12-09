@@ -40,6 +40,11 @@ class EmployeeEditMenu(BaseMenu):
                 "access": "",
                 "function": "delete_employee"
             },
+            "6": {
+                "title": "Change employee status",
+                "access": "",
+                "function": "changeEmployeeStatus"
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
@@ -125,3 +130,17 @@ class EmployeeEditMenu(BaseMenu):
             else:
                 print("Employee not found")
         self.waitForKeyPress()
+    
+    def changeEmployeeStatus(self):
+
+        confirm = input(f"Do you want to change {self.employeeSSN} to manager? (Y/N): ")
+
+        if confirm.lower() == "y":
+            
+            employee_object = self.userAPI.findEmployeeByEmployeeId(self.employeeSSN)
+            updated_user = self.userAPI.updateEmployeeInfo(employee_object._id, {
+                'isManager': True
+            })
+            print("Sucess, Employee is now a manager")
+        else :
+            print("Okey, no changes made")
