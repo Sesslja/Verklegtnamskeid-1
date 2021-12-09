@@ -130,6 +130,7 @@ class MaintenanceRequestMenu(BaseMenu):
                 else:
                     show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                     print(self.createTable(show_keys, request_list))
+                    #self.approveReadyMRequest() #Test
                     self.waitForKeyPress()
             except ValueError:
                 print("Please enter a valid ID")
@@ -196,3 +197,21 @@ class MaintenanceRequestMenu(BaseMenu):
                     show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                     print(self.createTable(show_keys, request_list))
                     self.waitForKeyPress()
+    
+
+#test hér fyrir neðan
+
+#    def approveReadyMRequest(self):
+        
+#        is_ready = None
+#
+#        while is_ready == None :
+
+#            is_ready = input('Would you like to mark this request as closed or opened? (C/O): ')
+#
+#            if is_ready.lower() == 'c' :
+#                self.closedMRequest()
+#            elif is_ready.lower() == 'o' :
+#                self.openedMRequest()
+#            else :
+#                print('Invalid input')

@@ -153,7 +153,10 @@ class MaintenanceMenu(BaseMenu):
                 create_property = input("Do you want to create a new property?: Y/N ")
                 if create_property.lower() == "y":
                     self.propertiesMenu.createProperty()
+                #elif create_property.lower() == "n": #test
+                #    return None #test
                 property_id = None
+
 
         room_number_input = None
         room_number = None
