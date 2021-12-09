@@ -44,7 +44,7 @@ class MaintenanceRequestAPI :
             }
         })
 
-    def findMRequestByStatus(self, request_status: str): #Closed, Opened, Upcoming, Outstanding
+    def findMRequestByStatus(self, request_status: str): #Opened, Closed, Outstanding
         return self.requestRepo.find({
             'where': {
                 'status': request_status

@@ -100,9 +100,9 @@ class MaintenanceRequestMenu(BaseMenu):
     def upcomingMaintenance(self):
         '''prints out a table of all upcoming requests'''
         try:
-            upcoming_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Upcoming")
-            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
-            print(self.createTable(show_keys, upcoming_request_list))
+            open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Open")
+            show_keys = ["verification_number",'start_date','employeeId','priority','occurance']
+            print(self.createTable(show_keys, open_request_list))
         except ValueError:
             print("Nothing to Show :(")
         self.waitForKeyPress()
