@@ -40,7 +40,7 @@ class MaintenanceMenu(BaseMenu):
         self.menu_options = {               
             "1": {
                 "title": "Create maintenance requests",  
-                "access": "manager",
+                "access": "",
                 "function": "createMRequest"
             },
             "2": {
@@ -72,44 +72,43 @@ class MaintenanceMenu(BaseMenu):
     def create_report(self):
         verificationNum = None
         while verificationNum == None:
-            verificationNum = input("\nEnter the verification number of the maintenance request: ")
+            verificationNum = input("\nEnter the verification number of the maintenane request: ")
             try:
-                found_req = self.MaintenanceRequestAPI.findOneByVerificationNumber(verificationNum)
-                verificationNum = found_req.verification_number
+                verificationNum = self.MaintenanceRequestAPI.findOneByVerificationNumber(verificationNum)
             except RecordNotFoundError:
                 find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
                     self.maintenanceRequestMenu.openedMRequest()
-                verificationuNum = None
+                verificationNum = None
     
         request_info = ""
 
-        contractorId, contractorsFee, = None, None
+        contractorID = None
+        contractorsFee = None
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
         if was_contractor.lower() == "y":
-            while contractorId == None:
-                contractorId = input("\nEnter contractors id: ")
+            while contractorID == None:
+                contractorID = input("\nEnter contractors id: ")
                 try:
-                    contractorId = int(contractorId)
-                    contractor = self.contractorAPI.findContractorByContractorId(str(contractorId))
+                    contractorID = int(contractorID)
+                    contractor = self.contractorAPI.findContractorByContractorId(str(contractorID))
                 except ValueError:
                     print("Enter a valid ID")
-                    contractorId = None
+                    contractorID = None
                 except RecordNotFoundError:
                     find_contractor = input("This contactor is not in the system - Would you lika a overview of the contractors? Y/N ")
                     if find_contractor.lower() == 'y':
                         self.contractorsOverviewSubMenu.all_contractors_overview()
-                    contractorId = None
+                    contractorID = None
                     
-            fee_input = float(input("Enter the contractors fee (in '%'): "))
+            fee_input = float(input("Enter the contractors fee '%': "))
             contractorsFee = (fee_input / 100)
 
         user_input = None
         maintenanceList = []
         while user_input != "":
             user_input = input("Enter what Maintenance was done: (Enter empty string to continue) ")
-            if user_input != "":
-                maintenanceList.append(user_input)
+            maintenanceList.append(user_input)
 
         materialCost = input("Enter the materalcost for the project ")
         if materialCost != "":
@@ -127,17 +126,19 @@ class MaintenanceMenu(BaseMenu):
             request_info = request_info, 
             verification_number = verificationNum, 
             maintenance = maintenanceList, 
-            contractorId = contractorId, 
-            materialcost = materialCost, 
+            contractorId = str(contractorID), 
+            materialCost = materialCost, 
             salary = salary, 
             contractorsfee = contractorsFee, 
             dt = dt,
             creator_user=self.loggedInUser)
-        print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
-        self.waitForKeyPress()
-        #except:
-           # print(f"Something whent wrong")
-           #self.waitForKeyPress()
+
+        if report != None:
+            print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
+            self.waitForKeyPress()
+        else:
+           print(f"Something whent wrong - Try again")
+           self.waitForKeyPress()
         
 
     def createMRequest(self):
@@ -153,19 +154,22 @@ class MaintenanceMenu(BaseMenu):
                 create_property = input("Do you want to create a new property?: Y/N ")
                 if create_property.lower() == "y":
                     self.propertiesMenu.createProperty()
+                #elif create_property.lower() == "n": #test
+                #    return None #test
                 property_id = None
+
 
         room_number_input = None
         room_number = None
-        while room_number_input == None:
-            room_number_input = input("Do you want to sign it to a room number? [y/N]: ")
-            if room_number_input.lower() == 'y':
+        while room_number == None:
+            room_number = input("Do you want to sign it to a room number? [Y/N]: ")
+            if room_number.lower() == 'y':
                 found_prop = self.propertyAPI.findPropertyByPropertyId(property_id)
                 rooms = found_prop.Rooms
 
                 print(self.createTable(['size','roomId'], rooms))
 
-                #self.waitForKeyPress()
+                self.waitForKeyPress()
 
                 room_signing = None
                 while room_signing == None:
@@ -174,14 +178,12 @@ class MaintenanceMenu(BaseMenu):
                     if room == False: 
                         print("Enter a valid room number: ")
                         room_signing = None
-                room_number = room_signing
 
         user_input = None
         input_list = []
         while user_input != "":
             user_input = input("What maintenance is requested: (Enter empty string to continue) ")
-            if user_input != "":
-                input_list.append(user_input)
+            input_list.append(user_input)
         occurrence = None
         isRegular = True
 
@@ -220,41 +222,27 @@ class MaintenanceMenu(BaseMenu):
             #print self.datetime.get_relative_date(month_ahead)
             #print self.datetime.get_relative_date(months_ahead)
 
-        employee_id_input = None
-        employee_list = []
-        employee_name_list = []
-        print('Add employees:')
-        while employee_id_input != "":
-            employee_id_input = input("Enter employee number: (Empty string to skip)")
-            if employee_id_input != "":
-                try:
-                    find_employee = self.userAPI.findEmployeeByEmployeeId(employee_id_input)
-                    employee_id = find_employee._id
-                    employee_list.append(employee_id)
-                    employee_name_list.append(f"{find_employee.name} (Num. {find_employee.ssn})")
-                except RecordNotFoundError:
-                    print("This employee is not in the system ")
-                    create_employee = input("Do you want to create a new employee?: [y/N] ")
-                    if create_employee.lower() == "y":
-                        self.employeesMenu.createEmployee()
-                    else:
-                        employee_id_input = None
+        employee_Id = ""
+        while employee_Id == "":
+            employee_Id = str(input("Enter employee id: "))
+            try:
+                employee_Id = int(employee_Id)
+            except ValueError:
+                employee_Id = ""
+                print("Enter a valid ID: ")
+            try:
+                find_employee = self.userAPI.findEmployeeByEmployeeId(str(employee_Id))
+            except RecordNotFoundError:
+                print("This employee is not in the system ")
+                create_employee = input("Do you want to create a new employee?: Y/N ")
+                if create_employee.lower() == "y":
+                    self.employeesMenu.createEmployee()
+                else:
+                    employee_Id = ""
 
         try:
-            created_maint_report = self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, 
-                                                                occurrence=occurrence, priority=priority, start_date = dt, employees=employee_list,
-                                                                roomNumId=room_number)
-
-
-            single_property_to_table_list = [
-                {'1': 'Property ID', '2': property_id},
-                {'1': 'To Do', '2': created_maint_report.to_do},
-                {'1': 'Occurance', '2': created_maint_report.occurance},
-                {'1': 'Priority', '2': created_maint_report.priority},
-                {'1': 'Start Date', '2': created_maint_report.start_date},
-                {'1': 'Employees', '2': employee_name_list},
-            ]
-            self.createTable(['1','2'], single_property_to_table_list, hide_entry_count=True, hide_header=True, line_between_records=True, table_title=f"Maintenance Request succesfully created and set for {dt}! ")
+            print(f"Maintenance Request succesfully created and set for {dt}! ")
+            self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employee_Id=None)
+            self.waitForKeyPress()
         except:
             print(f"Something whent wrong")
-        self.waitForKeyPress()

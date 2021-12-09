@@ -100,9 +100,9 @@ class MaintenanceRequestMenu(BaseMenu):
     def upcomingMaintenance(self):
         '''prints out a table of all upcoming requests'''
         try:
-            upcoming_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Upcoming")
-            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
-            print(self.createTable(show_keys, upcoming_request_list))
+            open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Open")
+            show_keys = ["verification_number",'start_date','employeeId','priority','occurance']
+            print(self.createTable(show_keys, open_request_list))
         except ValueError:
             print("Nothing to Show :(")
         self.waitForKeyPress()
@@ -116,25 +116,21 @@ class MaintenanceRequestMenu(BaseMenu):
         self.waitForKeyPress()
 
     def find_by_maintenance_id(self):
-        '''Gives option to find maintenace report given the id of request'''
+        '''Gives option to find maintenace request given the id of request'''
         maintenence_id = None
         while maintenence_id == None:
             maintenence_id = input("Enter maintenance ID: ")
-            try:
-                int(maintenence_id)
-                request_list = self.maintrequestAPI.findRequestByMaintenanceId(maintenence_id)
-                if len(request_list) == 0:
-                    print ("No items to show")
-                    request_list == None
-                    self.waitForKeyPress()
-                else:
-                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
-                    print(self.createTable(show_keys, request_list))
-                    self.waitForKeyPress()
-            except ValueError:
-                print("Please enter a valid ID")
+            request_list = self.maintenanceRequestAPI.findMRequestByVerificationId(maintenence_id)
+            if request_list == []:
+                find_request = input("Maintenance Id not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
+                if find_request.lower() == 'y':
+                    self.allMaintRequest()
                 maintenence_id = None
-
+            else:
+                show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                print(self.createTable(show_keys, request_list))
+                self.waitForKeyPress()
+        
 
     def find_by_employee(self):
         '''Gives option to find maintenace request given the id of employee'''
@@ -196,3 +192,21 @@ class MaintenanceRequestMenu(BaseMenu):
                     show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                     print(self.createTable(show_keys, request_list))
                     self.waitForKeyPress()
+    
+
+#test hér fyrir neðan
+
+#    def approveReadyMRequest(self):
+        
+#        is_ready = None
+#
+#        while is_ready == None :
+
+#            is_ready = input('Would you like to mark this request as closed or opened? (C/O): ')
+#
+#            if is_ready.lower() == 'c' :
+#                self.closedMRequest()
+#            elif is_ready.lower() == 'o' :
+#                self.openedMRequest()
+#            else :
+#                print('Invalid input')

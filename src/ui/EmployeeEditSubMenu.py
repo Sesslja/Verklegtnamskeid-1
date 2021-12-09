@@ -40,6 +40,11 @@ class EmployeeEditMenu(BaseMenu):
                 "access": "",
                 "function": "delete_employee"
             },
+            "6": {
+                "title": "Change employee status",
+                "access": "",
+                "function": "changeEmployeeStatus"
+            },
             "X": {
                 "title": "Return to previous page",
                 "access": "",
