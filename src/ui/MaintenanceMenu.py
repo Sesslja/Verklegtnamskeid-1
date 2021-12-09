@@ -83,9 +83,10 @@ class MaintenanceMenu(BaseMenu):
     
         request_info = ""
 
+        contractorID = None
+        contractorsFee = None
         was_contractor = input("Did you hire a Contractor for the project? Y/N: ")
         if was_contractor.lower() == "y":
-            contractorID = None
             while contractorID == None:
                 contractorID = input("\nEnter contractors id: ")
                 try:
@@ -125,7 +126,7 @@ class MaintenanceMenu(BaseMenu):
             request_info = request_info, 
             verification_number = verificationNum, 
             maintenance = maintenanceList, 
-            contractorId = contractorID, 
+            contractorId = str(contractorID), 
             materialCost = materialCost, 
             salary = salary, 
             contractorsfee = contractorsFee, 
