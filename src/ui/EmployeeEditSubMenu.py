@@ -120,8 +120,9 @@ class EmployeeEditMenu(BaseMenu):
     def delete_employee(self):
         comfirm = input("Are you sure? \n[1] Yes!\n[other] Cancel")
         if comfirm == "1":
-            if self.userApi.deleteEmployee(self.employeeSSN) == True:
+            try:
+                self.userAPI.deleteEmployee(self.employeeSSN)
                 print("Employee deleted")
-            else:
+            except FileNotFoundError:
                 print("Employee not found")
         self.waitForKeyPress()

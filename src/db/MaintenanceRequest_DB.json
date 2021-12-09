@@ -1,291 +1,137 @@
 [
     {
-        "_id": "c1d475f2-05c0-4965-af65-9bd716942999",
-        "created_at": "2021-12-03 15:33:37.247073",
+        "_id": "3dc9d721-ab8e-4a7f-a477-2c1df2c92ba7",
+        "created_at": "2021-12-08 23:20:59.773758",
         "isActive": true,
         "isArchived": false,
-        "status": "",
-        "property_id": "PP8000",
-        "Address": {
-            "country": "Iceland",
-            "city": "Reykjavik",
-            "zip": "101",
-            "address1": "Bankastr\u00e6ti 5",
-            "address2": null,
-            "address3": null
-        },
+        "status": "Open",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "n",
         "to_do": [
-            "Bor\u00f0a mat",
-            "sl\u00e1 vegg",
-            "kaupa b\u00edl"
+            "Clean",
+            ""
         ],
         "isRegular": true,
-        "occurance": "ha",
-        "priority": "HIGH",
-        "start_date": "now",
-        "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
+        "occurance": 12,
+        "priority": "A",
+        "start_date": "Sunday 12 December 2021",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130"
+        ],
         "verification_number": "VB00001",
-        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
+        "contractor_id": null
     },
     {
-        "_id": "1faed923-f5f1-4a2f-9f98-ae8040746f89",
-        "created_at": "2021-12-03 16:01:11.521074",
+        "_id": "9171990b-3eee-4435-a0e4-a37e5b855a8b",
+        "created_at": "2021-12-08 23:46:21.579744",
         "isActive": true,
         "isArchived": false,
-        "status": "",
-        "property_id": "PP8000",
-        "Address": {
-            "country": "Iceland",
-            "city": "Reykjavik",
-            "zip": "101",
-            "address1": "Prikah\u00fas 2",
-            "address2": null,
-            "address3": null
-        },
+        "status": "Open",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "PP8005",
         "to_do": [
-            "Bor\u00f0a mat",
-            "kaupa t\u00f6lvu",
-            "selja hj\u00f3l"
+            "Change lightbulbs",
+            ""
         ],
-        "isRegular": true,
-        "occurance": "ha",
-        "priority": "HIGH",
-        "start_date": "now",
-        "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "B",
+        "start_date": "Wednesday 05 January 2022",
+        "employees": [
+            "37a229db-6157-4bbe-b898-9d2abafb464d"
+        ],
         "verification_number": "VB00002",
-        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
+        "contractor_id": null
     },
     {
-        "_id": "1ae343f7-4b27-469b-88c9-92bcd293f6df",
-        "created_at": "2021-12-03 16:01:18.224285",
+        "_id": "a2063768-72e5-4cb0-9f4f-a617c4b956b7",
+        "created_at": "2021-12-08 23:47:38.899627",
         "isActive": true,
         "isArchived": false,
-        "status": "",
-        "property_id": "PP8000",
-        "Address": {
-            "country": "Iceland",
-            "city": "Reykjavik",
-            "zip": "101",
-            "address1": "Prikah\u00fas 2",
-            "address2": null,
-            "address3": null
-        },
+        "status": "Finished",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "PP8005",
         "to_do": [
-            "Bor\u00f0a mat",
-            "kaupa t\u00f6lvu",
-            "selja hj\u00f3l"
+            "Clean",
+            ""
         ],
-        "isRegular": true,
-        "occurance": "ha",
-        "priority": "HIGH",
-        "start_date": "now",
-        "employeeId": "37a229db-6157-4bbe-b898-9d2abafb464d",
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "A",
+        "start_date": "Wednesday 12 October 2022",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130"
+        ],
         "verification_number": "VB00003",
         "contractor_id": null
     },
     {
-        "_id": "6007e8e4-3e77-47a1-a9a2-c855cff8475f",
-        "created_at": "2021-12-06 17:53:29.036064",
+        "_id": "2390912d-460c-4eaf-9def-7c20376c7522",
+        "created_at": "2021-12-08 23:48:41.947567",
         "isActive": true,
         "isArchived": false,
-        "status": "",
-        "Address": "sdf",
-        "property_id": "PP7990",
+        "status": "Finished",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "PR8007",
         "to_do": [
-            "3",
+            "Hoist lift",
             ""
         ],
         "isRegular": true,
-        "occurance": 1,
+        "occurance": 2,
         "priority": "A",
-        "start_date": 1638813209,
-        "employeeId": null,
+        "start_date": "Saturday 01 January 2022",
+        "employees": [
+            "0068302d-fcf5-429c-9d01-1655ed6ce816"
+        ],
         "verification_number": "VB00004",
         "contractor_id": null
     },
     {
-        "_id": "8ed48fd6-3d04-428a-be9c-41350c8f3e2e",
-        "created_at": "2021-12-07 16:42:55.508473",
-        "isActive": true,
-        "isArchived": false,
-        "status": "",
-        "property_id": "PP8100",
-        "to_do": [
-            "clean window",
-            "empty pool",
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "B",
-        "start_date": 1638895375,
-        "employeeId": null,
-        "verification_number": "VB00005",
-        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
-    },
-    {
-        "_id": "8b967d2c-29b2-42e2-8ef1-b16e37a98d3d",
-        "created_at": "2021-12-07 17:52:50.439991",
-        "isActive": true,
-        "isArchived": false,
-        "status": "",
-        "property_id": "PP8000",
-        "to_do": [
-            ""
-        ],
-        "isRegular": false,
-        "occurance": false,
-        "priority": "C",
-        "start_date": 1638899570,
-        "employeeId": null,
-        "verification_number": "VB00006",
-        "contractor_id": "b1921d1c-8620-40cb-b4ea-4bebc1633307"
-    },
-    {
-        "_id": "34c1af80-4bd7-4f5a-ac2c-c69becf26975",
-        "created_at": "2021-12-08 18:00:01.441879",
-        "isActive": true,
-        "isArchived": false,
-        "status": "Upcoming",
-        "property_id": "PP8000",
-        "to_do": [
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "A",
-        "start_date": null,
-        "employeeId": null,
-        "verification_number": "VB00007",
-        "contractor_id": null
-    },
-    {
-        "_id": "e6342553-3d2f-47a6-b22c-4fb72898c26b",
-        "created_at": "2021-12-08 18:02:19.804542",
-        "isActive": true,
-        "isArchived": false,
-        "status": "Upcoming",
-        "property_id": "PP8000",
-        "to_do": [
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "A",
-        "start_date": null,
-        "employeeId": null,
-        "verification_number": "VB00008",
-        "contractor_id": null
-    },
-    {
-        "_id": "8f508a60-7df2-455a-a36d-ecb7b0971757",
-        "created_at": "2021-12-08 18:03:40.709347",
-        "isActive": true,
-        "isArchived": false,
-        "status": "Upcoming",
-        "property_id": "PP8000",
-        "to_do": [
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "A",
-        "start_date": null,
-        "employeeId": null,
-        "verification_number": "VB00009",
-        "contractor_id": null
-    },
-    {
-        "_id": "a368ec71-2160-44e9-b7c2-dc6b65106edf",
-        "created_at": "2021-12-08 18:04:51.416433",
-        "isActive": true,
-        "isArchived": false,
-        "status": "Upcoming",
-        "property_id": "PP8000",
-        "to_do": [
-            "a",
-            "a",
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "A",
-        "start_date": null,
-        "employeeId": null,
-        "verification_number": "VB00010",
-        "contractor_id": null
-    },
-    {
-        "_id": "768ca56b-aa1a-4418-b6eb-e710ad0c15c2",
-        "created_at": "2021-12-08 20:15:12.968477",
-        "isActive": true,
-        "isArchived": false,
-        "status": "Upcoming",
-        "property_id": "PP8000",
-        "to_do": [
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "A",
-        "start_date": null,
-        "employeeId": null,
-        "verification_number": "VB00011",
-        "contractor_id": null
-    },
-    {
-        "_id": "53cf03bc-c088-445a-8d22-c4b3b7e69576",
-        "created_at": "2021-12-08 20:16:16.408851",
-        "isActive": true,
-        "isArchived": false,
-        "status": "Upcoming",
-        "property_id": "PP8000",
-        "to_do": [
-            "a",
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "A",
-        "start_date": null,
-        "employeeId": null,
-        "verification_number": "VB00012",
-        "contractor_id": null
-    },
-    {
-        "_id": "62a414d6-deaf-499b-877c-89c69e82bdda",
-        "created_at": "2021-12-08 20:17:50.268165",
-        "isActive": true,
-        "isArchived": false,
-        "status": "Upcoming",
-        "property_id": "PP8000",
-        "to_do": [
-            ""
-        ],
-        "isRegular": true,
-        "occurance": 12,
-        "priority": "A",
-        "start_date": null,
-        "employeeId": null,
-        "verification_number": "VB00013",
-        "contractor_id": null
-    },
-    {
-        "_id": "35921c64-9815-4610-b22c-955241fdc904",
-        "created_at": "2021-12-08 20:48:50.248132",
+        "_id": "cb33bfc7-237e-4d82-bcf4-a710ce73a803",
+        "created_at": "2021-12-08 23:58:54.882402",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "PP8000",
+        "property_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
+        "roomNumId": "PR7991",
         "to_do": [
+            "Change lights",
             ""
         ],
-        "isRegular": true,
-        "occurance": 12,
+        "isRegular": false,
+        "occurance": 0,
         "priority": "A",
-        "start_date": "Saturday 24 December 2022",
-        "employeeId": null,
-        "verification_number": "VB00014",
+        "start_date": "Tuesday 21 December 2021",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130",
+            "0068302d-fcf5-429c-9d01-1655ed6ce816"
+        ],
+        "verification_number": "VB00005",
+        "contractor_id": null
+    },
+    {
+        "_id": "7fa0be0c-7803-4d19-b2ed-bed8bb7fd60d",
+        "created_at": "2021-12-08 23:59:50.077865",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
+        "roomNumId": "PR7992",
+        "to_do": [
+            "Clean",
+            "Cook",
+            ""
+        ],
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "A",
+        "start_date": "Sunday 26 December 2021",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130",
+            "0068302d-fcf5-429c-9d01-1655ed6ce816"
+        ],
+        "verification_number": "VB00006",
         "contractor_id": null
     }
 ]

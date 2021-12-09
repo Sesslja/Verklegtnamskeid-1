@@ -1,3 +1,4 @@
+from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from model.MaintenanceRequestModel import MaintenanceRequest
 from logic.DestinationsLogic import DestinationsAPI
 from model.AddressType import Address
@@ -12,6 +13,7 @@ class PropertyAPI:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
         self.destinationApi = DestinationsAPI()
+        self.maintReqApi = MaintenanceRequestAPI()
         self.maintReqRepo = DB(MaintenanceRequest)
 
     def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
@@ -20,12 +22,8 @@ class PropertyAPI:
 
 
     def findRequestsByPropertyID(self, propID):
-        '''Shows all requests assigned to property\ngiven property ID'''
-        maint_reqs = self.maintReqRepo.find({
-            'where': {
-                'property_id': propID
-            }
-        })
+        '''Shows all maintenance requests requests assigned to property\ngiven property ID'''
+        maint_reqs = self.maintReqApi.findRequestsByProperty(propID)
         
         return maint_reqs
 
@@ -55,8 +53,9 @@ class PropertyAPI:
 
         return new_prop_list
 
-    def insertPropInfo(self, prop_list: list[object]) -> list[object]:
+    def insertPropInfo(self, prop_list: list[object] ) -> list[object]:
         '''Inserts room info and address string into object'''
+        
         for i, f_property in enumerate(prop_list):
             total_size = 0
             for room in f_property.Rooms:
@@ -67,6 +66,19 @@ class PropertyAPI:
             
             prop_list[i].address_str = Address().addrToString(f_property.Address)
         return prop_list
+
+    def insertPropInfoSingle(self, prop_obj: object) -> list[object]:
+        '''Inserts room info and address string into object'''
+        total_size = 0
+        for room in prop_obj.Rooms:
+            total_size += room['size']
+        prop_obj.total_size = round(total_size)
+        prop_obj.room_amount = len(prop_obj.Rooms)
+        
+        
+        prop_obj.address_str = Address().addrToString(prop_obj.Address)
+
+        return prop_obj
 
 
     
@@ -79,8 +91,8 @@ class PropertyAPI:
                 'propertyId': propertyID
             }
         })
-        found_prop.address_str = Address().addrToString(found_prop.Address)
-        return found_prop
+        
+        return self.insertPropInfoSingle(found_prop)
 
     def findPropertyByCountry(self, country: str):
         found_properties = self.propertyRepo.find({
@@ -104,11 +116,13 @@ class PropertyAPI:
         except RecordNotFoundError:
             raise RecordNotFoundError
 
-        return self.propertyRepo.find({
+        found_prop = self.propertyRepo.find({
             'where': {
                 'employees': user._id
             }
         })
+
+        return self.insertPropInfo(found_prop)
 
     def createRoom(self, propertyId: str, roomId: str=None, size: float=None):
         '''Creates a room for a property'''

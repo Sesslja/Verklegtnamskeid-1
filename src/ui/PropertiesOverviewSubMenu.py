@@ -1,3 +1,4 @@
+from os import name
 from re import L
 from typing import Text
 from data.DBError import RecordNotFoundError
@@ -41,18 +42,18 @@ class PropertiesOverviewSubMenu(BaseMenu):
             },
             "4":  {
                 "title": "Search by Employee",
-                "access": "Manager",
+                "access": "manager",
                 "function": "search_by_employee"
             },
             "5":  {
                 "title": "Find rooms by property ID",
-                "access": "Manager",
+                "access": "manager",
                 "function": "findRoomsByPropertyId"
             },
             "6":  {
-                "title": "Find Requests assigned to property",
-                "access": "Manager",
-                "function": "showPropertyRequests"
+                "title": "Find Maintenance Requests assigned to property",
+                "access": "manager",
+                "function": "showPropertyMaintenanceRequests"
             },
             "X": {
                 "title": "Return to previous page",
@@ -65,17 +66,25 @@ class PropertiesOverviewSubMenu(BaseMenu):
             }
         }
 
-    def showPropertyRequests(self):
+    def showPropertyMaintenanceRequests(self):
         '''Shows all request assigned to property'''
-        property_id = input("Enter property ID: ")
+        property_id = 'PP8000'#input("Enter property ID: ")
         try:    
-            propertyIdSpecial = self.propertyapi.findPropertyByPropertyId(property_id)
-            requests = self.propertyapi.findRequestsByPropertyID(propertyIdSpecial.propertyId)
+            found_property = self.propertyapi.findPropertyByPropertyId(property_id)
+            requests = self.propertyapi.findRequestsByPropertyID(found_property.propertyId)
             
-            show_keys = ['to_do', 'priority']
-            for req in requests:
-                print(req.priority)
-            #print(self.createTable(show_keys, requests))
+            show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'status': {
+                    'display_name': 'Status'
+                },
+                'to_do': {
+                    'display_name': 'Todo'
+                }
+            }
+            print(self.createTable(show_keys, requests, table_title=f'Maintenance requests for property with ID:[bold] {property_id} [/bold]'))
         except RecordNotFoundError:
             print('Nothing foud :(')
         self.waitForKeyPress()
@@ -95,88 +104,121 @@ class PropertiesOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def searchById(self):
-        '''Finds all properties given a property ID'''
+        '''Finds a property given a property ID'''
         try:
-            property_id = input("Find property by property ID:\nEnter property ID: ")
+            property_id = "PP8000"#input("Find property by property ID:\nEnter property ID: ")
             property_list = self.propertyapi.findPropertyByPropertyId(property_id)
 
             employee_list = self.propertyapi.findEmployeesByPropertyId(property_id)
 
+            maintenance_requests_list = self.propertyapi.findRequestsByPropertyID(property_id)
 
-            header_employees = {
-                'name': {
-                    'display_name': 'Name'
-                },
-                'email': {
-                    'display_name': 'E-Mail'
-                },
-                'ssn': {
-                    'display_name': 'SSN'
-                }
-            }
-            header_rooms = {
-                'roomId': {
-                    'display_name': 'Room ID'
-                },
-                'size': {
-                    'display_name': 'Size',
-                    'suffix': ' m²'
-                }
-            }
             if RICH_AVAILABLE:
-                layout = Layout()
-                layout.split_column(
+                main_layout = Layout()
+                property_layout = Layout()
+                maint_reqs_layout = Layout()
+
+                main_layout.split_column(
                     Layout(name="header", size=1),
                     Layout(name="main")
                 )
-                layout["header"].update(
+                main_layout["header"].update(
                     Text('')
                 )
-                layout["main"].split_row(
-                    Layout(name="property", ratio=1),
-                    Layout(name="relations")
+                main_layout["main"].split_row(
+                    Layout(name="prop_info"),
+                    Layout(name="maint_req_info"),
                 )
-                layout["relations"].split_row(
+
+                main_layout["prop_info"].update(
+                    Panel(
+                        property_layout,
+                    title="Property Info")
+                )
+
+                main_layout["maint_req_info"].update(
+                    Panel(
+                        maint_reqs_layout,
+                    title="Open maintenance requests")
+                )
+
+                property_layout.split_column(
+                    Layout(name="info"),
+                    Layout(name="related", ratio=2)
+                )
+
+                property_layout["related"].split_row(
                     Layout(name="employees", ratio=2),
                     Layout(name="rooms"),
                     Layout(name="amenities")
                 )
+
                 single_property_to_table_list = [
-                    {'1': 'Property in use', '2': property_list.isActive},
+                    {'1': 'Property ID', '2': property_list.propertyId},
                     {'1': 'Address', '2': property_list.address_str},
+                    {'1': 'Total size', '2': property_list.total_size},
+                    {'1': 'Amount of rooms', '2': property_list.room_amount},
                 ]
-                #prop = property_list.__dict__
-                ##for key in prop:
-                #single_prop_dict = {
-                #    ''
-                #}
-                #single_prop_dict.update({'1': key, '2': prop[key]})
-                #single_property_to_table_list.append(single_prop_dict)
-                #print(single_property_to_table_list)
 
-                layout["property"].update(
-                    Panel(
-                        self.createTable(['1', '2'], single_property_to_table_list, return_table=True, hide_header=True, table_style='red'),
-                    title='Property Info')
+                property_layout["info"].update(
+                    self.createTable(['1', '2'], single_property_to_table_list, line_between_records=True, return_table=True, hide_header=True, table_style='red', hide_entry_count=True),
                 )
 
-                layout["employees"].update(
-                    self.createTable(header_employees, employee_list, table_title='Employees', line_between_records=True, return_table=True)
+                header_employees = {
+                    'name': {
+                        'display_name': 'Name'
+                    },
+                    'email': {
+                        'display_name': 'E-Mail'
+                    },
+                    'ssn': {
+                        'display_name': 'SSN'
+                    }
+                }
+
+                property_layout["related"]["employees"].update(
+                    self.createTable(header_employees, employee_list, table_title='Assigned Employees', line_between_records=True, return_table=True)
                 )
 
-                layout["rooms"].update(
-                    self.createTable(header_rooms, property_list.Rooms, table_title='Rooms', line_between_records=True, return_table=True)
+                header_rooms = {
+                    'roomId': {
+                        'display_name': 'Room ID'
+                    },
+                    'size': {
+                        'display_name': 'Size',
+                        'suffix': ' m²'
+                    }
+                }
+#
+                property_layout["related"]["rooms"].update(
+                    self.createTable(header_rooms, property_list.Rooms, table_title='Rooms', line_between_records=True, return_table=True, entry_limit=3)
                 )
 
                 amenities_list = []
                 for amen in property_list.amenities:
                     amenities_list.append({'amenity': amen})
 
-                layout["amenities"].update(
+                property_layout["related"]["amenities"].update(
                     self.createTable(['amenity'], amenities_list, hide_header=True, table_title='Amenities', line_between_records=True, return_table=True)
                 )
 
-                print(layout)
+                header_maint_reqs = {
+                    'verification_number': {
+                        'display_name': 'Verification Number'
+                    },
+                    'occurance': {
+                        'display_name': 'Occurance'
+                    },
+                    'priority': {
+                        'display_name': 'Priority'
+                    }
+                }
+
+                maint_reqs_layout.update(
+                    self.createTable(header_maint_reqs, maintenance_requests_list, return_table=True)
+                )
+
+                print(main_layout)
             else:
                 print(color('Rich module not installed, unable to display', backgroundColor='red'))
 

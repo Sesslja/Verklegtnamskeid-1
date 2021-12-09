@@ -14,11 +14,12 @@ class MaintReportAPI:
         self.userRepo = DB(User)
         self.propertyRepo = DB(Property)
         self.maintenanceStatus = DB(MaintenanceRequest)
+        self.maintReqApi = MaintenanceRequestAPI()
 
 
-    def createReport(self, request_info, verification_number: str, maintenance: list, contractorId: str, materialcost: int, salary: int, contractorsfee: float, dt: str):
-        MaintenanceRequestAPI.changeMRequestStatus(self, verification_number, 'Finished')
-        new_report = Report(request_info,verification_number, maintenance, contractorId, materialcost, salary, contractorsfee, dt)
+    def createReport(self, request_info, verification_number: str, maintenance: list, contractorId: str, materialcost: int, salary: int, contractorsfee: float, dt: str, creator_user):
+        self.maintReqApi.changeMRequestStatus(verification_number, 'Finished')
+        new_report = Report(request_info,verification_number, maintenance, contractorId, materialcost, salary, contractorsfee, dt, creator_user._id)
         return self.reportRepo.save(new_report)
 
     def findReport(self) -> list:
