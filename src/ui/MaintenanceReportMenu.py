@@ -1,5 +1,6 @@
 from ui.BaseMenu import BaseMenu
 from logic.MaintReportLogic import MaintReportAPI
+from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 
 class MaintenanceReportMenu(BaseMenu):
     '''Gives maintenace report optins'''
@@ -8,6 +9,7 @@ class MaintenanceReportMenu(BaseMenu):
 
         self.menu_title = "Maintenance Report Menu"
         self.maintreportAPI = MaintReportAPI()
+        self.maintanenceRequestMenu = MaintenanceRequestMenu()
 
         self.menu_options = {
             
@@ -34,7 +36,7 @@ class MaintenanceReportMenu(BaseMenu):
 
     def find_all_reports(self):
         report_list = self.maintreportAPI.findReport()
-        show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+        show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
         print(self.createTable(show_keys, report_list))
         self.waitForKeyPress()
     
@@ -57,6 +59,6 @@ class MaintenanceReportMenu(BaseMenu):
             except ValueError:
                 find_request = input("Maintenance Id not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
-                    self.maintenanceRequestMenu.openedMRequest()
+                    self.find_all_reports()
                 maintenence_id = None
 
