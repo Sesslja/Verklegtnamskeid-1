@@ -41,18 +41,18 @@ class PropertiesOverviewSubMenu(BaseMenu):
             },
             "4":  {
                 "title": "Search by Employee",
-                "access": "Manager",
+                "access": "manager",
                 "function": "search_by_employee"
             },
             "5":  {
                 "title": "Find rooms by property ID",
-                "access": "Manager",
+                "access": "manager",
                 "function": "findRoomsByPropertyId"
             },
             "6":  {
-                "title": "Find Requests assigned to property",
-                "access": "Manager",
-                "function": "showPropertyRequests"
+                "title": "Find Maintenance Requests assigned to property",
+                "access": "manager",
+                "function": "showPropertyMaintenanceRequests"
             },
             "X": {
                 "title": "Return to previous page",
@@ -65,17 +65,25 @@ class PropertiesOverviewSubMenu(BaseMenu):
             }
         }
 
-    def showPropertyRequests(self):
+    def showPropertyMaintenanceRequests(self):
         '''Shows all request assigned to property'''
-        property_id = input("Enter property ID: ")
+        property_id = 'PP8000'#input("Enter property ID: ")
         try:    
-            propertyIdSpecial = self.propertyapi.findPropertyByPropertyId(property_id)
-            requests = self.propertyapi.findRequestsByPropertyID(propertyIdSpecial.propertyId)
+            found_property = self.propertyapi.findPropertyByPropertyId(property_id)
+            requests = self.propertyapi.findRequestsByPropertyID(found_property.propertyId)
             
-            show_keys = ['to_do', 'priority']
-            for req in requests:
-                print(req.priority)
-            #print(self.createTable(show_keys, requests))
+            show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'status': {
+                    'display_name': 'Status'
+                },
+                'to_do': {
+                    'display_name': 'Todo'
+                }
+            }
+            print(self.createTable(show_keys, requests, table_title=f'Maintenance requests for property with ID:[bold] {property_id} [/bold]'))
         except RecordNotFoundError:
             print('Nothing foud :(')
         self.waitForKeyPress()

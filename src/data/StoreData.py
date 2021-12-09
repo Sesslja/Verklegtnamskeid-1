@@ -2,7 +2,7 @@ import json
 import uuid
 from datetime import datetime
 from data.ReadData import ReadData
-from data.DBError import DBError
+from data.DBError import TableNotFoundError, DBError
 
 class StoreData:
     def __init__(self, modelObj: object) -> None:
@@ -27,7 +27,7 @@ class StoreData:
                 return obj # Returns the object we were given to show updated objects(_id and created_at) and indicate success
 
         except FileNotFoundError:
-            return DBError('TABLE_NOT_EXIST') # Return DBError if the file does not exist
+            raise TableNotFoundError # Raise TableNotFoundError if the file does not exist
 
 
     def delete(self, filename, id) -> bool:

@@ -1,3 +1,4 @@
+from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from model.MaintenanceRequestModel import MaintenanceRequest
 from logic.DestinationsLogic import DestinationsAPI
 from model.AddressType import Address
@@ -12,6 +13,7 @@ class PropertyAPI:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
         self.destinationApi = DestinationsAPI()
+        self.maintReqApi = MaintenanceRequestAPI()
         self.maintReqRepo = DB(MaintenanceRequest)
 
     def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
@@ -21,11 +23,7 @@ class PropertyAPI:
 
     def findRequestsByPropertyID(self, propID):
         '''Shows all requests assigned to property\ngiven property ID'''
-        maint_reqs = self.maintReqRepo.find({
-            'where': {
-                'property_id': propID
-            }
-        })
+        maint_reqs = self.maintReqApi.findRequestByProperty(propID)
         
         return maint_reqs
 

@@ -142,19 +142,19 @@ class MaintenanceMenu(BaseMenu):
                 create_property = input("Do you want to create a new property?: Y/N ")
                 if create_property.lower() == "y":
                     self.propertiesMenu.createProperty()
-                else:
-                    property_id = None
+                property_id = None
 
+        room_number_input = None
         room_number = None
-        while room_number == None:
-            room_number = input("Do you want to sign it to a room number? [Y/N]: ")
-            if room_number.lower() == 'y':
+        while room_number_input == None:
+            room_number_input = input("Do you want to sign it to a room number? [y/N]: ")
+            if room_number_input.lower() == 'y':
                 found_prop = self.propertyAPI.findPropertyByPropertyId(property_id)
                 rooms = found_prop.Rooms
 
                 print(self.createTable(['size','roomId'], rooms))
 
-                self.waitForKeyPress()
+                #self.waitForKeyPress()
 
                 room_signing = None
                 while room_signing == None:
@@ -163,6 +163,7 @@ class MaintenanceMenu(BaseMenu):
                     if room == False: 
                         print("Enter a valid room number: ")
                         room_signing = None
+                room_number = room_signing
 
         user_input = None
         input_list = []
@@ -207,27 +208,41 @@ class MaintenanceMenu(BaseMenu):
             #print self.datetime.get_relative_date(month_ahead)
             #print self.datetime.get_relative_date(months_ahead)
 
-        employee_Id = ""
-        while employee_Id == "":
-            employee_Id = str(input("Enter employee id: "))
-            try:
-                employee_Id = int(employee_Id)
-            except ValueError:
-                employee_Id = ""
-                print("Enter a valid ID: ")
-            try:
-                find_employee = self.userAPI.findEmployeeByEmployeeId(str(employee_Id))
-            except RecordNotFoundError:
-                print("This employee is not in the system ")
-                create_employee = input("Do you want to create a new employee?: Y/N ")
-                if create_employee.lower() == "y":
-                    self.employeesMenu.createEmployee()
-                else:
-                    employee_Id = ""
+        employee_id_input = None
+        employee_list = []
+        employee_name_list = []
+        print('Add employees:')
+        while employee_id_input != "":
+            employee_id_input = input("Enter employee number: (Empty string to skip)")
+            if employee_id_input != "":
+                try:
+                    find_employee = self.userAPI.findEmployeeByEmployeeId(employee_id_input)
+                    employee_id = find_employee._id
+                    employee_list.append(employee_id)
+                    employee_name_list.append(f"{find_employee.name} (Num. {find_employee.ssn})")
+                except RecordNotFoundError:
+                    print("This employee is not in the system ")
+                    create_employee = input("Do you want to create a new employee?: [y/N] ")
+                    if create_employee.lower() == "y":
+                        self.employeesMenu.createEmployee()
+                    else:
+                        employee_id_input = None
 
         try:
-            print(f"Maintenance Request succesfully created and set for {dt}! ")
-            self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employee_Id=None)
-            self.waitForKeyPress()
+            created_maint_report = self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, 
+                                                                occurrence=occurrence, priority=priority, start_date = dt, employees=employee_list,
+                                                                roomNumId=room_number)
+
+
+            single_property_to_table_list = [
+                {'1': 'Property ID', '2': property_id},
+                {'1': 'To Do', '2': created_maint_report.to_do},
+                {'1': 'Occurance', '2': created_maint_report.occurance},
+                {'1': 'Priority', '2': created_maint_report.priority},
+                {'1': 'Start Date', '2': created_maint_report.start_date},
+                {'1': 'Employees', '2': employee_name_list},
+            ]
+            self.createTable(['1','2'], single_property_to_table_list, hide_entry_count=True, hide_header=True, line_between_records=True, table_title=f"Maintenance Request succesfully created and set for {dt}! ")
         except:
             print(f"Something whent wrong")
+        self.waitForKeyPress()

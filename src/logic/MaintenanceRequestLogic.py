@@ -9,9 +9,27 @@ class MaintenanceRequestAPI :
 
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
+        self.propertyRepo = DB(Property)
 
-    def createMaintenanceRequest(self,status: str, property_id: str, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employee_Id =None):
-        new_request = MaintenanceRequest(status, property_id, to_do, isRegular, occurrence, priority, start_date, employee_Id, self.createVerificationNumber())
+    def createMaintenanceRequest(self,status: str, property_id: str, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employees: list=None, roomNumId: str=None):
+        found_prop = self.propertyRepo.findOne({
+            'where': {
+                'propertyId': property_id
+            }
+        })
+
+        new_request = MaintenanceRequest(
+            status=status, 
+            property_id=found_prop._id, 
+            to_do=to_do, 
+            isRegular=isRegular, 
+            occurrence=occurrence, 
+            priority=priority, 
+            start_date=start_date, 
+            employees=employees, 
+            verification_number=self.createVerificationNumber(),
+            roomNumId=roomNumId
+        )
         return self.requestRepo.save(new_request)
     
     def MaintenanceRequestOverview(self) -> list :
@@ -32,10 +50,13 @@ class MaintenanceRequestAPI :
         })
 
     def createVerificationNumber(self):
-        used_numbers = self.requestRepo.find() # Find all maintenance request to see used numbers
-        num_length = len(used_numbers) - 1
-        last_number = used_numbers[num_length].verification_number
-        last_number = int(last_number[2:])
+        try:
+            used_numbers = self.requestRepo.find() # Find all maintenance request to see used numbers
+            num_length = len(used_numbers) - 1
+            last_number = used_numbers[num_length].verification_number
+            last_number = int(last_number[2:])
+        except IndexError:
+            last_number = 0
         new_num = str(last_number+1).zfill(5)
         verification_number = 'VB'+new_num
         return verification_number
@@ -69,7 +90,7 @@ class MaintenanceRequestAPI :
         })
     
     def findRequestByProperty(self, propertyId: str):
-        property = self.propertyRepo.find({
+        found_property = self.propertyRepo.findOne({
             'where': {
                 'propertyId': propertyId
             }
@@ -77,7 +98,7 @@ class MaintenanceRequestAPI :
 
         return self.requestRepo.find({
             'where': {
-                'propertyId': propertyId
+                'property_id': found_property._id
             }
         })
 
