@@ -1,6 +1,7 @@
 from data.DBError import RecordNotFoundError
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
+from rich.prompt import Confirm, Prompt, FloatPrompt
 
 
 class PropertiesEditSubMenu(BaseMenu):
@@ -27,10 +28,16 @@ class PropertiesEditSubMenu(BaseMenu):
                 "function": "addRoom"
             },
             "3":  {
-                "title": "Edit rooms",
-                "access": ""
+                "title": "Edit room",
+                "access": "manager",
+                "function": "editRoom"
             },
-            "4": {
+            "4":  {
+                "title": "Delete room",
+                "access": "manager",
+                "function": "deleteRoom"
+            },
+            "5": {
                 "title": "Assign employees to property",
                 "access": "",
                 "function": "assignEmployeeToProperty"
@@ -83,6 +90,67 @@ class PropertiesEditSubMenu(BaseMenu):
         print(self.createTable(header, created_room, table_title='Rooms in property', color_newest=True))
 
         self.waitForKeyPress()
+
+    def editRoom(self):
+        ''' Edit room size and ID'''
+        property_list = self.propertyapi.findPropertyByPropertyId(self.propertyId)
+        header = {
+            'roomId': {
+                'display_name': 'Room ID'
+            },
+            'size': {
+                'display_name': 'Size',
+                'suffix': ' m²'
+            }
+        }
+        roomList = property_list.Rooms
+
+        roomIdList = []
+        for room in property_list.Rooms:
+            roomIdList.append(room["roomId"])
+
+
+        self.createTable(header, property_list.Rooms, table_title='Rooms in property', line_between_records=True)
+        print('Edit rooms')
+        roomId = Prompt.ask("Enter room ID", choices=roomIdList, show_choices=False)
+        roomIndex = roomIdList.index(roomId)
+
+        print('Edit room info\nPress enter with an empty line of you do not wish to change.')
+        confirm_change = None
+        cancel_op = None
+        while confirm_change != "y":
+
+            new_size = FloatPrompt.ask('Enter new size (in m2)', default=roomList[roomIndex]["size"])
+            new_id = Prompt.ask('Enter new ID', default=roomList[roomIndex]["roomId"])
+
+            if new_id != roomId or new_size != roomList[roomIndex]["size"]:
+                print('Are you sure you want to change')
+                if new_id != roomId:
+                    print(f'The rooms ID from {roomId} to {new_id}.')
+                if new_size != roomList[roomIndex]["size"]:
+                    print(f'The rooms ID from {roomList[roomIndex]["size"]} to {new_size}.')
+                confirm_change = input("[y/N]: ").lower()
+            else:
+                print('Nothing changed, operation cancelled.')
+            if confirm_change != "y":
+                cancel_op = input("Do you want to cancel? [y/N]").lower()
+                if cancel_op == "y":
+                    confirm_change = "y"
+            if confirm_change == "y":
+                roomList[roomIndex]["size"] = new_size
+                roomList[roomIndex]["roomId"] = new_id
+
+        updated_rooms = self.propertyapi.updateRooms(property_list._id, roomList)
+        self.createTable(header, updated_rooms.Rooms, table_title='Rooms in property', line_between_records=True)
+        print("Successfully updated room nr. {new_id}\n")
+
+        self.waitForKeyPress()
+
+
+        
+            
+        
+
 
     def assignEmployeeToProperty(self):
         '''assignes employee to a specific property\n(needs employee ssn)'''

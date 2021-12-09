@@ -180,7 +180,7 @@ class DestinationsMenu(BaseMenu):
                     for key in dest.Address:
                         setattr(destination_list[i], key, dest.Address[key])
 
-                print(destination_list)
+                
                 show_keys = {
                     'country': {
                         'display_name': 'Country'
@@ -192,7 +192,7 @@ class DestinationsMenu(BaseMenu):
                         'display_name': 'Name'
                     }
                 }
-                print(self.createTable(show_keys, destination_list))
+                print(self.createTable(show_keys, destination_list, table_title="All destinations"))
 
         except ValueError:
             print("No destinations found")
