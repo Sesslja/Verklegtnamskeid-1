@@ -70,11 +70,11 @@ class MaintenanceMenu(BaseMenu):
         }
     
     def create_report(self):
-        verification_num = None
-        while verification_num == None:
-            verification_num = input("\nEnter the verification number of the maintenane request: ")
+        verificationNum = None
+        while verificationNum == None:
+            verificationNum = input("\nEnter the verification number of the maintenane request: ")
             try:
-                verification_num = self.MaintenanceRequestAPI.findOneByVerificationNumber(verification_num)
+                verificationNum = self.MaintenanceRequestAPI.findOneByVerificationNumber(verificationNum)
             except RecordNotFoundError:
                 find_request = input("Maintenance Request not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
