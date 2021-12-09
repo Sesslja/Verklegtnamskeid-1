@@ -161,7 +161,6 @@ class MaintenanceMenu(BaseMenu):
                 property_id = None
 
 
-        room_number_input = None
         roomNumId = None
         while roomNumId == None:
             roomNumId = input("Do you want to sign it to a room number? [Y/N]: ")
@@ -175,10 +174,10 @@ class MaintenanceMenu(BaseMenu):
 
                 room_signing = None
                 while room_signing == None:
-                    room_signing = input("\nWhat room number do you want to sign it to? ")
-                    room = self.propertyAPI.findIfRoomInProperty(property_id, room_signing)
-                    if room == False: 
-                        print("Enter a valid room number: ")
+                    roomNumId = input("\nWhat room number do you want to sign it to? ")
+                    room_signing = self.propertyAPI.findIfRoomInProperty(property_id, roomNumId)
+                    if room_signing == False:
+                        print("Enter a valid room number")
                         room_signing = None
 
         user_input = None
@@ -241,21 +240,21 @@ class MaintenanceMenu(BaseMenu):
                 find_employee = self.userAPI.findEmployeeByEmployeeId(employee_Id)
             except RecordNotFoundError:
                 print("This employee is not in the system ")
-                employeeOptions = input("
+                employeeOptions = input(
                     "1: Create a new employee?\n"
                     "2: Overview of all the employees?\n"
-                    "3: Try again? ")
+                    "3: Try again?\n")
                 if employeeOptions == "1":
                     self.employeesMenu.createEmployee()
                 elif employeeOptions == "2":
                     self.employeeOverviewSubMenu.allEmployeesOverview()
-                    employee_Id == ""
+                    employee_Id = ""
                 else:
-                    employee_Id == ""
+                    employee_Id = ""
 
         try:
             self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employees= find_employee._id, roomNumId=roomNumId)
-            print(f"Maintenance Request succesfully created and set for {dt}! ")
+            print(f"\nMaintenance Request succesfully created and set for {dt}! ")
             self.waitForKeyPress()
         except:
             print(f"Something whent wrong")
