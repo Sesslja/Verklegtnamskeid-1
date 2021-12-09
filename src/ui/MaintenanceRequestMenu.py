@@ -1,5 +1,7 @@
 from ui.BaseMenu import BaseMenu
 from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
+from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
+from logic.UserLogic import UserAPI
 
 class MaintenanceRequestMenu(BaseMenu):
     '''Gives Maintenance request options'''
@@ -8,6 +10,8 @@ class MaintenanceRequestMenu(BaseMenu):
 
         self.menu_title = "Maintenance Request Menu"
         self.maintenanceRequestAPI = MaintenanceRequestAPI()
+        self.employeeOverview = EmployeeOverviewSubMenu()
+        self.userAPI = UserAPI()
 
         self.menu_options = {
             "1": {
@@ -127,30 +131,28 @@ class MaintenanceRequestMenu(BaseMenu):
                     self.allMaintRequest()
                 maintenence_id = None
             else:
-                show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                show_keys = ["verification_number", "property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
                 print(self.createTable(show_keys, request_list))
                 self.waitForKeyPress()
-        
 
+        
     def find_by_employee(self):
         '''Gives option to find maintenace request given the id of employee'''
-        employee_id = None
-        while employee_id == None:
-            employee_id = input("Enter employee ID: ")
-            try:
-                int(employee_id)
-                request_list = self.maintrequestAPI.findRequestByEmployee(employee_id)
-                if len(request_list) == 0:
-                    print ("No items to show")
-                    request_list == None
-                    self.waitForKeyPress()
-                else:
-                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
-                    print(self.createTable(show_keys, request_list))
-                    self.waitForKeyPress()
-            except ValueError:
-                print("Please enter a valid ID")
-                employee_id = None
+        employeeId = None
+        while employeeId == None:
+            employeeId = str(input("Enter employee id: "))
+            employeeList = self.userAPI.findEmployeeByEmployeeId(employeeId)
+            if employeeList != []:
+                show_keys = ["property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
+                print(self.createTable(show_keys, employeeList))
+                self.waitForKeyPress()
+            else:
+                print("This employee is not in the system ")
+                findEmployee = input("Do you want to an overview of all the employees?: Y/N ")
+                if findEmployee.lower() == "y":
+                    self.employeeOverview.allEmployeesOverview()
+                employeeId = None   
+
 
     def find_by_property(self):
         '''Gives option to find maintenace request given the id of property'''
@@ -165,7 +167,7 @@ class MaintenanceRequestMenu(BaseMenu):
                     request_list == None
                     self.waitForKeyPress()
                 else:
-                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                    show_keys = ["property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
                     print(self.createTable(show_keys, request_list))
                     self.waitForKeyPress()
             except ValueError:
