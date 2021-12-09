@@ -80,7 +80,7 @@ class MaintenanceRequestAPI :
     
     
     def findRequestByEmployee(self, employeeId: str):
-        user = self.userRepo.find({
+        user = self.userRepo.findOne({
             'where': {
                 'ssn': employeeId
             }
@@ -88,7 +88,7 @@ class MaintenanceRequestAPI :
 
         return self.requestRepo.find({
             'where': {
-                'employeeId': employeeId
+                'employees': user._id
             }
         })
     

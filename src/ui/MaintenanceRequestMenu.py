@@ -74,7 +74,7 @@ class MaintenanceRequestMenu(BaseMenu):
         '''prints out a table of all maintenance Requests'''
         try:
             request_list = self.maintenanceRequestAPI.MaintenanceRequestOverview()
-            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            show_keys = ["verification_number",'occurance', 'priority', 'employees']
             print(self.createTable(show_keys, request_list))
         except ValueError:
             print("Nothing to Show :(")
@@ -141,12 +141,17 @@ class MaintenanceRequestMenu(BaseMenu):
         employeeId = None
         while employeeId == None:
             employeeId = str(input("Enter employee id: "))
-            employeeList = [self.userAPI.findEmployeeByEmployeeId(employeeId)]
-            if employeeList != []:
-                show_keys = ["property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
-                print(self.createTable(show_keys, employeeList))
-                self.waitForKeyPress()
-            else:
+            try:
+                findEmployee = self.userAPI.findEmployeeByEmployeeId(employeeId)
+                if findEmployee != []:
+                    requestList = self.maintenanceRequestAPI.findRequestByEmployee(employeeId)
+                    if requestList != []:
+                        show_keys = ["verification_number", "property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
+                        print(self.createTable(show_keys, requestList))
+                        self.waitForKeyPress()
+                    else:
+                        print("There are no maintenance requests signed to this Employee")
+            except:
                 print("This employee is not in the system ")
                 findEmployee = input("Do you want to an overview of all the employees?: Y/N ")
                 if findEmployee.lower() == "y":
