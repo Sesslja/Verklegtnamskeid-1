@@ -32,11 +32,6 @@ class ContractorsOverviewSubMenu(BaseMenu):
                 "function": "find_contractor_by_name"
             },     
             "5": {
-                "title": "Delete contractor from our system",
-                "access": "manager",
-                "function": "delete_contractor"
-            },
-            "6": {
                 "title": "See contractors history",
                 "access": "manager",
                 "function": "see_contractor_history"
@@ -140,10 +135,10 @@ class ContractorsOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
 
-    def delete_contractor(self):
-        contractor_id = input("Enter contractors ID: ")
-        if self.contractorapi.deleteContractor(contractor_id) == True:
-            print("Contractor deleted")
-        else: 
-            print("Contractor not found")
-        self.waitForKeyPress()
+    # def delete_contractor(self):
+    #     contractor_id = input("Enter contractors ID: ")
+    #     if self.contractorapi.deleteContractor(contractor_id) == True:
+    #         print("Contractor deleted")
+    #     else: 
+    #         print("Contractor not found")
+    #     self.waitForKeyPress()
