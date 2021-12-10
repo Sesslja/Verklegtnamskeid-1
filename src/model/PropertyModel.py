@@ -4,6 +4,7 @@ from model.RoomType import RoomType
 
 
 class Property(BaseModel):
+    '''Model for Property Object'''
     def __init__(self, address: str=None, propertyId: str=None, amenities: list=None, employees: list=[], Rooms: list[RoomType]=[]) -> None:
         super().__init__()
         # ID Er unique generated tala fyrir hvern og einn notanda

@@ -8,6 +8,7 @@ except:
     pass
  
 class EmployeeOverviewSubMenu(BaseMenu):
+    '''Shows sub menu for employee overview'''
     def __init__(self, logged_in_user=None):
         super().__init__(logged_in_user)
         self.userApi = UserAPI()
@@ -178,6 +179,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def findManagers(self):
+        '''sjows list of all employees'''
         try:
             employee_list = self.userApi.findManagers()
             # What keys from record list to use

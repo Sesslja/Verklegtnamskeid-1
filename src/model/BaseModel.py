@@ -15,6 +15,7 @@ class BaseModel:
         return locals()
 
     def datetimeToUtc(self, start_date: list=None):
+        '''Gets date input readable'''
         start_date = start_date
         if start_date is None:
             dt = datetime.now()
