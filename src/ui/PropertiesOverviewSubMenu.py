@@ -132,10 +132,14 @@ class PropertiesOverviewSubMenu(BaseMenu):
         try:
             property_id = input("Find property by property ID:\nEnter property ID: ") # Ask for Property ID
             property_list = self.propertyapi.findPropertyByPropertyId(property_id) # Searches for the property
-
-            employee_list = self.propertyapi.findEmployeesByPropertyId(property_id) # Finds employees that are assigned to a property
-
-            maintenance_requests_list = self.propertyapi.findRequestsByPropertyID(property_id) # finds maintenance requests assigned to a property
+            try:
+                employee_list = self.propertyapi.findEmployeesByPropertyId(property_id) # Finds employees that are assigned to a property
+            except RecordNotFoundError:
+                employee_list = []
+            try:
+                maintenance_requests_list = self.propertyapi.findRequestsByPropertyID(property_id) # finds maintenance requests assigned to a property
+            except RecordNotFoundError:
+                maintenance_requests_list = []
 
             if RICH_AVAILABLE:
                 main_layout = Layout() # Initiate main layout
