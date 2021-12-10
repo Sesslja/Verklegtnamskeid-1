@@ -42,9 +42,9 @@ class BaseMenu :
         userSsn = ""
         while userSsn == "":
             if RICH_AVAILABLE:
-                userSsn = Prompt.ask('Please enter your employee number')
+                userSsn = Prompt.ask('Please enter your employee number to login')
             else:
-                userSsn = input('Please enter your employee number: ')
+                userSsn = input('Please enter your employee number to login: ')
             self.clear()
         login_res = authApi.userLogin(userSsn)
 

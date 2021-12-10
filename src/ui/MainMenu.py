@@ -1,3 +1,4 @@
+from assets.ZeroDivision import BRACKETS, BRACKETS_AND_SLASH, FULL_DIVISION, ONE_HAS_JOINED
 from ui.BaseMenu import BaseMenu
 from ui.ContractorsMenu import ContractorsMenu
 from ui.EmployeesMenu import EmployeesMenu
@@ -69,6 +70,6 @@ class MainMenu(BaseMenu):
                 time.sleep(1)
             for i in range(0, 5):
                 self.clear()
-                print("Initiating division ", ("" if i == 0 else ("(       )" if i <= 1 else ("(   /   )" if i <= 2 else ("( 1 /   )" if i <= 3 else ("( 1 / 0 )"))))))
+                print("Initiating division \n\n\n", ("" if i == 0 else (BRACKETS if i <= 1 else (BRACKETS_AND_SLASH if i <= 2 else (ONE_HAS_JOINED if i <= 3 else (FULL_DIVISION))))))
                 time.sleep(1)
             ( 1 / 0 )

@@ -21,7 +21,11 @@
             "Gym",
             "Gameroom"
         ],
-        "employees": [],
+        "employees": [
+            "30c11595-e9cd-4eca-959c-f406edceb7f0",
+            "5de73cb0-a710-4634-b55e-48c1b365eb50",
+            "d07db5ce-a345-4d73-ac18-2ed863426d20"
+        ],
         "Rooms": [
             {
                 "size": 62.5,
