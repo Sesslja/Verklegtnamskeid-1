@@ -278,12 +278,12 @@ class MaintenanceRequestMenu(BaseMenu):
         end_date = None
         while start_date == None or end_date == None:
             start_date = input("Enter start date: ")
-            end_date = input("Enter start date: ")
+            end_date = input("Enter  date: ")
             if start_date == "" or  end_date == "":
                 start_date == None
                 end_date == None
             else:
-                request_list = self.maintrequestAPI.findRequestByDate(start_date, end_date)
+                request_list = self.maintenancerequestAPI.findRequestByDate(start_date, end_date)
                 if len(request_list) == 0:
                     print ("No items to show")
                     request_list == None

@@ -149,11 +149,11 @@ class BaseMenu :
                 run_func = getattr(self, opt_func, self.funcNotFound)
                 self.clear()
                 # Error handler for functions 
-                #try:
-                run_func() # RUN THE FUNCTION!!!
-                return 'run'
-                #except Exception as err:
-                    #return self.errorHandler(err)
+                try:
+                    run_func() # RUN THE FUNCTION!!!
+                    return 'run'
+                except Exception as err:
+                    return self.errorHandler(err)
             else:
                 return 'run'
         else:
