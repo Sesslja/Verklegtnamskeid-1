@@ -1,7 +1,3 @@
-from datetime import datetime, date
-from model.AddressType import Address
-from model.PropertyModel import Property
-from model.MaintenanceRequestModel import MaintenanceRequest
 from ui.BaseMenu import BaseMenu
 from ui.MaintenanceReportMenu import MaintenanceReportMenu
 from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
@@ -9,7 +5,6 @@ from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from logic.MaintReportLogic import MaintReportAPI
 from logic.PropertyLogic import PropertyAPI
 from logic.ContractorLogic import ContractorAPI
-from data.database import DB
 from data.DBError import RecordNotFoundError
 from logic.UserLogic import UserAPI
 from ui.EmployeesMenu import EmployeesMenu
@@ -18,6 +13,7 @@ from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from logic.DatetimeLogic import DateTime
 from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu
 from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
+from ui.PropertiesOverviewSubMenu import PropertiesOverviewSubMenu
 try:
     from rich.text import Text
 except ModuleNotFoundError:
@@ -40,6 +36,7 @@ class MaintenanceMenu(BaseMenu):
         # Calls to other menus so we don't write the same thing often
         self.employeesMenu = EmployeesMenu(logged_in_user=logged_in_user)
         self.propertiesMenu = PropertiesMenu(logged_in_user=logged_in_user)
+        self.propertiesSubMenu = PropertiesOverviewSubMenu(logged_in_user=logged_in_user)
         self.maintenanceRequestMenu = MaintenanceRequestMenu(logged_in_user=logged_in_user)
         self.contractorsOverviewSubMenu = ContractorsOverviewSubMenu(logged_in_user=logged_in_user)
         self.employeeOverviewSubMenu = EmployeeOverviewSubMenu(logged_in_user=logged_in_user)
@@ -160,36 +157,35 @@ class MaintenanceMenu(BaseMenu):
         while property_id == None:
             property_id = input("Enter Property ID: ")
             try:
-                found_property = self.propertyAPI.findPropertyByPropertyId(property_id)
-                property_id = property_id
+                self.propertyAPI.findPropertyByPropertyId(property_id)
             except RecordNotFoundError:
-                print("This property is not in the system ")
-                create_property = input("Do you want to create a new property?: Y/N ")
-                if create_property.lower() == "y":
+                print("This property is not in the system - Do you want to: ")
+                propertyOptions = input(
+                    "1: Sign a new property?\n"
+                    "2: Overview of all the properties?\n"
+                    "3: Try again?\n")
+                if propertyOptions == "1":
                     self.propertiesMenu.createProperty()
-                #elif create_property.lower() == "n": #test
-                #    return None #test
-                property_id = None
+                elif propertyOptions == "2":
+                    self.propertiesSubMenu.print_all_properties()
+                    property_id = None
+                else:
+                    property_id = None
 
-
-        roomNumId = None
-        while roomNumId == None:
-            roomNumId = input("Do you want to sign it to a room number? [Y/N]: ")
-            if roomNumId.lower() == 'y':
-                found_prop = self.propertyAPI.findPropertyByPropertyId(property_id)
-                rooms = found_prop.Rooms
+        roomNumId = input("Do you want to sign it to a room number? [Y/N]: ")
+        if roomNumId.lower() == 'y':
+            found_prop = self.propertyAPI.findPropertyByPropertyId(property_id)
+            rooms = found_prop.Rooms
+            if rooms != []:
 
                 print(self.createTable(['size','roomId'], rooms))
 
                 self.waitForKeyPress()
 
-                room_signing = None
-                while room_signing == None:
-                    roomNumId = input("\nWhat room number do you want to sign it to? ")
-                    room_signing = self.propertyAPI.findIfRoomInProperty(property_id, roomNumId)
-                    if room_signing == False:
-                        print("Enter a valid room number")
-                        room_signing = None
+                roomNumId = input("\nWhat room number do you want to sign it to? ")
+        else:
+            roomNumId = None
+        
 
         user_input = None
         input_list = []
@@ -250,7 +246,7 @@ class MaintenanceMenu(BaseMenu):
             try:
                 find_employee = self.userAPI.findEmployeeByEmployeeId(employee_Id)
             except RecordNotFoundError:
-                print("This employee is not in the system ")
+                print("This employee is not in the system - Do you want to: ")
                 employeeOptions = input(
                     "1: Create a new employee?\n"
                     "2: Overview of all the employees?\n"

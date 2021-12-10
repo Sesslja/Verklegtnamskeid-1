@@ -32,16 +32,14 @@ class PropertyAPI:
 
     def findIfRoomInProperty(self, propertyId: str, roomId: str):
         '''Returns list of property room, given property ID and room id'''
-        try: 
-            self.propertyRepo.find({
+        return self.propertyRepo.find({
                 'where': {
                     'propertyId': propertyId,
-                    'Rooms': roomId
+                    'Rooms': {
+                        'roomId': roomId
+                    }
                 }
             })
-            return True
-        except FileNotFoundError:
-            return False
 
         
 

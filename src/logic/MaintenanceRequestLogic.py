@@ -125,7 +125,6 @@ class MaintenanceRequestAPI :
         return found_req
 
     def findRequestByDate(self, startDate: list, endDate: list):
-        '''Finds all requests given two dates, returns list of objects'''
         startDate = startDate.split(',')
         endDate = endDate.split(',')
         request_list = []
