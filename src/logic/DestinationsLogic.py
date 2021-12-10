@@ -26,7 +26,7 @@ class DestinationsAPI:
     #    return self.destinationsRepo.save(new_destination)
 
     def createDestination(self, name: str, address: Address=None, manager: str=None, employees: list[str]=[]):
-        new_destination = Destination(name=name, address=address, managerId=manager, employeesIds=employees)
+        new_destination = Destination(name=name, address=address, managerId=manager, employeesIds=employees, verification_number=self.createVerificationNumber())
         return self.destinationsRepo.save(new_destination)
 
     def findDestinationByCountry(self, country: str):
@@ -71,7 +71,26 @@ class DestinationsAPI:
                 '_id': destinationId
             }
         })
+    
+    def findDestinationByVerificationNumber(self, verification_number: str):
+        return self.destinationsRepo.findOne({
+            'where': {
+                'verification number': verification_number
+            }
+        })
 
     def updateDestinationInfo(self, id, data):
         data['_id'] = id
         return self.destinationsRepo.update(data)
+    
+    def createVerificationNumber(self):
+        try:
+            used_numbers = self.destinationsRepo.find() # Find all maintenance request to see used numbers
+            num_length = len(used_numbers) - 1
+            last_number = used_numbers[num_length].verification_number
+            last_number = int(last_number[2:])
+        except IndexError:
+            last_number = 0
+        new_num = str(last_number+1).zfill(5)
+        verification_number = 'D'+new_num
+        return verification_number

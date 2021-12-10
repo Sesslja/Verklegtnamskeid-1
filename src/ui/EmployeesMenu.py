@@ -44,6 +44,7 @@ class EmployeesMenu(BaseMenu):
     def createEmployee(self):
         '''option to create new employee'''
         name = input("Enter employee name: ")
+        isManager = input("Is employee Manager?(Y/N): ").lower()
         email = input("Enter email: ")
         ssn = input("Enter Social-Security number: ")
         country = input("enter country: ")
@@ -52,7 +53,9 @@ class EmployeesMenu(BaseMenu):
         
         address = Address(country=country, city=city, zip=zip_code)
 
-        self.userapi.createEmployee(name, email, ssn, address)
+        isManager = True if isManager == "y" else False
+
+        self.userapi.createEmployee(name, email, ssn, address, isManager)
 
         print(f"{name} created as employee")
         self.waitForKeyPress()
