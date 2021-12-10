@@ -15,8 +15,8 @@ class MaintenanceReportMenu(BaseMenu):
         super().__init__(logged_in_user)
 
         self.menu_title = "Maintenance Report Menu"
-        self.maintreportAPI = MaintReportAPI(logged_in_user=logged_in_user)
-        self.maintrequestAPI = MaintenanceRequestAPI(logged_in_user=logged_in_user)
+        self.maintreportAPI = MaintReportAPI()
+        self.maintrequestAPI = MaintenanceRequestAPI()
         self.maintanenceRequestMenu = MaintenanceRequestMenu(logged_in_user=logged_in_user)
 
         self.menu_options = {
@@ -78,15 +78,15 @@ class MaintenanceReportMenu(BaseMenu):
     
     def find_by_maintenance_id(self):
         '''Gives option to find maintenace report given the id of request'''
-        maintenence_id = None
-        while maintenence_id == None:
-            maintenence_id = input("Enter maintenance ID: ")
-            report_list = self.maintreportAPI.findMReportByVerificationId(maintenence_id)
+        verificationNum = None
+        while verificationNum == None:
+            verificationNum = input("Enter maintenance ID: ")
+            report_list = self.maintreportAPI.findMReportByVerificationId(verificationNum)
             if report_list == []:
                 find_request = input("Maintenance Id not found.\nDo you want to see a overview of the maintenance Requests? Y/N ")
                 if find_request.lower() == 'y':
                     self.find_all_reports()
-                maintenence_id = None
+                verificationNum = None
             else:
                 show_keys = show_keys = {
                 'verification_number': {
@@ -116,47 +116,56 @@ class MaintenanceReportMenu(BaseMenu):
 
     def managerAcceptsReport(self):
         ''' Manager can accept report, if he accepts the report it will close otherwise it will reopen '''
-
-        verificationNum = Prompt.ask("Enter the verification number of the maintenane report: ")
-        try:
-            found_maint = self.maintreportAPI.findMReportByVerificationId(verificationNum)
-            show_keys = {
-                'verification_number': {
-                    'display_name': 'Verification Number'
-                },
-                'maintenance': {
-                    'display_name': 'Maintenance'
-                },
-                'contractorId': {
-                    'display_name': 'Contractor'
-                },
-                'materialcost': {
-                    'display_name': 'Material Cost'
-                },
-                'salary': {
-                    'display_name': 'Salary'
-                },
-                'contractorId': {
-                    'display_name': 'Contractor Id'
-                },
-                'contractorsfee': {
-                    'display_name': 'Contractors Fee'
-                },
-                'finish_at': {
-                    'display_name': 'Finished at'
-                }
-            } #['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
-            print(self.createTable(show_keys,found_maint))
-            self.waitForKeyPress()
-            question = Prompt.ask(' Do you accept this report? Y/N: ')
-            if question == 'Y'.lower():
-                self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Closed')
-                print('This report is now closed!')
-            elif 'N'.lower():
-                self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Opened')
-                print('You reopened this report!')
-        except RecordNotFoundError:
-            print('Maintenance report not found')
-        self.waitForKeyPress()
-
-
+        verificationNum = None
+        while verificationNum == None:
+            verificationNum = Prompt.ask("Enter the verification number of the maintenance report")
+            request_list = self.maintreportAPI.findMReportByVerificationId(verificationNum)
+            if request_list == []:
+                find_request = input("No maintenance report was found with this verification number\nDo you want to see an overview of the maintenance Requests? Y/N ")
+                if find_request.lower() == 'y':
+                    self.maintanenceRequestMenu.outstandingMRequest()
+                verificationNum = None
+            else:
+                show_keys = {
+                    'verification_number': {
+                        'display_name': 'Verification Number'
+                    },
+                    'maintenance': {
+                        'display_name': 'Maintenance'
+                    },
+                    'contractorId': {
+                        'display_name': 'Contractor'
+                    },
+                    'materialcost': {
+                        'display_name': 'Material Cost'
+                    },
+                    'salary': {
+                        'display_name': 'Salary'
+                    },
+                    'contractorId': {
+                        'display_name': 'Contractor Id'
+                    },
+                    'contractorsfee': {
+                        'display_name': 'Contractors Fee'
+                    },
+                    'finish_at': {
+                        'display_name': 'Finished at'
+                    }
+                } #['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
+                print(self.createTable(show_keys,request_list))
+                self.waitForKeyPress()
+                question = Prompt.ask('\nDo you accept this report? Y/N: ')
+                if question == 'Y'.lower():
+                    self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Closed')
+                    report = request_list[0]
+                    contractor = report.contractorId
+                    if contractor != None:
+                        rate = Prompt.ask('Please rate the contractor that worked this job\n[A] Job well done, I recomande him/her \n[B] Did what had to be done - nothing more nor less \n[C] Job poorly done, Would NOT recomande him/her')
+                        print(f'You rated the contractor: {rate}')
+                    else:
+                        print('No contractor to rate :)')
+                    print('The report is now closed!')
+                elif 'N'.lower():
+                    self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Opened')
+                    print('You reopened this report!')
+                self.waitForKeyPress()

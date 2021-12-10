@@ -1,9 +1,6 @@
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone, date, timedelta
 import datetime
-try:
-    from dateutil.relativedelta import relativedelta
-except ModuleNotFoundError:
-    print('virkar ekki')
+
 
 class DateTime():
     '''Logic for time stamps'''
@@ -20,17 +17,21 @@ class DateTime():
         date_time = date_time
         if date_time is None:
             dt = datetime.date.today().strftime('%A %d %B %Y')
+        elif date_time is datetime:
+            dt = date_time.strftime('%A %d %B %Y')
+        else:
+            dt =datetime.date(date_time).strftime('%A %d %B %Y')
         return dt
     
-    def testDate(self, start_date: list = None):
+    def testDate(self, startDate: list = None):
         '''Checks if date is within bounds'''
         now = datetime.datetime.now()
-        if start_date is None:
+        if startDate is None:
             date = datetime.datetime.now()
             dt = self.generateDatetimeNow(None)
         else:
-            date = datetime.datetime(start_date[0],start_date[1],start_date[2])
-            dt = datetime.date(start_date[0],start_date[1],start_date[2]).strftime('%A %d %B %Y')
+            date = datetime.datetime(startDate[0],startDate[1],startDate[2])
+            dt = datetime.date(startDate[0],startDate[1],startDate[2]).strftime('%A %d %B %Y')
         if  date > now or date == now:
             date = True
         else: 
@@ -39,74 +40,24 @@ class DateTime():
 
     def betweenTwoDates(self, start_date, end_date):
         '''finds maintanence between two given dates'''
-        date_search_from = self.datetime(start_date)
-        date_search_to = self.datetime(end_date)
-        date_list = list(range(date_search_from, date_search_to))
-        return date_list
+        sDate = [int(i) for i in start_date]
+        startDate = datetime.datetime(sDate[0], sDate[1], sDate[2])
+        eDate = [int(i) for i in end_date]
+        endDate = datetime.datetime(eDate[0], eDate[1], eDate[2])
+        allDates = [startDate + timedelta(days=x) for x in range((endDate-startDate).days + 1)]
+        dateList = [date.strftime('%A %d %B %Y') for date in allDates]
+        return dateList
     
-    def relative_date(self, dt):
-
-        if dt is not None and len(dt) > 0:
-
-            now = datetime.now()
-            then = arrow.get(dt).naive
-
-            rd = relativedelta(then, now)
-            if rd.years or rd.months:
-                months = 12 * rd.years + rd.months
-
-                if months < 0:
-                    if months == -1:
-                        return "Due 1 month ago"
-
-                    return "Due %i months ago" % -months
-
-                if months == 1:
-                    return "Due in 1 month"
-                return "Due in %d months" % months
-
-            elif rd.days > 7 or rd.days < -7:
-                weeks = rd.days / 7
-
-                if weeks < 0:
-                    if weeks == -1:
-                        return "Due 1 week ago"
-                    return "Due %i weeks ago" % -weeks
-
-                if weeks == 1:
-                    return "Due in 1 week"
-                return "Due in %d weeks" % weeks
-
-            else:
-
-                if rd.days == 0:
-                    return "Due Today"
-
-                elif rd.days < 0:
-                    if rd.days == -1:
-                        return "Due 1 day ago"
-                    return "Due %i days ago" % -rd.days
-
-                elif rd.days == 1:
-                    return "Due in 1 day"
-
-                return "Due in %d days" % rd.days
-
+    def datetimeToUtc(self, startDate = None):
+        startDate = startDate.split(',')
+        startDate = [int(i) for i in startDate]
+        if startDate is None:
+            dt = datetime.datetime.now()
+            date = dt.replace(tzinfo=timezone.utc).timestamp()
         else:
-            return ""
-    
-    
-    def get_relative_date(dt):
+            dt = datetime.datetime(startDate[0], startDate[1], startDate[2])
+            date = dt.replace(tzinfo=timezone.utc).timestamp()
+        return int(date) 
 
-        ahead = (dt - now).days
-
-        if ahead < 7:
-            print("Due in " + str(ahead) + " days")
-
-        elif ahead < 31:
-            print("Due in " + str(ahead/7) + " weeks")
-
-        else:
-            print("Due in " + str(ahead/30) + " months")
 
 
