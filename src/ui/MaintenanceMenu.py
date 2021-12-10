@@ -124,9 +124,12 @@ class MaintenanceMenu(BaseMenu):
             materialCost = int(materialCost)
         else:
             materialCost = 0
-        salary = input("Enter salary for the project ")
+        salary = input("Enter salary for the project: ")
         if salary != "":
-            salary = int(salary)
+            try:
+                salary = int(salary)
+            except ValueError:
+                salary = 0
         else:
             salary = 0
         dt = self.datetime.generateDatetimeNow()
