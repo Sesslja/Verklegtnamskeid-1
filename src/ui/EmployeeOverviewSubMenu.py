@@ -5,7 +5,7 @@ from data.DBError import RecordNotFoundError
 try: 
     from rich.prompt import Prompt
 except:
-    None
+    pass
  
 class EmployeeOverviewSubMenu(BaseMenu):
     def __init__(self, logged_in_user=None):
@@ -57,10 +57,20 @@ class EmployeeOverviewSubMenu(BaseMenu):
             employeeID = self.userApi.findEmployeeByEmployeeId(employee_ssn)
             requests = self.userApi.FindRequestsByUserID(employeeID._id)
             
-            show_keys = ['status', 'to_do', 'priority']
+            show_keys = {
+                'status': {
+                    'display_name': 'Status'
+                },
+                'to_do': {
+                    'display_name': 'To Do'
+                },
+                'priority': {
+                    'display_name': 'Priority'
+                }
+            }#['status', 'to_do', 'priority']
             print(self.createTable(show_keys, requests))
         except RecordNotFoundError:
-            print('Nothing foud :(')
+            print('Nothing found :(')
         self.waitForKeyPress()
     
     
@@ -69,7 +79,20 @@ class EmployeeOverviewSubMenu(BaseMenu):
         try:
             employee_list = self.userApi.allEmployeesOverview()
             # What keys from record list to use
-            show_keys = ['name', 'email', 'ssn', 'isManager']
+            show_keys = {
+                'name': {
+                    'display_name': 'Name'
+                },
+                'email': {
+                    'display_name': 'E-Mail'
+                },
+                'ssn': {
+                    'display_name': 'Employee ID'
+                },
+                'isManager': {
+                    'display_name': 'Is Manager?'
+                }
+            }#['name', 'email', 'ssn', 'isManager']
             print(self.createTable(show_keys, employee_list))
 
         except RecordNotFoundError:
@@ -87,12 +110,14 @@ class EmployeeOverviewSubMenu(BaseMenu):
             single_employee_to_table_list = [
                 {'1': 'Name', '2': found_employee.name},
                 {'1': 'Email', '2': found_employee.email},
+                {'1': 'Employee number', '2': found_employee.ssn}
             ]
 
             self.createTable(header, 
             single_employee_to_table_list,
             hide_header=True,
             line_between_records=True)
+
         except RecordNotFoundError:
             print('User not found')
 
@@ -100,12 +125,22 @@ class EmployeeOverviewSubMenu(BaseMenu):
 
 
     def findEmployeesByCountry(self):
-        '''Option to search for employees \ngiven country'''
+        '''Option to search for employees given country'''
         input_country = Prompt.ask('Enter country', choices=self.destApi.findCountriesOfDestinations())
         try:
             country_list = self.userApi.findEmployeesByCountry(input_country)
 
-            show_keys = ['name', 'email', 'ssn']
+            show_keys = {
+                'name': {
+                    'display_name': 'Name'
+                },
+                'email': {
+                    'display_name': 'E-Mail'
+                },
+                'ssn': {
+                    'display_name': 'Employee ID'
+                }
+            }
             print(self.createTable(show_keys, country_list))
         except RecordNotFoundError:
             print("No employees found")
@@ -115,7 +150,7 @@ class EmployeeOverviewSubMenu(BaseMenu):
     def findManagerByCountry(self):
         '''Option to search for manager \n given country'''
     
-        country = Prompt.ask('Please enter a country')
+        country = Prompt.ask('Enter country', choices=self.destApi.findCountriesOfDestinations())
         try:
             manager_list = self.userApi.findManagersByCountry(country)
 
@@ -125,7 +160,17 @@ class EmployeeOverviewSubMenu(BaseMenu):
             if len(manager_list) == 0:
                 print("No manager found!")
             else:
-                show_keys = ['name', 'email', 'ssn']
+                show_keys = {
+                    'name': {
+                        'display_name': 'Name'
+                    },
+                    'email': {
+                        'display_name': 'E-Mail'
+                    },
+                    'ssn': {
+                        'display_name': 'Employee ID'
+                    }
+                }
                 print(self.createTable(show_keys, manager_list))
 
         except RecordNotFoundError:
@@ -133,11 +178,20 @@ class EmployeeOverviewSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def findManagers(self):
-        ismanager = True
         try:
             employee_list = self.userApi.findManagers()
             # What keys from record list to use
-            show_keys = ['name', 'email', 'ssn', 'isManager']
+            show_keys = {
+                    'name': {
+                        'display_name': 'Name'
+                    },
+                    'email': {
+                        'display_name': 'E-Mail'
+                    },
+                    'ssn': {
+                        'display_name': 'Employee ID'
+                    }
+                }
             print(self.createTable(show_keys, employee_list))
 
         except RecordNotFoundError:

@@ -4,6 +4,10 @@ from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
 from model.AddressType import Address
+try:
+    from rich.text import Text
+except ModuleNotFoundError:
+    pass
 
 class EmployeesMenu(BaseMenu):
     '''Shows employee options'''
@@ -44,15 +48,21 @@ class EmployeesMenu(BaseMenu):
     def createEmployee(self):
         '''option to create new employee'''
         name = input("Enter employee name: ")
+        isManager = input("Is employee Manager? [y/N]: ").lower()
         email = input("Enter email: ")
         ssn = input("Enter Social-Security number: ")
         country = input("enter country: ")
         city = input("Enter city: ")
         zip_code = input("Enter zip code: ")
+        addr1 = input("Enter address: ")
         
-        address = Address(country=country, city=city, zip=zip_code)
+        address = Address(country=country, city=city, zip=zip_code, address1=addr1) # Create address object
 
-        self.userapi.createEmployee(name, email, ssn, address)
+        isManager = True if isManager == "y" else False
 
-        print(f"{name} created as employee")
+        self.userapi.createEmployee(name, email, ssn, address, isManager) # Create employee
+        try:
+            print(Text.from_markup(f":white_check_mark: Hurrah! {name} created as employee"))
+        except:
+            print(f"Hurrah! {name} created as employee")
         self.waitForKeyPress()

@@ -1,4 +1,8 @@
-from rich.prompt import Prompt, FloatPrompt
+try:
+    from rich.prompt import Prompt, FloatPrompt
+    from rich.text import Text
+except ModuleNotFoundError:
+    pass
 from model.AddressType import Address
 from model.RoomType import RoomType
 from ui.BaseMenu import BaseMenu
@@ -46,28 +50,28 @@ class PropertiesMenu(BaseMenu):
         available_countries = self.propertyapi.findAvailableCountries()
 
         property_id = Prompt.ask("Enter Property ID: ")
-        country = Prompt.ask("Country", choices=available_countries)
+        country = Prompt.ask("Country", choices=available_countries) # Show only available countries
         city = Prompt.ask("City").capitalize()
         zip = Prompt.ask("Zip code")
         addr1 = Prompt.ask("Address 1")
         addr2 = input("Address 2: ")
-        addr2 = addr2 if addr2 is not "" else None
+        addr2 = addr2 if addr2 is not "" else None # If we don't get an input then we want it as None
         addr3 = input("Address 3: ")
-        addr3 = addr3 if addr3 is not "" else None
+        addr3 = addr3 if addr3 is not "" else None # Same here as above
 
-        address = Address(country=country, city=city, zip=zip, address1=addr1, address2=addr2, address3=addr3)
+        address = Address(country=country, city=city, zip=zip, address1=addr1, address2=addr2, address3=addr3) # Create the Address object
 
         amenities_list = []
         user_input = None
-        print("Enter amenities (Enter empty string to continue): ")
+        print("Enter amenities (Enter empty string to continue): ") # Ask for amenities of the property
         while user_input != "":
             user_input = input("    Enter amenity: ")
-            if user_input is not "":
+            if user_input is not "": # If it's empty we don't want it
                 amenities_list.append(user_input)
 
         rooms_list = []
         user_input = None
-        print("Enter rooms (Enter empty string to continue): ")
+        print("Enter rooms (Enter empty string to continue): ") # Ask for the rooms in the property
         while user_input != "":
             room = RoomType()
             user_input = input("    Enter room ID: ")
@@ -80,8 +84,8 @@ class PropertiesMenu(BaseMenu):
             print(f'Added room with id: {room.roomId}, and size: {room.size}')
         
         
-        self.propertyapi.createProperty(address=address, propertyId=property_id, amenities=amenities_list, rooms=rooms_list)
-        print(':checkmark: Successfully created a property!')
+        self.propertyapi.createProperty(address=address, propertyId=property_id, amenities=amenities_list, rooms=rooms_list) # Create a property!
+        print(Text.from_markup(':white_check_mark: Successfully created a property!'))
 
         self.waitForKeyPress()
 
