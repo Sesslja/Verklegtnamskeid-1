@@ -63,7 +63,7 @@ class MaintenanceRequestAPI :
         verification_number = 'VB'+new_num
         return verification_number
     
-    def changeMRequestStatus(self, verification_number, status):
+    def changeMRequestStatus(self, verification_number: str, status):
         found_req = self.findOneByVerificationNumber(verification_number)
         print("eg er her")
         data = {

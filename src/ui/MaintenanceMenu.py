@@ -136,13 +136,13 @@ class MaintenanceMenu(BaseMenu):
 
         report = self.maintreportAPI.createReport(
             request_info = request_info, 
-            verification_number = verificationNum, 
+            verification_number = verificationNum.verification_number, 
             maintenance = maintenanceList, 
             contractorId = contractorID, 
             materialCost = materialCost, 
             salary = salary, 
             contractorsfee = contractorsFee, 
-            dt = dt,
+            finish_at = dt,
             creator_user=self.loggedInUser)
 
         if report != None:
