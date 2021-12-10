@@ -52,7 +52,7 @@ class MaintenanceReportMenu(BaseMenu):
             'contractorId': {
                 'display_name': 'Contractor Id'
             },
-            'contracotrsfee': {
+            'contractorsfee': {
                 'display_name': 'Contractors Fee'
             },
             'finish_at': {
