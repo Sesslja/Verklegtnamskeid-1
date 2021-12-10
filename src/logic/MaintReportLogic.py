@@ -17,9 +17,9 @@ class MaintReportAPI:
         self.maintReqApi = MaintenanceRequestAPI()
 
 
-    def createReport(self, request_info, verification_number: str, maintenance: list, contractorId: str, materialCost: int, salary: int, contractorsfee: float, dt: str, creator_user):
+    def createReport(self, request_info, verification_number: str, maintenance: list, contractorId: str, materialCost: int, salary: int, contractorsfee: float, finish_at: str, creator_user):
         self.maintReqApi.changeMRequestStatus(verification_number, 'Outstanding')
-        new_report = Report(request_info,verification_number, maintenance, contractorId, materialCost, salary, contractorsfee, dt, creator_user._id)
+        new_report = Report(request_info,verification_number, maintenance, contractorId, materialCost, salary, contractorsfee, finish_at, creator_user._id)
         return self.reportRepo.save(new_report)
 
     def findReport(self) -> list:

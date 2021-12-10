@@ -23,6 +23,11 @@ class MaintenanceReportMenu(BaseMenu):
                 "access": "",
                 "function": "find_by_maintenance_id"
             },
+            "3": {
+                "title": "Manager approves report ",
+                "access": "",
+                "function": "managerApprovesReport"
+            },
             "X": {
                 "title": "Return to previous page",
                 "Access": "",
@@ -99,5 +104,8 @@ class MaintenanceReportMenu(BaseMenu):
                 }#["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                 print(self.createTable(show_keys, report_list))
                 self.waitForKeyPress()
+
+    def managerApprovesReport(self):
+        pass
 
 

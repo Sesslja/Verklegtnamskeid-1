@@ -14,7 +14,6 @@ class DestinationsMenu(BaseMenu):
         super().__init__(logged_in_user)
         self.destinationsapi = DestinationsAPI()
         self.userApi = UserAPI()
-        #self.destination_id = self.destinationIdInput()
 
         self.menu_title = "Menu\nDestinations Menu"
 
@@ -97,6 +96,8 @@ class DestinationsMenu(BaseMenu):
                     print("Couldn't find a manager with that number.")
                     manager_num_input = None
         
+        self.destinationsapi.createVerificationNumber()
+        
         employees_input = None
         employees_list = []
         while employees_input != "":
@@ -136,7 +137,14 @@ class DestinationsMenu(BaseMenu):
                         record_dict.update({key: dest.Address[key]})
                     addresslist.append(record_dict)
 
-                show_keys = ['country', 'city', 'name']
+                show_keys = {
+                    'country': {
+                        'display_name': 'Country'
+                    },
+                    'city': {
+                        'display_name': 'City'
+                    }
+                }
 
                 print(self.createTable(show_keys, addresslist))
 
@@ -162,7 +170,14 @@ class DestinationsMenu(BaseMenu):
                     for key in dest.Address:
                         record_dict.update({key: dest.Address[key]})
                     addresslist.append(record_dict)
-                show_keys = ['country', 'city', 'name']
+                show_keys = {
+                    'country': {
+                        'display_name': 'Country'
+                    },
+                    'city': {
+                        'display_name': 'City'
+                    }
+                }
                 print(self.createTable(show_keys, addresslist))
 
         except ValueError:
@@ -209,12 +224,55 @@ class DestinationsMenu(BaseMenu):
                 print("Destination not found")
             self.waitForKeyPress()
     
+
+    def findDestinationByID(self):
+        destination_id = None
+        while destination_id == None:
+                destination_id = input("Enter destinations ID: ")
+        
+        try:
+            destination_list = self.destinationsapi.findDestinationByID(destination_id)
+            if len(destination_list) == 0:
+                print("Destination not found!")
+                destination_id = None
+            else:
+                show_keys = {
+                    'country': {
+                        'display_name': 'Country'
+                    },
+                    'city': {
+                        'display_name': 'City'
+                    }
+                }
+                print(self.createTable(show_keys, destination_list))
+        
+        except RecordNotFoundError:
+            print("No destinations found")
+        
+        self.waitForKeyPress()
+
+#-----------------------------------------------------------------------------
+
+    def destinationVNumInput(self, retry: bool=False):
+        self.clear()
+        print("No destination verification number found please input a correct one") if retry else None
+        destVNum = input("Please input verification number of destination ([Q] to Quit): ")
+        if destVNum.lower() == "q":
+            return "q"
+        
+        try :
+            foundDest = self.destinationsapi.findDestinationByVerificationNumber(destVNum)
+        except RecordNotFoundError:
+            return self.destinationVNumInput(True)
+        
+        return foundDest.verification_number
+
     def editName(self):
-        found_destination = self.destinationsapi.findDestinationByID(self.destinationIdInput())
+        found_destination = self.destinationsapi.findDestinationByVerificationNumber(self.destinationVNumInput())
         old_name = found_destination.name
         new_name = input(f"Change destination name\nOld name: {old_name}\nNew name: ")
 
-        updated_name = self.destinationsapi.updateDestinationInfo(found_destination._id, {
+        updated_name = self.destinationsapi.updateDestinationInfo(found_destination.verification_number, {
             'name': new_name
         })
         print("Destination name successfully changed")
@@ -232,7 +290,14 @@ class DestinationsMenu(BaseMenu):
                 print("Destination not found!")
                 destination_id = None
             else:
-                show_keys = ['country','city','name']
+                show_keys = {
+                    'country': {
+                        'display_name': 'Country'
+                    },
+                    'city': {
+                        'display_name': 'City'
+                    }
+                }
                 print(self.createTable(show_keys, destination_list))
         
         except RecordNotFoundError:

@@ -24,7 +24,7 @@ class MaintenanceRequest(BaseModel) :
         self.roomNumId = roomNumId
         self.to_do = to_do
         self.isRegular = isRegular
-        self.occurance = occurrence
+        self.occurrance = occurrence
         self.priority = priority
         self.start_date = start_date
         self.employees = employees

@@ -34,10 +34,10 @@ class MaintenanceRequestAPI :
         )
         return self.requestRepo.save(new_request)
     
-    def MaintenanceRequestOverview(self) -> list :
+    def MaintenanceRequestOverview(self) -> list:
         return self.requestRepo.find()
     
-    def findOneByVerificationNumber(self, verification_number: str) -> dict:
+    def findOneByVerificationNumber(self, verification_number: str) -> object:
         return self.requestRepo.findOne({
             'where': {
                 'verification_number': verification_number
@@ -63,8 +63,9 @@ class MaintenanceRequestAPI :
         verification_number = 'VB'+new_num
         return verification_number
     
-    def changeMRequestStatus(self, verification_number, status):
+    def changeMRequestStatus(self, verification_number: str, status):
         found_req = self.findOneByVerificationNumber(verification_number)
+        print("eg er her")
         data = {
             '_id': found_req._id,
             'status': status

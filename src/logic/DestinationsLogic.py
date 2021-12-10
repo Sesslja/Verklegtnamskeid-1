@@ -20,10 +20,6 @@ class DestinationsAPI:
     
     def deleteDestination(self, _id) -> list:
         return self.destinationsRepo.delete(_id)
-    
-    #def createDestination(self, country: str=None, city: str=None, zip: str=None, address: Address=None):
-    #    new_destination = Destination(country=country, city=city, zip=zip, address=address)
-    #    return self.destinationsRepo.save(new_destination)
 
     def createDestination(self, name: str, address: Address=None, manager: str=None, employees: list[str]=[]):
         new_destination = Destination(name=name, address=address, managerId=manager, employeesIds=employees, verification_number=self.createVerificationNumber())
@@ -71,18 +67,11 @@ class DestinationsAPI:
                 '_id': destinationId
             }
         })
-    
-    def findDestinationByVerificationNumber(self, verification_number: str):
-        return self.destinationsRepo.findOne({
-            'where': {
-                'verification number': verification_number
-            }
-        })
 
     def updateDestinationInfo(self, id, data):
         data['_id'] = id
         return self.destinationsRepo.update(data)
-    
+
     def createVerificationNumber(self):
         try:
             used_numbers = self.destinationsRepo.find() # Find all maintenance request to see used numbers
@@ -94,3 +83,17 @@ class DestinationsAPI:
         new_num = str(last_number+1).zfill(5)
         verification_number = 'D'+new_num
         return verification_number
+
+    def findDestinationByVerificationNumber(self, verification_number: str):
+        return self.destinationsRepo.find({
+            'where': {
+                'verification_number': verification_number
+            }
+        })
+
+    def findOneByVerificationNumber(self, verification_number: str) -> dict:
+        return self.destinationsRepo.findOne({
+            'where': {
+                'verification_number': verification_number
+            }
+        })
