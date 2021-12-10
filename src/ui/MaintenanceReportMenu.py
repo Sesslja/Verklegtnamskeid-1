@@ -157,11 +157,15 @@ class MaintenanceReportMenu(BaseMenu):
                 question = Prompt.ask('\nDo you accept this report? Y/N: ')
                 if question == 'Y'.lower():
                     self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Closed')
+                    report = request_list[0]
+                    contractor = report.contractorId
+                    if contractor != None:
+                        rate = Prompt.ask('Please rate the contractor that worked this job\n[A] Job well done, I recomande him/her \n[B] Did what had to be done - nothing more nor less \n[C] Job poorly done, Would NOT recomande him/her')
+                        print(f'You rated the contractor: {rate}')
+                    else:
+                        print('No contractor to rate :)')
                     print('The report is now closed!')
                 elif 'N'.lower():
                     self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Opened')
                     print('You reopened this report!')
                 self.waitForKeyPress()
-
-
-
