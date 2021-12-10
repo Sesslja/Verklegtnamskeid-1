@@ -88,7 +88,7 @@ class StoreData:
                         continue
             else:
                 try:
-                    print(data[key].__dict__)
+                    data[key].__dict__
                     data.update({ key: self._objToDict(data[key]) }) # Update the dictionary with the same method if an class instance is found.
                 except AttributeError:
                     continue # If value is not a class instance then it continues.

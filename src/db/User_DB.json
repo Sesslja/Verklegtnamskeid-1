@@ -15,618 +15,227 @@
             "address1": "Menntavegur 1",
             "address2": null,
             "address3": null
-        }
+        },
+        "phone": [
+            "+354 58-12345"
+        ]
     },
     {
-        "_id": "33eb2d2f-fa7a-1c51-b153-fc312ce1ae37",
-        "created_at": "2021-12-08 16:57:43.168732",
+        "_id": "86d8e802-ae5c-4144-81d2-ba99d225f549",
+        "created_at": "2021-12-10 13:40:10.097764",
         "isActive": true,
         "isArchived": false,
-        "name": "employee",
-        "email": "staff@nan.is",
-        "isManager": false,
-        "ssn": "2",
+        "name": "Chuck Norris",
+        "email": "chuck@nanair.is",
+        "isManager": true,
+        "ssn": "0",
         "Address": {
             "country": "Iceland",
             "city": "Reykjavik",
-            "zip": "103",
+            "zip": "101",
             "address1": "Menntavegur 1",
             "address2": null,
             "address3": null
-        }
+        },
+        "phone": [
+            "1"
+        ]
     },
     {
-        "_id": "45eb6d0f-fb7a-4c03-b995-fc312cc1ae37",
-        "created_at": "2021-11-29 23:34:55.168732",
+        "_id": "30c11595-e9cd-4eca-959c-f406edceb7f0",
+        "created_at": "2021-12-10 14:01:40.247550",
         "isActive": true,
         "isArchived": false,
-        "name": "Kiddi Sales",
-        "email": "sales@nan.is",
+        "name": "Jan Jacobsen",
+        "email": "jan.jacobsen@nanair.is",
+        "isManager": true,
+        "ssn": "301",
+        "Address": {
+            "country": "Svalbard",
+            "city": "Longyearbyen",
+            "zip": "9170",
+            "address1": "Vei 230",
+            "address2": "12",
+            "address3": null
+        },
+        "phone": [
+            "+47 92 09 77 00"
+        ]
+    },
+    {
+        "_id": "5de73cb0-a710-4634-b55e-48c1b365eb50",
+        "created_at": "2021-12-10 14:18:42.130306",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Jacob Yxa",
+        "email": "jacbo.yxa@nanair.is",
         "isManager": false,
-        "ssn": "1234561890",
+        "ssn": "302",
+        "Address": {
+            "country": "Svalbard",
+            "city": "Longyearbyen",
+            "zip": "9170",
+            "address1": "Vei 224",
+            "address2": "3B",
+            "address3": null
+        },
+        "phone": [
+            "+47 92 09 77 01",
+            "+354 777 1338"
+        ]
+    },
+    {
+        "_id": "d07db5ce-a345-4d73-ac18-2ed863426d20",
+        "created_at": "2021-12-10 14:21:17.131767",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Nanna Daema",
+        "email": "nanna.daema@nanair.is",
+        "isManager": false,
+        "ssn": "303",
+        "Address": {
+            "country": "Svalbard",
+            "city": "Barantsburg",
+            "zip": "9178",
+            "address1": "Ivan Starostin st. 109",
+            "address2": null,
+            "address3": null
+        },
+        "phone": [
+            "+47 92 09 77 02",
+            "+354 777 1339"
+        ]
+    },
+    {
+        "_id": "0efe29a1-a705-45f7-afac-fde1224fde39",
+        "created_at": "2021-12-10 14:27:03.626301",
+        "isActive": true,
+        "isArchived": false,
+        "name": "Minik Wallace",
+        "email": "minik.wallace@nanair.is",
+        "isManager": true,
+        "ssn": "101",
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": "420",
-            "address1": "Nuukway 1",
+            "zip": "3900",
+            "address1": "Isaajap Aqqutaa 1",
             "address2": null,
             "address3": null
-        }
+        },
+        "phone": [
+            "+299 34 24 67",
+            "+354 777 1361"
+        ]
     },
     {
-        "_id": "37a229db-6157-4bbe-b898-9d2abafb464d",
-        "created_at": "2021-11-30 12:24:24.627809",
+        "_id": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
+        "created_at": "2021-12-10 14:28:41.779862",
         "isActive": true,
         "isArchived": false,
-        "name": "Kiddi Jr",
-        "email": "jr@nan.is",
-        "isManager": true,
-        "ssn": "1234567890",
+        "name": "Aqqaluk Lynge",
+        "email": "aqqaluk.lynge@nanair.is",
+        "isManager": false,
+        "ssn": "102",
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": "420",
-            "address1": "Nuukway 1",
+            "zip": "3905",
+            "address1": "Qattaaq 44",
             "address2": null,
             "address3": null
-        }
+        },
+        "phone": [
+            "+299 35 24 66",
+            "+354 777 1362"
+        ]
     },
     {
-        "_id": "f701504e-01da-4b90-b452-89b03c8f40f6",
-        "created_at": "2021-11-30 15:04:24.156604",
+        "_id": "a596b324-04aa-4c4e-bbde-8aa42e6ef409",
+        "created_at": "2021-12-10 14:30:51.303002",
         "isActive": true,
         "isArchived": false,
-        "name": "Blanco",
-        "email": "jr@nan.is",
-        "isManager": true,
-        "ssn": "1234587890",
-        "Address": {
-            "country": "Iceland",
-            "city": "Reykjav\u00edk",
-            "zip": "108",
-            "address1": "Menntavegur 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "3cf07822-6854-4515-a6b1-8dddc27d4bcf",
-        "created_at": "2021-11-30 15:21:46.876406",
-        "isActive": true,
-        "isArchived": false,
-        "name": "Laura",
-        "email": "laura@nan.is",
+        "name": "Nauja Lynge",
+        "email": "nauja.lynge@nanair.is",
         "isManager": false,
-        "ssn": "1234567890",
+        "ssn": "103",
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": "420",
-            "address1": "Nuukway 1",
+            "zip": "3905",
+            "address1": "Qunguleq 3759",
             "address2": null,
             "address3": null
-        }
+        },
+        "phone": [
+            "+299 31 21 64",
+            "+354 77 1363"
+        ]
     },
     {
-        "_id": "3d8e1f5b-4f91-4875-98b6-d978ab2c41be",
-        "created_at": "2021-12-01 15:15:22.945844",
+        "_id": "8108a9c0-458d-4db3-983b-041d89069642",
+        "created_at": "2021-12-10 14:33:12.926379",
         "isActive": true,
         "isArchived": false,
-        "name": 0,
-        "email": "0@nan.is",
-        "isManager": false,
-        "ssn": "7",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "fef3e893-d733-482a-b77e-00f5af038cbf",
-        "created_at": "2021-12-01 15:15:22.946994",
-        "isActive": true,
-        "isArchived": false,
-        "name": 1,
-        "email": "1@nan.is",
-        "isManager": false,
-        "ssn": "13",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "275cbf5e-1b31-4b0e-9a8c-a5a5739157d2",
-        "created_at": "2021-12-01 15:15:22.947999",
-        "isActive": true,
-        "isArchived": false,
-        "name": 2,
-        "email": "2@nan.is",
-        "isManager": false,
-        "ssn": "19",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "1cc3f79c-1ed2-49a3-bf13-5450e44a9c04",
-        "created_at": "2021-12-01 15:15:22.949068",
-        "isActive": true,
-        "isArchived": false,
-        "name": 3,
-        "email": "3@nan.is",
-        "isManager": false,
-        "ssn": "25",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "732daecd-68ac-44ef-8905-8f940a9b2722",
-        "created_at": "2021-12-01 15:15:22.950267",
-        "isActive": true,
-        "isArchived": false,
-        "name": 4,
-        "email": "4@nan.is",
-        "isManager": false,
-        "ssn": "47",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "2f19fe69-a7ed-401a-b802-e131240e9805",
-        "created_at": "2021-12-01 15:15:22.951365",
-        "isActive": true,
-        "isArchived": false,
-        "name": 5,
-        "email": "5@nan.is",
-        "isManager": false,
-        "ssn": "53",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "53420813-0332-4661-be95-e777f9f796c9",
-        "created_at": "2021-12-01 15:15:22.952619",
-        "isActive": true,
-        "isArchived": false,
-        "name": 6,
-        "email": "6@nan.is",
-        "isManager": false,
-        "ssn": "59",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "bd0a711e-47e6-4dd2-8b15-19c9039b9220",
-        "created_at": "2021-12-01 15:15:22.954265",
-        "isActive": true,
-        "isArchived": false,
-        "name": 7,
-        "email": "7@nan.is",
-        "isManager": false,
-        "ssn": "65",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "47519799-02ec-4684-a947-b85dd0169c57",
-        "created_at": "2021-12-01 15:15:22.955580",
-        "isActive": true,
-        "isArchived": false,
-        "name": 8,
-        "email": "8@nan.is",
-        "isManager": false,
-        "ssn": "87",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "2b72b7a6-b4b6-4ce2-b13b-f75cb462990e",
-        "created_at": "2021-12-01 15:15:22.956860",
-        "isActive": true,
-        "isArchived": false,
-        "name": 9,
-        "email": "9@nan.is",
-        "isManager": false,
-        "ssn": "93",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "a28d1662-13b6-4020-8f48-a62df1db25b9",
-        "created_at": "2021-12-01 15:15:22.958322",
-        "isActive": true,
-        "isArchived": false,
-        "name": 10,
-        "email": "10@nan.is",
-        "isManager": false,
-        "ssn": "99",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "24a564df-7bad-467e-83a6-02cb1dd7a332",
-        "created_at": "2021-12-01 15:15:22.959906",
-        "isActive": true,
-        "isArchived": false,
-        "name": "11",
-        "email": "11@nan.is",
-        "isManager": false,
-        "ssn": "105",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "9de58efa-e368-48a5-be08-afcd3b7e5294",
-        "created_at": "2021-12-01 15:15:22.961142",
-        "isActive": true,
-        "isArchived": false,
-        "name": 12,
-        "email": "12@nan.is",
-        "isManager": false,
-        "ssn": "127",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "a4633bcc-e862-4bcb-9a7c-d25cc768b95c",
-        "created_at": "2021-12-01 15:15:22.962226",
-        "isActive": true,
-        "isArchived": false,
-        "name": 13,
-        "email": "13@nan.is",
-        "isManager": false,
-        "ssn": "133",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "1d304eae-470c-4571-95cd-57ec74a764df",
-        "created_at": "2021-12-01 15:15:22.963539",
-        "isActive": true,
-        "isArchived": false,
-        "name": 14,
-        "email": "14@nan.is",
-        "isManager": false,
-        "ssn": "139",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "7e5bfd9d-b319-4b26-bb96-748c967cf2f5",
-        "created_at": "2021-12-01 15:15:22.964627",
-        "isActive": true,
-        "isArchived": false,
-        "name": 15,
-        "email": "15@nan.is",
-        "isManager": false,
-        "ssn": "145",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "0c53e3c4-090d-4d6e-8449-39de2c170e1b",
-        "created_at": "2021-12-01 15:15:22.966526",
-        "isActive": true,
-        "isArchived": false,
-        "name": 16,
-        "email": "16@nan.is",
-        "isManager": false,
-        "ssn": "167",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "e6f25e0b-659c-434e-9261-e251a87d4ed9",
-        "created_at": "2021-12-01 15:15:22.967675",
-        "isActive": true,
-        "isArchived": false,
-        "name": 17,
-        "email": "17@nan.is",
-        "isManager": false,
-        "ssn": "173",
-        "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "0068302d-fcf5-429c-9d01-1655ed6ce816",
-        "created_at": "2021-12-01 15:15:22.969186",
-        "isActive": true,
-        "isArchived": false,
-        "name": 18,
-        "email": "18@nan.is",
-        "isManager": false,
-        "ssn": "179",
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "2a183d14-41e5-49f0-bbca-fcf19028a130",
-        "created_at": "2021-12-01 15:15:22.972576",
-        "isActive": true,
-        "isArchived": false,
-        "name": "Nytt name",
-        "email": "19@nan.is",
+        "name": "Annette Djurhuus",
+        "email": "annette.djurhuus@nanair.is",
         "isManager": true,
-        "ssn": "185",
+        "ssn": "201",
         "Address": {
-            "country": "Greenland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
+            "country": "Faroe Islands",
+            "city": "T\u00f3rshavn",
+            "zip": "100",
+            "address1": "Tjarnardeild 8",
             "address2": null,
             "address3": null
-        }
+        },
+        "phone": [
+            "+298 772000",
+            "+354 777 1381"
+        ]
     },
     {
-        "_id": "9f1871c7-cba2-4c41-b4c8-088acc66a2f0",
-        "created_at": "2021-12-07 13:48:07.914029",
+        "_id": "e96a9da5-963a-49ad-aa43-65957dcd8b76",
+        "created_at": "2021-12-10 14:49:11.277306",
         "isActive": true,
         "isArchived": false,
-        "name": "",
-        "email": "",
+        "name": "\u00c1ki Knudsen",
+        "email": "aki.knudsen@nanair.is",
         "isManager": false,
-        "ssn": "",
+        "ssn": "202",
         "Address": {
-            "country": "",
-            "city": "",
-            "zip": "",
-            "address1": null,
+            "country": "Faroe Islands",
+            "city": "T\u00f3rshavn",
+            "zip": "100",
+            "address1": "Tjarnardeild 8",
             "address2": null,
             "address3": null
-        }
+        },
+        "phone": [
+            "+298 617210",
+            "+354 777 1381"
+        ]
     },
     {
-        "_id": "d715977f-8d4c-4b90-9df9-5481c2bbc6cd",
-        "created_at": "2021-12-07 17:27:12.326158",
+        "_id": "05a1136b-8f31-4410-bc9e-51aba13cce00",
+        "created_at": "2021-12-10 14:55:25.926395",
         "isActive": true,
         "isArchived": false,
-        "name": "Saedis",
-        "email": "saedisbjork@gmail.com",
+        "name": "Andr\u00e9 Hjaltalin",
+        "email": "andre.hjaltalin@nanair.is",
         "isManager": false,
-        "ssn": "1005952149",
+        "ssn": "203",
         "Address": {
-            "country": "Iceland",
-            "city": "Reykjav\u00edk",
-            "zip": "102",
-            "address1": null,
+            "country": "Faroe Islands",
+            "city": "T\u00f3rshavn",
+            "zip": "100",
+            "address1": "\u00cd L\u00e1gni 19",
             "address2": null,
             "address3": null
-        }
-    },
-    {
-        "_id": "dafa6157-1fb3-4001-a247-e3c692cddab3",
-        "created_at": "2021-12-07 17:34:53.781356",
-        "isActive": true,
-        "isArchived": false,
-        "name": "Mr.Sales",
-        "email": "...",
-        "isManager": false,
-        "ssn": "....",
-        "Address": {
-            "country": "...",
-            "city": "...",
-            "zip": "...",
-            "address1": null,
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "f27c4340-bf12-42f8-86f9-35faee1caefc",
-        "created_at": "2021-12-07 17:52:41.810898",
-        "isActive": true,
-        "isArchived": false,
-        "name": "Saedis",
-        "email": "saedis@gmail.com",
-        "isManager": false,
-        "ssn": "1005952149",
-        "Address": {
-            "country": "Iceland",
-            "city": "Reykjav\u00edk",
-            "zip": "112",
-            "address1": null,
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "d56ae965-f5b4-4665-971c-16f86e78a4a2",
-        "created_at": "2021-12-08 17:59:50.742624",
-        "isActive": true,
-        "isArchived": false,
-        "name": "Saedis",
-        "email": "seas",
-        "isManager": false,
-        "ssn": "af",
-        "Address": {
-            "country": "",
-            "city": "f",
-            "zip": "f",
-            "address1": null,
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "fbbd2d9f-7285-478f-b210-37020a0c0722",
-        "created_at": "2021-12-08 18:02:10.511901",
-        "isActive": true,
-        "isArchived": false,
-        "name": "asdf",
-        "email": "sdf",
-        "isManager": false,
-        "ssn": "df",
-        "Address": {
-            "country": "d",
-            "city": "d",
-            "zip": "d",
-            "address1": null,
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "0630c711-ae8d-42f2-aa77-6b86e563a721",
-        "created_at": "2021-12-08 18:03:40.670447",
-        "isActive": true,
-        "isArchived": false,
-        "name": "s;",
-        "email": "",
-        "isManager": false,
-        "ssn": "dfs",
-        "Address": {
-            "country": "s",
-            "city": "s",
-            "zip": "",
-            "address1": null,
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "0552d215-c8ae-4146-8d43-d37cdb097564",
-        "created_at": "2021-12-08 18:04:51.350607",
-        "isActive": true,
-        "isArchived": false,
-        "name": "sadf",
-        "email": "d",
-        "isManager": false,
-        "ssn": "d",
-        "Address": {
-            "country": "d",
-            "city": "d",
-            "zip": "s",
-            "address1": null,
-            "address2": null,
-            "address3": null
-        }
-    },
-    {
-        "_id": "8c559926-ddf9-46cd-9946-5b52828b6e47",
-        "created_at": "2021-12-09 17:52:23.576278",
-        "isActive": true,
-        "isArchived": false,
-        "name": "",
-        "email": "dfa",
-        "isManager": false,
-        "ssn": "s",
-        "Address": {
-            "country": "s",
-            "city": "s",
-            "zip": "s",
-            "address1": null,
-            "address2": null,
-            "address3": null
-        }
+        },
+        "phone": [
+            "+298 661441",
+            "+354 777 1382"
+        ]
     }
 ]

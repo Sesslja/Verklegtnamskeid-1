@@ -8,8 +8,8 @@ class UserAPI:
         self.userRepo = DB(User)
         self.maintReqRepo = DB(MaintenanceRequest)
 
-    def createEmployee(self, name: str, email: str, ssn: int, address: Address=None, isManegar: bool=False):
-        new_user = User(name=name, email=email, ssn=ssn, address=address, isManager=isManegar)
+    def createEmployee(self, name: str, email: str, ssn: int, address: Address=None, isManegar: bool=False, phone: list = None):
+        new_user = User(name=name, email=email, ssn=ssn, address=address, isManager=isManegar, phone=phone)
         return self.userRepo.save(new_user)
 
     def allEmployeesOverview(self, limit=0, page=0) -> list:

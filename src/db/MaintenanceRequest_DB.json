@@ -1,216 +1,458 @@
 [
     {
-        "_id": "3dc9d721-ab8e-4a7f-a477-2c1df2c92ba7",
-        "created_at": "2021-12-08 23:20:59.773758",
+        "_id": "a6716737-6667-45ea-99bf-b4f978ddd2ed",
+        "created_at": "2021-12-10 15:56:17.202311",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
-        "roomNumId": "n",
+        "property_id": "4db184bb-d3f8-4a1c-95c0-9d2a8c72f701",
+        "roomNumId": "AA999-1",
         "to_do": [
-            "Clean",
+            "OK-650VV kjarnaofninn er voru hanna\u00f0ir um 1970.",
+            "\u00deeir eiga \u00fea\u00f0 \u00fe\u00f3 til a\u00f0 ofhitna ef \u00feeim er ekki sint sem skyldi.",
+            "Reglulega (amk. 1 sinni \u00ed viku) \u00fearf s\u00e1ldra sm\u00e1 boron \u00ed kerfi\u00f0.",
+            "ATH! Vi\u00f0 \u00feetta \u00fearf verktaka sem \u00e1 g\u00f3\u00f0an g\u00fam\u00edgalla \u00fev\u00ed \u00feetta er",
+            "allt frekar blautt og heitt, og svo er ekki verra a\u00f0 vita",
+            "eitthva\u00f0 hva\u00f0 ma\u00f0ur er a\u00f0 gera.",
             ""
         ],
         "isRegular": true,
-        "occurance": 12,
+        "occurance": 52,
         "priority": "A",
-        "start_date": "Sunday 12 December 2021",
-        "employees": [
-            "2a183d14-41e5-49f0-bbca-fcf19028a130"
-        ],
+        "start_date": "Saturday 01 January 2022",
+        "employees": "30c11595-e9cd-4eca-959c-f406edceb7f0",
         "verification_number": "VB00001",
-        "contractor_id": null
+        "contractor_id": "31aa1dba-5dcf-46b3-bf4d-e63932314bd9"
     },
     {
-        "_id": "9171990b-3eee-4435-a0e4-a37e5b855a8b",
-        "created_at": "2021-12-08 23:46:21.579744",
+        "_id": "e81b42a9-55ee-43c1-95b6-5487e3d22223",
+        "created_at": "2021-12-10 16:03:13.834901",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
-        "roomNumId": "PP8005",
+        "property_id": "4db184bb-d3f8-4a1c-95c0-9d2a8c72f701",
+        "roomNumId": "n",
         "to_do": [
-            "Change lightbulbs",
+            "Set up christmas decorations",
+            "Take down on 10th of jan the year after",
             ""
         ],
-        "isRegular": false,
-        "occurance": 0,
-        "priority": "B",
-        "start_date": "Wednesday 05 January 2022",
-        "employees": [
-            "37a229db-6157-4bbe-b898-9d2abafb464d"
-        ],
+        "isRegular": true,
+        "occurance": 1,
+        "priority": "A",
+        "start_date": "Tuesday 01 November 2022",
+        "employees": "5de73cb0-a710-4634-b55e-48c1b365eb50",
         "verification_number": "VB00002",
         "contractor_id": null
     },
     {
-        "_id": "a2063768-72e5-4cb0-9f4f-a617c4b956b7",
-        "created_at": "2021-12-08 23:47:38.899627",
+        "_id": "bdf51595-7791-49c4-b4a9-b74d803cc3dd",
+        "created_at": "2021-12-10 16:04:58.987721",
         "isActive": true,
         "isArchived": false,
-        "status": "Finished",
-        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
-        "roomNumId": "PP8005",
+        "status": "Open",
+        "property_id": "5f3d72a5-9770-4433-a838-f1565d2c241d",
+        "roomNumId": "n",
         "to_do": [
-            "Clean",
+            "Cool down igloo and fill in holes",
             ""
         ],
-        "isRegular": false,
-        "occurance": 0,
+        "isRegular": true,
+        "occurance": 1,
         "priority": "A",
-        "start_date": "Wednesday 12 October 2022",
-        "employees": [
-            "2a183d14-41e5-49f0-bbca-fcf19028a130"
-        ],
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00003",
         "contractor_id": null
     },
     {
-        "_id": "2390912d-460c-4eaf-9def-7c20376c7522",
-        "created_at": "2021-12-08 23:48:41.947567",
+        "_id": "ddec923b-499b-4cc3-86c8-7ec31025218a",
+        "created_at": "2021-12-10 16:13:01.736491",
         "isActive": true,
         "isArchived": false,
-        "status": "Finished",
-        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
-        "roomNumId": "PR8007",
-        "to_do": [
-            "Hoist lift",
-            ""
-        ],
+        "status": "Open",
+        "property_id": "a62bb41b-a179-4a27-8def-8dcef50ffeea",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
         "isRegular": true,
-        "occurance": 2,
+        "occurance": 1,
         "priority": "A",
-        "start_date": "Saturday 01 January 2022",
-        "employees": [
-            "0068302d-fcf5-429c-9d01-1655ed6ce816"
-        ],
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00004",
         "contractor_id": null
     },
     {
-        "_id": "cb33bfc7-237e-4d82-bcf4-a710ce73a803",
-        "created_at": "2021-12-08 23:58:54.882402",
+        "_id": "d09406fd-2576-44b2-8bd0-c3373cedae9f",
+        "created_at": "2021-12-10 16:13:01.740838",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
-        "roomNumId": "PR7991",
-        "to_do": [
-            "Change lights",
-            ""
-        ],
-        "isRegular": false,
-        "occurance": 0,
+        "property_id": "c57b13e2-18c1-4736-99c6-237cd87a8077",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
+        "isRegular": true,
+        "occurance": 1,
         "priority": "A",
-        "start_date": "Tuesday 21 December 2021",
-        "employees": [
-            "2a183d14-41e5-49f0-bbca-fcf19028a130",
-            "0068302d-fcf5-429c-9d01-1655ed6ce816"
-        ],
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00005",
         "contractor_id": null
     },
     {
-        "_id": "7fa0be0c-7803-4d19-b2ed-bed8bb7fd60d",
-        "created_at": "2021-12-08 23:59:50.077865",
+        "_id": "47922640-5fe9-4d77-8db5-6123180aacfb",
+        "created_at": "2021-12-10 16:13:01.742599",
         "isActive": true,
         "isArchived": false,
-        "status": "Finished",
-        "property_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
-        "roomNumId": "PR7992",
-        "to_do": [
-            "Clean",
-            "Cook",
-            ""
-        ],
-        "isRegular": false,
-        "occurance": 0,
+        "status": "Open",
+        "property_id": "61d9e4c4-47d1-41a0-bb88-45e3063c4175",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
+        "isRegular": true,
+        "occurance": 1,
         "priority": "A",
-        "start_date": "Sunday 26 December 2021",
-        "employees": [
-            "2a183d14-41e5-49f0-bbca-fcf19028a130",
-            "0068302d-fcf5-429c-9d01-1655ed6ce816"
-        ],
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00006",
         "contractor_id": null
     },
     {
-        "_id": "1f3ae035-21a6-4b27-bee0-8c57136aadea",
-        "created_at": "2021-12-09 17:52:34.071153",
+        "_id": "dae75515-eab9-4b9d-980a-312a03a6b0ed",
+        "created_at": "2021-12-10 16:13:01.744073",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
-        "roomNumId": "y",
-        "to_do": [
-            "da",
-            ""
-        ],
+        "property_id": "9e113196-88dc-44bd-b766-6758fb97562a",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
         "isRegular": true,
         "occurance": 1,
         "priority": "A",
-        "start_date": "Thursday 09 December 2021",
-        "employees": "9f1871c7-cba2-4c41-b4c8-088acc66a2f0",
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00007",
         "contractor_id": null
     },
     {
-        "_id": "dfabd546-66e2-4064-9f6f-048175028c58",
-        "created_at": "2021-12-09 18:00:10.330926",
+        "_id": "ac28468a-f0c1-40d0-94bd-a1d102760957",
+        "created_at": "2021-12-10 16:13:01.746086",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
-        "roomNumId": "y",
-        "to_do": [
-            ""
-        ],
+        "property_id": "df70e327-9de1-4165-be1f-08fe75dfe16f",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
         "isRegular": true,
         "occurance": 1,
         "priority": "A",
-        "start_date": "Thursday 09 December 2021",
-        "employees": "d715977f-8d4c-4b90-9df9-5481c2bbc6cd",
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00008",
         "contractor_id": null
     },
     {
-        "_id": "7dbdc382-1461-473f-9afb-64b40ad9d00b",
-        "created_at": "2021-12-09 18:14:29.910013",
+        "_id": "bd3a3a41-3693-4fb5-968d-9b83cac9510c",
+        "created_at": "2021-12-10 16:13:01.747934",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
-        "roomNumId": "jklsa",
-        "to_do": [
-            ""
-        ],
+        "property_id": "bc2c31f2-9607-4766-886a-8b9652b9dc39",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
         "isRegular": true,
         "occurance": 1,
         "priority": "A",
-        "start_date": "Thursday 09 December 2021",
-        "employees": "d715977f-8d4c-4b90-9df9-5481c2bbc6cd",
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00009",
         "contractor_id": null
     },
     {
-        "_id": "e26eaae8-1887-439c-9ffc-9fbfad8f9b3e",
-        "created_at": "2021-12-10 04:26:49.793942",
+        "_id": "82d2505a-a9d8-415e-bb98-cd6d5e3403ec",
+        "created_at": "2021-12-10 16:13:01.750433",
         "isActive": true,
         "isArchived": false,
         "status": "Open",
-        "property_id": "96fd14d9-f838-42bc-95f7-7e9710cdcb55",
-        "roomNumId": "Kitchen",
-        "to_do": [
-            "Fix sink",
-            "Clean fridge",
-            ""
-        ],
-        "isRegular": false,
-        "occurance": 0,
+        "property_id": "b7ad60a8-508b-4e78-bbb0-11da854194c2",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
+        "isRegular": true,
+        "occurance": 1,
         "priority": "A",
-        "start_date": "Monday 20 December 2021",
-        "employees": "2a183d14-41e5-49f0-bbca-fcf19028a130",
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
         "verification_number": "VB00010",
+        "contractor_id": null
+    },
+    {
+        "_id": "0754665f-4382-45ce-ab7d-01352ffa5d45",
+        "created_at": "2021-12-10 16:13:01.752311",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "78756179-fc5a-49ef-b259-33645b54f6f8",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
+        "isRegular": true,
+        "occurance": 1,
+        "priority": "A",
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
+        "verification_number": "VB00011",
+        "contractor_id": null
+    },
+    {
+        "_id": "5e83a208-09ec-4a01-bf38-2f8be41d3515",
+        "created_at": "2021-12-10 16:13:01.754570",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "86d4090c-ab3e-415d-925f-44f47544b05e",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
+        "isRegular": true,
+        "occurance": 1,
+        "priority": "A",
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
+        "verification_number": "VB00012",
+        "contractor_id": null
+    },
+    {
+        "_id": "5076c725-aba9-4c74-bd28-9aa7a5efd93b",
+        "created_at": "2021-12-10 16:13:01.756576",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "e6ab97ae-8a72-4d2e-b0b8-055000323258",
+        "roomNumId": null,
+        "to_do": "Cool down igloo and fill in holes",
+        "isRegular": true,
+        "occurance": 1,
+        "priority": "A",
+        "start_date": "Friday 15 July 2022",
+        "employees": "06a3eb93-145d-4507-b046-95e7fee6c6d7",
+        "verification_number": "VB00013",
+        "contractor_id": null
+    },
+    {
+        "_id": "084f97c4-f0f6-4e32-855a-8c907d51200d",
+        "created_at": "2021-12-10 16:21:15.486121",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "310e6385-ebfb-4e15-bf08-f574cb3c371a",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00014",
+        "contractor_id": null
+    },
+    {
+        "_id": "1c380d35-5ff4-4c50-8d31-4e40416feed9",
+        "created_at": "2021-12-10 16:21:15.487726",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "9dff0f0c-318b-4e50-ac77-055c544cc295",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00015",
+        "contractor_id": null
+    },
+    {
+        "_id": "9a2b1358-d505-4df5-9bfb-5337aee11487",
+        "created_at": "2021-12-10 16:21:15.489367",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "8d5b572b-ce0d-4e6d-96ef-3a676d7952f6",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00016",
+        "contractor_id": null
+    },
+    {
+        "_id": "b2cfd8a2-91db-4313-9bed-6adee4f861af",
+        "created_at": "2021-12-10 16:21:15.491187",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "e53a6405-b973-41d3-bdab-be3490c8365f",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00017",
+        "contractor_id": null
+    },
+    {
+        "_id": "26025ed7-34b2-422d-819a-1e073e36400e",
+        "created_at": "2021-12-10 16:21:15.493166",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "d2e534c9-b980-4f2f-983f-f4569e5e7e4e",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00018",
+        "contractor_id": null
+    },
+    {
+        "_id": "84cbf3a3-27a3-40c1-9edd-d008013269da",
+        "created_at": "2021-12-10 16:21:15.495421",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "a40244a6-9bd9-48f6-b8f5-dbd9128f90d9",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00019",
+        "contractor_id": null
+    },
+    {
+        "_id": "866cd4f5-3f20-4516-b66a-a733646e2b51",
+        "created_at": "2021-12-10 16:21:15.497515",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "5ef40f40-66be-4408-adc7-49598fad79d8",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00020",
+        "contractor_id": null
+    },
+    {
+        "_id": "3ea999d4-0d27-437e-8578-057699a43f06",
+        "created_at": "2021-12-10 16:21:15.499601",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "b2fae648-a10d-4326-b97d-7f15248bebd0",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00021",
+        "contractor_id": null
+    },
+    {
+        "_id": "b20bc828-20c1-4090-821c-81fada2e8636",
+        "created_at": "2021-12-10 16:21:15.502035",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "70bfbc5a-6c0c-4bab-9ead-8f4857e25b43",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00022",
+        "contractor_id": null
+    },
+    {
+        "_id": "52189416-8895-42e5-89c4-1193e1bea046",
+        "created_at": "2021-12-10 16:21:15.504407",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "e554f3b4-3893-4410-99d2-d71ded1c2f66",
+        "roomNumId": null,
+        "to_do": [
+            "Cut the grass and remove weeds",
+            "To be done once a week"
+        ],
+        "isRegular": true,
+        "occurance": 10,
+        "priority": "A",
+        "start_date": "Sunday 1 May 2022",
+        "employees": [
+            "05a1136b-8f31-4410-bc9e-51aba13cce00"
+        ],
+        "verification_number": "VB00023",
         "contractor_id": null
     }
 ]
