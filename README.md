@@ -22,6 +22,10 @@ Hér eru upplýsingar um hönnun kerfisins og ýmis rit tengd því.
 ## ./dagbok/
 Dagbókarfærslur um hvað gerðist þann dag
 
+# Kennslumyndband
+Hér er myndband um hvernig á að nota kerfið:
+[Kennslumyndband](https://www.youtube.com/watch?v=RwCgPDagrCg)
+
 # Keyrsla
 ## Fyrirvari
 Virkar ef python er >= 3.9
