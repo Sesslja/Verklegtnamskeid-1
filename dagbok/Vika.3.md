@@ -8,3 +8,10 @@
 # Miðvikudagur // 8.12.21
 - verður langur dagur þar sem okkar helsta markmið,
 verður að klára forritið svo við getum farið að einbeita okkur að loka skýrslu.
+
+# Fimmtudagur // 9.12.21
+- smá stress í hópnum að reyna laga fleirri villur en við vorum að búast við þar sem það er að taka meiri tíma en við áætluðum
+- Byrjum á lokaskýrslu og undurbúningur fyrir kennsluvideo
+
+# Föstudagur // 10.12.21
+- Klárum skýrslu og forrit 

@@ -1,7 +1,11 @@
 from data.DBError import RecordNotFoundError
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
-from rich.prompt import Confirm, Prompt, FloatPrompt
+try:
+    from rich.prompt import Confirm, Prompt, FloatPrompt
+    from rich.text import Text
+except ModuleNotFoundError:
+    pass
 
 
 class PropertiesEditSubMenu(BaseMenu):
@@ -54,6 +58,7 @@ class PropertiesEditSubMenu(BaseMenu):
         }
 
     def propertyIdInput(self, retry: bool= False):
+        ''' Is called when the user opens the menu, asks for the property num'''
         self.clear()
         print('No property ID found please input a correct one') if retry else None
         propId = input('Please input ID of property ([Q] to Quit): ')
@@ -77,7 +82,7 @@ class PropertiesEditSubMenu(BaseMenu):
 
         created_room = created_room.Rooms
 
-        print('Successfully created new room')
+        print(Text.from_markup(':white_check_mark: Successfully created new room'))
         header = {
             'roomId': {
                 'display_name': 'Room ID'
@@ -122,29 +127,29 @@ class PropertiesEditSubMenu(BaseMenu):
         while confirm_change != "y":
             property_list = self.propertyapi.findPropertyByPropertyId(self.propertyId)
 
-            new_size = FloatPrompt.ask('Enter new size (m²)', default=property_list.Rooms[roomIndex]["size"])
-            new_id = Prompt.ask('Enter new ID', default=property_list.Rooms[roomIndex]["roomId"])
+            new_size = FloatPrompt.ask('Enter new size (m²)', default=property_list.Rooms[roomIndex]["size"]) # Asks for the new size, shows the default value which is the old one
+            new_id = Prompt.ask('Enter new ID', default=property_list.Rooms[roomIndex]["roomId"]) # Asks for the new ID, shows the default value which is the old one
 
-            if new_id != roomId or new_size != property_list.Rooms[roomIndex]["size"]:
+            if new_id != roomId or new_size != property_list.Rooms[roomIndex]["size"]: # check if either are changed
                 print('Are you sure you want to change')
-                if new_id != roomId:
+                if new_id != roomId: # Ask if they are sure they want to change for each value
                     print(f'The rooms ID from {roomId} to {new_id}.')
                 if new_size != property_list.Rooms[roomIndex]["size"]:
                     print(f'The rooms size from {property_list.Rooms[roomIndex]["size"]} m² to {new_size} m².')
-                confirm_change = input("[y/N]: ").lower()
+                confirm_change = input("[y/N]: ").lower() # Check if they want to change
             else:
                 print('Nothing changed, operation cancelled.')
             if confirm_change != "y":
-                cancel_op = input("Do you want to cancel? [y/N]").lower()
+                cancel_op = input("Do you want to cancel? [y/N]").lower() # If they stumbled into this menu by accident and don't want to change any room info, give them the possibility here
                 if cancel_op == "y":
                     confirm_change = "y"
             if confirm_change == "y" and cancel_op != "y":
-                property_list.Rooms[roomIndex]["size"] = new_size
+                property_list.Rooms[roomIndex]["size"] = new_size # Update record
                 property_list.Rooms[roomIndex]["roomId"] = new_id
 
-        updated_rooms = self.propertyapi.updateRooms(property_list._id, property_list.Rooms)
-        self.createTable(header, updated_rooms.Rooms, table_title='Rooms in property', line_between_records=True)
-        print(f"Successfully updated room nr. {new_id}\n")
+        updated_rooms = self.propertyapi.updateRooms(property_list._id, property_list.Rooms) # Update record in DB
+        self.createTable(header, updated_rooms.Rooms, table_title='Rooms in property', line_between_records=True) # Creates the updated table
+        print(Text.from_markup(f":white_check_mark: Successfully updated room nr. {new_id}\n"))
 
         self.waitForKeyPress()
 

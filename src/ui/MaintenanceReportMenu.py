@@ -36,7 +36,29 @@ class MaintenanceReportMenu(BaseMenu):
 
     def find_all_reports(self):
         report_list = self.maintreportAPI.findReport()
-        show_keys = ['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
+        show_keys = {
+            'verification_number': {
+                'display_name': 'Verification Number'
+            },
+            'maintenance': {
+                'display_name': 'Maintenance'
+            },
+            'materialcost': {
+                'display_name': 'Material Cost'
+            },
+            'salary': {
+                'display_name': 'Salary'
+            },
+            'contractorId': {
+                'display_name': 'Contractor Id'
+            },
+            'contractorsfee': {
+                'display_name': 'Contractors Fee'
+            },
+            'finish_at': {
+                'display_name': 'Finished at'
+            }
+        } #['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
         print(self.createTable(show_keys, report_list))
         self.waitForKeyPress()
     
@@ -52,7 +74,29 @@ class MaintenanceReportMenu(BaseMenu):
                     self.find_all_reports()
                 maintenence_id = None
             else:
-                show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                show_keys = show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'maintenance': {
+                    'display_name': 'Maintenance'
+                },
+                'materialcost': {
+                    'display_name': 'Material Cost'
+                },
+                'salary': {
+                    'display_name': 'Salary'
+                },
+                'contractorId': {
+                    'display_name': 'Contractor Id'
+                },
+                'contracotrsfee': {
+                    'display_name': 'Contractors Fee'
+                },
+                'finish_at': {
+                    'display_name': 'Finished at'
+            }
+                }#["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                 print(self.createTable(show_keys, report_list))
                 self.waitForKeyPress()
 

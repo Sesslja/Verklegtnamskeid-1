@@ -13,6 +13,6 @@ class Report(BaseModel):
         self.salary = salary
         self.contractorsfee = contractorsfee
         self.created_by = created_by_id
-        self.finish_at = self.datetimeToUtc()
+        self.finish_at = finish_at
 
 

@@ -456,7 +456,7 @@
         "isArchived": false,
         "name": "Nytt name",
         "email": "19@nan.is",
-        "isManager": false,
+        "isManager": true,
         "ssn": "185",
         "Address": {
             "country": "Greenland",
