@@ -14,8 +14,12 @@ try:
     from rich.align import Align
     from rich.style import Style
     from rich.prompt import Prompt
+    from rich.text import Text
+    from rich.panel import Panel
+    from assets.NanAirLogo import NAN_AIR_LOGO
     RICH_AVAILABLE = True
 except ModuleNotFoundError:
+    from assets.NanAirLogo import NAN_AIR_LOGO_POOR
     RICH_AVAILABLE = False
 
 class BaseMenu :
@@ -29,10 +33,11 @@ class BaseMenu :
         self.loggedInUser = self.login() if logged_in_user is None else logged_in_user
     
     def login(self, failed_attempt: bool=False):
+        ''' Menu to authenticate user, is shown when no logged in user can be found. '''
         from logic.AuthLogic import AuthAPI
         authApi = AuthAPI()
         self.clear()
-        print('Welcome to NaN Air!\nWhere dividing by zero makes sense.\n')
+        print('Welcome to NaN Air!\nDividing by zero every day.\n')
 
         print('Incorrect login details, please try again') if failed_attempt else ''
         userSsn = ""
@@ -55,7 +60,8 @@ class BaseMenu :
         while menuState == 'run':
             self.clear()
             if not RICH_AVAILABLE:
-                to_print = self.menu_title + '\n'
+                to_print = NAN_AIR_LOGO + '\n\n\n'
+                to_print += self.menu_title + '\n'
                 # Checks if Rich module is installed, install with 'pip install rich'
                 to_print = color('Rich package is not installed, program may not render correctly\n', backgroundColor='red') + to_print
                 to_print += ("-"*30) + '\n'
@@ -79,6 +85,9 @@ class BaseMenu :
                 menuTable.box = box.MINIMAL
                 menuTable.caption = f'You are logged in as {self.loggedInUser.name}'
                 menuTable_centered = Align.center(menuTable)
+
+
+                print(Align.center(Text.from_markup(NAN_AIR_LOGO))) # Print the NaN Air logo
                 print(menuTable_centered)
 
             menuState = self.getUserInput()
@@ -130,8 +139,11 @@ class BaseMenu :
                 opt_func = opt[user_input]['function']
                 run_func = getattr(self, opt_func, self.funcNotFound)
                 self.clear()
-                run_func()
-                return 'run'
+                try:
+                    run_func()
+                    return 'run'
+                except:
+                    print('error')
             else:
                 return 'run'
         else:
