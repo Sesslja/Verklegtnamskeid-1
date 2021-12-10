@@ -17,6 +17,43 @@
             "33eb2d2f-fa7a-1c51-b153-fc312ce1ae37",
             "2a183d14-41e5-49f0-bbca-fcf19028a130"
         ],
-        "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37"
+        "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37",
+        "verification_number": "D00001"
+    },
+    {
+        "_id": "548cd4cf-7e21-43bb-86a1-b42afa811c97",
+        "created_at": "2021-12-10 14:13:33.349316",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Iceland",
+            "city": "Kopavogur",
+            "zip": "201",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        },
+        "name": "K\u00f3p Airport",
+        "employees": [],
+        "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37",
+        "verification_number": "D00002"
+    },
+    {
+        "_id": "2f44ac1f-3d35-451d-b5b2-c82104dab0f8",
+        "created_at": "2021-12-10 14:54:54.222540",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Iceland",
+            "city": "Keflavik",
+            "zip": "500",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        },
+        "name": "Kef airport",
+        "employees": [],
+        "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37",
+        "verification_number": "D00003"
     }
 ]
