@@ -4,6 +4,7 @@ from ui.BaseMenu import BaseMenu
 from logic.UserLogic import UserAPI
 from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
 from model.AddressType import Address
+from data.DBError import RecordNotFoundError
 try:
     from rich.text import Text
 except ModuleNotFoundError:
@@ -50,17 +51,34 @@ class EmployeesMenu(BaseMenu):
         name = input("Enter employee name: ")
         isManager = input("Is employee Manager? [y/N]: ").lower()
         email = input("Enter email: ")
-        ssn = input("Enter Social-Security number: ")
-        country = input("enter country: ")
+        employee_num_exist= False
+        while employee_num_exist==False:
+            ssn = input("Enter employee number: ")
+            try:
+                self.userapi.findEmployeeByEmployeeId(ssn)
+                print('A employee already exists with that number, please enter another one.')
+            except RecordNotFoundError:
+                employee_num_exist = True
+        phone_input = None
+        phone_list = []
+        while phone_input != "":
+            phone_input = input("Enter phone number (Empty line to continue): ")
+            if phone_input != "":
+                phone_list.append(phone_input)
+        country = input("Enter country: ")
         city = input("Enter city: ")
         zip_code = input("Enter zip code: ")
         addr1 = input("Enter address: ")
+        addr2 = input("Address 2: ")
+        addr2 = addr2 if addr2 is not "" else None # If we don't get an input then we want it as None
+        addr3 = input("Address 3: ")
+        addr3 = addr3 if addr3 is not "" else None # Same here as above
         
-        address = Address(country=country, city=city, zip=zip_code, address1=addr1) # Create address object
+        address = Address(country=country, city=city, zip=zip_code, address1=addr1, address2=addr2, address3=addr3) # Create address object
 
         isManager = True if isManager == "y" else False
 
-        self.userapi.createEmployee(name, email, ssn, address, isManager) # Create employee
+        self.userapi.createEmployee(name=name, email=email, ssn=ssn, address=address, isManegar=isManager, phone=phone_list) # Create employee
         try:
             print(Text.from_markup(f":white_check_mark: Hurrah! {name} created as employee"))
         except:

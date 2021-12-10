@@ -5,11 +5,13 @@ from model.ContractorModel import Contractor
 from data.database import DB
 
 class ContractorAPI:
+    '''Logic for contractor'''
     def __init__(self) -> None:
         self.contractorRepo = DB(Contractor)
         self.maintReqRepo = DB(MaintenanceRequest)
 
     def createContractor(self, company: str=None, name: str=None, ssn: int=None, profession: str=None, phone: int=None, openinghours: str=None, email: str=None, address: Address=None):
+        '''Creates contractor given user input'''
         new_contractor = Contractor(company=company, name=name, ssn=ssn, profession=profession, phone=phone, openinghours=openinghours, email=email, address=address)
         return self.contractorRepo.save(new_contractor)
 
@@ -26,16 +28,20 @@ class ContractorAPI:
     
     
     def findContractor(self) -> list:
+        '''Find contractor given contractor object'''
         return self.contractorRepo.find()
 
     def updateContractorInfo(self, id, data):
+        '''updates contractor info'''
         data['_id'] = id
         return self.contractorRepo.update(data)
 
     def deleteContractor(self, id) -> list:
+        '''Delets contractor given contractor ID'''
         return self.contractorRepo.delete(id)
 
     def findContractorByProfession(self, profession: str):
+        '''Find contractor given proffession'''
         return self.contractorRepo.find({ 
             'where': {
                 'profession': profession
@@ -43,6 +49,7 @@ class ContractorAPI:
         })
     
     def findContractorByContractorId(self, contractorId: str):
+        '''finds contractor given contractor SSN'''
         return self.contractorRepo.findOne({ 
             'where': {
                 'ssn': contractorId
@@ -50,6 +57,7 @@ class ContractorAPI:
         })
     
     def findContractorByName(self, name: str):
+        '''finds contractor given contractor name'''
         return self.contractorRepo.find({ 
             'where': {
                 'name': name
@@ -57,6 +65,7 @@ class ContractorAPI:
         })
 
     def assignContractorToMaintenance(self, contractorSSN, maintReqId):
+        '''Assaigns contractor to a maintanence request'''
         contractor = self.contractorRepo.findOne({
             'where': {
                 'ssn': contractorSSN

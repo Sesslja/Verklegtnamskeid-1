@@ -4,15 +4,18 @@ from data.database import DB
 from model.MaintenanceRequestModel import MaintenanceRequest
 
 class UserAPI:
+    '''Logic for users such as employee and contractors'''
     def __init__(self) -> None:
         self.userRepo = DB(User)
         self.maintReqRepo = DB(MaintenanceRequest)
 
-    def createEmployee(self, name: str, email: str, ssn: int, address: Address=None, isManegar: bool=False):
-        new_user = User(name=name, email=email, ssn=ssn, address=address, isManager=isManegar)
+    def createEmployee(self, name: str, email: str, ssn: int, address: Address=None, isManegar: bool=False, phone: list = None):
+        '''Creates employee object given user input'''
+        new_user = User(name=name, email=email, ssn=ssn, address=address, isManager=isManegar, phone=phone)
         return self.userRepo.save(new_user)
 
     def allEmployeesOverview(self, limit=0, page=0) -> list:
+        '''returns list of all employee objects'''
         return self.userRepo.find({
             'limit': {
                 'limit': limit,
@@ -31,6 +34,7 @@ class UserAPI:
 
 
     def deleteEmployee(self, id) -> list:
+        '''delets employee given employee ID'''
         return self.userRepo.delete(id)
 
     def findEmployeesByEmployeeId(self, employeeId: str) -> list:
@@ -42,6 +46,7 @@ class UserAPI:
         })
 
     def findEmployeeByEmployeeId(self, employeeSsn: str):
+        '''Returns list of employee objects given employee ssn'''
         return self.userRepo.findOne({ 
             'where': {
                 'ssn': employeeSsn
@@ -49,6 +54,7 @@ class UserAPI:
         })
     
     def findEmployeesByCountry(self, country: str):
+        '''Returns list of employee objects given country'''
         return self.userRepo.find({ 
             'where': {
                 'Address': {
@@ -58,6 +64,7 @@ class UserAPI:
         })
 
     def findEmployee(self, id):
+        '''Returns list of employee objects given employee ID'''
         found = self.userRepo.findOne({
             'where': {
                 '_id': id
@@ -69,6 +76,7 @@ class UserAPI:
             return found
 
     def findManagers(self):
+        '''Returns list of manager objects given'''
         return self.userRepo.find({
             'where': {
                 'isManager': True
@@ -76,6 +84,7 @@ class UserAPI:
         })
     
     def findManagersByCountry(self, country: str):
+        '''Returns list of manager objects given country'''
         return self.userRepo.find({
             'where': {
                 'isManager': True,
@@ -86,6 +95,7 @@ class UserAPI:
         })
 
     def updateEmployeeInfo(self, id, data):
+        '''updates employee info given employee id and user data'''
         data['_id'] = id
         return self.userRepo.update(data)
     

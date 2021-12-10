@@ -9,6 +9,7 @@ from model.userModel import User
 from data.database import DB
 
 class PropertyAPI:
+    '''Logic for property'''
     def __init__(self) -> None:
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
@@ -17,6 +18,7 @@ class PropertyAPI:
         self.maintReqRepo = DB(MaintenanceRequest)
 
     def createProperty(self, address: str, propertyId: str, amenities: list, rooms: list):
+        '''Creates property given user data'''
         new_property = Property(address=address, propertyId=propertyId, amenities=amenities, Rooms=rooms)
         return self.propertyRepo.save(new_property)
 
@@ -29,6 +31,7 @@ class PropertyAPI:
 
 
     def findIfRoomInProperty(self, propertyId: str, roomId: str):
+        '''Returns list of property room, given property ID and room id'''
         try: 
             self.propertyRepo.find({
                 'where': {
@@ -43,6 +46,7 @@ class PropertyAPI:
         
 
     def findProperties(self, limit=0, page=0) -> list:
+        '''Returns list of all property objects'''
         properties = self.propertyRepo.find({
             'limit': {
                 'limit': limit,
@@ -84,9 +88,11 @@ class PropertyAPI:
 
     
     def deleteProperty(self, propertyId) -> list:
+        '''Delets property given property ID'''
         return self.propertyRepo.delete(propertyId)
 
     def findPropertyByPropertyId(self, propertyID: str):
+        '''Returns list of property objects, given property ID'''
         found_prop = self.propertyRepo.findOne({
             'where': {
                 'propertyId': propertyID
@@ -96,6 +102,7 @@ class PropertyAPI:
         return self.insertPropInfoSingle(found_prop)
 
     def findPropertyByCountry(self, country: str):
+        '''Returns list of property objects, given country'''
         found_properties = self.propertyRepo.find({
             'where': {
                 'Address': {
@@ -108,6 +115,7 @@ class PropertyAPI:
         return self.insertPropInfo(found_properties)
 
     def findPropertyByEmployeeSsn(self, employeeSsn: int):
+        '''Returns list of property objects, given employee SSN'''
         try:
             user = self.userRepo.findOne({
                 'where': {
@@ -126,7 +134,7 @@ class PropertyAPI:
         return self.insertPropInfo(found_prop)
 
     def createRoom(self, propertyId: str, roomId: str=None, size: float=None):
-        '''Creates a room for a property'''
+        '''Creates a room for a property given prop ID and user input'''
         if type(size) is not float:
             size = float(size)
 
@@ -153,6 +161,7 @@ class PropertyAPI:
         })
 
     def updateRooms(self, propertyId, roomList):
+        '''updates data of room'''
         updated = self.propertyRepo.update({
             '_id': propertyId,
             'Rooms': roomList
@@ -160,6 +169,7 @@ class PropertyAPI:
         return updated
 
     def assignEmployeeToProperty(self, employeeSSN, propertyId):
+        '''Assignes employee to a property given employee ssn and Prop ID'''
         user = self.userRepo.findOne({
             'where': {
                 'ssn': employeeSSN
@@ -182,6 +192,7 @@ class PropertyAPI:
         })
 
     def findEmployeesByPropertyId(self, propertyId):
+        '''Returns list of employee objects, given property ID'''
         found_property = self.findPropertyByPropertyId(propertyId)
         employee_ids_in_prop = found_property.employees
 

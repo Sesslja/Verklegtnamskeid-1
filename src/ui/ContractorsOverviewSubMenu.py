@@ -54,6 +54,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
     
     
     def see_contractor_history(self):
+        '''promts user to see all previos or current MRequests assigned to contractor'''
         contractor_ssn = input("Enter contractor SSN: ")
         try:    
             contractorID = self.contractorapi.findContractorByContractorId(contractor_ssn)
@@ -67,6 +68,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
 
     def find_contractors_by_id(self): #1
+        '''Prompts user to find contractor by contractor ID'''
         contractor_id = None
         while contractor_id == None:
             try:
@@ -89,6 +91,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
     
 
     def find_contractor_by_name(self):
+        '''Prompts user to find contractor by contractor name'''
         contractors_name = input("Enter name: ")   
         try:
             contractors_name_list = self.contractorapi.findContractorByName(contractors_name)
@@ -141,6 +144,7 @@ class ContractorsOverviewSubMenu(BaseMenu):
 
 
     def delete_contractor(self):
+        '''Prompts user to delete contractor by contractor ID'''
         contractor_id = input("Enter contractors ID: ")
         if self.contractorapi.deleteContractor(contractor_id) == True:
             print("Contractor deleted")

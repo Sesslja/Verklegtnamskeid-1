@@ -79,6 +79,7 @@ class MaintenanceMenu(BaseMenu):
         }
     
     def create_report(self):
+        '''Prompts user to create a new report'''
         verificationNum = None
         while verificationNum == None:
             verificationNum = input("\nEnter the verification number of the maintenane request: ")

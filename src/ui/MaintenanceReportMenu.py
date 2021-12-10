@@ -48,6 +48,7 @@ class MaintenanceReportMenu(BaseMenu):
         }
 
     def find_all_reports(self):
+        '''Prints a table of all reports'''
         report_list = self.maintreportAPI.findReport()
         show_keys = {
             'verification_number': {

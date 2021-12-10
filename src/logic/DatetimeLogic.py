@@ -6,6 +6,7 @@ except ModuleNotFoundError:
     print('virkar ekki')
 
 class DateTime():
+    '''Logic for time stamps'''
     def __init__(self) -> None:
         '''self.now = datetime.datetime.now()
         self.days_ahead = datetime.datetime.now() + relativedelta(days=3)
@@ -15,12 +16,14 @@ class DateTime():
 
 
     def generateDatetimeNow(self, date_time =None):
+        '''Finds current date'''
         date_time = date_time
         if date_time is None:
             dt = datetime.date.today().strftime('%A %d %B %Y')
         return dt
     
     def testDate(self, start_date: list = None):
+        '''Checks if date is within bounds'''
         now = datetime.datetime.now()
         if start_date is None:
             date = datetime.datetime.now()
@@ -35,6 +38,7 @@ class DateTime():
         return date, dt
 
     def betweenTwoDates(self, start_date, end_date):
+        '''finds maintanence between two given dates'''
         date_search_from = self.datetime(start_date)
         date_search_to = self.datetime(end_date)
         date_list = list(range(date_search_from, date_search_to))

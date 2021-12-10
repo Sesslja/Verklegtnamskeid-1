@@ -1,57 +1,54 @@
 [
     {
-        "_id": "68b11bab-9e17-4242-b93e-67694dd4f65a",
-        "created_at": "2021-12-09 03:41:06.197679",
+        "_id": "04e6ca47-7153-45fa-88ce-840ed0d68925",
+        "created_at": "2021-12-10 13:34:00.384435",
         "isActive": true,
         "isArchived": false,
         "Address": {
-            "country": "Iceland",
-            "city": "Reykjavik",
-            "zip": "101",
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
             "address1": null,
             "address2": null,
             "address3": null
         },
-        "name": "Reykjavik Airport",
-        "employees": [
-            "33eb2d2f-fa7a-1c51-b153-fc312ce1ae37",
-            "2a183d14-41e5-49f0-bbca-fcf19028a130"
-        ],
+        "name": "Kulusuk",
+        "employees": [],
         "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37",
         "verification_number": "D00001"
     },
     {
-        "_id": "548cd4cf-7e21-43bb-86a1-b42afa811c97",
-        "created_at": "2021-12-10 14:13:33.349316",
+        "_id": "bdb5fe84-7371-45c6-9ce1-e0e78d5eb97e",
+        "created_at": "2021-12-10 13:34:47.944317",
         "isActive": true,
         "isArchived": false,
         "Address": {
-            "country": "Iceland",
-            "city": "Kopavogur",
-            "zip": "201",
+            "country": "Faroe Islands",
+            "city": "Thorshavn",
+            "zip": "100",
             "address1": null,
             "address2": null,
             "address3": null
         },
-        "name": "K\u00f3p Airport",
+        "name": "Thorshavn",
         "employees": [],
         "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37",
         "verification_number": "D00002"
     },
     {
-        "_id": "2f44ac1f-3d35-451d-b5b2-c82104dab0f8",
-        "created_at": "2021-12-10 14:54:54.222540",
+        "_id": "32d525d9-244b-4624-b4e2-3e8dc93dea6b",
+        "created_at": "2021-12-10 13:35:24.004236",
         "isActive": true,
         "isArchived": false,
         "Address": {
-            "country": "Iceland",
-            "city": "Keflavik",
-            "zip": "500",
+            "country": "Svalbard",
+            "city": "Longyearbyen",
+            "zip": "9170",
             "address1": null,
             "address2": null,
             "address3": null
         },
-        "name": "Kef airport",
+        "name": "Longyearbyen",
         "employees": [],
         "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37",
         "verification_number": "D00003"

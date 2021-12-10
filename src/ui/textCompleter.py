@@ -1,5 +1,6 @@
 
 class TextCompleter:
+    '''might not work on all devices but attempts to give option to press tap to auto complete'''
     def __init__(self, options) -> None:
         self.options = options
 
