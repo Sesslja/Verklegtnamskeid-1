@@ -115,7 +115,7 @@ class MaintenanceReportMenu(BaseMenu):
                 self.waitForKeyPress()
 
     def managerAcceptsReport(self):
-        ''' Manager can accept report, if he accepts the report will close otherwise it will reopen '''
+        ''' Manager can accept report, if he accepts the report it will close otherwise it will reopen '''
 
         verificationNum = Prompt.ask("Enter the verification number of the maintenane report: ")
         try:
