@@ -148,10 +148,44 @@ class PropertiesEditSubMenu(BaseMenu):
 
         self.waitForKeyPress()
 
+    def deleteRoom(self):
+        property_list = self.propertyapi.findPropertyByPropertyId(self.propertyId)
+        header = {
+            'roomId': {
+                'display_name': 'Room ID'
+            },
+            'size': {
+                'display_name': 'Size (m²)',
+                'suffix': ' m²'
+            }
+        }
+        roomList = property_list.Rooms[:]
 
-        
-            
-        
+        roomIdList = []
+        for room in property_list.Rooms:
+            roomIdList.append(room["roomId"])
+
+
+        self.createTable(header, roomList, table_title='Rooms in property', line_between_records=True)
+
+        print('Delete room')
+        confirm_deletion = False
+        cancel_deletion = False
+        while cancel_deletion != True:
+            roomId = Prompt.ask("Enter room ID", choices=roomIdList, show_choices=False)
+            roomIndex = roomIdList.index(roomId)
+            confirm_deletion = Confirm.ask(f"Are you sure you want to delete room with ID {roomId}")
+            if confirm_deletion:
+                property_list = self.propertyapi.findPropertyByPropertyId(self.propertyId)
+                property_list.Rooms.pop(roomIndex)
+                updated_list = self.propertyapi.updateRooms(property_list._id, property_list.Rooms)
+                print("Successfully deleted room with id {roomId}")
+                cancel_deletion = True
+            else:
+                print(f"Cancelled deletion of {roomId}")
+                cancel_deletion = True
+
+        self.waitForKeyPress()
 
 
     def assignEmployeeToProperty(self):
