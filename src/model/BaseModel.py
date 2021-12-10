@@ -14,13 +14,5 @@ class BaseModel:
     def modelLocals():
         return locals()
 
-    def datetimeToUtc(self, start_date: list=None):
-        start_date = start_date
-        if start_date is None:
-            dt = datetime.now()
-            date = dt.replace(tzinfo=timezone.utc).timestamp()
-        else:
-            dt = datetime(start_date[0], start_date[1], start_date[2])
-            date = dt.replace(tzinfo=timezone.utc).timestamp()
-        return int(date) 
+    
 

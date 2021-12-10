@@ -54,7 +54,7 @@ class MaintenanceRequestMenu(BaseMenu):
                 "function": "find_by_property"
             },
             "8": {
-                "title": "Find maintenance request by date",
+                "title": "Find all maintenance requests between two dates",
                 "access": "manager",
                 "function": "find_by_date"  
             },
@@ -135,8 +135,11 @@ class MaintenanceRequestMenu(BaseMenu):
                 'verification_number': {
                     'display_name': 'Verification Number'
                 },
-                'occurance': {
-                    'display_name': 'Occurance'
+                'property_id': {
+                    'display_name': 'Property Id'
+                },
+                'to_do': {
+                    'display_name': 'To do'
                 },
                 'priority': {
                     'display_name': 'Priority'
@@ -158,8 +161,11 @@ class MaintenanceRequestMenu(BaseMenu):
                 'verification_number': {
                     'display_name': 'Verification Number'
                 },
-                'occurance': {
-                    'display_name': 'Occurance'
+                'property_id': {
+                    'display_name': 'Property Id'
+                },
+                'to_do': {
+                    'display_name': 'To do'
                 },
                 'priority': {
                     'display_name': 'Priority'
@@ -184,11 +190,14 @@ class MaintenanceRequestMenu(BaseMenu):
                 maintenence_id = None
             else:
                 show_keys = show_keys = {
-                'verification_number': {
+               'verification_number': {
                     'display_name': 'Verification Number'
                 },
-                'occurance': {
-                    'display_name': 'Occurance'
+                'property_id': {
+                    'display_name': 'Property Id'
+                },
+                'to_do': {
+                    'display_name': 'To do'
                 },
                 'priority': {
                     'display_name': 'Priority'
@@ -251,8 +260,11 @@ class MaintenanceRequestMenu(BaseMenu):
                             'verification_number': {
                                 'display_name': 'Verification Number'
                             },
-                            'occurance': {
-                                'display_name': 'Occurance'
+                            'property_id': {
+                                'display_name': 'Property Id'
+                            },
+                            'to_do': {
+                                'display_name': 'To do'
                             },
                             'priority': {
                                 'display_name': 'Priority'
@@ -278,13 +290,13 @@ class MaintenanceRequestMenu(BaseMenu):
         end_date = None
         while start_date == None or end_date == None:
             start_date = input("Enter start date: ")
-            end_date = input("Enter  date: ")
+            end_date = input("Enter end date: ")
             if start_date == "" or  end_date == "":
                 start_date == None
                 end_date == None
             else:
-                request_list = self.maintenancerequestAPI.findRequestByDate(start_date, end_date)
-                if len(request_list) == 0:
+                request_list = self.maintenanceRequestAPI.findRequestByDate(start_date, end_date)
+                if len(request_list) == []:
                     print ("No items to show")
                     request_list == None
                     self.waitForKeyPress()
@@ -293,8 +305,11 @@ class MaintenanceRequestMenu(BaseMenu):
                         'verification_number': {
                             'display_name': 'Verification Number'
                         },
-                        'occurance': {
-                            'display_name': 'Occurance'
+                        'property_id': {
+                            'display_name': 'Property Id'
+                        },
+                        'to_do': {
+                            'display_name': 'To do'
                         },
                         'priority': {
                             'display_name': 'Priority'

@@ -5,13 +5,17 @@ from model.MaintenanceRequestModel import MaintenanceRequest
 from model.userModel import User
 from data.database import DB
 from model.BaseModel import BaseModel
+from logic.DatetimeLogic import DateTime
+from model.MaintReportModel import Report
 
 class MaintenanceRequestAPI :
 
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
+        self.reportRepo = DB(Report)
         self.propertyRepo = DB(Property)
         self.userRepo = DB(User)
+        self.datetime = DateTime()
 
     def createMaintenanceRequest(self,status: str, property_id: str, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employees: list=None, roomNumId: str=None):
         found_prop = self.propertyRepo.findOne({
@@ -111,15 +115,23 @@ class MaintenanceRequestAPI :
         return found_req
 
     def findRequestByDate(self, startDate: list, endDate: list):
-        start_Date = BaseModel.datetimeToUtc(startDate)
-        end_Date = BaseModel.datetimeToUtc(endDate)
-        x = range(start_Date, end_Date)
-        return self.requestRepo.find({
-            'where': {
-                'finish_date': x
-                
-            }
-        })
+        startDate = startDate.split(',')
+        endDate = endDate.split(',')
+        request_list = []
+        dateList = self.datetime.betweenTwoDates(startDate, endDate)
+        for date in dateList:
+            foundItem = self.requestRepo.find({
+                'where': {
+                    'start_date': date
+                }
+            })
+            for foundRequest in foundItem:
+                request_list.append(foundRequest)
+
+        return request_list
+
+
+
 
     def insertRelationsIntoRequest(self, inp_obj) -> object:
         ''' Insert relationships into request '''
