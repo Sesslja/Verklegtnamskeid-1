@@ -1,4 +1,5 @@
 class Address:
+    '''Model for Address Object'''
     def __init__(self, country: str=None, city: str=None, zip: str=None, address1: str=None, address2: str=None, address3: str=None) -> None:
         self.country = country
         self.city = city

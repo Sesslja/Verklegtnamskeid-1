@@ -154,6 +154,7 @@ class PropertiesEditSubMenu(BaseMenu):
         self.waitForKeyPress()
 
     def deleteRoom(self):
+        '''prmpts user to delete room in a property'''
         property_list = self.propertyapi.findPropertyByPropertyId(self.propertyId)
         header = {
             'roomId': {

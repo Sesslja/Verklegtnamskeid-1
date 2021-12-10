@@ -1,349 +1,1128 @@
 [
     {
-        "_id": "generated Id",
-        "created_at": "CREATED_AT_TIME",
+        "_id": "4db184bb-d3f8-4a1c-95c0-9d2a8c72f701",
+        "created_at": "2021-12-10 14:59:48.608755",
         "isActive": true,
         "isArchived": false,
         "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
+            "country": "Svalbard",
+            "city": "Longyearbyen",
+            "zip": "9170",
+            "address1": "Harbor 1",
             "address2": null,
             "address3": null
         },
-        "propertyId": "85858328jfjfu83",
+        "propertyId": "F959594",
         "amenities": [
-            "Kl\u00f3sett",
-            "Sturta",
-            "Eldh\u00fas"
+            "Submarine",
+            "Nuclear Powered",
+            "30 sleeping areas",
+            "Sauna",
+            "Gym",
+            "Gameroom"
         ],
-        "employees": [
-            "37a229db-6157-4bbe-b898-9d2abafb464d"
-        ]
-    },
-    {
-        "_id": "generateds",
-        "created_at": "CREATED_AT_TIME",
-        "isActive": true,
-        "isArchived": false,
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        },
-        "propertyId": "85858328jfjfu83",
-        "amenities": [
-            "bleh",
-            "Sturta",
-            "Eldh\u00fas"
-        ],
-        "employees": [
-            "37a229db-6157-4bbe-b898-9d2abafb464d",
-            "2a183d14-41e5-49f0-bbca-fcf19028a130"
-        ]
-    },
-    {
-        "_id": "686ff43f-e498-4283-92f4-6ce784d4d824",
-        "created_at": "2021-12-01 14:24:56.143309",
-        "isActive": true,
-        "isArchived": false,
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        },
-        "propertyId": "PR7900",
         "employees": [],
-        "amenities": [
-            "scasv",
-            "sofa",
-            "kitchen",
-            "sofa 2"
-        ]
-    },
-    {
-        "_id": "5a87664c-63d2-4218-9821-0ad6f7ecfdb9",
-        "created_at": "2021-12-03 15:51:28.335375",
-        "isActive": true,
-        "isArchived": false,
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        },
-        "propertyId": "PR7910",
-        "amenities": [
-            "heho"
-        ],
-        "employees": "2a183d14-41e5-49f0-bbca-fcf19028a130",
         "Rooms": [
             {
-                "size": 120.02,
-                "roomId": "PR7911"
+                "size": 62.5,
+                "roomId": "AA999-1"
             },
             {
-                "size": 20.0,
-                "roomId": "PR7912"
+                "size": 62.5,
+                "roomId": "AA999-2"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-3"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-4"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-5"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-6"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-7"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-8"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-9"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-10"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-11"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-12"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-13"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-14"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-15"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-16"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-17"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-18"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-19"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-20"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-21"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-22"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-23"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-24"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-25"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-26"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-27"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-28"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-29"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-30"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-31"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-32"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-33"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-34"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-35"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-36"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-37"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-38"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-39"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-40"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-41"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-42"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-43"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-44"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-45"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-46"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-47"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-48"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-49"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-50"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-51"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-52"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-53"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-54"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-55"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-56"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-57"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-58"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-59"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-60"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-61"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-62"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-63"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-64"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-65"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-66"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-67"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-68"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-69"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-70"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-71"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-72"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-73"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-74"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-75"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-76"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-77"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-78"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-79"
+            },
+            {
+                "size": 62.5,
+                "roomId": "AA999-80"
             }
         ]
     },
     {
-        "_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
-        "created_at": "2021-12-06 16:36:40.913595",
-        "isActive": true,
-        "isArchived": false,
-        "Address": {
-            "country": "Iceland",
-            "city": "Eih",
-            "zip": "420",
-            "address1": "Nuukway 1",
-            "address2": null,
-            "address3": null
-        },
-        "propertyId": "PP8000",
-        "amenities": [
-            "klost",
-            "bad",
-            "eldhus"
-        ],
-        "employees": [
-            "2a183d14-41e5-49f0-bbca-fcf19028a130",
-            "37a229db-6157-4bbe-b898-9d2abafb464d"
-        ],
-        "Rooms": [
-            {
-                "size": 115.02,
-                "roomId": "PR7991"
-            },
-            {
-                "size": 89.02,
-                "roomId": "PR7992"
-            },
-            {
-                "size": 90.2,
-                "roomId": "PR7993"
-            },
-            {
-                "size": 23.1,
-                "roomId": "PR7994"
-            },
-            {
-                "size": 300.0,
-                "roomId": "PR7995"
-            },
-            {
-                "size": 10.0,
-                "roomId": "PR7995"
-            },
-            {
-                "size": 43.0,
-                "roomId": "PR7996"
-            }
-        ]
-    },
-    {
-        "_id": "5cdcc5ab-a8fd-4106-866c-34d76d84242b",
-        "created_at": "2021-12-07 02:40:35.445155",
+        "_id": "a62bb41b-a179-4a27-8def-8dcef50ffeea",
+        "created_at": "2021-12-10 15:12:27.949555",
         "isActive": true,
         "isArchived": false,
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": "9902",
-            "address1": "Longearbyen 1",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
             "address2": null,
             "address3": null
         },
-        "propertyId": "PP9000",
+        "propertyId": "64-3901",
         "amenities": [
-            "Toilet",
-            "Kitchen",
-            "Airport"
+            "Igloo"
         ],
-        "employees": [
-            "2a183d14-41e5-49f0-bbca-fcf19028a130",
-            "0068302d-fcf5-429c-9d01-1655ed6ce816",
-            "e6f25e0b-659c-434e-9261-e251a87d4ed9",
-            "0c53e3c4-090d-4d6e-8449-39de2c170e1b"
-        ],
+        "employees": [],
         "Rooms": [
             {
-                "size": 30.0,
-                "roomId": "PP8000"
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "c57b13e2-18c1-4736-99c6-237cd87a8077",
+        "created_at": "2021-12-10 15:12:27.951584",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3902",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "61d9e4c4-47d1-41a0-bb88-45e3063c4175",
+        "created_at": "2021-12-10 15:12:27.952877",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3903",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "9e113196-88dc-44bd-b766-6758fb97562a",
+        "created_at": "2021-12-10 15:12:27.954023",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3904",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "df70e327-9de1-4165-be1f-08fe75dfe16f",
+        "created_at": "2021-12-10 15:12:27.955175",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3905",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "bc2c31f2-9607-4766-886a-8b9652b9dc39",
+        "created_at": "2021-12-10 15:12:27.956673",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3906",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "b7ad60a8-508b-4e78-bbb0-11da854194c2",
+        "created_at": "2021-12-10 15:12:27.958213",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3907",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "78756179-fc5a-49ef-b259-33645b54f6f8",
+        "created_at": "2021-12-10 15:12:27.960213",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3908",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "86d4090c-ab3e-415d-925f-44f47544b05e",
+        "created_at": "2021-12-10 15:12:27.962158",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3909",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "e6ab97ae-8a72-4d2e-b0b8-055000323258",
+        "created_at": "2021-12-10 15:12:27.963898",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3910",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 35
+            }
+        ]
+    },
+    {
+        "_id": "5f3d72a5-9770-4433-a838-f1565d2c241d",
+        "created_at": "2021-12-10 15:13:44.554078",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "iGloo-Ville",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3900",
+        "amenities": [
+            "Igloo reception"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 35.0,
+                "roomId": "Main"
+            }
+        ]
+    },
+    {
+        "_id": "8a0e26e0-7860-4008-91b3-9d945e728ec9",
+        "created_at": "2021-12-10 15:16:49.540414",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "Suloraq 42",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3875-6",
+        "amenities": [
+            "Condo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 50.0,
+                "roomId": "Main"
+            },
+            {
+                "size": 19.0,
+                "roomId": "Bedroom"
+            }
+        ]
+    },
+    {
+        "_id": "9a7e8194-81a0-451c-964d-e66a382ce7bc",
+        "created_at": "2021-12-10 15:19:51.686230",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "Igimaq 7",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3831",
+        "amenities": [
+            "Igloo"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 10.0,
+                "roomId": "Main"
+            }
+        ]
+    },
+    {
+        "_id": "cc4376e5-5bd0-4811-9e28-f64bdea50444",
+        "created_at": "2021-12-10 15:21:59.871536",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "Nuussuaq",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "64-3812",
+        "amenities": [
+            "Villa"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 50.0,
+                "roomId": "64-3812-1"
             },
             {
                 "size": 50.0,
-                "roomId": "room2"
+                "roomId": "64-3812-2"
             },
             {
-                "size": 87.94,
-                "roomId": "PP8005"
+                "size": 50.0,
+                "roomId": "64-3812-3"
             },
             {
-                "size": 80.0,
-                "roomId": "PR8006"
+                "size": 50.0,
+                "roomId": "64-3812-4"
+            },
+            {
+                "size": 50.0,
+                "roomId": "64-3812-5"
+            },
+            {
+                "size": 50.0,
+                "roomId": "64-3812-6"
+            },
+            {
+                "size": 50.0,
+                "roomId": "64-3812-7"
+            },
+            {
+                "size": 50.0,
+                "roomId": "64-3812-8"
+            }
+        ]
+    },
+    {
+        "_id": "416d84d5-f2a8-462f-a9fb-38e78b65fc35",
+        "created_at": "2021-12-10 15:27:07.657484",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Faroe Islands",
+            "city": "T\u00f3rshavn",
+            "zip": "100",
+            "address1": "Sk\u00e1ki\u00f0 15",
+            "address2": "A",
+            "address3": null
+        },
+        "propertyId": "ix-9331",
+        "amenities": [
+            "Bedroom",
+            "Kitchen",
+            "Living Room"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 50.0,
+                "roomId": "ix-9331-1"
             },
             {
                 "size": 20.0,
-                "roomId": "PR8007"
+                "roomId": "ix-9331-2"
             },
             {
-                "size": 300.0,
-                "roomId": "PR8008"
-            },
-            {
-                "size": 1.0,
-                "roomId": "PR8009"
+                "size": 30.0,
+                "roomId": "ix-9331-3"
             }
         ]
     },
     {
-        "_id": "3106e24c-d73e-4dd3-89c0-577fe5d0be1a",
-        "created_at": "2021-12-08 18:02:48.586781",
+        "_id": "520d12a5-f228-462f-b9ea-38e78b65ea94",
+        "created_at": "2021-12-10 15:28:07.657484",
         "isActive": true,
         "isArchived": false,
         "Address": {
-            "country": "\u00cdsland",
-            "city": "Reykjavik",
-            "zip": "108",
-            "address1": "Menntavegur 1",
-            "address2": null,
+            "country": "Faroe Islands",
+            "city": "T\u00f3rshavn",
+            "zip": "100",
+            "address1": "Sk\u00e1ki\u00f0 15",
+            "address2": "B",
             "address3": null
         },
-        "propertyId": "PP8100",
+        "propertyId": "ix-9332",
         "amenities": [
-            "Shop",
-            "Classrooms",
-            "Cafeteria",
-            "Shop",
-            "Study area",
-            "Lounge",
-            "Toilets"
+            "Bedroom",
+            "Kitchen",
+            "Living Room"
         ],
         "employees": [],
         "Rooms": [
             {
-                "size": 260.2,
-                "roomId": "M101"
+                "size": 50.0,
+                "roomId": "ix-9332-1"
             },
             {
-                "size": 310.72,
-                "roomId": "V101"
+                "size": 20.0,
+                "roomId": "ix-9332-2"
             },
             {
-                "size": 180.02,
-                "roomId": "M201"
+                "size": 30.0,
+                "roomId": "ix-9332-3"
             }
         ]
     },
     {
-        "_id": "49420f5b-d2a0-4712-aa2b-0394e43edfaf",
-        "created_at": "2021-12-08 19:10:41.593523",
+        "_id": "192e84d5-f2a8-462f-a9fb-38e78b65ef93",
+        "created_at": "2021-12-10 15:28:42.617134",
         "isActive": true,
         "isArchived": false,
         "Address": {
-            "country": "\u00cdsland",
-            "city": "Reykjavik",
-            "zip": "108",
-            "address1": "Menntavegur 1",
-            "address2": null,
+            "country": "Faroe Islands",
+            "city": "T\u00f3rshavn",
+            "zip": "100",
+            "address1": "Sk\u00e1ki\u00f0 15",
+            "address2": "C",
             "address3": null
         },
-        "propertyId": "PP8200",
+        "propertyId": "ix-9333",
         "amenities": [
-            "Classroom",
-            "Lounge",
-            "Shop"
+            "Bedroom",
+            "Kitchen",
+            "Living Room"
         ],
         "employees": [],
         "Rooms": [
             {
-                "size": 300.2,
-                "roomId": "M101"
+                "size": 50.0,
+                "roomId": "ix-9333-1"
             },
             {
-                "size": 429.31,
-                "roomId": "V101"
+                "size": 20.0,
+                "roomId": "ix-9333-2"
             },
             {
-                "size": 180.94,
-                "roomId": "M201"
+                "size": 30.0,
+                "roomId": "ix-9333-3"
             }
         ]
     },
     {
-        "_id": "2ccfd947-5459-4518-a421-34aa4165fbd7",
-        "created_at": "2021-12-08 19:40:08.284133",
+        "_id": "66ee50c7-aafc-478b-8994-24a87c5a1a45",
+        "created_at": "2021-12-10 15:34:17.662305",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Faroe Islands",
+            "city": "Nuuk",
+            "zip": "100",
+            "address1": "Svalbar\u00f0svegur 22",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-2239",
+        "amenities": [
+            "Kitchen",
+            "Living Room",
+            "2 bedrooms",
+            "Bathroom"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "size": 80.0,
+                "roomId": "ix-2239-1"
+            },
+            {
+                "size": 30.0,
+                "roomId": "ix-2239-2"
+            },
+            {
+                "size": 50.0,
+                "roomId": "ix-2239-3"
+            },
+            {
+                "size": 30.0,
+                "roomId": "ix-2239-4"
+            },
+            {
+                "size": 10.0,
+                "roomId": "ix-2239-5"
+            }
+        ]
+    },
+    {
+        "_id": "310e6385-ebfb-4e15-bf08-f574cb3c371a",
+        "created_at": "2021-12-10 15:43:19.443449",
         "isActive": true,
         "isArchived": false,
         "Address": {
             "country": "Greenland",
             "city": "Nuuk",
-            "zip": "902",
-            "address1": "Moggvej 1",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
             "address2": null,
             "address3": null
         },
-        "propertyId": "PP8300",
+        "propertyId": "ix-9492",
         "amenities": [
-            "Mogg",
-            "Sugs"
+            "Dirt house"
         ],
         "employees": [],
         "Rooms": [
             {
-                "size": 4096.0,
-                "roomId": "PR8301"
+                "roomId": "Main",
+                "size": 15
             }
         ]
     },
     {
-        "_id": "96fd14d9-f838-42bc-95f7-7e9710cdcb55",
-        "created_at": "2021-12-10 04:25:14.961365",
+        "_id": "9dff0f0c-318b-4e50-ac77-055c544cc295",
+        "created_at": "2021-12-10 15:43:19.446569",
         "isActive": true,
         "isArchived": false,
         "Address": {
-            "country": "Iceland",
-            "city": "Reykjavik",
-            "zip": "111",
-            "address1": "H\u00f6f\u00f0ah\u00f6ll 1",
-            "address2": "3. h\u00e6\u00f0",
-            "address3": "Turn"
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
         },
-        "propertyId": "PP7100",
+        "propertyId": "ix-9493",
         "amenities": [
-            "Toilets",
-            "2 Beds",
-            "Kitchen",
-            "Lounge"
+            "Dirt house"
         ],
         "employees": [],
         "Rooms": [
             {
-                "size": 30.1,
-                "roomId": "Kitchen"
-            },
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "8d5b572b-ce0d-4e6d-96ef-3a676d7952f6",
+        "created_at": "2021-12-10 15:43:19.448906",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9494",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
             {
-                "size": 12.91,
-                "roomId": "Bathroom"
-            },
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "e53a6405-b973-41d3-bdab-be3490c8365f",
+        "created_at": "2021-12-10 15:43:19.451077",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9495",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
             {
-                "size": 90.3,
-                "roomId": "LivingRoom"
-            },
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "d2e534c9-b980-4f2f-983f-f4569e5e7e4e",
+        "created_at": "2021-12-10 15:43:19.455416",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9496",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
             {
-                "size": 40.0,
-                "roomId": "MasterBedroom"
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "a40244a6-9bd9-48f6-b8f5-dbd9128f90d9",
+        "created_at": "2021-12-10 15:43:19.458298",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9497",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "5ef40f40-66be-4408-adc7-49598fad79d8",
+        "created_at": "2021-12-10 15:43:19.461809",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9498",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "b2fae648-a10d-4326-b97d-7f15248bebd0",
+        "created_at": "2021-12-10 15:43:19.464315",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9499",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "70bfbc5a-6c0c-4bab-9ead-8f4857e25b43",
+        "created_at": "2021-12-10 15:43:19.467081",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9500",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 15
+            }
+        ]
+    },
+    {
+        "_id": "e554f3b4-3893-4410-99d2-d71ded1c2f66",
+        "created_at": "2021-12-10 15:43:19.470290",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Greenland",
+            "city": "Nuuk",
+            "zip": "3900",
+            "address1": "N\u00fdggivegur 1",
+            "address2": null,
+            "address3": null
+        },
+        "propertyId": "ix-9501",
+        "amenities": [
+            "Dirt house"
+        ],
+        "employees": [],
+        "Rooms": [
+            {
+                "roomId": "Main",
+                "size": 15
             }
         ]
     }

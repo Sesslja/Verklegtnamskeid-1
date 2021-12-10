@@ -3,6 +3,7 @@ import datetime
 
 
 class DateTime():
+    '''Logic for time stamps'''
     def __init__(self) -> None:
         '''self.now = datetime.datetime.now()
         self.days_ahead = datetime.datetime.now() + relativedelta(days=3)
@@ -12,6 +13,7 @@ class DateTime():
 
 
     def generateDatetimeNow(self, date_time =None):
+        '''Finds current date'''
         date_time = date_time
         if date_time is None:
             dt = datetime.date.today().strftime('%A %d %B %Y')
@@ -22,6 +24,7 @@ class DateTime():
         return dt
     
     def testDate(self, startDate: list = None):
+        '''Checks if date is within bounds'''
         now = datetime.datetime.now()
         if startDate is None:
             date = datetime.datetime.now()
@@ -36,6 +39,7 @@ class DateTime():
         return date, dt
 
     def betweenTwoDates(self, start_date, end_date):
+        '''finds maintanence between two given dates'''
         sDate = [int(i) for i in start_date]
         startDate = datetime.datetime(sDate[0], sDate[1], sDate[2])
         eDate = [int(i) for i in end_date]

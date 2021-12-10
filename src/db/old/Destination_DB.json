@@ -1,0 +1,22 @@
+[
+    {
+        "_id": "68b11bab-9e17-4242-b93e-67694dd4f65a",
+        "created_at": "2021-12-09 03:41:06.197679",
+        "isActive": true,
+        "isArchived": false,
+        "Address": {
+            "country": "Iceland",
+            "city": "Reykjavik",
+            "zip": "101",
+            "address1": null,
+            "address2": null,
+            "address3": null
+        },
+        "name": "Reykjavik Airport",
+        "employees": [
+            "33eb2d2f-fa7a-1c51-b153-fc312ce1ae37",
+            "2a183d14-41e5-49f0-bbca-fcf19028a130"
+        ],
+        "manager": "73eb2d0f-fa7a-4c03-b995-fc312ce1ae37"
+    }
+]

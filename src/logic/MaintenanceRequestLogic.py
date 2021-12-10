@@ -9,6 +9,7 @@ from logic.DatetimeLogic import DateTime
 from model.MaintReportModel import Report
 
 class MaintenanceRequestAPI :
+    '''Logic for maintenance request'''
 
     def __init__(self) -> None :
         self.requestRepo = DB(MaintenanceRequest)
@@ -18,6 +19,7 @@ class MaintenanceRequestAPI :
         self.datetime = DateTime()
 
     def createMaintenanceRequest(self,status: str, property_id: str, to_do: list, isRegular: bool, occurrence: int, priority: str, start_date: str=None, employees: list=None, roomNumId: str=None):
+        '''Creates maintanence request given user input'''
         found_prop = self.propertyRepo.findOne({
             'where': {
                 'propertyId': property_id
@@ -39,9 +41,11 @@ class MaintenanceRequestAPI :
         return self.requestRepo.save(new_request)
     
     def MaintenanceRequestOverview(self) -> list:
+        '''gets all requests and returns a list of objects'''
         return self.requestRepo.find()
     
     def findOneByVerificationNumber(self, verification_number: str) -> object:
+        '''Finds request given verification number, returns list of objects'''
         return self.requestRepo.findOne({
             'where': {
                 'verification_number': verification_number
@@ -49,6 +53,7 @@ class MaintenanceRequestAPI :
         })
 
     def findMRequestByStatus(self, request_status: str): #Opened, Closed, Outstanding
+        '''Finds requests given request status and returns a list of objects'''
         return self.requestRepo.find({
             'where': {
                 'status': request_status
@@ -56,6 +61,7 @@ class MaintenanceRequestAPI :
         })
 
     def createVerificationNumber(self):
+        '''Creates a VN for new request to store in data'''
         try:
             used_numbers = self.requestRepo.find() # Find all maintenance request to see used numbers
             num_length = len(used_numbers) - 1
@@ -68,6 +74,7 @@ class MaintenanceRequestAPI :
         return verification_number
     
     def changeMRequestStatus(self, verification_number: str, status):
+        '''Change request status given VN og request and new status'''
         found_req = self.findOneByVerificationNumber(verification_number)
         data = {
             '_id': found_req._id,
@@ -76,6 +83,7 @@ class MaintenanceRequestAPI :
         return self.requestRepo.update(data)
     
     def findMRequestByVerificationId(self, verification_number: str):
+        '''returns list of objects given VN'''
         return self.requestRepo.find({
             'where': {
                 'verification_number': verification_number
@@ -84,6 +92,7 @@ class MaintenanceRequestAPI :
     
     
     def findRequestByEmployee(self, employeeId: str):
+        '''Finds all requests given Employee ID, returns list of objects'''
         user = self.userRepo.findOne({
             'where': {
                 'ssn': employeeId
@@ -97,6 +106,7 @@ class MaintenanceRequestAPI :
         })
     
     def findRequestsByProperty(self, propertyId: str):
+        '''Finds all requests given Property ID, returns list of objects'''
         found_property = self.propertyRepo.findOne({
             'where': {
                 'propertyId': propertyId
@@ -115,6 +125,7 @@ class MaintenanceRequestAPI :
         return found_req
 
     def findRequestByDate(self, startDate: list, endDate: list):
+        '''Finds all requests given two dates, returns list of objects'''
         startDate = startDate.split(',')
         endDate = endDate.split(',')
         request_list = []

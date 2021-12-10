@@ -9,6 +9,7 @@ except ModuleNotFoundError:
     pass
 
 class EmployeeEditMenu(BaseMenu):
+    '''edit employee sub menu'''
     def __init__(self, logged_in_user=None):
         super().__init__(logged_in_user)
         self.userAPI = UserAPI()
@@ -61,6 +62,7 @@ class EmployeeEditMenu(BaseMenu):
         }
 
     def employeeSSN_input(self, retry: bool= False):
+        '''prompts user to find employee by user ssn'''
         self.clear()
         print('No User found\nplease input a correct one') if retry else None
         employeeSSN_input = input("Please input the employee's SSN ([Q] to Quit): ")

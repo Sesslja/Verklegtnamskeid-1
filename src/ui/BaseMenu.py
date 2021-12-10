@@ -21,6 +21,7 @@ except ModuleNotFoundError:
     RICH_AVAILABLE = False
 
 class BaseMenu :
+    '''Master menu to get from'''
     def __init__(self, logged_in_user=None):
         self.menu_options = {}
         self.clear = lambda: os.system('cls' if os.name=='nt' else 'clear') if not RICH_AVAILABLE else Console().clear()
@@ -55,6 +56,7 @@ class BaseMenu :
 
 
     def print_options(self):
+        '''prints out user opttions'''
         # If the user chose to quit in some menu then we return run
         if self.failed:
             return 'run'

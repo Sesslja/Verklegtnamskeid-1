@@ -1,0 +1,216 @@
+[
+    {
+        "_id": "3dc9d721-ab8e-4a7f-a477-2c1df2c92ba7",
+        "created_at": "2021-12-08 23:20:59.773758",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "n",
+        "to_do": [
+            "Clean",
+            ""
+        ],
+        "isRegular": true,
+        "occurance": 12,
+        "priority": "A",
+        "start_date": "Sunday 12 December 2021",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130"
+        ],
+        "verification_number": "VB00001",
+        "contractor_id": null
+    },
+    {
+        "_id": "9171990b-3eee-4435-a0e4-a37e5b855a8b",
+        "created_at": "2021-12-08 23:46:21.579744",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "PP8005",
+        "to_do": [
+            "Change lightbulbs",
+            ""
+        ],
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "B",
+        "start_date": "Wednesday 05 January 2022",
+        "employees": [
+            "37a229db-6157-4bbe-b898-9d2abafb464d"
+        ],
+        "verification_number": "VB00002",
+        "contractor_id": null
+    },
+    {
+        "_id": "a2063768-72e5-4cb0-9f4f-a617c4b956b7",
+        "created_at": "2021-12-08 23:47:38.899627",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Finished",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "PP8005",
+        "to_do": [
+            "Clean",
+            ""
+        ],
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "A",
+        "start_date": "Wednesday 12 October 2022",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130"
+        ],
+        "verification_number": "VB00003",
+        "contractor_id": null
+    },
+    {
+        "_id": "2390912d-460c-4eaf-9def-7c20376c7522",
+        "created_at": "2021-12-08 23:48:41.947567",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Finished",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "PR8007",
+        "to_do": [
+            "Hoist lift",
+            ""
+        ],
+        "isRegular": true,
+        "occurance": 2,
+        "priority": "A",
+        "start_date": "Saturday 01 January 2022",
+        "employees": [
+            "0068302d-fcf5-429c-9d01-1655ed6ce816"
+        ],
+        "verification_number": "VB00004",
+        "contractor_id": null
+    },
+    {
+        "_id": "cb33bfc7-237e-4d82-bcf4-a710ce73a803",
+        "created_at": "2021-12-08 23:58:54.882402",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
+        "roomNumId": "PR7991",
+        "to_do": [
+            "Change lights",
+            ""
+        ],
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "A",
+        "start_date": "Tuesday 21 December 2021",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130",
+            "0068302d-fcf5-429c-9d01-1655ed6ce816"
+        ],
+        "verification_number": "VB00005",
+        "contractor_id": null
+    },
+    {
+        "_id": "7fa0be0c-7803-4d19-b2ed-bed8bb7fd60d",
+        "created_at": "2021-12-08 23:59:50.077865",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Finished",
+        "property_id": "d2ab6abf-8077-404c-9fd4-44f7d82ddc71",
+        "roomNumId": "PR7992",
+        "to_do": [
+            "Clean",
+            "Cook",
+            ""
+        ],
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "A",
+        "start_date": "Sunday 26 December 2021",
+        "employees": [
+            "2a183d14-41e5-49f0-bbca-fcf19028a130",
+            "0068302d-fcf5-429c-9d01-1655ed6ce816"
+        ],
+        "verification_number": "VB00006",
+        "contractor_id": null
+    },
+    {
+        "_id": "1f3ae035-21a6-4b27-bee0-8c57136aadea",
+        "created_at": "2021-12-09 17:52:34.071153",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "y",
+        "to_do": [
+            "da",
+            ""
+        ],
+        "isRegular": true,
+        "occurance": 1,
+        "priority": "A",
+        "start_date": "Thursday 09 December 2021",
+        "employees": "9f1871c7-cba2-4c41-b4c8-088acc66a2f0",
+        "verification_number": "VB00007",
+        "contractor_id": null
+    },
+    {
+        "_id": "dfabd546-66e2-4064-9f6f-048175028c58",
+        "created_at": "2021-12-09 18:00:10.330926",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "y",
+        "to_do": [
+            ""
+        ],
+        "isRegular": true,
+        "occurance": 1,
+        "priority": "A",
+        "start_date": "Thursday 09 December 2021",
+        "employees": "d715977f-8d4c-4b90-9df9-5481c2bbc6cd",
+        "verification_number": "VB00008",
+        "contractor_id": null
+    },
+    {
+        "_id": "7dbdc382-1461-473f-9afb-64b40ad9d00b",
+        "created_at": "2021-12-09 18:14:29.910013",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "5cdcc5ab-a8fd-4206-866c-34d76d84242b",
+        "roomNumId": "jklsa",
+        "to_do": [
+            ""
+        ],
+        "isRegular": true,
+        "occurance": 1,
+        "priority": "A",
+        "start_date": "Thursday 09 December 2021",
+        "employees": "d715977f-8d4c-4b90-9df9-5481c2bbc6cd",
+        "verification_number": "VB00009",
+        "contractor_id": null
+    },
+    {
+        "_id": "e26eaae8-1887-439c-9ffc-9fbfad8f9b3e",
+        "created_at": "2021-12-10 04:26:49.793942",
+        "isActive": true,
+        "isArchived": false,
+        "status": "Open",
+        "property_id": "96fd14d9-f838-42bc-95f7-7e9710cdcb55",
+        "roomNumId": "Kitchen",
+        "to_do": [
+            "Fix sink",
+            "Clean fridge",
+            ""
+        ],
+        "isRegular": false,
+        "occurance": 0,
+        "priority": "A",
+        "start_date": "Monday 20 December 2021",
+        "employees": "2a183d14-41e5-49f0-bbca-fcf19028a130",
+        "verification_number": "VB00010",
+        "contractor_id": null
+    }
+]

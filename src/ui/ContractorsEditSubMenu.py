@@ -75,6 +75,7 @@ class ContractorsEditSubMenu(BaseMenu):
         }
 
     def contractorSSNInput(self, retry: bool= False):
+        '''promts user to search contractor by contractor ssn'''
         self.clear()
         print('No contractor found please input a correct SSN') if retry else None
         contractorSSN_input = input("Please input the contractor's SSN ([Q] to Quit): ")
@@ -88,6 +89,7 @@ class ContractorsEditSubMenu(BaseMenu):
         return found_contractor.ssn
 
     def edit_contractor_address(self):
+        '''Prompts user to edit contractor address'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         comfirm = input("Do you want to change contractor address?\n[1] Yes\n[2] No\n: ")
         if comfirm == "1":
@@ -105,6 +107,7 @@ class ContractorsEditSubMenu(BaseMenu):
 
 
     def edit_contractor_openinghours(self):
+        '''Prompts user to edit contractor opening hours'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         old_openinghours = found_contractor.openinghours
         new_openinghours = input(f"Change opening hours\n Old opening hours: {old_openinghours}\nNew opening hours:  ")
@@ -117,6 +120,7 @@ class ContractorsEditSubMenu(BaseMenu):
 
 
     def edit_contractor_email(self):
+        '''Prompts user to edit contractor email'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         old_email = found_contractor.email
         new_email = input(f"Change email\n Old email: {old_email}\nNew email:  ")
@@ -129,6 +133,7 @@ class ContractorsEditSubMenu(BaseMenu):
 
 
     def edit_contractor_phone(self):
+        '''Prompts user to edit contractor phone'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         old_phone = found_contractor.phone
         new_phone = input(f"Change phone\n Old phone: {old_phone}\nNew phone:  ")
@@ -141,6 +146,7 @@ class ContractorsEditSubMenu(BaseMenu):
 
 
     def edit_contractor_profession(self):
+        '''Prompts user to edit contractor proffesion'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         old_profession = found_contractor.profession
         new_profession = input(f"Change profession\n Old profession: {old_profession}\nNew profession:  ")
@@ -153,6 +159,7 @@ class ContractorsEditSubMenu(BaseMenu):
 
 
     def edit_contractor_name(self):
+        '''Prompts user to edit contractor name'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         old_name = found_contractor.name
         new_name = input(f"Change name\n Old name: {old_name}\nNew name:  ")
@@ -165,6 +172,7 @@ class ContractorsEditSubMenu(BaseMenu):
 
 
     def edit_contractor_ssn(self):
+        '''Prompts user to edit contractor ssn'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         old_ssn = found_contractor.ssn
         new_ssn = input(f"Change SSN\n Old SSN: {old_ssn}\nNew SSN:  ")
@@ -176,6 +184,7 @@ class ContractorsEditSubMenu(BaseMenu):
         self.waitForKeyPress()
         
     def edit_contractor_company(self):
+        '''Prompts user to edit contractor company'''
         found_contractor = self.contractorsapi.findContractorByContractorId(self.contractorSSN)
         old_company = found_contractor.company
         new_company = input(f"Change company\n Old company: {old_company}\nNew company:  ")
@@ -188,6 +197,7 @@ class ContractorsEditSubMenu(BaseMenu):
 
 
     def assignContractorToMaintenance(self):
+        '''Prompts user to assign contractor to a maintanence request'''
 
         contractor_ssn = input('Enter contractor SSN: ')
 

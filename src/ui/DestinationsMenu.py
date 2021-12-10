@@ -9,7 +9,7 @@ except ModuleNotFoundError:
     pass
 
 class DestinationsMenu(BaseMenu):
-
+    '''Shows destination menu'''
     def __init__(self, logged_in_user=None):
         super().__init__(logged_in_user)
         self.destinationsapi = DestinationsAPI()
@@ -60,6 +60,7 @@ class DestinationsMenu(BaseMenu):
         }
 
     def destinationIdInput(self, retry: bool=False):
+        '''prompts user to get destination by destination ID'''
         self.clear()
         print("No destination ID found please input a correct one") if retry else None
         destId = input("Please input ID of destination ([Q] to Quit): ")
@@ -74,6 +75,7 @@ class DestinationsMenu(BaseMenu):
         return foundDest._id
 
     def create_destination(self):
+        '''prompts user to create new destination'''
         print('Create destination:')
 
         name = input('Name: ')
@@ -119,6 +121,7 @@ class DestinationsMenu(BaseMenu):
         self.waitForKeyPress()
 
     def find_destination_by_country(self):
+        '''prompts user to get destination by country'''
         destination_country = None
         while destination_country == None:
             
@@ -153,6 +156,7 @@ class DestinationsMenu(BaseMenu):
         self.waitForKeyPress()
 
     def find_destination_by_city(self): 
+        '''prompts user to get destination by city'''
         destination_city = None
         while destination_city == None:
 
@@ -185,6 +189,7 @@ class DestinationsMenu(BaseMenu):
         self.waitForKeyPress()
 
     def all_destinations_overview(self):
+        '''prompts user to get all destinations'''
 
         try:
             destination_list = self.destinationsapi.findDestinations()
@@ -214,6 +219,7 @@ class DestinationsMenu(BaseMenu):
         self.waitForKeyPress()
     
     def delete_destination(self):
+        '''prompts user to delete destination'''
 
         selected_dest_id = input('Enter destination id: ')
 
@@ -226,6 +232,7 @@ class DestinationsMenu(BaseMenu):
     
 
     def findDestinationByID(self):
+        '''prompts user to get destination by destination ID'''
         destination_id = None
         while destination_id == None:
                 destination_id = input("Enter destinations ID: ")
@@ -268,6 +275,7 @@ class DestinationsMenu(BaseMenu):
         return foundDest.verification_number
 
     def editName(self):
+        '''prompts user to edit destination name '''
         found_destination = self.destinationsapi.findDestinationByVerificationNumber(self.destinationVNumInput())
         old_name = found_destination.name
         new_name = input(f"Change destination name\nOld name: {old_name}\nNew name: ")
