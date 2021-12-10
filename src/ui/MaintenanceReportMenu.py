@@ -23,7 +23,7 @@ class MaintenanceReportMenu(BaseMenu):
                 "access": "",
                 "function": "find_by_maintenance_id"
             },
-            "": {
+            "3": {
                 "title": "Manager approves report ",
                 "access": "",
                 "function": "managerApprovesReport"
