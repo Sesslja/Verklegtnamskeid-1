@@ -18,6 +18,10 @@ from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
 from logic.DatetimeLogic import DateTime
 from ui.ContractorsOverviewSubMenu import ContractorsOverviewSubMenu
 from ui.EmployeeOverviewSubMenu import EmployeeOverviewSubMenu
+try:
+    from rich.text import Text
+except ModuleNotFoundError:
+    pass
 
 
 class MaintenanceMenu(BaseMenu):
@@ -26,18 +30,21 @@ class MaintenanceMenu(BaseMenu):
         super().__init__(logged_in_user)
 
         self.menu_title = "Maintenance Request Menu"
+        # Calls to APIs
         self.MaintenanceRequestAPI = MaintenanceRequestAPI()
         self.maintreportAPI = MaintReportAPI()
         self.propertyAPI = PropertyAPI()
         self.contractorAPI = ContractorAPI()
-        self.propertyRepo = DB(Property)
         self.userAPI = UserAPI()
+
+        # Calls to other menus so we don't write the same thing often
         self.employeesMenu = EmployeesMenu(logged_in_user=logged_in_user)
         self.propertiesMenu = PropertiesMenu(logged_in_user=logged_in_user)
         self.maintenanceRequestMenu = MaintenanceRequestMenu(logged_in_user=logged_in_user)
-        self.datetime = DateTime()
         self.contractorsOverviewSubMenu = ContractorsOverviewSubMenu(logged_in_user=logged_in_user)
         self.employeeOverviewSubMenu = EmployeeOverviewSubMenu(logged_in_user=logged_in_user)
+
+        self.datetime = DateTime()
 
         self.menu_options = {               
             "1": {
@@ -136,7 +143,7 @@ class MaintenanceMenu(BaseMenu):
             creator_user=self.loggedInUser)
 
         if report != None:
-            print(f"Maintenance Report succesfully admitted to mananger at {dt}! ")
+            print(Text.from_markup(f":white_check_mark: Maintenance Report succesfully admitted to mananger at {dt}! "))
             self.waitForKeyPress()
         else:
            print(f"Something whent wrong - Try again")
@@ -254,7 +261,7 @@ class MaintenanceMenu(BaseMenu):
 
         try:
             self.MaintenanceRequestAPI.createMaintenanceRequest(status=status, property_id = property_id , to_do=input_list, isRegular=isRegular, occurrence=occurrence, priority=priority, start_date = dt, employees= find_employee._id, roomNumId=roomNumId)
-            print(f"\nMaintenance Request succesfully created and set for {dt}! ")
+            print(Text.from_markup(f"\n:white_check_mark: Maintenance Request succesfully created and set for {dt}! "))
             self.waitForKeyPress()
         except:
-            print(f"Something whent wrong")
+            print(f"Something went wrong")

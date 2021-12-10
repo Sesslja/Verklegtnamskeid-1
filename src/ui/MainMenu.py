@@ -69,6 +69,6 @@ class MainMenu(BaseMenu):
                 time.sleep(1)
             for i in range(0, 5):
                 self.clear()
-                print("Initiating division ", ("(       )" if i <= 1 else ("(   /   )" if i <= 2 else ("( 1 /   )" if i <= 3 else ("( 1 / 0 )")))))
+                print("Initiating division ", ("" if i == 0 else ("(       )" if i <= 1 else ("(   /   )" if i <= 2 else ("( 1 /   )" if i <= 3 else ("( 1 / 0 )"))))))
                 time.sleep(1)
-            print(str( 1 / 0 ))
+            ( 1 / 0 )

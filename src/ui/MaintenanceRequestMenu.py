@@ -74,7 +74,21 @@ class MaintenanceRequestMenu(BaseMenu):
         '''prints out a table of all maintenance Requests'''
         try:
             request_list = self.maintenanceRequestAPI.MaintenanceRequestOverview()
-            show_keys = ["verification_number",'occurance', 'priority', 'employees']
+            # TODO: request employee names so we can show that
+            show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'occurance': {
+                    'display_name': 'Occurance'
+                },
+                'priority': {
+                    'display_name': 'Priority'
+                },
+                'start_date': {
+                    'display_name': 'Start date'
+                }
+            }#["verification_number",'occurance', 'priority', 'employees'] old table keys
             print(self.createTable(show_keys, request_list))
         except ValueError:
             print("Nothing to Show :(")
@@ -85,7 +99,21 @@ class MaintenanceRequestMenu(BaseMenu):
         '''prints out a table of all opened requests'''
         try:
             open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Open")
-            show_keys = ["verification_number",'occurance', 'priority', 'employee_id', 'start_date']
+            # TODO: request employee names so we can show that
+            show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'occurance': {
+                    'display_name': 'Occurance'
+                },
+                'priority': {
+                    'display_name': 'Priority'
+                },
+                'start_date': {
+                    'display_name': 'Start date'
+                }
+            }#["verification_number",'occurance', 'priority', 'employee_id', 'start_date']
             print(self.createTable(show_keys, open_request_list))
         except ValueError:
             print("Nothing to Show :(")
@@ -95,7 +123,20 @@ class MaintenanceRequestMenu(BaseMenu):
         '''prints out a table of all closed requests'''
         try:
             closed_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Closed")
-            show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+            show_keys = show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'occurance': {
+                    'display_name': 'Occurance'
+                },
+                'priority': {
+                    'display_name': 'Priority'
+                },
+                'start_date': {
+                    'display_name': 'Start date'
+                }
+            }#["verification_number",'occurance', 'priority', 'employeeId']
             print(self.createTable(show_keys, closed_request_list))
         except ValueError:
             print("Nothing to Show :(")
@@ -105,7 +146,20 @@ class MaintenanceRequestMenu(BaseMenu):
         '''prints out a table of all upcoming requests'''
         try:
             open_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Open")
-            show_keys = ["verification_number",'start_date','employeeId','priority','occurance']
+            show_keys = show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'occurance': {
+                    'display_name': 'Occurance'
+                },
+                'priority': {
+                    'display_name': 'Priority'
+                },
+                'start_date': {
+                    'display_name': 'Start date'
+                }
+            }#["verification_number",'start_date','employeeId','priority','occurance']
             print(self.createTable(show_keys, open_request_list))
         except ValueError:
             print("Nothing to Show :(")
@@ -115,7 +169,20 @@ class MaintenanceRequestMenu(BaseMenu):
     def outstandingMRequest(self):
         '''prints out a table of all outstanding requests'''
         outstanding_request_list = self.maintenanceRequestAPI.findMRequestByStatus("Outstanding")
-        show_keys = ["verification_number",'occurance', 'priority', 'employeeId']
+        show_keys = show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'occurance': {
+                    'display_name': 'Occurance'
+                },
+                'priority': {
+                    'display_name': 'Priority'
+                },
+                'start_date': {
+                    'display_name': 'Start date'
+                }
+            }#["verification_number",'occurance', 'priority', 'employeeId']
         print(self.createTable(show_keys, outstanding_request_list))
         self.waitForKeyPress()
 
@@ -131,7 +198,20 @@ class MaintenanceRequestMenu(BaseMenu):
                     self.allMaintRequest()
                 maintenence_id = None
             else:
-                show_keys = ["verification_number", "property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
+                show_keys = show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'occurance': {
+                    'display_name': 'Occurance'
+                },
+                'priority': {
+                    'display_name': 'Priority'
+                },
+                'start_date': {
+                    'display_name': 'Start date'
+                }
+            }#["verification_number", "property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
                 print(self.createTable(show_keys, request_list))
                 self.waitForKeyPress()
 
@@ -146,7 +226,20 @@ class MaintenanceRequestMenu(BaseMenu):
                 if findEmployee != []:
                     requestList = self.maintenanceRequestAPI.findRequestByEmployee(employeeId)
                     if requestList != []:
-                        show_keys = ["verification_number", "property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
+                        show_keys = show_keys = {
+                            'verification_number': {
+                                'display_name': 'Verification Number'
+                            },
+                            'occurance': {
+                                'display_name': 'Occurance'
+                            },
+                            'priority': {
+                                'display_name': 'Priority'
+                            },
+                            'start_date': {
+                                'display_name': 'Start date'
+                            }
+                        }#["verification_number", "property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
                         print(self.createTable(show_keys, requestList))
                         self.waitForKeyPress()
                     else:
@@ -165,14 +258,26 @@ class MaintenanceRequestMenu(BaseMenu):
         while property_id == None:
             property_id = input("Enter property ID: ")
             try:
-                int(property_id)
-                request_list = self.maintrequestAPI.findRequestByProperty(property_id)
+                request_list = self.maintenanceRequestAPI.findRequestByProperty(property_id)
                 if len(request_list) == 0:
                     print ("No items to show")
                     request_list == None
                     self.waitForKeyPress()
                 else:
-                    show_keys = ["property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
+                    show_keys = show_keys = {
+                        'verification_number': {
+                            'display_name': 'Verification Number'
+                        },
+                        'occurance': {
+                            'display_name': 'Occurance'
+                        },
+                        'priority': {
+                            'display_name': 'Priority'
+                        },
+                        'start_date': {
+                            'display_name': 'Start date'
+                        }
+                    }#["property_id",'maintenance', 'contractor_id', 'salary', 'contractors_fee']
                     print(self.createTable(show_keys, request_list))
                     self.waitForKeyPress()
             except ValueError:
@@ -196,7 +301,20 @@ class MaintenanceRequestMenu(BaseMenu):
                     request_list == None
                     self.waitForKeyPress()
                 else:
-                    show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                    show_keys = {
+                        'verification_number': {
+                            'display_name': 'Verification Number'
+                        },
+                        'occurance': {
+                            'display_name': 'Occurance'
+                        },
+                        'priority': {
+                            'display_name': 'Priority'
+                        },
+                        'start_date': {
+                            'display_name': 'Start date'
+                        }
+                    }#["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                     print(self.createTable(show_keys, request_list))
                     self.waitForKeyPress()
     

@@ -36,7 +36,23 @@ class MaintenanceReportMenu(BaseMenu):
 
     def find_all_reports(self):
         report_list = self.maintreportAPI.findReport()
-        show_keys = ['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
+        show_keys = {
+            'maintenance': {
+                'display_name': 'Maintenance'
+            },
+            'salary': {
+                'display_name': 'Salary'
+            },
+            'verification_number': {
+                'display_name': 'Verification Number'
+            },
+            'contractorId': {
+                'display_name': 'Contractor ID'
+            },
+            'contractorsfee': {
+                'display_name': 'Contractors Fee'
+            }
+        } #['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
         print(self.createTable(show_keys, report_list))
         self.waitForKeyPress()
     
@@ -52,7 +68,23 @@ class MaintenanceReportMenu(BaseMenu):
                     self.find_all_reports()
                 maintenence_id = None
             else:
-                show_keys = ["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
+                show_keys = show_keys = {
+                    'maintenance': {
+                        'display_name': 'Maintenance'
+                    },
+                    'salary': {
+                        'display_name': 'Salary'
+                    },
+                    'verification_number': {
+                        'display_name': 'Verification Number'
+                    },
+                    'contractorId': {
+                        'display_name': 'Contractor ID'
+                    },
+                    'contractorsfee': {
+                        'display_name': 'Contractors Fee'
+                    }
+                }#["propertyId",'maintenance', 'contractorId', 'salary', 'contractorsfee']
                 print(self.createTable(show_keys, report_list))
                 self.waitForKeyPress()
 

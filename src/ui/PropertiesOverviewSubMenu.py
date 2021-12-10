@@ -97,37 +97,61 @@ class PropertiesOverviewSubMenu(BaseMenu):
             employee_id = input("Find property by employee:\nEnter employee SSN: ")
             property_list = self.propertyapi.findPropertyByEmployeeSsn(employee_id)
 
-            header_list = ['amenities', 'propertyId', 'isActive']
+            header_list = {
+                'propertyId': {
+                    'display_name': 'Property ID',
+                    'header_style': 'bold'
+                },
+                'address_str': {
+                    'display_name': 'Address',
+                    'header_style': 'bold'
+                },
+                'amenities': {
+                    'display_name': 'Amenities',
+                    'header_style': 'bold'
+                },
+                'total_size': {
+                    'display_name': 'Total size',
+                    'suffix': ' m²',
+                    'header_style': 'bold'
+                },
+                'room_amount': {
+                    'display_name': 'Amount of rooms',
+                    'header_style': 'bold'
+                }
+            }
             self.createTable(header_list, property_list, line_between_records=True, justify_table='center')
         except RecordNotFoundError:
             print("No employees found with that SSN")
         self.waitForKeyPress()
 
     def searchById(self):
-        '''Finds a property given a property ID'''
+        '''Finds a property given a property ID\n
+        Uses Layout from Rich\n
+        Creates a page that shows a property and related entities'''
         try:
-            property_id = input("Find property by property ID:\nEnter property ID: ")
-            property_list = self.propertyapi.findPropertyByPropertyId(property_id)
+            property_id = input("Find property by property ID:\nEnter property ID: ") # Ask for Property ID
+            property_list = self.propertyapi.findPropertyByPropertyId(property_id) # Searches for the property
 
-            employee_list = self.propertyapi.findEmployeesByPropertyId(property_id)
+            employee_list = self.propertyapi.findEmployeesByPropertyId(property_id) # Finds employees that are assigned to a property
 
-            maintenance_requests_list = self.propertyapi.findRequestsByPropertyID(property_id)
+            maintenance_requests_list = self.propertyapi.findRequestsByPropertyID(property_id) # finds maintenance requests assigned to a property
 
             if RICH_AVAILABLE:
-                main_layout = Layout()
-                property_layout = Layout()
-                maint_reqs_layout = Layout()
+                main_layout = Layout() # Initiate main layout
+                property_layout = Layout() # initiate property layout
+                maint_reqs_layout = Layout() # initiate maintenance request layout
 
                 main_layout.split_column(
-                    Layout(name="header", size=1),
+                    Layout(name="header", size=1), # creates a one line tall header so we can have a free line at the bottom
                     Layout(name="main")
                 )
                 main_layout["header"].update(
-                    Text('')
+                    Text('') # Empty the header
                 )
                 main_layout["main"].split_row(
-                    Layout(name="prop_info"),
-                    Layout(name="maint_req_info"),
+                    Layout(name="prop_info"), # main property info layout
+                    Layout(name="maint_req_info"), # maintenance req info
                 )
 
                 main_layout["prop_info"].update(
@@ -144,7 +168,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
 
                 property_layout.split_column(
                     Layout(name="info"),
-                    Layout(name="related", ratio=2)
+                    Layout(name="related", ratio=2) # Related entities
                 )
 
                 property_layout["related"].split_row(
@@ -153,14 +177,14 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     Layout(name="amenities")
                 )
 
-                single_property_to_table_list = [
+                single_property_to_table_list = [ # For table
                     {'1': 'Property ID', '2': property_list.propertyId},
                     {'1': 'Address', '2': property_list.address_str},
                     {'1': 'Total size', '2': property_list.total_size},
                     {'1': 'Amount of rooms', '2': property_list.room_amount},
                 ]
 
-                property_layout["info"].update(
+                property_layout["info"].update( # Add property info to a table
                     self.createTable(['1', '2'], single_property_to_table_list, line_between_records=True, return_table=True, hide_header=True, table_style='red', hide_entry_count=True),
                 )
 
@@ -176,7 +200,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     }
                 }
 
-                property_layout["related"]["employees"].update(
+                property_layout["related"]["employees"].update( # add employees to a table
                     self.createTable(header_employees, employee_list, table_title='Assigned Employees', line_between_records=True, return_table=True)
                 )
 
@@ -190,7 +214,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     }
                 }
 #
-                property_layout["related"]["rooms"].update(
+                property_layout["related"]["rooms"].update( # Add rooms to a table
                     self.createTable(header_rooms, property_list.Rooms, table_title='Rooms', line_between_records=True, return_table=True, entry_limit=10)
                 )
 
@@ -198,7 +222,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 for amen in property_list.amenities:
                     amenities_list.append({'amenity': amen})
 
-                property_layout["related"]["amenities"].update(
+                property_layout["related"]["amenities"].update( # Add amenities to a table
                     self.createTable(['amenity'], amenities_list, hide_header=True, table_title='Amenities', line_between_records=True, return_table=True)
                 )
 
@@ -214,16 +238,16 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     }
                 }
 
-                maint_reqs_layout.update(
+                maint_reqs_layout.update( # Add maint reqs to a table
                     self.createTable(header_maint_reqs, maintenance_requests_list, return_table=True)
                 )
 
-                print(main_layout)
+                print(main_layout) # PRINT IT!!!
             else:
                 print(color('Rich module not installed, unable to display', backgroundColor='red'))
 
             #print(self.createTable(header_list, property_list, line_between_records=True))
-        except RecordNotFoundError:
+        except RecordNotFoundError: # If we don't find the property
             print("Property not found!")
         self.waitForKeyPress()
 
@@ -231,9 +255,9 @@ class PropertiesOverviewSubMenu(BaseMenu):
     def search_by_region(self):
         '''Finds all properties given a property Region'''
         print('Find property by region:\n')
-        property_region = Prompt.ask("Enter region: ", choices=self.propertyapi.findAvailableCountries()).capitalize()
+        property_region = Prompt.ask("Enter region: ", choices=self.propertyapi.findAvailableCountries()).capitalize() # Get input from user, shows available countries as choices
         try:
-            property_list = self.propertyapi.findPropertyByCountry(property_region)
+            property_list = self.propertyapi.findPropertyByCountry(property_region) # Find properties in that contry
 
             header_list = {
                 'amenities': {
@@ -247,13 +271,14 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     'suffix': ' m²'
                 }
             }#['amenities', 'propertyId', 'isActive']
-            print(self.createTable(header_list, property_list, line_between_records=True))
+            print(self.createTable(header_list, property_list, line_between_records=True)) # Create the table
         except RecordNotFoundError:
             print ("No properties found in region")
         self.waitForKeyPress()
 
     def findRoomsByPropertyId(self, propertyId: str=None):
-        '''Finds all rooms of a property given property ID'''
+        '''Finds all rooms of a property given property ID\n
+        Is also possible to call this function from other menus so we provide that option'''
         if propertyId == None:
             propertyId = input('Find rooms by property ID:\nEnter property ID: ')
         try:
@@ -273,7 +298,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
 
 
     def print_all_properties(self):
-        '''prints a table of all properties og NAN'''
+        '''prints a table of all properties of NaN Air'''
         try:
             property_list = self.propertyapi.findProperties()
             header_list = {
@@ -298,11 +323,9 @@ class PropertiesOverviewSubMenu(BaseMenu):
                     'display_name': 'Amount of rooms',
                     'header_style': 'bold'
                 }
-            }#
-            #header = ['amenities', 'propertyId', 'isActive', 'total_size']
+            }
 
-            print(self.createTable(header_list, property_list, line_between_records=True))
-            #print(self.createTable(header_list, property_list, line_between_records=True))
+            print(self.createTable(header_list, property_list, line_between_records=True)) # Create table
         except RecordNotFoundError:
             print("There are no properties to show")
 
