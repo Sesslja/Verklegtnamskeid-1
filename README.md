@@ -1,5 +1,5 @@
 # H-Air!
-Bókunarkerfi fyrir herbergi fyrir NaN-air sem er undir stjórn Chuck Norris.
+Umsýslukerfi húsnæða fyrir NaN-air sem er undir stjórn Chuck Norris.
 Gert í Verklegt Námskeið 1 áfanganum.
 
 ### Hópmeðlimir:
@@ -18,11 +18,31 @@ Hérna eru geymdar allar skrar forritsins.
 ## ./design/
 Hér eru upplýsingar um hönnun kerfisins og ýmis rit tengd því.
 
-## ./docs/
-Documentation um hvernig er hægt að nota forritið.
 
 ## ./dagbok/
 Dagbókarfærslur um hvað gerðist þann dag
 
 # Keyrsla
-`$ python3 main.py`
+## Fyrirvari
+Virkar ef python er >= 3.9
+
+Mikilvægt er að installa Rich pakkanum:
+
+`$ pip install rich`
+
+Gæti þurft að gera
+
+`$ pip3 install rich`, ef margar útgáfur af python eru í boði
+
+## Keyrslan
+Mikilvægt að fara inn í src möppuna áður en er keyrt
+
+`$ cd src`
+
+Svo er hægt að keyra það með
+
+`$ python main.py`
+
+Eða með
+
+`$ python3 main.py`, ef hitt virkar ekki
