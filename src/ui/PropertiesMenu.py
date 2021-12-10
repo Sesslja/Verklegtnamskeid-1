@@ -1,8 +1,8 @@
 try:
     from rich.prompt import Prompt, FloatPrompt
+    from rich.text import Text
 except ModuleNotFoundError:
     pass
-from rich.text import Text
 from model.AddressType import Address
 from model.RoomType import RoomType
 from ui.BaseMenu import BaseMenu

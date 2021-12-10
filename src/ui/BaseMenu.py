@@ -66,7 +66,7 @@ class BaseMenu :
                 to_print = NAN_AIR_LOGO_POOR + '\n\n\n'
                 to_print += self.menu_title + '\n'
                 # Checks if Rich module is installed, install with 'pip install rich'
-                to_print = color('Rich package is not installed, program may not render correctly\nYou can install it by doing "pip install rich" in the terminal\n', backgroundColor='red') + to_print
+                to_print = color('Rich package is not installed, program may not work correctly\nYou can install it by running "pip install rich" in your terminal\n', backgroundColor='red') + to_print
                 to_print += ("-"*30) + '\n'
                 for key in  self.menu_options :
                     to_print += f"[{key}] {self.menu_options[key]['title']} \n"
