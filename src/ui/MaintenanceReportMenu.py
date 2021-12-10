@@ -1,6 +1,13 @@
+from rich import prompt
 from ui.BaseMenu import BaseMenu
 from logic.MaintReportLogic import MaintReportAPI
+from logic.MaintenanceRequestLogic import MaintenanceRequestAPI
 from ui.MaintenanceRequestMenu import MaintenanceRequestMenu
+from data.DBError import RecordNotFoundError
+try:
+    from rich.prompt import Prompt
+except:
+    pass
 
 class MaintenanceReportMenu(BaseMenu):
     '''Gives maintenace report optins'''
@@ -8,8 +15,9 @@ class MaintenanceReportMenu(BaseMenu):
         super().__init__(logged_in_user)
 
         self.menu_title = "Maintenance Report Menu"
-        self.maintreportAPI = MaintReportAPI()
-        self.maintanenceRequestMenu = MaintenanceRequestMenu(logged_in_user)
+        self.maintreportAPI = MaintReportAPI(logged_in_user=logged_in_user)
+        self.maintrequestAPI = MaintenanceRequestAPI(logged_in_user=logged_in_user)
+        self.maintanenceRequestMenu = MaintenanceRequestMenu(logged_in_user=logged_in_user)
 
         self.menu_options = {
             
@@ -24,9 +32,9 @@ class MaintenanceReportMenu(BaseMenu):
                 "function": "find_by_maintenance_id"
             },
             "3": {
-                "title": "Manager approves report ",
-                "access": "",
-                "function": "managerApprovesReport"
+                "title": "Manager can accept report ",
+                "access": "manager",
+                "function": "managerAcceptsReport"
             },
             "X": {
                 "title": "Return to previous page",
@@ -105,7 +113,49 @@ class MaintenanceReportMenu(BaseMenu):
                 print(self.createTable(show_keys, report_list))
                 self.waitForKeyPress()
 
-    def managerApprovesReport(self):
-        pass
+    def managerAcceptsReport(self):
+        ''' Manager can accept report, if he accepts the report will close otherwise it will reopen '''
+
+        verificationNum = Prompt.ask("Enter the verification number of the maintenane report: ")
+        try:
+            found_maint = self.maintreportAPI.findMReportByVerificationId(verificationNum)
+            show_keys = {
+                'verification_number': {
+                    'display_name': 'Verification Number'
+                },
+                'maintenance': {
+                    'display_name': 'Maintenance'
+                },
+                'contractorId': {
+                    'display_name': 'Contractor'
+                },
+                'materialcost': {
+                    'display_name': 'Material Cost'
+                },
+                'salary': {
+                    'display_name': 'Salary'
+                },
+                'contractorId': {
+                    'display_name': 'Contractor Id'
+                },
+                'contractorsfee': {
+                    'display_name': 'Contractors Fee'
+                },
+                'finish_at': {
+                    'display_name': 'Finished at'
+                }
+            } #['maintenance', 'contractorId', 'salary', 'contractorsfee', 'verification_number']
+            print(self.createTable(show_keys,found_maint))
+            self.waitForKeyPress()
+            question = Prompt.ask(' Do you accept this report? Y/N: ')
+            if question == 'Y'.lower():
+                self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Closed')
+                print('This report is now closed!')
+            elif 'N'.lower():
+                self.maintrequestAPI.changeMRequestStatus(verificationNum, 'Opened')
+                print('You reopened this report!')
+        except RecordNotFoundError:
+            print('Maintenance report not found')
+        self.waitForKeyPress()
 
 
