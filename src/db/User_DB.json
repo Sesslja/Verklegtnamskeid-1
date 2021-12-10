@@ -232,8 +232,11 @@
             "address1": "\u00cd L\u00e1gni 19",
             "address2": null,
             "address3": null
-<<<<<<< HEAD
-        }
+        },
+        "phone": [
+            "+298 661441",
+            "+354 777 1382"
+        ]
     },
     {
         "_id": "37f8b30d-f484-4208-86f6-04ecece94c88",
@@ -252,12 +255,5 @@
             "address2": null,
             "address3": null
         }
-=======
-        },
-        "phone": [
-            "+298 661441",
-            "+354 777 1382"
-        ]
->>>>>>> a50a17cb8e212af73acad918ab3e8c57c6b33963
     }
 ]
