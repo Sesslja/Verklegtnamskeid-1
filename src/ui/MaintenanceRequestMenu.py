@@ -13,8 +13,8 @@ class MaintenanceRequestMenu(BaseMenu):
         self.menu_title = "Maintenance Request Menu"
         self.maintenanceRequestAPI = MaintenanceRequestAPI()
         self.employeeOverview = EmployeeOverviewSubMenu(logged_in_user=logged_in_user)
-        self.userAPI = UserAPI(logged_in_user=logged_in_user)
-        self.propertyAPI = PropertyAPI(logged_in_user=logged_in_user)
+        self.userAPI = UserAPI()
+        self.propertyAPI = PropertyAPI()
         self.propertyOverview = PropertiesOverviewSubMenu(logged_in_user=logged_in_user)
 
         self.menu_options = {
