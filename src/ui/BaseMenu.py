@@ -42,7 +42,10 @@ class BaseMenu :
         print('Incorrect login details, please try again') if failed_attempt else ''
         userSsn = ""
         while userSsn == "":
-            userSsn = Prompt.ask('Please enter your employee number')
+            if RICH_AVAILABLE:
+                userSsn = Prompt.ask('Please enter your employee number')
+            else:
+                userSsn = input('Please enter your employee number: ')
             self.clear()
         login_res = authApi.userLogin(userSsn)
 
@@ -59,8 +62,8 @@ class BaseMenu :
         menuState = 'run'
         while menuState == 'run':
             self.clear()
-            if not RICH_AVAILABLE:
-                to_print = NAN_AIR_LOGO + '\n\n\n'
+            if not RICH_AVAILABLE: # If rich isn't available then create basic menu
+                to_print = NAN_AIR_LOGO_POOR + '\n\n\n'
                 to_print += self.menu_title + '\n'
                 # Checks if Rich module is installed, install with 'pip install rich'
                 to_print = color('Rich package is not installed, program may not render correctly\n', backgroundColor='red') + to_print
@@ -69,8 +72,8 @@ class BaseMenu :
                     to_print += f"[{key}] {self.menu_options[key]['title']} \n"
                 to_print += ("-"*30)
                 print(to_print)
-            else:
-                menuTable = Table(show_header=False, show_lines=True)
+            else: # Hurrah rich is available we can create a cool menu
+                menuTable = Table(show_header=False, show_lines=True, min_width=35)
                 menuTable.title = self.menu_title
                 menuTable.add_column()
                 menuTable.add_column()
@@ -142,8 +145,8 @@ class BaseMenu :
                 try:
                     run_func()
                     return 'run'
-                except:
-                    print('error')
+                except Exception as err:
+                    return self.errorHandler(err)
             else:
                 return 'run'
         else:
@@ -415,5 +418,16 @@ class BaseMenu :
     def funcNotFound(self):
         print('Function not found')
         input('Press any key to continue')
+
+    def errorHandler(self, err):
+        if RICH_AVAILABLE:
+            print(Text.from_markup("Uh Oh! I encountered an [underline]error[/underline]", style="white on red"))
+            print(err)
+        else:
+            print(color("Uh Oh! I encountered an error", "white", "red", "underline"))
+            print(err)
+
+        self.waitForKeyPress("\nPress any key to return to safety!")
+        return 'run'
 
 

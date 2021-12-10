@@ -68,7 +68,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
 
     def showPropertyMaintenanceRequests(self):
         '''Shows all request assigned to property'''
-        property_id = 'PP8000'#input("Enter property ID: ")
+        property_id = input("Enter property ID: ")
         try:    
             found_property = self.propertyapi.findPropertyByPropertyId(property_id)
             requests = self.propertyapi.findRequestsByPropertyID(found_property.propertyId)
@@ -106,7 +106,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
     def searchById(self):
         '''Finds a property given a property ID'''
         try:
-            property_id = "PP8000"#input("Find property by property ID:\nEnter property ID: ")
+            property_id = input("Find property by property ID:\nEnter property ID: ")
             property_list = self.propertyapi.findPropertyByPropertyId(property_id)
 
             employee_list = self.propertyapi.findEmployeesByPropertyId(property_id)
@@ -191,7 +191,7 @@ class PropertiesOverviewSubMenu(BaseMenu):
                 }
 #
                 property_layout["related"]["rooms"].update(
-                    self.createTable(header_rooms, property_list.Rooms, table_title='Rooms', line_between_records=True, return_table=True, entry_limit=3)
+                    self.createTable(header_rooms, property_list.Rooms, table_title='Rooms', line_between_records=True, return_table=True, entry_limit=10)
                 )
 
                 amenities_list = []

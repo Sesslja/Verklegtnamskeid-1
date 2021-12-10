@@ -1,4 +1,7 @@
-from rich.prompt import Prompt, FloatPrompt
+try:
+    from rich.prompt import Prompt, FloatPrompt
+except ModuleNotFoundError:
+    pass
 from model.AddressType import Address
 from model.RoomType import RoomType
 from ui.BaseMenu import BaseMenu

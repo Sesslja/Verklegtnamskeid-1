@@ -1,7 +1,10 @@
 from data.DBError import RecordNotFoundError
 from ui.BaseMenu import BaseMenu
 from logic.PropertyLogic import PropertyAPI
-from rich.prompt import Confirm, Prompt, FloatPrompt
+try:
+    from rich.prompt import Confirm, Prompt, FloatPrompt
+except ModuleNotFoundError:
+    pass
 
 
 class PropertiesEditSubMenu(BaseMenu):
